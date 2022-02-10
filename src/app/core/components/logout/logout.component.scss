@@ -1,10 +1,11 @@
+@import '/src/assets/styles/variables';
 .btn-container {
     position: absolute;
     right: 3rem;
 }
 
 .btn-logout {
-    background-color: #E5E5E5;
+    background-color: $white;
     border: 1px solid #E5E5E5;
     display: flex;
     align-items: center;
@@ -12,13 +13,13 @@
     justify-content: space-between;
     border: none;
     font-size: 20px;
-    color: #183B78;
+    color: $blue-700;
     transition: all .6s ease;
     &__icon {
         margin-right: 1rem;
     }
     &:hover {
         background-color: transparent;
-        border: 1px solid #183B78;
+        border: 1px solid $blue-700;
     }
 }
