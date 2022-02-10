@@ -1,0 +1,24 @@
+@import '/src/assets/styles/variables';
+
+.container {
+  grid-template-columns: 100px;
+
+  .title {
+    width: 208px;
+    height: 26px;
+    left: 405px;
+    top: 74px;
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 100%;
+    color: $blue-700;
+  }
+
+  .linha {
+    display: block;
+    height: 2px;
+    margin-top: 1rem;
+    width: 100%;
+    background-color: $gray-600;
+  }
+}
