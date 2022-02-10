@@ -1,0 +1,24 @@
+.footer-container {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #1C3152;
+    padding: 0.5rem 2rem;
+    &__text {
+        color: #ffffff;
+        align-items: center;
+        display: flex;
+        &__logo-gcti {
+            margin-right: 1.5rem;
+        }
+        &__date {
+            margin: auto .2rem;
+        }
+    }
+}
