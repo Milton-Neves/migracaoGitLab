@@ -1,11 +1,8 @@
 import { NgModule } from '@angular/core'
-import { CommonModule } from '@angular/common';
-import { LogoutComponent } from './components/logout/logout.component'
+import { CommonModule } from '@angular/common'
 
 @NgModule({
-  declarations: [
-    LogoutComponent
-  ],
+  declarations: [],
   imports: [CommonModule],
 })
-export class CoreModule { }
+export class CoreModule {}
