@@ -5,7 +5,7 @@
 
 .table-details {
   width: 100%;
-  background-color: $gray-200;
+  background-color: $gray-100;
   border-collapse: collapse;
   overflow-x: auto;
   &__head {
@@ -17,7 +17,7 @@
       padding: 0.7rem 2rem;
     }
     &--text-title {
-      border: 1px solid $gray-600;
+      border: 1px solid $black-100;
       border-left: none;
       border-right: none;
     }
@@ -31,7 +31,7 @@
       padding: 0.5rem 2rem;
     }
     &--text-description {
-      border: 1px solid $gray-600;
+      border: 1px solid $black-100;
       border-left: none;
       border-right: none;
     }
@@ -43,6 +43,10 @@
     }
     &--color-red {
       color: $red-500;
+    }
+    &--border-btn button {
+      border: none;
+      background: none;
     }
   }
 }

@@ -10,24 +10,16 @@
       </tr>
     </thead>
     <tbody class="table-details__body">
-      <tr
-        class="table-details__body--text-description"
-        *ngFor="let user of users"
-      >
-        <td>
-          {{ user.nome }}
-        </td>
-        <td>
-          {{ user.telefone }}
-        </td>
+      <tr class="table-details__body--text-description">
+        <td>Lorem, ipsum</td>
+        <td>(84) 99999-9999, (84) 3272-0000</td>
         <td class="table-details__body--bg-primary">
-          <span> {{ user.cargo }} </span>
+          <span> professor </span>
         </td>
-        <td class="table-details__body--color-red">
-          {{ user.situacao }}
-        </td>
-        <td>
-          {{ user.acoes }}
+        <td class="table-details__body--color-red">Arquivado</td>
+        <td class="table-details__body--border-btn">
+          <button>visualizar</button> | <button>editar</button> |
+          <button>arquivar</button>
         </td>
       </tr>
     </tbody>
