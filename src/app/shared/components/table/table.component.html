@@ -1,0 +1,35 @@
+<div class="table-container">
+  <table class="table-details">
+    <thead class="table-details__head">
+      <tr class="table-details__head--text-title">
+        <th>Nome</th>
+        <th>Telefone(s)</th>
+        <th>Cargo</th>
+        <th>Situação</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody class="table-details__body">
+      <tr
+        class="table-details__body--text-description"
+        *ngFor="let user of users"
+      >
+        <td>
+          {{ user.nome }}
+        </td>
+        <td>
+          {{ user.telefone }}
+        </td>
+        <td class="table-details__body--bg-primary">
+          <span> {{ user.cargo }} </span>
+        </td>
+        <td class="table-details__body--color-red">
+          {{ user.situacao }}
+        </td>
+        <td>
+          {{ user.acoes }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
