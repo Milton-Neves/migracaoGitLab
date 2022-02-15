@@ -1,0 +1,22 @@
+@import '/src/assets/styles/variables';
+.pagination-details {
+    background-color: $gray-200;
+    &__page {
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        margin: auto 2rem;
+        &__prev,
+        &__next {
+            font-size: .8rem;
+            color: $blue-100;
+            margin: auto 1.5rem;
+            font-weight: 500;
+        }
+        &--active {
+            font-size: .9rem;
+            color: $blue-700;
+            font-weight: 500;
+        }
+    }
+}

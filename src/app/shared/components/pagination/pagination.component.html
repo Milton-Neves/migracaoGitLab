@@ -1,0 +1,13 @@
+<nav class="pagination-details">
+    <ul class="pagination-details__page">
+        <li class="pagination-details__page__prev" *ngIf="pageAtual > 1">
+            <a href="#">Anterior</a>
+        </li>
+        <li class="pagination-details__page--active">
+            <a href="#"> {{pageAtual}} </a>
+        </li>
+        <li class="pagination-details__page__next" *ngIf="numPaginas > pageAtual ">
+            <a href="#">Próxima</a>
+        </li>
+    </ul>
+</nav>
