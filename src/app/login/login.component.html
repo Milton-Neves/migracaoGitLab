@@ -19,17 +19,21 @@
     <br />
     <span class="traço"></span>
     <br />
+    <br />
+    <br />
     <div class="input-group">
       <input class="input" type="text" placeholder="Login" />
       <br />
+      <div class="linha"></div>
       <br />
       <br />
       <br />
       <input class="input" type="text" placeholder="Senha" />
       <br />
+      <div class="linha"></div>
       <br />
       <br />
-      <button class="botão">
+      <button (click)="entrar()" class="botão">
         <div class="text-botão">Entrar</div>
       </button>
     </div>
@@ -43,7 +47,8 @@
       alt="logo-gcti"
     />
   </div>
-  <div class="text-footer">
+
+  <span class="text-footer">
     ©{{ date.getFullYear() }} - Prefeitura Munipal de Parnamirim
-  </div>
+  </span>
 </div>

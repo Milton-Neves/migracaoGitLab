@@ -1,3 +1,4 @@
+import { Router } from '@angular/router'
 import { Component, OnInit } from '@angular/core'
 
 @Component({
@@ -8,7 +9,11 @@ import { Component, OnInit } from '@angular/core'
 export class LoginComponent implements OnInit {
   date = new Date()
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
+
+  entrar() {
+    this.router.navigate(['./gerenciador'])
+  }
 }
