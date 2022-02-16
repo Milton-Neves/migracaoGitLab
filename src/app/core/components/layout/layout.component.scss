@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  .sidebar {
+    display: grid;
+  }
+  .content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    .title {
+      justify-content: center;
+      align-items: center;
+      text-align: justify;
+      margin: 3rem 2rem 2rem;
+    }
+    .logout {
+      display: flex;
+      margin: 2rem 48rem 5rem;
+    }
+  }
+}

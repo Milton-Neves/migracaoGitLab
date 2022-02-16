@@ -1,3 +1,7 @@
+import { ManagerModule } from './manager/manager.module'
+import { LoginModule } from './login/login.module'
+import { LoginComponent } from './login/login.component'
+import { LayoutComponent } from './core/components/layout/layout.component'
 import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 
