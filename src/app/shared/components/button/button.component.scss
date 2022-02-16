@@ -1,0 +1,9 @@
+@import '../../../../assets/styles/variables';
+.button-details {
+  border: none;
+  background-color: $green-500;
+  color: $white;
+  font-weight: 500;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+}
