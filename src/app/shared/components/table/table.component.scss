@@ -8,6 +8,7 @@
   background-color: $gray-100;
   border-collapse: collapse;
   overflow-x: auto;
+  color: $blue-700;
   &__head {
     font-weight: bold;
     &--text-title th:first-child {
@@ -47,6 +48,7 @@
     &--border-btn button {
       border: none;
       background: none;
+      color: $blue-700;
     }
   }
 }
