@@ -1,0 +1,74 @@
+<div class="sidebar" [ngClass]="{ ativado: estaAberto }">
+  <nav class="nav_items">
+    <button type=" button " (click)="toggleMenu()">
+      <img
+        *ngIf="estaAberto"
+        class="logo-bemp"
+        src="../../../../assets/img-sidebar/logo-bemp.svg "
+        alt=" "
+      />
+      <img
+        *ngIf="!estaAberto"
+        class="logo-prefeitura"
+        src="../../../../assets/img-sidebar/icone-logo-prefeitura.svg "
+        alt=" "
+      />
+    </button>
+
+    <ul>
+      <li>
+        <img
+          class="icones"
+          src="../../../../assets/img-sidebar/icone-inicio.svg"
+          alt=" "
+        />
+        <span class="items">Início</span>
+      </li>
+
+      <li>
+        <img
+          class="icones"
+          src="../../../../assets/img-sidebar/icone-curriculo.svg"
+          alt=" "
+        />
+        <span class="items">Currículos</span>
+      </li>
+
+      <li>
+        <img
+          class="icones"
+          src="../../../../assets/img-sidebar/icone-empresas.svg"
+          alt=" "
+        />
+        <span class="items">Empresas</span>
+      </li>
+
+      <li>
+        <img
+          class="icones"
+          src="../../../../assets/img-sidebar/icone-encaminhamentos.svg"
+          alt=" "
+        />
+        <span class="items">Encaminhamentos</span>
+      </li>
+
+      <li>
+        <img
+          class="icones"
+          src="../../../../assets/img-sidebar/icone-relatorios.svg"
+          alt=" "
+        />
+        <span class="items">Relatórios</span>
+      </li>
+
+      <li>
+        <img
+          class="icones"
+          src="../../../../assets/img-sidebar/icone-usuarios.svg"
+          alt=" "
+        />
+        <span class="items">Usuários</span>
+      </li>
+    </ul>
+  </nav>
+</div>
