@@ -33,19 +33,22 @@
       font-weight: 400;
       line-height: 100%;
       color: $blue-700;
+      margin: 1rem;
     }
-    .traço {
+    .traco {
       width: 289px;
       height: 0px;
       left: 576px;
       top: 512px;
       border: 1px solid $blue-700;
+      margin: 1rem;
     }
     .linha {
       width: 100%;
       margin-top: 0.5rem;
       font-weight: 200;
       border: 1px solid $gray-500;
+      margin: 1rem 0 2rem;
     }
   }
   .img-logo {
@@ -64,24 +67,25 @@
   .input-group {
     width: 100%;
     padding: 0 2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 4rem;
   }
   .input {
     box-shadow: 0 0 0 0;
     border: 0 none;
-    outline: 0;
     border-bottom: 1px;
     width: 100%;
+    margin-top: 1rem;
   }
-  .botão {
+  .botao {
     border: none;
+    border-radius: 5px;
     width: 100%;
     height: 40px;
     left: 535px;
     top: 702px;
     background: $blue-700;
 
-    .text-botão {
+    .text-botao {
       display: flex;
       text-align: center;
       align-items: center;
@@ -122,7 +126,7 @@
       margin-top: 2rem;
       margin-bottom: 4rem;
     }
-    .botão {
+    .botao {
       height: 2rem;
     }
 
