@@ -6,10 +6,22 @@ import { Component, OnInit } from '@angular/core'
   styleUrls: ['./pagination.component.scss'],
 })
 export class PaginationComponent implements OnInit {
-  pageAtual = 2
-  numPaginas = 5
+  pageAtual = 9;
+  numPaginas = 14;
 
-  constructor() {}
+  constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
+
+  getNumberPage() {
+    if (this.pageAtual > 0 && this.pageAtual < 10) {
+      let addZero = this.pageAtual + "";
+      addZero = "0" + addZero;
+      return addZero;
+    }
+    else {
+      return this.pageAtual
+    }
+  }
 }
