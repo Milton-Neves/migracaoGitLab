@@ -15,40 +15,40 @@
     flex-direction: column;
     width: 100%;
     max-width: 30rem;
+    min-height: 35rem;
     background: $white;
     box-shadow: 0px 4px 33px -17px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
     align-items: center;
     text-align: center;
+    &__top-card {
+      margin-top: 2rem;
 
-    .logo-parnamirim {
+      &--title {
+        font-weight: 500;
+        line-height: 100%;
+        color: $blue-700;
+        margin: 1rem;
+        &--subtitle {
+          font-weight: 400;
+          line-height: 100%;
+          color: $blue-700;
+          margin: 1rem;
+        }
+      }
+      &--line-bottom {
+        width: 80%;
+        height: 1px;
+        margin: 0 auto;
+        border-bottom: 1px solid $blue-700;
+      }
+    }
+    &--logo-parnamirim {
       display: flex;
       justify-content: center;
       align-items: center;
       margin-top: 2rem;
       margin-bottom: 2rem;
-    }
-    .titulo {
-      width: 100%;
-      font-weight: 400;
-      line-height: 100%;
-      color: $blue-700;
-      margin: 1rem;
-    }
-    .traco {
-      width: 289px;
-      height: 0px;
-      left: 576px;
-      top: 512px;
-      border: 1px solid $blue-700;
-      margin: 1rem;
-    }
-    .linha {
-      width: 100%;
-      margin-top: 0.5rem;
-      font-weight: 200;
-      border: 1px solid $gray-500;
-      margin: 1rem 0 2rem;
     }
   }
   .img-logo {
@@ -64,33 +64,34 @@
     margin-top: 1.5rem;
     font-size: 1rem;
   }
-  .input-group {
+  .input__group {
     width: 100%;
     padding: 0 2rem;
     margin-bottom: 4rem;
-  }
-  .input {
-    box-shadow: 0 0 0 0;
-    border: 0 none;
-    border-bottom: 1px;
-    width: 100%;
-    margin-top: 1rem;
-  }
-  .botao {
-    border: none;
-    border-radius: 5px;
-    width: 100%;
-    height: 40px;
-    left: 535px;
-    top: 702px;
-    background: $blue-700;
-
-    .text-botao {
-      display: flex;
-      text-align: center;
-      align-items: center;
+    &--line-login {
+      box-shadow: 0 0 0 0;
+      border: 0 none;
+      border-bottom: 1px solid $gray-500;
+      width: 100%;
+      margin-top: 2rem;
+      height: 45px;
+    }
+    &--line-password {
+      box-shadow: 0 0 0 0;
+      border: 0 none;
+      border-bottom: 1px solid $gray-500;
+      width: 100%;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+      height: 45px;
+    }
+    &--btn-style {
+      border: none;
+      border-radius: 5px;
+      width: 100%;
+      height: 40px;
+      background: $blue-700;
       color: $white;
-      margin: 0 11rem;
     }
   }
 }

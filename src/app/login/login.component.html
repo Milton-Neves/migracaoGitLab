@@ -7,22 +7,27 @@
     />
   </h1>
   <div class="card-login">
-    <img
-      class="logo-parnamirim"
-      src="../../assets/images/logo-parnamirim.svg"
-      alt="logo-parnamirim"
-    />
-    <h2 class="titulo">Gerenciador Banco de Empregos</h2>
-    <h3 class="titulo">Prefeitura Munipal de Parnamirim</h3>
-    <span class="traco"></span>
-    <div class="input-group">
-      <input class="input" type="text" placeholder="Login" />
-      <div class="linha"></div>
-      <input class="input" type="text" placeholder="Senha" />
-      <div class="linha"></div>
-      <button (click)="entrar()" class="botao">
-        <div class="text-botao">Entrar</div>
-      </button>
+    <div class="card-login__top-card">
+      <img
+        class="card-login__top-card--logo-parnamirim"
+        src="../../assets/images/logo-parnamirim.svg"
+        alt="logo-parnamirim"
+      />
+      <h2 class="card-login__top-card--title">Gerenciador Banco de Empregos</h2>
+      <h3 class="card-login__top-card--title--subtitle">
+        Prefeitura Munipal de Parnamirim
+      </h3>
+      <div class="card-login__top-card--line-bottom"></div>
+    </div>
+
+    <div class="input__group">
+      <input class="input__group--line-login" type="text" placeholder="Login" />
+      <input
+        class="input__group--line-password"
+        type="text"
+        placeholder="Senha"
+      />
+      <button (click)="entrar()" class="input__group--btn-style">Entrar</button>
     </div>
   </div>
   <div class="text">
