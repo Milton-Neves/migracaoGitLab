@@ -1,1 +1,40 @@
-<p>login works!</p>
+<div class="page">
+  <h1>
+    <img
+      class="img-logo"
+      src="../../assets/images/logo-bemp.svg"
+      alt="logo-bemp"
+    />
+  </h1>
+  <div class="card-login">
+    <img
+      class="logo-parnamirim"
+      src="../../assets/images/logo-parnamirim.svg"
+      alt="logo-parnamirim"
+    />
+    <h2 class="titulo">Gerenciador Banco de Empregos</h2>
+    <h3 class="titulo">Prefeitura Munipal de Parnamirim</h3>
+    <span class="traco"></span>
+    <div class="input-group">
+      <input class="input" type="text" placeholder="Login" />
+      <div class="linha"></div>
+      <input class="input" type="text" placeholder="Senha" />
+      <div class="linha"></div>
+      <button (click)="entrar()" class="botao">
+        <div class="text-botao">Entrar</div>
+      </button>
+    </div>
+  </div>
+  <div class="text">
+    Desenvolvido por
+    <img
+      class="img-gcti"
+      src="../../assets/images/logo-gcti.svg"
+      alt="logo-gcti"
+    />
+  </div>
+
+  <span class="text-footer">
+    ©{{ date.getFullYear() }} - Prefeitura Munipal de Parnamirim
+  </span>
+</div>

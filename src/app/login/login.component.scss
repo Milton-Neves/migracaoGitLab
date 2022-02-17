@@ -1,0 +1,141 @@
+@import '/src/assets/styles/variables';
+
+.page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background: $blue-700;
+  padding: 2rem 6rem;
+  height: 100vh;
+
+  .card-login {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 30rem;
+    background: $white;
+    box-shadow: 0px 4px 33px -17px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    align-items: center;
+    text-align: center;
+
+    .logo-parnamirim {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
+    .titulo {
+      width: 100%;
+      font-weight: 400;
+      line-height: 100%;
+      color: $blue-700;
+      margin: 1rem;
+    }
+    .traco {
+      width: 289px;
+      height: 0px;
+      left: 576px;
+      top: 512px;
+      border: 1px solid $blue-700;
+      margin: 1rem;
+    }
+    .linha {
+      width: 100%;
+      margin-top: 0.5rem;
+      font-weight: 200;
+      border: 1px solid $gray-500;
+      margin: 1rem 0 2rem;
+    }
+  }
+  .img-logo {
+    max-width: 339px;
+    margin-bottom: 3.5rem;
+  }
+  .text {
+    font-weight: 300;
+    line-height: 100%;
+    color: $white;
+    display: flex;
+    align-items: center;
+    margin-top: 1.5rem;
+    font-size: 1rem;
+  }
+  .input-group {
+    width: 100%;
+    padding: 0 2rem;
+    margin-bottom: 4rem;
+  }
+  .input {
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    border-bottom: 1px;
+    width: 100%;
+    margin-top: 1rem;
+  }
+  .botao {
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    height: 40px;
+    left: 535px;
+    top: 702px;
+    background: $blue-700;
+
+    .text-botao {
+      display: flex;
+      text-align: center;
+      align-items: center;
+      color: $white;
+      margin: 0 11rem;
+    }
+  }
+}
+.img-gcti {
+  margin-left: 1.3rem;
+}
+.text-footer {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: initial;
+  font-weight: 300;
+  color: $white;
+  font-size: 1rem;
+  bottom: 1.5rem;
+  margin-left: 4rem;
+}
+
+@media screen and (min-width: 1184px) {
+  .page {
+    .text-footer {
+      justify-content: initial;
+      font-size: 1.2rem;
+    }
+  }
+}
+@media screen and(max-height: 720px) {
+  .page {
+    .card-login {
+      min-height: 50vh;
+      height: 50vh;
+      width: 100vw;
+      margin-top: 2rem;
+      margin-bottom: 4rem;
+    }
+    .botao {
+      height: 2rem;
+    }
+
+    .text {
+      font-weight: 300;
+      line-height: 100%;
+      color: $white;
+      display: flex;
+      align-items: center;
+    }
+  }
+}
