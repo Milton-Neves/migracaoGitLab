@@ -1,21 +1,26 @@
 .container {
   display: flex;
-  .sidebar {
+  .sidebar-layout {
     display: grid;
   }
   .content {
     display: flex;
     flex-direction: column;
     width: 100%;
-    .title {
+    .title-layout {
       justify-content: center;
       align-items: center;
       text-align: justify;
       margin: 3rem 2rem 2rem;
     }
-    .logout {
+    .logout-layout {
       display: flex;
-      margin: 2rem 48rem 5rem;
+      flex-direction: row-reverse;
+      margin-top: 0.5rem;
     }
+  }
+  .footer-layout {
+    margin: 0 auto;
+    justify-content: first baseline;
   }
 }
