@@ -1,3 +1,4 @@
+import { Router } from '@angular/router'
 import { Component, OnInit } from '@angular/core'
 
 @Component({
@@ -6,7 +7,13 @@ import { Component, OnInit } from '@angular/core'
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  constructor() {}
+  date = new Date()
+
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
+
+  entrar() {
+    this.router.navigate(['./gerenciador'])
+  }
 }
