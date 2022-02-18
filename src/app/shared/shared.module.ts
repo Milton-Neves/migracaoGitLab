@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common'
 import { InformationCardComponent } from './components/information-card/information-card.component'
 
 @NgModule({
-  declarations: [InformationCardComponent],
+  declarations: [],
   imports: [CommonModule],
 })
 export class SharedModule {}
