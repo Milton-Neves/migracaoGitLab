@@ -1,10 +1,12 @@
+@import '/src/assets/styles/variables';
+
 .pagination {
-  color: #7090b0;
+  color: $blue-100;
   font-weight: bold;
-  font-size: 13px;
+  font-size: 0.9rem;
 }
 
 .darkBlueNumber {
-  color: #1c3152;
-  font-size: 13px;
+  color: $blue-700;
+  font-size: 0.9rem;
 }
