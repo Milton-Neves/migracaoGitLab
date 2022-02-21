@@ -12,10 +12,37 @@ const routes: Routes = [
         loadChildren: () =>
           import('./home/home.module').then((m) => m.HomeModule),
       },
+
       {
         path: 'curriculos',
         loadChildren: () =>
           import('./resume/resume.module').then((m) => m.ResumeModule),
+      },
+
+      {
+        path: 'empresas',
+        loadChildren: () =>
+          import('./company/company.module').then((m) => m.CompanyModule),
+      },
+
+      {
+        path: 'encaminhamentos',
+        loadChildren: () =>
+          import('./forwarding/forwarding.module').then(
+            (m) => m.ForwardingModule
+          ),
+      },
+
+      {
+        path: 'relatorios',
+        loadChildren: () =>
+          import('./report/report.module').then((m) => m.ReportModule),
+      },
+
+      {
+        path: 'usuarios',
+        loadChildren: () =>
+          import('./user/user.module').then((m) => m.UserModule),
       },
     ],
   },
