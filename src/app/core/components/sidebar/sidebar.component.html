@@ -1,14 +1,14 @@
-<div class="sidebar" [ngClass]="{ ativado: estaAberto }">
+<div class="sidebar" [ngClass]="{ ativado: isOpen }">
   <nav class="nav_items">
     <button type=" button " (click)="toggleMenu()">
       <img
-        *ngIf="estaAberto"
+        *ngIf="isOpen"
         class="logo-bemp"
         src="../../../../assets/img-sidebar/logo-bemp.svg "
         alt=" "
       />
       <img
-        *ngIf="!estaAberto"
+        *ngIf="!isOpen"
         class="logo-prefeitura"
         src="../../../../assets/img-sidebar/icone-logo-prefeitura.svg "
         alt=" "

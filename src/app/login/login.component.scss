@@ -23,7 +23,7 @@
     text-align: center;
 
     &__top-card {
-      margin-top: 2rem;
+      margin-top: 3rem;
 
       &--title {
         font-weight: 500;
@@ -64,7 +64,11 @@
     align-items: center;
     margin-top: 1.5rem;
     font-size: 1rem;
+    flex-direction: column;
+    text-align: center;
+    line-height: 3rem;
   }
+
   .input__group {
     width: 100%;
     padding: 0 2rem;
@@ -98,7 +102,7 @@
 }
 
 .img-gcti {
-  margin-left: 1.3rem;
+  margin-left: 0;
 }
 
 .text-footer {
@@ -146,6 +150,15 @@
 
     .img-logo {
       max-width: 339px;
+    }
+
+    .text {
+      line-height: 1rem;
+      flex-direction: row;
+    }
+
+    .img-gcti {
+      margin-left: 1.3rem;
     }
   }
 
