@@ -1,19 +1,18 @@
+@import '../../../../assets/styles/variables';
 .footer-container {
-  position: fixed;
+  position: absolute;
   bottom: 0;
   width: 100%;
 }
 
 .footer-details {
   display: flex;
-  width: 100%;
   align-items: center;
   justify-content: space-between;
-  background-color: #1c3152;
+  background-color: $blue-700;
   padding: 0.5rem 2rem;
-  margin: 0 0 -1rem -1rem;
   &__text {
-    color: #ffffff;
+    color: $white;
     align-items: center;
     display: flex;
     &__logo-gcti {
