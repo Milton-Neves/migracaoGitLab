@@ -1,17 +1,25 @@
-<div class="container">
-  <div class="sidebar-layout">
-    <app-sidebar></app-sidebar>
-  </div>
-  <div class="content">
-    <div class="logout-layout">
-      <app-logout></app-logout>
+<div class="layout">
+  <div class="wrapper">
+    <div class="layout__sidebar">
+      <app-sidebar></app-sidebar>
     </div>
-    <div class="title-layout">
-      <app-page-title></app-page-title>
+
+    <div class="layout__main">
+      <div class="layout__logout">
+        <app-logout></app-logout>
+      </div>
+
+      <div class="layout__title">
+        <app-page-title></app-page-title>
+      </div>
+
+      <div class="layout__content">
+        <ng-content></ng-content>
+      </div>
     </div>
-    <ng-content></ng-content>
   </div>
-</div>
-<div class="footer-layout">
-  <app-footer></app-footer>
+
+  <div class="layout__footer">
+    <app-footer></app-footer>
+  </div>
 </div>
