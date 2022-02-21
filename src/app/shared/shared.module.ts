@@ -13,6 +13,7 @@ const components = [
   InformationCardComponent,
   TableComponent,
   PaginationNumberComponent,
+  AnalyticCardComponent,
 ]
 
 @NgModule({

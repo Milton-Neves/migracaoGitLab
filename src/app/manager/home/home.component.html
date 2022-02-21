@@ -1,6 +1,27 @@
-<div class="content">
-  <app-analytic-card class="text" [num]="num" [text]="text"></app-analytic-card>
-  <app-analytic-card [num]="num2" [text]="text2"></app-analytic-card>
-  <app-analytic-card [num]="num3" [text]="text"></app-analytic-card>
-  <app-analytic-card [num]="num4" [text]="text4"></app-analytic-card>
-</div>
+<main class="home">
+  <header class="home__header">
+    <app-page-title [title]="'Números gerados'"></app-page-title>
+  </header>
+
+  <section class="home__content">
+    <app-analytic-card
+      [data]="100"
+      [title]="'pessoas cadastradas'"
+    ></app-analytic-card>
+
+    <app-analytic-card
+      [data]="100"
+      [title]="'total de currículos'"
+    ></app-analytic-card>
+
+    <app-analytic-card
+      [data]="40"
+      [title]="'pessoas contratadas'"
+    ></app-analytic-card>
+
+    <app-analytic-card
+      [data]="28"
+      [title]="'total de encaminhamentos'"
+    ></app-analytic-card>
+  </section>
+</main>

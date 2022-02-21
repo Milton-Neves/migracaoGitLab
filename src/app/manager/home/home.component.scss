@@ -1,5 +1,11 @@
-.content {
-  display: flex;
-  justify-content: space-around;
-  margin-right: 2rem auto;
+.home {
+  &__header {
+    margin-bottom: 2rem;
+  }
+
+  &__content {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
 }
