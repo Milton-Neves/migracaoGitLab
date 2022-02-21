@@ -4,7 +4,6 @@ import { FooterComponent } from './components/footer/footer.component'
 import { LogoutComponent } from './components/logout/logout.component'
 import { RouterModule } from '@angular/router'
 import { LayoutComponent } from './components/layout/layout.component'
-import { SharedModule } from '../shared/shared.module'
 import { SidebarComponent } from './components/sidebar/sidebar.component'
 
 @NgModule({
@@ -14,7 +13,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component'
     LayoutComponent,
     SidebarComponent,
   ],
-  imports: [CommonModule, RouterModule, SharedModule],
+  imports: [CommonModule, RouterModule],
   exports: [LayoutComponent],
 })
 export class CoreModule {}
