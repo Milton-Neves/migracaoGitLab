@@ -1,0 +1,26 @@
+.container {
+  display: flex;
+  .sidebar-layout {
+    display: grid;
+  }
+  .content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    .title-layout {
+      justify-content: center;
+      align-items: center;
+      text-align: justify;
+      margin: 3rem 2rem 2rem;
+    }
+    .logout-layout {
+      display: flex;
+      flex-direction: row-reverse;
+      margin-top: 0.5rem;
+    }
+  }
+  .footer-layout {
+    margin: 0 auto;
+    justify-content: first baseline;
+  }
+}

@@ -9,13 +9,14 @@ button {
   height: 100%;
   background: $blue-700;
   display: block;
-  position: fixed;
   transition: 0.1s linear all;
   width: 61px;
+  position: relative;
+  height: 100vh;
 }
 
 .sidebar.ativado {
-  width: 354px;
+  width: 100%;
 }
 
 .sidebar ul li span {
