@@ -6,8 +6,8 @@ import { Component, OnInit, Input } from '@angular/core'
   styleUrls: ['./information-card.component.scss'],
 })
 export class InformationCardComponent implements OnInit {
-  @Input() careerInformation!: string
-  @Input() titleInformation!: string
+  @Input() career!: string
+  @Input() title!: string
 
   constructor() {}
 
