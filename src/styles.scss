@@ -54,3 +54,12 @@ li {
   filter: brightness(0.8);
   cursor: not-allowed;
 }
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
