@@ -1,4 +1,5 @@
 @import '/src/assets/styles/variables';
+
 button {
   background: none;
   border: none;
@@ -9,13 +10,14 @@ button {
   height: 100%;
   background: $blue-700;
   display: block;
-  position: fixed;
   transition: 0.1s linear all;
   width: 61px;
+  position: relative;
+  height: 100%;
 }
 
 .sidebar.ativado {
-  width: 354px;
+  width: 100%;
 }
 
 .sidebar ul li span {
@@ -31,9 +33,11 @@ button {
 }
 
 .nav_items li {
-  margin-top: 45px;
+  margin-top: 1.8rem;
   display: flex;
   cursor: pointer;
+  transition: 100ms linear all;
+  padding: 0.8rem 0;
 }
 
 .nav_items li span {

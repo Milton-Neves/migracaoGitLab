@@ -1,19 +1,17 @@
-<footer class="footer-container">
-  <div class="footer-details">
-    <p class="footer-details__text">
-      <a href="http://gcti.parnamirim.rn.gov.br/" target="_blank"
-        ><img
-          class="footer-details__text__logo-gcti"
-          src="../../../../assets/img/logo.svg"
-          alt=""
-        />
-      </a>
-      Grupo de Ciência e Tecnologia da Informação e Inovação
-    </p>
-    <p class="footer-details__text">
-      ©
-      <span class="footer-details__text__date">{{ hoje | date: 'yyyy' }}</span>
-      - Prefeitura Municipal de Parnamirim
-    </p>
-  </div>
+<footer class="footer">
+  <p class="footer__text">
+    <a href="http://gcti.parnamirim.rn.gov.br/" target="_blank"
+      ><img
+        class="footer__logo-gcti"
+        src="../../../../assets/img/logo.svg"
+        alt=""
+      />
+    </a>
+    Grupo de Ciência e Tecnologia da Informação e Inovação
+  </p>
+  <p class="footer__text">
+    ©
+    {{ hoje | date: 'yyyy' }}
+    - Prefeitura Municipal de Parnamirim
+  </p>
 </footer>

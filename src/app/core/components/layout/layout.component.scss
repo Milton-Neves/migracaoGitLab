@@ -1,0 +1,48 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+
+  .wrapper {
+    display: flex;
+    height: 100%;
+  }
+
+  &__sidebar {
+    display: inline;
+  }
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  &__title {
+    margin: 3rem 2rem 2rem;
+  }
+
+  &__logout {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-top: 0.5rem;
+    margin-right: 2rem;
+  }
+
+  &__content {
+    padding: 0 2rem 2rem 2rem;
+    width: 100%;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &__footer {
+    width: 100%;
+  }
+}
