@@ -1,0 +1,20 @@
+.container {
+  width: 100%;
+}
+.table {
+  display: flex;
+  justify-items: center;
+  width: 100%;
+}
+.pagination-number {
+  display: flex;
+  flex-direction: row-reverse;
+  margin-bottom: 1rem;
+  margin-right: 1rem;
+}
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+  margin-left: 5rem;
+}
