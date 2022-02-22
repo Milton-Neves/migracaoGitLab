@@ -1,7 +1,4 @@
 @import '/src/assets/styles/variables';
-.table-container {
-  margin: auto 1rem;
-}
 
 .table-details {
   width: 100%;
@@ -9,6 +6,7 @@
   border-collapse: collapse;
   overflow-x: auto;
   color: $blue-700;
+
   &__head {
     font-weight: bold;
     &--text-title th:first-child {
