@@ -6,8 +6,8 @@ import { Component, Input, OnInit } from '@angular/core'
   styleUrls: ['./analytic-card.component.scss'],
 })
 export class AnalyticCardComponent implements OnInit {
-  @Input() num!: number
-  @Input() text!: string
+  @Input() data!: number
+  @Input() title!: string
 
   constructor() {}
 

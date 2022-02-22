@@ -17,57 +17,82 @@
 
     <ul>
       <li>
-        <img
-          class="icones"
-          src="../../../../assets/img-sidebar/icone-inicio.svg"
-          alt=" "
-        />
-        <span class="items">Início</span>
+        <a
+          [routerLink]="['/gerenciador']"
+          routerLinkActive="--active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <img
+            class="icones"
+            src="../../../../assets/img-sidebar/icone-inicio.svg"
+            alt="Home"
+          />
+          <span class="items">Início</span>
+        </a>
       </li>
 
       <li>
-        <img
-          class="icones"
-          src="../../../../assets/img-sidebar/icone-curriculo.svg"
-          alt=" "
-        />
-        <span class="items">Currículos</span>
+        <a
+          [routerLink]="['/gerenciador/curriculos']"
+          routerLinkActive="--active"
+        >
+          <img
+            class="icones"
+            src="../../../../assets/img-sidebar/icone-curriculo.svg"
+            alt="Currículos"
+          />
+          <span class="items">Currículos</span>
+        </a>
       </li>
 
       <li>
-        <img
-          class="icones"
-          src="../../../../assets/img-sidebar/icone-empresas.svg"
-          alt=" "
-        />
-        <span class="items">Empresas</span>
+        <a [routerLink]="['/gerenciador/empresas']" routerLinkActive="--active">
+          <img
+            class="icones"
+            src="../../../../assets/img-sidebar/icone-empresas.svg"
+            alt="Empresas"
+          />
+          <span class="items">Empresas</span>
+        </a>
       </li>
 
       <li>
-        <img
-          class="icones"
-          src="../../../../assets/img-sidebar/icone-encaminhamentos.svg"
-          alt=" "
-        />
-        <span class="items">Encaminhamentos</span>
+        <a
+          [routerLink]="['/gerenciador/encaminhamentos']"
+          routerLinkActive="--active"
+        >
+          <img
+            class="icones"
+            src="../../../../assets/img-sidebar/icone-encaminhamentos.svg"
+            alt="Encaminhamentos"
+          />
+          <span class="items">Encaminhamentos</span>
+        </a>
       </li>
 
       <li>
-        <img
-          class="icones"
-          src="../../../../assets/img-sidebar/icone-relatorios.svg"
-          alt=" "
-        />
-        <span class="items">Relatórios</span>
+        <a
+          [routerLink]="['/gerenciador/relatorios']"
+          routerLinkActive="--active"
+        >
+          <img
+            class="icones"
+            src="../../../../assets/img-sidebar/icone-relatorios.svg"
+            alt="Relatórios"
+          />
+          <span class="items">Relatórios</span>
+        </a>
       </li>
 
       <li>
-        <img
-          class="icones"
-          src="../../../../assets/img-sidebar/icone-usuarios.svg"
-          alt=" "
-        />
-        <span class="items">Usuários</span>
+        <a [routerLink]="['/gerenciador/usuarios']" routerLinkActive="--active">
+          <img
+            class="icones"
+            src="../../../../assets/img-sidebar/icone-usuarios.svg"
+            alt="Usuários"
+          />
+          <span class="items">Usuários</span>
+        </a>
       </li>
     </ul>
   </nav>

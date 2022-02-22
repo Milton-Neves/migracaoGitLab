@@ -29,27 +29,28 @@ button {
 }
 
 .nav_items {
-  padding: 1.3rem;
+  padding: 1rem;
 }
 
-.nav_items li {
-  margin-top: 1.8rem;
+.nav_items li a {
+  margin-top: 1.3rem;
   display: flex;
   cursor: pointer;
   transition: 100ms linear all;
   padding: 0.8rem 0;
-}
 
-.nav_items li span {
-  font-size: 1.2rem;
-  color: white;
-  margin-left: 15px;
-  margin-top: 5px;
-}
+  span {
+    font-size: 1.2rem;
+    color: $white;
+    margin-left: 15px;
+    margin-top: 5px;
+  }
 
-.nav_items li:hover {
-  filter: invert(49%) sepia(98%) saturate(376%) hue-rotate(74deg)
-    brightness(91%) contrast(86%);
+  &:hover,
+  &.--active {
+    filter: invert(49%) sepia(98%) saturate(376%) hue-rotate(74deg)
+      brightness(91%) contrast(86%);
+  }
 }
 
 .logo-prefeitura {
