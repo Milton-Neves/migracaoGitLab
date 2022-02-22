@@ -16,7 +16,9 @@ const routes: Routes = [
       {
         path: 'curriculos',
         loadChildren: () =>
-          import('./resume/resume.module').then((m) => m.ResumeModule),
+          import('./components/resume/resume.module').then(
+            (m) => m.ResumeModule
+          ),
       },
 
       {
