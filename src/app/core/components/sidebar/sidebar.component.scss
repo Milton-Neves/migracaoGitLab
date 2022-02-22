@@ -1,0 +1,71 @@
+@import '/src/assets/styles/variables';
+
+button {
+  background: none;
+  border: none;
+}
+
+.sidebar {
+  margin: 0;
+  height: 100%;
+  background: $blue-700;
+  display: block;
+  transition: 0.1s linear all;
+  width: 61px;
+  position: relative;
+  height: 100%;
+}
+
+.sidebar.ativado {
+  width: 100%;
+}
+
+.sidebar ul li span {
+  display: none;
+}
+
+.sidebar.ativado ul li span {
+  display: block;
+}
+
+.nav_items {
+  padding: 1rem;
+}
+
+.nav_items li a {
+  margin-top: 1.3rem;
+  display: flex;
+  cursor: pointer;
+  transition: 100ms linear all;
+  padding: 0.8rem 0;
+
+  span {
+    font-size: 1.2rem;
+    color: $white;
+    margin-left: 15px;
+    margin-top: 5px;
+  }
+
+  &:hover,
+  &.--active {
+    filter: invert(49%) sepia(98%) saturate(376%) hue-rotate(74deg)
+      brightness(91%) contrast(86%);
+  }
+}
+
+.logo-prefeitura {
+  position: relative;
+  left: -5px;
+  margin-top: 12.5px;
+  margin-bottom: 43.4px;
+}
+
+.logo-bemp {
+  margin-bottom: 1.5rem;
+  padding: 0.4rem;
+}
+
+.icones {
+  width: 1.2rem;
+  margin-top: 4px;
+}

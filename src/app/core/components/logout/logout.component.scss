@@ -1,0 +1,22 @@
+@import '/src/assets/styles/variables';
+
+.btn-logout {
+  background-color: $white;
+  border: 1px solid transparent;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 2rem;
+  justify-content: space-between;
+  font-size: 1.5rem;
+  color: $blue-700;
+  transition: all 200ms ease;
+  border-radius: 2px;
+
+  &__icon {
+    margin-right: 1rem;
+  }
+
+  &:hover {
+    filter: brightness(0.95);
+  }
+}

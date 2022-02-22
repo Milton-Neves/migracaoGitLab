@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core'
 @Component({
   selector: 'app-manager',
   templateUrl: './manager.component.html',
-  styleUrls: ['./manager.component.scss'],
+  styles: [],
 })
 export class ManagerComponent implements OnInit {
   constructor() {}

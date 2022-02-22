@@ -1,0 +1,39 @@
+@import '/src/assets/styles/variables';
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: $blue-700;
+  padding: 0.5rem 1rem;
+
+  &__text {
+    color: $white;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin: 0.3rem 0;
+    text-align: center;
+  }
+
+  &__logo-gcti {
+    margin-bottom: 0.5rem;
+  }
+
+  @media screen and (min-width: 700px) {
+    justify-content: space-between;
+    flex-direction: row;
+    padding: 0.2rem 2rem;
+
+    &__text {
+      flex-direction: row;
+      justify-content: center;
+    }
+
+    &__logo-gcti {
+      margin: 0;
+      margin-right: 1rem;
+    }
+  }
+}

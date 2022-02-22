@@ -1,1 +1,27 @@
-<p>Home</p>
+<main class="home">
+  <header class="home__header">
+    <app-page-title [title]="'Números gerados'"></app-page-title>
+  </header>
+
+  <section class="home__content">
+    <app-analytic-card
+      [data]="100"
+      [title]="'pessoas cadastradas'"
+    ></app-analytic-card>
+
+    <app-analytic-card
+      [data]="100"
+      [title]="'total de currículos'"
+    ></app-analytic-card>
+
+    <app-analytic-card
+      [data]="40"
+      [title]="'pessoas contratadas'"
+    ></app-analytic-card>
+
+    <app-analytic-card
+      [data]="28"
+      [title]="'total de encaminhamentos'"
+    ></app-analytic-card>
+  </section>
+</main>
