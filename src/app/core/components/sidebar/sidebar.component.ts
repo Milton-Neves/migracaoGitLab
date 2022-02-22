@@ -6,25 +6,13 @@ import { Component, HostListener, OnInit } from '@angular/core'
   styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent implements OnInit {
-  isOpen = true
+  isOpen = false
 
   constructor() {}
 
-  ngOnInit(): void {
-    this.resize(document.body.clientWidth)
-  }
-
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    const width = event.target.innerWidth
-    this.resize(width)
-  }
+  ngOnInit(): void {}
 
   toggleMenu() {
     this.isOpen = !this.isOpen
-  }
-
-  resize(width: number) {
-    this.isOpen = width >= 1020
   }
 }
