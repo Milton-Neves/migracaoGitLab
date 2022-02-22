@@ -1,0 +1,22 @@
+.tab-nav {
+  width: 80%;
+  height: 450px;
+  position: relative;
+  margin: 100px auto;
+}
+
+.btn-box {
+  display: flex;
+  border-bottom: 1px solid #979797;
+}
+
+.btn-box button {
+  background: transparent;
+  color: #979797;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  margin-right: 50px;
+  font-size: 14px;
+}
