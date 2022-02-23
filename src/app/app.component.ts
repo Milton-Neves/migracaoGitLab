@@ -7,4 +7,6 @@ import { Component } from '@angular/core'
 })
 export class AppComponent {
   title = 'sgi-banco-de-empregos'
+  constructor() {}
+  ngOnInit(): void {}
 }
