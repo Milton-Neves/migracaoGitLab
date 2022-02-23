@@ -6,14 +6,7 @@ import { Component } from '@angular/core'
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'sgi-banco-de-empregos';
-  constructor() {
-  }
-  ngOnInit(): void {
-  }
-  create($event: any) {
-    console.log($event, "criou");
-  }
-
-
+  title = 'sgi-banco-de-empregos'
+  constructor() {}
+  ngOnInit(): void {}
 }
