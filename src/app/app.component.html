@@ -1,3 +1,5 @@
-<!-- <router-outlet></router-outlet> -->
-<!-- <app-button [button]="buttonItem"></app-button> -->
-<app-button [text]="'Criar Empresa'" [color]="'#33a93b'"></app-button>
+<app-button [text]="'CRIAR EMPRESA'" [color]="'#33a93b'" (handleClick)="create($event)" [disabled]="false">
+</app-button>
+<app-button [text]="'RECUSAR'" (handleClick)="create($event)" [disabled]="true">
+</app-button>
+<router-outlet></router-outlet>

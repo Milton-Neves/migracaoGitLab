@@ -8,7 +8,8 @@ import { Component, OnInit } from '@angular/core'
 export class FooterComponent implements OnInit {
   hoje: number = Date.now()
 
-  constructor() {}
+  constructor() { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
+
 }

@@ -1,3 +1,3 @@
-<button class="btn-details" [ngStyle]="{ 'background-color': color }">
-  {{ text }}
+<button class="btn-details" (click)=" onHandleClick($event) " [ngStyle]="{ 'background-color': color } " [disabled]="disabled">
+    {{ text }}
 </button>

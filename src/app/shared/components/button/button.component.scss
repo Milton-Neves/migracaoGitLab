@@ -1,7 +1,13 @@
 @import '../../../../assets/styles/variables';
 .btn-details {
-  color: $white;
-  border: none;
-  border-radius: 5px;
-  font-weight: 500;
+    color: $white;
+    border: none;
+    border-radius: 5px;
+    font-weight: 500;
+    padding: 1rem;
+}
+
+button:disabled {
+    background-color: #999999;
+    color: $white;
 }

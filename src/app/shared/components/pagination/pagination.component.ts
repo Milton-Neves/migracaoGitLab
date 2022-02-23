@@ -9,9 +9,9 @@ export class PaginationComponent implements OnInit {
   pageAtual = 2
   numPaginas = 14
 
-  constructor() {}
+  constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   getNumberPage() {
     if (this.pageAtual > 0 && this.pageAtual < 10) {
