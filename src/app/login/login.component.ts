@@ -7,13 +7,13 @@ import { Component, OnInit } from '@angular/core'
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  date = new Date()
+  currentDate = Date.now()
 
   constructor(private router: Router) {}
 
   ngOnInit(): void {}
 
-  entrar() {
+  login() {
     this.router.navigate(['./gerenciador'])
   }
 }

@@ -1,0 +1,9 @@
+<button
+  class="btn-details"
+  (click)="onHandleClick($event)"
+  [ngStyle]="{ 'background-color': color }"
+  [disabled]="disabled"
+>
+  <ng-content></ng-content>
+  {{ text }}
+</button>
