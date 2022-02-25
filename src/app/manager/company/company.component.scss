@@ -1,3 +1,4 @@
+@import 'variables';
 .company {
   &__header {
     margin-bottom: 2rem;
@@ -7,5 +8,10 @@
     display: grid;
     gap: 2rem;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+  &__actives {
+    width: 100%;
+    background-color: $blue-700;
+    border-radius: 5px;
   }
 }
