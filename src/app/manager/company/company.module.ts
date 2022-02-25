@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 
+import { SharedModule } from '@shared/shared.module'
 import { CompanyRoutingModule } from './company-routing.module'
 import { CompanyComponent } from './company.component'
-import { SharedModule } from 'src/app/shared/shared.module'
 
 @NgModule({
   declarations: [CompanyComponent],
