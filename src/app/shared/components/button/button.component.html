@@ -1,7 +1,7 @@
 <button
   class="btn-details"
   (click)="onHandleClick($event)"
-  [ngStyle]="{ 'background-color': color }"
+  [ngStyle]="{ 'background-color': color, color: textColor }"
   [disabled]="disabled"
 >
   <ng-content></ng-content>
