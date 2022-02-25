@@ -1,5 +1,35 @@
 @import '../../../../../assets/styles/variables';
+.card-details {
+  padding: 0 0 1rem;
+  font-size: 0.9rem;
+  &__line-one {
+    display: flex;
+    justify-content: space-between;
+    color: $green-500;
+    margin: 0 0 0.5rem;
+  }
+  &__line-two {
+    display: flex;
+    justify-content: space-between;
+    color: $blue-700;
+  }
+}
 .card-company {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  flex-direction: row;
+  gap: 1rem;
+  padding: 0 0 1rem;
+  font-size: 0.9rem;
+  &__line-active {
+    color: $blue-700;
+  }
+  &__line-status {
+    color: $blue-700;
+    font-weight: 500;
+  }
+  &__line-active-green {
+    color: $green-500;
+    font-weight: 500;
+  }
 }
