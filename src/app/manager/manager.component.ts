@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core'
+import { Component } from '@angular/core'
 
 @Component({
   selector: 'app-manager',
-  templateUrl: './manager.component.html',
-  styles: [],
+  template: `
+    <app-layout>
+      <router-outlet></router-outlet>
+    </app-layout>
+  `,
 })
-export class ManagerComponent implements OnInit {
+export class ManagerComponent {
   constructor() {}
-
-  ngOnInit(): void {}
 }

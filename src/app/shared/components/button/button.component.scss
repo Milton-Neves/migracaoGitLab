@@ -1,13 +1,14 @@
-@import '../../../../assets/styles/variables';
+@import 'variables';
 .btn-details {
   color: $white;
   border: none;
   border-radius: 5px;
   font-weight: 500;
-  padding: 1rem;
+  padding: 0.6rem 1rem 0.5rem 1rem;
   display: flex;
   align-items: center;
   gap: 1rem;
+  font-size: 0.9rem;
 }
 
 button:disabled {
