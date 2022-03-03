@@ -5,13 +5,49 @@
   }
 
   &__content {
-    display: grid;
-    gap: 2rem;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    display: flex;
+    flex-direction: column;
+    &__btn {
+      display: inline;
+      flex-direction: row;
+      width: 24vw;
+      height: 14vh;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.5rem;
+      line-height: 100%;
+      color: $white;
+      text-align: center;
+
+      &__btn-actives {
+        background-color: $blue-700;
+        margin: 2rem;
+      }
+      &__btn-actives p {
+        font-size: 0.813rem;
+      }
+    }
+    &__btn-analyses {
+      background-color: $gray-700;
+      margin-inline: 6rem;
+    }
+    &__btn-analyses p {
+      font-size: 0.813rem;
+    }
   }
-  &__actives {
-    width: 100%;
-    background-color: $blue-700;
-    border-radius: 5px;
+
+  &__btn {
+    margin: 1.5rem;
+  }
+  &--input-search {
+    display: inline;
+    flex-direction: row;
+    height: 30px;
+    left: 64.72%;
+    right: 4.44%;
+    background: $white;
+    border: 1px solid #cccccc;
+    box-sizing: border-box;
+    border-radius: 4px;
   }
 }

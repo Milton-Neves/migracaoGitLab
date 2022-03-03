@@ -2,12 +2,32 @@
   <header class="company__header">
     <app-page-title [title]="'Empresas'"></app-page-title>
   </header>
-
-  <app-button></app-button>
+  <div class="actives"></div>
 
   <section class="company__content">
+    <div class="company__btn">
+      <button class="company__btn-actives">
+        <b>Ativos</b> <br />
+        <p>Lista de encaminhamentos ativos</p>
+      </button>
+      <button class="company__btn-analyses">
+        <b>Em análise</b>
+        <p>Lista de encaminhamentos em análise</p>
+      </button>
+      <input
+        class="company-content--input-search"
+        type="text"
+        placeholder="Pesquise por Nome, Nome do representante, CNPJ, Ramo"
+      />
+    </div>
+    <app-button
+      class="company__btn"
+      [text]="'CRIAR EMPRESA'"
+      [color]="'#33A93B'"
+    >
+      <img src="../../../assets/icons/img-sum.svg" />
+    </app-button>
     <app-company-card></app-company-card>
-    <button class="actives"></button>
     <app-pagination></app-pagination>
   </section>
 </main>
