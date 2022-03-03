@@ -2,18 +2,20 @@
 .card-details {
   padding: 0 0 1rem;
   font-size: 0.9rem;
-  &__line-one {
+
+  &__forwading-datas {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     color: $green-500;
-    margin: 0 0 0.5rem;
-  }
-  &__line-two {
-    display: flex;
-    justify-content: space-between;
-    color: $blue-700;
+    gap: 0.8rem;
+    margin-bottom: 0.5rem;
+
+    &:last-child {
+      color: $blue-700;
+    }
   }
 }
+
 .card-company {
   display: flex;
   justify-content: space-between;
@@ -21,15 +23,13 @@
   gap: 1rem;
   padding: 0 0 1rem;
   font-size: 0.9rem;
-  &__line-active {
+
+  span {
     color: $blue-700;
   }
-  &__line-status {
-    color: $blue-700;
+
+  &__status {
     font-weight: 500;
-  }
-  &__line-active-green {
     color: $green-500;
-    font-weight: 500;
   }
 }

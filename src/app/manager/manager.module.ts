@@ -1,4 +1,3 @@
-import { CompanyModule } from './company/company.module'
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 
@@ -8,6 +7,6 @@ import { CoreModule } from '../core/core.module'
 
 @NgModule({
   declarations: [ManagerComponent],
-  imports: [CommonModule, ManagerRoutingModule, CoreModule, CompanyModule],
+  imports: [CommonModule, ManagerRoutingModule, CoreModule],
 })
 export class ManagerModule {}
