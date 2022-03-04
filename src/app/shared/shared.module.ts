@@ -6,6 +6,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
 import { InformationCardComponent } from './components/information-card/information-card.component'
 import { TableComponent } from './components/table/table.component'
 import { PaginationNumberComponent } from './components/pagination-number/pagination-number.component'
+import { ButtonComponent } from './components/button/button.component'
 
 const components = [
   PaginationComponent,
@@ -14,6 +15,7 @@ const components = [
   TableComponent,
   PaginationNumberComponent,
   AnalyticCardComponent,
+  ButtonComponent,
 ]
 
 @NgModule({
