@@ -1,68 +1,94 @@
-<div class="card">
-  <div class="topCard">
-    <div class="top">
-      <span class="title"><b>Nome Fantasia</b></span>
-      <span class="career">ramo da empresa</span>
-      <span class="date">Data de solicitação: 00/00/000</span>
+<div class="company-view">
+  <header class="company-view__header">
+    <h2 class="header__title"><b>Nome Fantasia</b></h2>
+    <span class="header__tag">ramo da empresa</span>
+    <span class="header__date">Data de solicitação: 00/00/000</span>
+  </header>
+
+  <div class="company-view__box--no-border">
+    <span class="company-view__informations"
+      ><b>CNPJ</b> 00.000.000/0000-00</span
+    >
+    <div class="company-view__informations grid-2">
+      <span><b>Razão Social</b> Lorem Ipsum Dolor Sit Amet </span>
+      <span><b>Número de Funcionários</b> 00000 </span>
     </div>
   </div>
 
-  <div class="bottomCard">
-    <span class="botInfo"><b>CNPJ</b> 00.000.000/0000-00</span>
-    <div class="socialNumber">
-      <span class="botInfo"
-        ><b>Razão Social</b> Lorem Ipsum Dolor Sit Amet
-      </span>
-      <span class="botInfo"><b>Número de Funcionários</b> 00000 </span>
-    </div>
-  </div>
+  <div class="company-view__boxes">
+    <div class="company-view__box">
+      <h3 class="company-view__box-title">Contato</h3>
 
-  <div class="boxes">
-    <div class="firstBox">
-      <h1 class="contato">Contato</h1>
-
-      <div class="contact">
-        <span class="informations"><b>Telefone:</b> (00) 0000-0000 </span>
-        <span class="informations"><b>E-mail:</b> lorem.ipsum@dolor.sit</span>
+      <div class="company-view__contact">
+        <span class="company-view__informations"
+          ><b>Telefone:</b> (00) 0000-0000
+        </span>
+        <span class="company-view__informations"
+          ><b>E-mail:</b> lorem.ipsum@dolor.sit</span
+        >
       </div>
     </div>
 
-    <div class="secondBox">
-      <h1 class="contato">Endereço</h1>
-      <div class="cepAndCity">
-        <span class="informations"><b>CEP:</b> 00.000.000 </span>
-        <span class="informations"><b>Cidade:</b> Parnamirim</span>
+    <div class="company-view__box">
+      <h3 class="company-view__box-title">Endereço</h3>
+
+      <div
+        class="company-view__content-informations company-view__cep-and-city"
+      >
+        <span class="company-view__informations"><b>CEP:</b> 00.000.000 </span>
+        <span class="company-view__informations"
+          ><b>Cidade:</b> Parnamirim</span
+        >
       </div>
 
-      <div class="neighAndCountry">
-        <span class="informations"><b>Bairro:</b> Lorem Ipsum </span>
-        <span class="informations"><b>País:</b> Brasil</span>
+      <div
+        class="company-view__content-informations company-view__neigh-and-country"
+      >
+        <span class="company-view__informations"
+          ><b>Bairro:</b> Lorem Ipsum
+        </span>
+        <span class="company-view__informations"><b>País:</b> Brasil</span>
       </div>
 
-      <div class="streetAndNumber">
-        <span class="informations"
+      <div
+        class="company-view__content-informations company-view__street-and-number"
+      >
+        <span class="company-view__informations"
           ><b>Rua:</b> Lorem ipsum sit dolor amet
         </span>
-        <span class="informations"><b>Número:</b> 00.000.000</span>
+        <span class="company-view__informations"
+          ><b>Número:</b> 00.000.000</span
+        >
       </div>
     </div>
 
-    <div class="thirdBox">
-      <h1 class="contato">Representante da Empresa</h1>
-      <div class="nameAndTel">
-        <span class="informations"
+    <div class="company-view__box">
+      <h3 class="company-view__box-title">Representante da Empresa</h3>
+
+      <div
+        class="company-view__content-informations company-view__name-and-tel"
+      >
+        <span class="company-view__informations"
           ><b>Nome:</b> Lorem ipsum sit dolor amet
         </span>
-        <span class="informations"><b>Telefone:</b> (00) 0000-0000</span>
+        <span class="company-view__informations"
+          ><b>Telefone:</b> (00) 0000-0000</span
+        >
       </div>
 
-      <div class="celAndEmail">
-        <span class="informations"><b>Celular:</b> (00) 00000-0000 </span>
-        <span class="informations"><b>E-mail:</b> lorem.ipsum@dolor.sit</span>
+      <div
+        class="company-view__content-informations company-view__cel-and-email"
+      >
+        <span class="company-view__informations"
+          ><b>Celular:</b> (00) 00000-0000
+        </span>
+        <span class="company-view__informations"
+          ><b>E-mail:</b> lorem.ipsum@dolor.sit</span
+        >
       </div>
     </div>
 
-    <div class="button">
+    <div class="company-view__buttons">
       <app-button
         class="button.decline"
         [text]="'Cancelar'"
@@ -70,8 +96,10 @@
         [textColor]="'#1C3152'"
       >
       </app-button>
+
       <app-button class="button.decline" [text]="'Recusar'" [color]="'red'">
       </app-button>
+
       <app-button class="button.decline" [text]="'Aceitar'" [color]="'#33A93B'">
       </app-button>
     </div>

@@ -8,7 +8,7 @@ import { CompanyComponent } from './company.component'
 import { CompanyCardComponent } from './components/company-card/company-card.component'
 
 @NgModule({
-  declarations: [CompanyComponent, CompanyCardComponent],
+  declarations: [CompanyComponent, CompanyCardComponent, CompanyViewComponent],
   imports: [CommonModule, CompanyRoutingModule, SharedModule],
 })
 export class CompanyModule {}
