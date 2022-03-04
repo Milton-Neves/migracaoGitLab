@@ -1,24 +1,30 @@
 <main class="resume">
   <header class="resume__header">
     <app-page-title [title]="'Listar Currículos'"></app-page-title>
-    <img src="../../../assets/icons/filter.svg" alt="" />
   </header>
 
-  <app-button [text]="'NOVO CURRÍCULO'" [color]="'#33A93B'">
-    <img src="../../../assets/icons/img-sum.svg" alt="" />
-  </app-button>
-
-  <div class="resume__search">
-    <img src="../../../assets/icons/search-icon.svg" alt="" />
-    <input
-      type="text"
-      name="search"
-      id="search"
-      placeholder="Digite CPF, nome ou e-mail"
-    />
-  </div>
-
   <section class="resume__content">
+    <div class="resume__filter">
+      <img
+        class="resume__filter-img"
+        src="../../../assets/icons/filter.svg"
+        alt="filter"
+      />
+      <div class="resume__search">
+        <input
+          type="text"
+          name="search"
+          id="search"
+          placeholder="Digite CPF, nome ou e-mail"
+        />
+        <img src="../../../assets/icons/search-icon.svg" alt="" />
+      </div>
+    </div>
+
+    <app-button [text]="'NOVO CURRÍCULO'" [color]="'#33A93B'">
+      <img src="../../../assets/icons/img-sum.svg" alt="" />
+    </app-button>
+
     <app-active-resume-list></app-active-resume-list>
   </section>
 </main>

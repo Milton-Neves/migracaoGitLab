@@ -1,35 +1,40 @@
 @import '../../../assets/styles/scss/variables';
 .resume {
   &__header {
-    margin-bottom: 2rem;
-  }
-  &__header img {
-    margin-top: 1.5rem;
+    margin-bottom: 1rem;
   }
 
   &__content {
-    display: grid;
-    gap: 2rem;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    display: flex;
+    flex-direction: column;
+  }
+  &__filter-img {
+    width: 20px;
+    margin-bottom: 2rem;
   }
 
-  &__search {
+  &__filter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__search img {
     position: absolute;
-    height: 30px;
-    right: 3.47%;
-    top: 165px;
-    background: transparent;
+    top: 21%;
+    right: 45px;
+    width: 18px;
+  }
+
+  &__search input {
+    padding: 0.4rem 2.5rem;
     border: 1px solid #cccccc;
     border-radius: 4px;
-    #search::placeholder {
-      font-size: 0.9rem;
-      color: #9999a8;
-    }
-    &__search img {
-      position: relative;
-    }
+    background: $white;
   }
-  &__search input {
-    border: none;
+
+  &__search #search::placeholder {
+    font-size: 0.8rem;
+    color: $black-400;
   }
 }
