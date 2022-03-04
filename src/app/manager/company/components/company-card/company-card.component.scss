@@ -1,0 +1,35 @@
+@import 'variables';
+.card-details {
+  padding: 0 0 1rem;
+  font-size: 0.9rem;
+
+  &__forwading-datas {
+    display: flex;
+    justify-content: flex-start;
+    color: $green-500;
+    gap: 0.8rem;
+    margin-bottom: 0.5rem;
+
+    &:last-child {
+      color: $blue-700;
+    }
+  }
+}
+
+.card-company {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  gap: 1rem;
+  padding: 0 0 1rem;
+  font-size: 0.9rem;
+
+  span {
+    color: $blue-700;
+  }
+
+  &__status {
+    font-weight: 500;
+    color: $green-500;
+  }
+}
