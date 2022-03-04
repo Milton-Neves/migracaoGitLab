@@ -1,0 +1,107 @@
+<div class="company-view">
+  <header class="company-view__header">
+    <h2 class="header__title"><b>Nome Fantasia</b></h2>
+    <span class="header__tag">ramo da empresa</span>
+    <span class="header__date">Data de solicitação: 00/00/000</span>
+  </header>
+
+  <div class="company-view__box--no-border">
+    <span class="company-view__informations"
+      ><b>CNPJ</b> 00.000.000/0000-00</span
+    >
+    <div class="company-view__informations grid-2">
+      <span><b>Razão Social</b> Lorem Ipsum Dolor Sit Amet </span>
+      <span><b>Número de Funcionários</b> 00000 </span>
+    </div>
+  </div>
+
+  <div class="company-view__boxes">
+    <div class="company-view__box">
+      <h3 class="company-view__box-title">Contato</h3>
+
+      <div class="company-view__contact">
+        <span class="company-view__informations"
+          ><b>Telefone:</b> (00) 0000-0000
+        </span>
+        <span class="company-view__informations"
+          ><b>E-mail:</b> lorem.ipsum@dolor.sit</span
+        >
+      </div>
+    </div>
+
+    <div class="company-view__box">
+      <h3 class="company-view__box-title">Endereço</h3>
+
+      <div
+        class="company-view__content-informations company-view__cep-and-city"
+      >
+        <span class="company-view__informations"><b>CEP:</b> 00.000.000 </span>
+        <span class="company-view__informations"
+          ><b>Cidade:</b> Parnamirim</span
+        >
+      </div>
+
+      <div
+        class="company-view__content-informations company-view__neigh-and-country"
+      >
+        <span class="company-view__informations"
+          ><b>Bairro:</b> Lorem Ipsum
+        </span>
+        <span class="company-view__informations"><b>País:</b> Brasil</span>
+      </div>
+
+      <div
+        class="company-view__content-informations company-view__street-and-number"
+      >
+        <span class="company-view__informations"
+          ><b>Rua:</b> Lorem ipsum sit dolor amet
+        </span>
+        <span class="company-view__informations"
+          ><b>Número:</b> 00.000.000</span
+        >
+      </div>
+    </div>
+
+    <div class="company-view__box">
+      <h3 class="company-view__box-title">Representante da Empresa</h3>
+
+      <div
+        class="company-view__content-informations company-view__name-and-tel"
+      >
+        <span class="company-view__informations"
+          ><b>Nome:</b> Lorem ipsum sit dolor amet
+        </span>
+        <span class="company-view__informations"
+          ><b>Telefone:</b> (00) 0000-0000</span
+        >
+      </div>
+
+      <div
+        class="company-view__content-informations company-view__cel-and-email"
+      >
+        <span class="company-view__informations"
+          ><b>Celular:</b> (00) 00000-0000
+        </span>
+        <span class="company-view__informations"
+          ><b>E-mail:</b> lorem.ipsum@dolor.sit</span
+        >
+      </div>
+    </div>
+
+    <div class="company-view__buttons">
+      <app-button
+        class="button.decline"
+        [text]="'Cancelar'"
+        [color]="'white'"
+        [textColor]="'#1C3152'"
+      >
+      </app-button>
+
+      <app-button class="button.decline" [text]="'Recusar'" [color]="'red'">
+      </app-button>
+
+      <app-button class="button.decline" [text]="'Aceitar'" [color]="'#33A93B'">
+      </app-button>
+    </div>
+  </div>
+</div>
