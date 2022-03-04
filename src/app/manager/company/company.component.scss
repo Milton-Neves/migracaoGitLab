@@ -97,6 +97,19 @@
     //   border-radius: 4px;
     // }
   }
+  &__src {
+    position: relative;
+    display: inline;
+    > img {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+  &__filter {
+    flex-direction: column;
+  }
   &__src input {
     padding: 0.4rem 0.4rem 0.4rem;
     width: 40%;
