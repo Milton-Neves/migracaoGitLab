@@ -9,4 +9,10 @@ export class TabNavComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  id: any = 'active'
+  tabChange(ids: any) {
+    this.id = ids
+    console.log(this.id)
+  }
 }

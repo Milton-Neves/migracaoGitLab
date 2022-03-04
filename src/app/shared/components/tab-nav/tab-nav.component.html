@@ -1,7 +1,41 @@
-<div class="tab-nav">
-  <ul class="btn-box">
-    <li id="active"><button>ATIVOS</button></li>
-    <li id="archived"><button>ARQUIVADOS</button></li>
-    <li id="archived"><button>ARQUIVADOS</button></li>
-  </ul>
+<div class="container">
+  <div class="tab">
+    <ul>
+      <li
+        id="active"
+        [class.color]="id === 'active'"
+        (click)="tabChange('active')"
+      >
+        ATIVOS
+      </li>
+      <li
+        id="archived"
+        [class.color]="id === 'archived'"
+        (click)="tabChange('archived')"
+      >
+        ARQUIVADOS
+      </li>
+      <li
+        id="archived-2"
+        [class.color]="id === 'archived-2'"
+        (click)="tabChange('archived-2')"
+      >
+        ARQUIVADOS
+      </li>
+    </ul>
+
+    <div class="content">
+      <div class="content-value" *ngIf="id === 'active'">
+        <p>content 1</p>
+      </div>
+
+      <div class="content-value" *ngIf="id === 'archived'">
+        <p>content 2</p>
+      </div>
+
+      <div class="content-value" *ngIf="id === 'archived-2'">
+        <p>content 3</p>
+      </div>
+    </div>
+  </div>
 </div>
