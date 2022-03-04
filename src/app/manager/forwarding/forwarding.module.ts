@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common'
 
 import { ForwardingRoutingModule } from './forwarding-routing.module'
 import { ForwardingComponent } from './forwarding.component'
-import { SharedModule } from 'src/app/shared/shared.module'
 import { ForwardingCardComponent } from './components/forwarding-card/forwarding-card.component'
+import { SharedModule } from '@shared/shared.module'
 
 @NgModule({
   declarations: [ForwardingComponent, ForwardingCardComponent],
