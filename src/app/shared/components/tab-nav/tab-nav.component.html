@@ -1,7 +1,14 @@
-<div class="tab-nav">
-  <ul class="btn-box">
-    <li id="active"><button>ATIVOS</button></li>
-    <li id="archived"><button>ARQUIVADOS</button></li>
-    <li id="archived"><button>ARQUIVADOS</button></li>
-  </ul>
+<div class="container">
+  <div class="tab">
+    <ul>
+      <li
+        *ngFor="let title of titles"
+        id="active"
+        [class.color]="id === title"
+        (click)="tabChange(title)"
+      >
+        {{ title }}
+      </li>
+    </ul>
+  </div>
 </div>
