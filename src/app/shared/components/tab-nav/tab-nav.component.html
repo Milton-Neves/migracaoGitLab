@@ -2,40 +2,13 @@
   <div class="tab">
     <ul>
       <li
+        *ngFor="let title of titles"
         id="active"
-        [class.color]="id === 'active'"
-        (click)="tabChange('active')"
+        [class.color]="id === title"
+        (click)="tabChange(title)"
       >
-        ATIVOS
-      </li>
-      <li
-        id="archived"
-        [class.color]="id === 'archived'"
-        (click)="tabChange('archived')"
-      >
-        ARQUIVADOS
-      </li>
-      <li
-        id="archived-2"
-        [class.color]="id === 'archived-2'"
-        (click)="tabChange('archived-2')"
-      >
-        ARQUIVADOS
+        {{ title }}
       </li>
     </ul>
-
-    <div class="content">
-      <div class="content-value" *ngIf="id === 'active'">
-        <p>content 1</p>
-      </div>
-
-      <div class="content-value" *ngIf="id === 'archived'">
-        <p>content 2</p>
-      </div>
-
-      <div class="content-value" *ngIf="id === 'archived-2'">
-        <p>content 3</p>
-      </div>
-    </div>
   </div>
 </div>
