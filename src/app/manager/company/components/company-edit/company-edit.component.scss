@@ -1,0 +1,11 @@
+@import '../../../../../assets/styles/scss/variables';
+.card-group {
+  width: 43vw;
+  height: 34vh;
+  background: $white;
+  box-shadow: 1px 2px 8px -2px rgb(0 0 0 / 25%);
+  border-radius: 15px;
+  &__content-card-title {
+    display: inline;
+  }
+}

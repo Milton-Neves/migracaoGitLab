@@ -5,45 +5,7 @@
   <div class="actives"></div>
 
   <section class="company__content">
-    <div class="buttons">
-      <div class="btn">
-        <button class="btn-actives">
-          <b class="btn-title">Ativos</b> <br />
-          <p class="btn-text">
-            Lista de encaminhamentos <br />
-            ativos
-          </p>
-        </button>
-        <button class="btn-analyses">
-          <b class="btn-title">Em análise</b>
-          <p class="btn-text">
-            Lista de encaminhamentos <br />
-            em análise
-          </p>
-        </button>
-      </div>
-      <div class="company__src">
-        <div class="company__src--icon">
-          <input
-            type="text"
-            id="src"
-            placeholder="Pesquise por Nome, Nome do representante, CNPJ, Ramo"
-          />
-        </div>
-
-        <img
-          class="filter"
-          src="../../../assets/icons/icon-filter.svg"
-          alt="icon-filter"
-          id="filter"
-        />
-      </div>
-    </div>
-
-    <app-button class="select" [text]="'CRIAR EMPRESA'" [color]="'#33A93B'">
-      <img src="../../../assets/icons/img-sum.svg" />
-    </app-button>
-    <app-company-card></app-company-card>
-    <app-pagination></app-pagination>
+    <!-- <app-company-view></app-company-view> -->
+    <app-company-edit></app-company-edit>
   </section>
 </main>
