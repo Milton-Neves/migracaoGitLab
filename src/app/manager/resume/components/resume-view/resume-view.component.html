@@ -1,115 +1,81 @@
-<div class="company-details">
-  <header class="company-details__header">
-    <div class="company-details__header__view">
-      <h2 class="company-details__header__view--title"><b>Nome Fantasia</b></h2>
-      <span class="company-details__header__view--tag">ramo da empresa</span>
+<div class="resume-details">
+  <header class="resume-details__header">
+    <div class="resume-details__header__view">
+      <h2 class="resume-details__header__view--title">
+        Lorem Ipsum sit dolor amet
+      </h2>
+      <span class="resume-details__header__view--tag">professor</span>
     </div>
-    <span class="company-details__header__date"
-      >Data de solicitação: 00/00/000</span
+    <span class="resume-details__header__situation"
+      ><b>Situação:</b> Ativo</span
     >
   </header>
 
-  <div class="company-details__box">
-    <div class="company-details__box__caput">
-      <span class="company-details__box__caput--informations"
-        ><b>CNPJ</b> 00.000.000/0000-00</span
-      >
-      <div class="company-details__box__caput--grid-2">
-        <span><b>Razão Social</b> Lorem Ipsum Dolor Sit Amet </span>
-        <span><b>Número de Funcionários</b> 00000 </span>
+  <div class="resume-details__box__personal">
+    <h3 class="resume-details__box__personal--title">Dados Pessoais</h3>
+
+    <div class="resume-details__box__personal--view">
+      <div class="resume-details__box__personal--view-name">
+        <span><b>Nome:</b> Igor José Cordeiro de Lima</span>
+      </div>
+      <div class="resume-details__box__personal--view-mail">
+        <span><b>E-mail:</b> lorem.ipsum@dolor.sit</span>
+        <span><b>E-mail:</b> lorem.ipsum@dolor.sit</span>
+      </div>
+      <div class="resume-details__box__personal--view-data">
+        <span><b>Data de Nascimento:</b> 12/05/2022</span>
+        <span><b>Sexo:</b> Masculino</span>
+        <span><b>Estado Civil:</b> Solteiro</span>
       </div>
     </div>
   </div>
 
-  <div>
-    <div class="company-details__box">
-      <h3 class="company-details__box-title">Contato</h3>
+  <div class="resume-details__box__contact">
+    <h3 class="resume-details__box__contact--title">Contato</h3>
 
-      <div class="company-details__contact">
-        <span class="company-details__informations"
-          ><b>Telefone:</b> (00) 0000-0000
-        </span>
-        <span class="company-details__informations"
-          ><b>E-mail:</b> lorem.ipsum@dolor.sit</span
-        >
+    <div class="resume-details__box__contact--text">
+      <div class="resume-details__box__contact--text-phone">
+        <span><b>E-mail:</b> lorem.ipsum@dolor.sit</span>
+      </div>
+      <div class="resume-details__box__contact--text-mail">
+        <span><b>Telefone:</b> (00) 0000-0000</span>
       </div>
     </div>
+  </div>
 
-    <div class="company-details__box">
-      <h3 class="company-details__box-title">Endereço</h3>
+  <div class="resume-details__box__address">
+    <h3 class="resume-details__box__address--title">Endereço</h3>
 
-      <div
-        class="company-details__content-informations company-details__cep-and-city"
-      >
-        <span class="company-details__informations"
-          ><b>CEP:</b> 00.000.000
-        </span>
-        <span class="company-details__informations"
-          ><b>Cidade:</b> Parnamirim</span
-        >
+    <div class="resume-details__box__address--information">
+      <div class="resume-details__box__address--information-city">
+        <span><b>CEP:</b> 00.000-000</span>
+        <span><b>Cidade:</b> Parnamirim</span>
       </div>
-
-      <div
-        class="company-details__content-informations company-details__neigh-and-country"
-      >
-        <span class="company-details__informations"
-          ><b>Bairro:</b> Lorem Ipsum
-        </span>
-        <span class="company-details__informations"><b>País:</b> Brasil</span>
+      <div class="resume-details__box__address--information-district">
+        <span><b>Bairro:</b> Lorem Ipsum</span>
+        <span><b>País:</b> Brasil</span>
       </div>
-
-      <div
-        class="company-details__content-informations company-details__street-and-number"
-      >
-        <span class="company-details__informations"
-          ><b>Rua:</b> Lorem ipsum sit dolor amet
-        </span>
-        <span class="company-details__informations"
-          ><b>Número:</b> 00.000.000</span
-        >
+      <div class="resume-details__box__address--information-street">
+        <span><b>Rua:</b> Lorem ipsum sit dolor amet</span>
+        <span><b>Número:</b> 0.000</span>
       </div>
     </div>
+  </div>
 
-    <div class="company-details__box">
-      <h3 class="company-details__box-title">Representante da Empresa</h3>
+  <div class="resume-details__btn">
+    <app-button
+      class="resume-details__btn__cancel"
+      [text]="'Cancelar'"
+      [color]="'transparent'"
+      [textColor]="'#1C3152'"
+    >
+    </app-button>
 
-      <div
-        class="company-details__content-informations company-details__name-and-tel"
-      >
-        <span class="company-details__informations"
-          ><b>Nome:</b> Lorem ipsum sit dolor amet
-        </span>
-        <span class="company-details__informations"
-          ><b>Telefone:</b> (00) 0000-0000</span
-        >
-      </div>
-
-      <div
-        class="company-details__content-informations company-details__cel-and-email"
-      >
-        <span class="company-details__informations"
-          ><b>Celular:</b> (00) 00000-0000
-        </span>
-        <span class="company-details__informations"
-          ><b>E-mail:</b> lorem.ipsum@dolor.sit</span
-        >
-      </div>
-    </div>
-
-    <div class="company-details__buttons">
-      <app-button
-        class="button.decline"
-        [text]="'Cancelar'"
-        [color]="'white'"
-        [textColor]="'#1C3152'"
-      >
-      </app-button>
-
-      <app-button class="button.decline" [text]="'Recusar'" [color]="'red'">
-      </app-button>
-
-      <app-button class="button.decline" [text]="'Aceitar'" [color]="'#33A93B'">
-      </app-button>
-    </div>
+    <app-button
+      class="resume-details__btn__print"
+      [text]="'Imprimir'"
+      [color]="'#1C3152'"
+    >
+    </app-button>
   </div>
 </div>
