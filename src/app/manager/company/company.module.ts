@@ -1,4 +1,4 @@
-import { ButtonComponent } from './../../shared/components/button/button.component'
+import { CompanyViewComponent } from './components/company-view/company-view.component'
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 
@@ -8,7 +8,7 @@ import { CompanyComponent } from './company.component'
 import { CompanyCardComponent } from './components/company-card/company-card.component'
 
 @NgModule({
-  declarations: [CompanyComponent, CompanyCardComponent],
+  declarations: [CompanyComponent, CompanyCardComponent, CompanyViewComponent],
   imports: [CommonModule, CompanyRoutingModule, SharedModule],
 })
 export class CompanyModule {}

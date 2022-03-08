@@ -67,8 +67,8 @@
     background-repeat: no-repeat;
     background-position: 95% 50%;
   }
-  &__src #filter {
-    margin: 0 0 3rem 25rem;
+  .filter {
+    margin-left: 18rem;
   }
 
   &__src #src::placeholder {
@@ -81,7 +81,7 @@
   margin-bottom: 1.5rem;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1450px) {
   .company {
     &__content {
       .buttons {
@@ -96,8 +96,12 @@
     &__src {
       &--icon {
         flex-grow: 1;
-        width: 120%;
+        width: 100%;
+        height: 3rem;
       }
+    }
+    .filter {
+      margin-bottom: 1.5rem;
     }
   }
 }
