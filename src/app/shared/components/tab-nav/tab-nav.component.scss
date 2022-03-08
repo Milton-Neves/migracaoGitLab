@@ -1,22 +1,31 @@
-.tab-nav {
-  width: 80%;
-  height: 450px;
-  position: relative;
-  margin: 100px auto;
+.tab ul {
+  padding: 10px 0;
+  display: inline;
+  border-radius: 2px;
+  margin: 0;
 }
 
-.btn-box {
-  display: flex;
+.tab ul li {
+  display: inline-block;
+  list-style-type: none;
+  font-size: 14px;
+  padding: 10px 24px;
+  cursor: pointer;
+  text-align: center;
+  position: relative;
+  color: #979797;
   border-bottom: 1px solid #979797;
 }
 
-.btn-box button {
-  background: transparent;
-  color: #979797;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  margin-right: 50px;
+.color {
+  color: #1c3152 !important;
+  border-bottom: 2px solid #1c3152 !important;
+}
+
+.content {
+  padding: 10px;
+}
+
+.content-value p {
   font-size: 14px;
 }
