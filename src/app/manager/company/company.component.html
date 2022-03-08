@@ -21,27 +21,26 @@
             em análise
           </p>
         </button>
-        <div class="company__src">
+      </div>
+      <div class="company__src">
+        <div class="company__src--icon">
           <input
             type="text"
             id="src"
             placeholder="Pesquise por Nome, Nome do representante, CNPJ, Ramo"
           />
-          <img src="../../../assets/icons/icon-src.svg" alt="icon-src" />
         </div>
+
         <img
           class="filter"
           src="../../../assets/icons/icon-filter.svg"
           alt="icon-filter"
+          id="filter"
         />
       </div>
     </div>
 
-    <app-button
-      class="company__btn"
-      [text]="'CRIAR EMPRESA'"
-      [color]="'#33A93B'"
-    >
+    <app-button class="select" [text]="'CRIAR EMPRESA'" [color]="'#33A93B'">
       <img src="../../../assets/icons/img-sum.svg" />
     </app-button>
     <app-company-card></app-company-card>
