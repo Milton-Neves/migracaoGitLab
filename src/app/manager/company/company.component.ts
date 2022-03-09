@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnChanges, OnInit } from '@angular/core'
 
 @Component({
   selector: 'app-company',
@@ -8,5 +8,23 @@ import { Component, OnInit } from '@angular/core'
 export class CompanyComponent implements OnInit {
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.verifyWidthPage()
+    document.addEventListener('click', (el: any) => {
+      console.log(this.findWidthPage())
+      this.verifyWidthPage()
+    })
+  }
+
+  findWidthPage() {
+    let element = document.getElementById('content')
+    return element!.getBoundingClientRect().width
+  }
+
+  verifyWidthPage() {
+    if (this.findWidthPage() > 900) {
+      let btnElements = document.getElementById('btns')
+      btnElements!.style.flexGrow = '1'
+    }
+  }
 }
