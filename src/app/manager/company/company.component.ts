@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 
 @Component({
   selector: 'app-company',
@@ -11,7 +11,6 @@ export class CompanyComponent implements OnInit {
   ngOnInit(): void {
     this.verifyWidthPage()
     document.addEventListener('click', (el: any) => {
-      console.log(this.findWidthPage())
       this.verifyWidthPage()
     })
   }
