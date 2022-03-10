@@ -1,11 +1,139 @@
+@import 'variables';
 .company {
   &__header {
     margin-bottom: 2rem;
   }
 
   &__content {
-    display: grid;
-    gap: 2rem;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    display: flex;
+    flex-direction: column;
+    .buttons {
+      display: flex;
+      margin-bottom: 2rem;
+      .btn {
+        flex-grow: 1;
+      }
+      .btn-actives {
+        position: relative;
+        text-align: left;
+        background-color: $blue-700;
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 5px;
+      }
+
+      .btn-analyses {
+        position: relative;
+        text-align: left;
+        background-color: $gray-600;
+        border: none;
+        padding: 1rem 2rem;
+        border-radius: 5px;
+        margin: auto 2rem;
+      }
+
+      .btn-title {
+        color: $white;
+        font-size: 24px;
+      }
+      .btn-text {
+        color: $white;
+        font-size: 16px;
+      }
+    }
+  }
+  &__src {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    flex-grow: 1;
+    flex-direction: column;
+    &--icon {
+      display: flex;
+      align-items: flex-end;
+      flex-direction: column;
+      flex-grow: 1;
+      width: 100%;
+      .filter {
+        display: flex;
+        margin-top: 1rem;
+        margin-right: 1rem;
+        width: 100%;
+        justify-content: flex-end;
+      }
+    }
+  }
+
+  &__src input {
+    width: 100%;
+    border: 1px solid #cccccc;
+    padding: 0.4rem;
+    border-radius: 4px;
+    background: white;
+    background-image: url(../../../assets/icons/icon-src.svg);
+    background-repeat: no-repeat;
+    background-position: 95% 50%;
+  }
+
+  &__src #src::placeholder {
+    font-size: 0.7rem;
+    max-width: 88%;
+    overflow: hidden;
+
+    display: block;
+    color: $gray-500;
+  }
+}
+.select {
+  display: flex;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 1500px) {
+  .company {
+    &__content {
+      .buttons {
+        .btn {
+          flex-grow: 0;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1439px) {
+  .company {
+    &__content {
+      .buttons {
+        .btn {
+          button {
+            width: 14rem;
+            b {
+              font-size: 20px;
+            }
+            p {
+              font-size: 14px;
+            }
+          }
+          .btn-analyses {
+            margin: auto 1rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1300px) {
+  .company {
+    &__content {
+      .buttons {
+        .btn {
+          button {
+            width: 12rem;
+          }
+        }
+      }
+    }
   }
 }
