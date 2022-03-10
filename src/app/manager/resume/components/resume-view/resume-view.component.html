@@ -15,59 +15,139 @@
     [titles]="sectionTitle"
     (activeTab)="changeTab($event)"
   ></app-tab-nav>
-  <!-- Dados -->
-  <ng-container *ngIf="activeTab == sectionTitle[0]">
-    <div class="resume-details__box__personal">
-      <h3 class="resume-details__box__personal--title">Dados Pessoais</h3>
 
-      <div class="resume-details__box__personal--view">
-        <div class="resume-details__box__personal--view-name">
-          <span><b>Nome:</b> Igor José Cordeiro de Lima</span>
+  <div class="container">
+    <!-- Dados -->
+    <ng-container *ngIf="activeTab == sectionTitle[0]">
+      <div class="resume-details__box__global">
+        <div class="resume-details__box__personal">
+          <h3 class="resume-details__box__personal--title">Dados Pessoais</h3>
+
+          <div class="resume-details__box__personal--view">
+            <div class="resume-details__box__personal--view-name">
+              <span><b>Nome:</b> Igor José Cordeiro de Lima</span>
+            </div>
+            <div class="resume-details__box__personal--view-mail">
+              <span><b>E-mail:</b> lorem.ipsum@dolor.sit</span>
+              <span><b>E-mail:</b> lorem.ipsum@dolor.sit</span>
+            </div>
+            <div class="resume-details__box__personal--view-data">
+              <span><b>Data de Nascimento:</b> 12/05/2022</span>
+              <span><b>Sexo:</b> Masculino</span>
+              <span><b>Estado Civil:</b> Solteiro</span>
+            </div>
+          </div>
         </div>
-        <div class="resume-details__box__personal--view-mail">
-          <span><b>E-mail:</b> lorem.ipsum@dolor.sit</span>
-          <span><b>E-mail:</b> lorem.ipsum@dolor.sit</span>
+
+        <div class="resume-details__box__contact">
+          <h3 class="resume-details__box__contact--title">Contato</h3>
+
+          <div class="resume-details__box__contact--text">
+            <div class="resume-details__box__contact--text-phone">
+              <span><b>E-mail:</b> lorem.ipsum@dolor.sit</span>
+            </div>
+            <div class="resume-details__box__contact--text-mail">
+              <span><b>Telefone:</b> (00) 0000-0000</span>
+            </div>
+          </div>
         </div>
-        <div class="resume-details__box__personal--view-data">
-          <span><b>Data de Nascimento:</b> 12/05/2022</span>
-          <span><b>Sexo:</b> Masculino</span>
-          <span><b>Estado Civil:</b> Solteiro</span>
+
+        <div class="resume-details__box__address">
+          <h3 class="resume-details__box__address--title">Endereço</h3>
+
+          <div class="resume-details__box__address--information">
+            <div class="resume-details__box__address--information-city">
+              <span><b>CEP:</b> 00.000-000</span>
+              <span><b>Cidade:</b> Parnamirim</span>
+            </div>
+            <div class="resume-details__box__address--information-district">
+              <span><b>Bairro:</b> Lorem Ipsum</span>
+              <span><b>País:</b> Brasil</span>
+            </div>
+            <div class="resume-details__box__address--information-street">
+              <span><b>Rua:</b> Lorem ipsum sit dolor amet</span>
+              <span><b>Número:</b> 0.000</span>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </ng-container>
+    <!-- Disponibilidade -->
+    <ng-container *ngIf="activeTab == sectionTitle[1]">
+      <div class="resume-details__box__global">
+        <div class="resume-details__box__shift">
+          <h3 class="resume-details__box__shift--title">Períodos</h3>
 
-    <div class="resume-details__box__contact">
-      <h3 class="resume-details__box__contact--title">Contato</h3>
+          <div class="resume-details__box__shift--description">
+            <div class="resume-details__box__shift--description-morning">
+              <span><b>Manhã:</b> Sim</span>
+              <span><b>Sábado:</b> Não</span>
+            </div>
+            <div class="resume-details__box__shift--description-afternoon">
+              <span><b>Tarde:</b> Sim</span>
+              <span><b>Domingo:</b> Sim</span>
+            </div>
+            <div class="resume-details__box__shift--description-night">
+              <span><b>Noite:</b> Não</span>
+            </div>
+          </div>
+        </div>
 
-      <div class="resume-details__box__contact--text">
-        <div class="resume-details__box__contact--text-phone">
-          <span><b>E-mail:</b> lorem.ipsum@dolor.sit</span>
-        </div>
-        <div class="resume-details__box__contact--text-mail">
-          <span><b>Telefone:</b> (00) 0000-0000</span>
-        </div>
-      </div>
-    </div>
+        <div class="resume-details__box__trips">
+          <h3 class="resume-details__box__trips--title">Viagens</h3>
 
-    <div class="resume-details__box__address">
-      <h3 class="resume-details__box__address--title">Endereço</h3>
-
-      <div class="resume-details__box__address--information">
-        <div class="resume-details__box__address--information-city">
-          <span><b>CEP:</b> 00.000-000</span>
-          <span><b>Cidade:</b> Parnamirim</span>
-        </div>
-        <div class="resume-details__box__address--information-district">
-          <span><b>Bairro:</b> Lorem Ipsum</span>
-          <span><b>País:</b> Brasil</span>
-        </div>
-        <div class="resume-details__box__address--information-street">
-          <span><b>Rua:</b> Lorem ipsum sit dolor amet</span>
-          <span><b>Número:</b> 0.000</span>
+          <div class="resume-details__box__trips--text">
+            <span><b>Disponibilidade para viagens:</b> Não</span>
+          </div>
         </div>
       </div>
-    </div>
+    </ng-container>
+    <!-- Formação -->
+    <ng-container *ngIf="activeTab == sectionTitle[2]">
+      <div class="resume-details__box__formation">
+        <h3 class="resume-details__box__formation--title">
+          Escolaridade e cursos
+        </h3>
 
+        <div class="resume-details__box__formation--description">
+          <div class="resume-details__box__formation--knowledge">
+            <span><b>Instituição:</b> UFRN</span>
+            <span><b>Escolaridade:</b> Superior</span>
+            <span><b>Curso:</b> Ecologia</span>
+          </div>
+          <div class="resume-details__box__formation--knowledge">
+            <span><b>Instituição:</b> Udemy</span>
+            <span><b>Escolaridade:</b> Sem instrução</span>
+            <span><b>Curso:</b> Programação Front-end</span>
+          </div>
+          <div class="resume-details__box__formation--knowledge">
+            <span><b>Instituição:</b> E.E. Presidente Roosevelt</span>
+            <span><b>Escolaridade:</b> Ensino Médio</span>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <!-- Experiencia Profissional -->
+    <ng-container *ngIf="activeTab == sectionTitle[3]">
+      <div class="resume-details__box__experience">
+        <h3 class="resume-details__box__experience--title">Experiência</h3>
+
+        <div class="resume-details__box__experience--description">
+          <div class="resume-details__box__experience--skills">
+            <span><b>Nome da empresa:</b> Teleperfomance</span>
+            <span><b>Período:</b> 00/00/0000 - 00/00/0000</span>
+            <span><b>Formal:</b> Sim</span>
+          </div>
+          <div class="resume-details__box__experience--skills">
+            <span><b>Nome da empresa:</b> Mar Vermelho</span>
+            <span><b>Período:</b> 00/00/0000 - 00/00/0000</span>
+            <span><b>Formal:</b> Não </span>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <!-- button for all -->
     <div class="resume-details__btn">
       <app-button
         class="resume-details__btn__cancel"
@@ -84,96 +164,5 @@
       >
       </app-button>
     </div>
-  </ng-container>
-  <!-- Disponibilidade -->
-  <ng-container *ngIf="activeTab == sectionTitle[1]">
-    <div class="resume-details__box__shift">
-      <h3 class="resume-details__box__shift--title">Períodos</h3>
-
-      <div class="resume-details__box__shift--description">
-        <div class="resume-details__box__shift--description-morning">
-          <span><b>Manhã:</b> Sim</span>
-          <span><b>Sábado:</b> Não</span>
-        </div>
-        <div class="resume-details__box__shift--description-afternoon">
-          <span><b>Tarde:</b> Sim</span>
-          <span><b>Domingo:</b> Sim</span>
-        </div>
-        <div class="resume-details__box__shift--description-night">
-          <span><b>Noite:</b> Não</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="resume-details__box__trips">
-      <h3 class="resume-details__box__trips--title">Viagens</h3>
-
-      <div class="resume-details__box__trips--text">
-        <span><b>Disponibilidade para viagens:</b> Não</span>
-      </div>
-    </div>
-
-    <div class="resume-details__btn">
-      <app-button
-        class="resume-details__btn__cancel"
-        [text]="'Cancelar'"
-        [color]="'transparent'"
-        [textColor]="'#1C3152'"
-      >
-      </app-button>
-
-      <app-button
-        class="resume-details__btn__print"
-        [text]="'Imprimir'"
-        [color]="'#1C3152'"
-      >
-      </app-button>
-    </div>
-  </ng-container>
-
-  <!-- Formação -->
-
-  <ng-container *ngIf="activeTab == sectionTitle[2]">
-    <div class="resume-details__box__formation">
-      <h3 class="resume-details__box__formation--title">
-        Escolaridade e cursos
-      </h3>
-
-      <div class="resume-details__box__formation--description">
-        <div class="resume-details__box__formation--description-one">
-          <span><b>Instituição:</b> UFRN</span>
-          <span><b>Escolaridade:</b> Superior</span>
-          <span><b>Curso:</b> Ecologia</span>
-        </div>
-        <div class="resume-details__box__formation--description-two">
-          <span><b>Instituição:</b> Udemy</span>
-          <span><b>Escolaridade:</b> Sem instrução</span>
-          <span><b>Curso:</b> Programação Front-end</span>
-        </div>
-        <div class="resume-details__box__formation--description-school">
-          <span><b>Instituição:</b> E.E. Presidente Roosevelt</span>
-        </div>
-        <div class="resume-details__box__formation--description-level">
-          <span><b>Escolaridade:</b> Ensino Médio</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="resume-details__btn">
-      <app-button
-        class="resume-details__btn__cancel"
-        [text]="'Cancelar'"
-        [color]="'transparent'"
-        [textColor]="'#1C3152'"
-      >
-      </app-button>
-
-      <app-button
-        class="resume-details__btn__print"
-        [text]="'Imprimir'"
-        [color]="'#1C3152'"
-      >
-      </app-button>
-    </div>
-  </ng-container>
+  </div>
 </div>
