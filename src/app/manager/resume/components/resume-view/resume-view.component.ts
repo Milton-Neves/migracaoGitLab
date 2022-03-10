@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core'
+import { NgxModalService } from 'lib/ngx-modal/src/public-api'
 
 @Component({
   selector: 'app-resume-view',
@@ -14,11 +15,15 @@ export class ResumeViewComponent implements OnInit {
   ]
   activeTab?: string
 
-  constructor() {}
+  constructor(private modalService: NgxModalService) {}
 
   changeTab(tab: any) {
     this.activeTab = tab
     console.log(this.activeTab)
+  }
+
+  closeModal() {
+    this.modalService.close()
   }
 
   ngOnInit(): void {
