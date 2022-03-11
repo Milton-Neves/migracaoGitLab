@@ -4,7 +4,37 @@
     [totalItems]="totalCountResumes"
     class="pagination-number"
   ></app-pagination-number>
-  <app-table class="table" [resumes]="resumes"></app-table>
+  <app-table class="table">
+    <ng-container
+      *ngIf="resumes != undefined && resumes.length != 0"
+      part="list"
+    >
+      <tr
+        class="table-details__body--text-description"
+        *ngFor="let resume of resumes"
+      >
+        <td>{{ resume.physicalPerson.name }}</td>
+        <td>{{ resume.physicalPerson.phoneNumbers }}</td>
+        <td class="table-details__body--bg-primary">
+          <span> {{ resume.jobApplications }} </span>
+        </td>
+        <td class="table-details__body--color-red">
+          {{ resume.statusResume ? 'Disponível' : 'Arquivado' }}
+        </td>
+        <td class="table-details__body--border-btn">
+          <button (click)="viewResume(resume.id)">visualizar</button> |
+          <button>editar</button> |
+          <button>arquivar</button>
+        </td>
+      </tr>
+    </ng-container>
+    <ng-container
+      part="empty"
+      *ngIf="resumes == undefined || resumes.length == 0"
+    >
+      <span id="no-content">Ainda não há currículos registrados!</span>
+    </ng-container>
+  </app-table>
   <app-pagination
     class="pagination"
     [pagination$]="pagination$"

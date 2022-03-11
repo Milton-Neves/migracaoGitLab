@@ -1,6 +1,6 @@
 @import 'variables';
 
-.resume-container {
+.table-container {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -30,35 +30,5 @@
   }
   &__body {
     text-align: center;
-    &--text-description td:first-child {
-      text-align: left;
-    }
-    &--text-description td {
-      padding: 0.5rem 2rem;
-    }
-    &--text-description {
-      border: 1px solid $black-100;
-      border-left: none;
-      border-right: none;
-    }
-    &--bg-primary span {
-      background-color: $blue-500;
-      color: $white;
-      border-radius: 25px;
-      padding: 0.1rem 2rem;
-    }
-    &--color-red {
-      color: $red-500;
-    }
-    &--border-btn button {
-      border: none;
-      background: none;
-      color: $blue-700;
-    }
   }
-}
-#no-resumes {
-  margin-top: 25px;
-  text-align: center;
-  color: $blue-700;
 }

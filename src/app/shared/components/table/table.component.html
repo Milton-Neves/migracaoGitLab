@@ -1,41 +1,22 @@
-<div class="resume-container">
+<div class="table-container">
   <table class="table-details">
     <thead class="table-details__head">
       <tr class="table-details__head--text-title">
         <th>Nome</th>
-        <th>Telefone(s)</th>
-        <th>Cargo</th>
-        <th>Situação</th>
-        <th>Ações</th>
+        <ng-container *ngIf="activedRoute == routesWithTables[0]">
+          <th>Telefone(s)</th>
+          <th>Cargo</th>
+          <th>Situação</th>
+          <th>Ações</th>
+        </ng-container>
+        <ng-container *ngFor="let columnName of adittionalColumn">
+          <th>{{ columnName }}</th>
+        </ng-container>
       </tr>
     </thead>
-    <tbody
-      class="table-details__body"
-      *ngIf="resumes != undefined && resumes.length != 0"
-    >
-      <tr
-        class="table-details__body--text-description"
-        *ngFor="let resume of resumes"
-      >
-        <td>{{ resume.physicalPerson.name }}</td>
-        <td>{{ resume.physicalPerson.phoneNumbers }}</td>
-        <td class="table-details__body--bg-primary">
-          <span> {{ resume.jobApplications }} </span>
-        </td>
-        <td class="table-details__body--color-red">
-          {{ resume.statusResume ? 'Disponível' : 'Arquivado' }}
-        </td>
-        <td class="table-details__body--border-btn">
-          <button (click)="viewResume(resume.id)">visualizar</button> |
-          <button>editar</button> |
-          <button>arquivar</button>
-        </td>
-      </tr>
+    <tbody class="table-details__body">
+      <ng-content select="[part=list]"></ng-content>
     </tbody>
   </table>
-  <!-- <div class="no-resumes--container"> -->
-  <span *ngIf="resumes == undefined || resumes.length == 0" id="no-resumes"
-    >Ainda não há currículos registrados!</span
-  >
-  <!-- </div> -->
+  <ng-content select="[part=empty]"> </ng-content>
 </div>

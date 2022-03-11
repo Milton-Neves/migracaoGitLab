@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core'
-import { ResumeViewComponent } from 'app/manager/resume/components/resume-view/resume-view.component'
-import { ResumeProps } from 'app/manager/resume/entities/resume.model'
+import { Router } from '@angular/router'
 import { NgxModalService } from 'lib/ngx-modal/src/public-api'
 
 @Component({
@@ -9,14 +8,12 @@ import { NgxModalService } from 'lib/ngx-modal/src/public-api'
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements OnInit {
-  @Input() resumes?: ResumeProps[]
-  constructor(private modalService: NgxModalService) {}
+  @Input() adittionalColumn?: string[]
+  routesWithTables = ['/gerenciador/curriculos', '/gerenciador/usuarios']
+  activedRoute!: string
+  constructor(private modalService: NgxModalService, private router: Router) {}
 
-  viewResume(resumeId: number) {
-    let modal = this.modalService
-      .open(ResumeViewComponent, { resumeId })
-      .subscribe()
+  ngOnInit(): void {
+    this.activedRoute = this.router.url
   }
-
-  ngOnInit(): void {}
 }

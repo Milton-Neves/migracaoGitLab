@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core'
 import { createPagination } from '@shared/utils/pagination.utils'
+import { NgxModalService } from 'lib/ngx-modal/src/public-api'
 import { Observable, of } from 'rxjs'
 import { map, tap } from 'rxjs/operators'
 
 import { ResumeProps } from '../../entities/resume.model'
 import { ResumeService } from '../../services/resume.service'
+import { ResumeViewComponent } from '../resume-view/resume-view.component'
 
 const ITEMS_PER_PAGE = 6
 @Component({
@@ -17,7 +19,10 @@ export class ActiveResumeListComponent implements OnInit {
   totalCountResumes: number = 0
   pagination$?: Observable<any>
 
-  constructor(private resumeService: ResumeService) {}
+  constructor(
+    private resumeService: ResumeService,
+    private modalService: NgxModalService
+  ) {}
 
   ngOnInit(): void {
     this.getResumesFromServer()
@@ -45,6 +50,12 @@ export class ActiveResumeListComponent implements OnInit {
 
     this.resumes = results
     this.pagination$ = of(pagination)
+  }
+
+  viewResume(resumeId: number) {
+    let modal = this.modalService
+      .open(ResumeViewComponent, { resumeId })
+      .subscribe()
   }
 
   verifyPageSize(): number {
