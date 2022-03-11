@@ -2,10 +2,12 @@
   <thead class="table-details__head">
     <tr class="table-details__head--text-title">
       <th>Nome</th>
-      <th>Telefone(s)</th>
-      <th>Cargo</th>
-      <th>Situação</th>
-      <th>Ações</th>
+      <ng-container *ngIf="activedRoute == routes[0]">
+        <th>Telefone(s)</th>
+        <th>Cargo</th>
+        <th>Situação</th>
+        <th>Ações</th>
+      </ng-container>
     </tr>
   </thead>
   <tbody class="table-details__body">
