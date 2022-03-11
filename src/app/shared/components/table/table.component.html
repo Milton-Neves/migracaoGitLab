@@ -1,4 +1,4 @@
-<table class="table-details">
+<table class="table-details" *ngIf="resumes != undefined">
   <thead class="table-details__head">
     <tr class="table-details__head--text-title">
       <th>Nome</th>
@@ -9,15 +9,20 @@
     </tr>
   </thead>
   <tbody class="table-details__body">
-    <tr class="table-details__body--text-description">
-      <td>Lorem, ipsum</td>
-      <td>(84) 99999-9999, (84) 3272-0000</td>
+    <tr
+      class="table-details__body--text-description"
+      *ngFor="let resume of resumes"
+    >
+      <td>{{ resume.physicalPerson.name }}</td>
+      <td>{{ resume.physicalPerson.phoneNumbers }}</td>
       <td class="table-details__body--bg-primary">
-        <span> professor </span>
+        <span> {{ resume.jobApplications }} </span>
       </td>
-      <td class="table-details__body--color-red">Arquivado</td>
+      <td class="table-details__body--color-red">
+        {{ resume.statusResume ? 'Disponível' : 'Arquivado' }}
+      </td>
       <td class="table-details__body--border-btn">
-        <button (click)="viewResume()">visualizar</button> |
+        <button (click)="viewResume(resume.id)">visualizar</button> |
         <button>editar</button> |
         <button>arquivar</button>
       </td>
