@@ -8,6 +8,7 @@ import { TableComponent } from './components/table/table.component'
 import { PaginationNumberComponent } from './components/pagination-number/pagination-number.component'
 import { ButtonComponent } from './components/button/button.component'
 import { TabNavComponent } from './components/tab-nav/tab-nav.component'
+import { InputSearchComponent } from './components/input-search/input-search.component'
 
 const components = [
   PaginationComponent,
@@ -18,6 +19,7 @@ const components = [
   AnalyticCardComponent,
   ButtonComponent,
   TabNavComponent,
+  InputSearchComponent,
 ]
 
 @NgModule({
