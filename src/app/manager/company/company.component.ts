@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnDestroy, OnInit } from '@angular/core'
 
 @Component({
   selector: 'app-company',
   templateUrl: './company.component.html',
   styleUrls: ['./company.component.scss'],
 })
-export class CompanyComponent implements OnInit {
+export class CompanyComponent implements OnInit, OnDestroy {
   constructor() {}
 
   ngOnInit(): void {
@@ -25,5 +25,9 @@ export class CompanyComponent implements OnInit {
       let btnElements = document.getElementById('btns')
       btnElements!.style.flexGrow = '1'
     }
+  }
+
+  ngOnDestroy(): void {
+    document.removeAllListeners!('click')
   }
 }
