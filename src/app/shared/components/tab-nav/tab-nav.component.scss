@@ -1,3 +1,10 @@
+.tab {
+  display: flex;
+  width: 100%;
+  border-bottom: 1px solid #979797;
+  height: 47px;
+}
+
 .tab ul {
   padding: 10px 0;
   display: inline;
@@ -14,7 +21,6 @@
   text-align: center;
   position: relative;
   color: #979797;
-  border-bottom: 1px solid #979797;
 }
 
 .color {
