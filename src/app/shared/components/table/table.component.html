@@ -1,28 +1,22 @@
-<table class="table-details">
-  <thead class="table-details__head">
-    <tr class="table-details__head--text-title">
-      <th>Nome</th>
-      <ng-container *ngIf="activedRoute == routes[0]">
-        <th>Telefone(s)</th>
-        <th>Cargo</th>
-        <th>Situação</th>
-        <th>Ações</th>
-      </ng-container>
-    </tr>
-  </thead>
-  <tbody class="table-details__body">
-    <tr class="table-details__body--text-description">
-      <td>Lorem, ipsum</td>
-      <td>(84) 99999-9999, (84) 3272-0000</td>
-      <td class="table-details__body--bg-primary">
-        <span> professor </span>
-      </td>
-      <td class="table-details__body--color-red">Arquivado</td>
-      <td class="table-details__body--border-btn">
-        <button (click)="viewResume()">visualizar</button> |
-        <button>editar</button> |
-        <button>arquivar</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="table-container">
+  <table class="table-details">
+    <thead class="table-details__head">
+      <tr class="table-details__head--text-title">
+        <th>Nome</th>
+        <ng-container *ngIf="activedRoute == routesWithTables[0]">
+          <th>Telefone(s)</th>
+          <th>Cargo</th>
+          <th>Situação</th>
+          <th>Ações</th>
+        </ng-container>
+        <ng-container *ngFor="let columnName of adittionalColumn">
+          <th>{{ columnName }}</th>
+        </ng-container>
+      </tr>
+    </thead>
+    <tbody class="table-details__body">
+      <ng-content select="[part=list]"></ng-content>
+    </tbody>
+  </table>
+  <ng-content select="[part=empty]"> </ng-content>
+</div>

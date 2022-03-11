@@ -1,13 +1,16 @@
-<div class="resume-details">
+<div class="resume-details" *ngIf="resume$ | async as resume">
   <header class="resume-details__header">
     <div class="resume-details__header__view">
       <h2 class="resume-details__header__view--title">
-        Lorem Ipsum sit dolor amet
+        {{ resume.physicalPerson.name }}
       </h2>
-      <span class="resume-details__header__view--tag">professor</span>
+      <span class="resume-details__header__view--tag">{{
+        resume.jobApplications
+      }}</span>
     </div>
     <span class="resume-details__header__situation"
-      ><b>Situação:</b> Ativo</span
+      ><b>Situação:</b>
+      {{ resume.statusResume ? 'Disponível' : 'Indisponível' }}</span
     >
   </header>
 
@@ -25,16 +28,21 @@
 
           <div class="resume-details__box__personal--view">
             <div class="resume-details__box__personal--view-name">
-              <span><b>Nome:</b> Igor José Cordeiro de Lima</span>
+              <span><b>Nome:</b> {{ resume.physicalPerson.name }}</span>
             </div>
             <div class="resume-details__box__personal--view-mail">
-              <span><b>E-mail:</b> lorem.ipsum@dolor.sit</span>
-              <span><b>E-mail:</b> lorem.ipsum@dolor.sit</span>
+              <span><b>E-mail:</b> {{ resume.physicalPerson.email }}</span>
             </div>
             <div class="resume-details__box__personal--view-data">
-              <span><b>Data de Nascimento:</b> 12/05/2022</span>
-              <span><b>Sexo:</b> Masculino</span>
-              <span><b>Estado Civil:</b> Solteiro</span>
+              <span
+                ><b>Data de Nascimento:</b>
+                {{ resume.physicalPerson.birthDate }}</span
+              >
+              <span><b>Sexo:</b> {{ resume.physicalPerson.sex }}</span>
+              <span
+                ><b>Estado Civil:</b>
+                {{ resume.physicalPerson.maritalStatus }}</span
+              >
             </div>
           </div>
         </div>
@@ -44,10 +52,12 @@
 
           <div class="resume-details__box__contact--text">
             <div class="resume-details__box__contact--text-phone">
-              <span><b>E-mail:</b> lorem.ipsum@dolor.sit</span>
+              <span><b>E-mail:</b> {{ resume.physicalPerson.email }}</span>
             </div>
             <div class="resume-details__box__contact--text-mail">
-              <span><b>Telefone:</b> (00) 0000-0000</span>
+              <span
+                ><b>Telefone:</b> {{ resume.physicalPerson.phoneNumbers }}</span
+              >
             </div>
           </div>
         </div>
@@ -57,16 +67,28 @@
 
           <div class="resume-details__box__address--information">
             <div class="resume-details__box__address--information-city">
-              <span><b>CEP:</b> 00.000-000</span>
-              <span><b>Cidade:</b> Parnamirim</span>
+              <span
+                ><b>CEP:</b> {{ resume.physicalPerson.address?.zipCode }}</span
+              >
+              <span
+                ><b>Cidade:</b> {{ resume.physicalPerson.address?.city }}</span
+              >
             </div>
             <div class="resume-details__box__address--information-district">
-              <span><b>Bairro:</b> Lorem Ipsum</span>
+              <span
+                ><b>Bairro:</b>
+                {{ resume.physicalPerson.address?.neighborhood }}</span
+              >
               <span><b>País:</b> Brasil</span>
             </div>
             <div class="resume-details__box__address--information-street">
-              <span><b>Rua:</b> Lorem ipsum sit dolor amet</span>
-              <span><b>Número:</b> 0.000</span>
+              <span
+                ><b>Rua:</b> {{ resume.physicalPerson.address?.street }}</span
+              >
+              <span
+                ><b>Número:</b>
+                {{ resume.physicalPerson.address?.number }}</span
+              >
             </div>
           </div>
         </div>
@@ -80,15 +102,40 @@
 
           <div class="resume-details__box__shift--description">
             <div class="resume-details__box__shift--description-morning">
-              <span><b>Manhã:</b> Sim</span>
-              <span><b>Sábado:</b> Não</span>
+              <span
+                ><b>Manhã:</b>
+                {{
+                  resume.physicalPerson.willingness?.morning ? 'Sim' : 'Não'
+                }}</span
+              >
+              <span
+                ><b>Sábado:</b>
+                {{
+                  resume.physicalPerson.willingness?.saturday ? 'Sim' : 'Não'
+                }}</span
+              >
             </div>
             <div class="resume-details__box__shift--description-afternoon">
-              <span><b>Tarde:</b> Sim</span>
-              <span><b>Domingo:</b> Sim</span>
+              <span
+                ><b>Tarde:</b>
+                {{
+                  resume.physicalPerson.willingness?.afternoon ? 'Sim' : 'Não'
+                }}</span
+              >
+              <span
+                ><b>Domingo:</b>
+                {{
+                  resume.physicalPerson.willingness?.sunday ? 'Sim' : 'Não'
+                }}</span
+              >
             </div>
             <div class="resume-details__box__shift--description-night">
-              <span><b>Noite:</b> Não</span>
+              <span
+                ><b>Noite:</b>
+                {{
+                  resume.physicalPerson.willingness?.night ? 'Sim' : 'Não'
+                }}</span
+              >
             </div>
           </div>
         </div>
@@ -97,7 +144,12 @@
           <h3 class="resume-details__box__trips--title">Viagens</h3>
 
           <div class="resume-details__box__trips--text">
-            <span><b>Disponibilidade para viagens:</b> Não</span>
+            <span
+              ><b>Disponibilidade para viagens:</b>
+              {{
+                resume.physicalPerson.willingness?.travel ? 'Sim' : 'Não'
+              }}</span
+            >
           </div>
         </div>
       </div>
@@ -110,19 +162,13 @@
         </h3>
 
         <div class="resume-details__box__formation--description">
-          <div class="resume-details__box__formation--knowledge">
-            <span><b>Instituição:</b> UFRN</span>
-            <span><b>Escolaridade:</b> Superior</span>
-            <span><b>Curso:</b> Ecologia</span>
-          </div>
-          <div class="resume-details__box__formation--knowledge">
-            <span><b>Instituição:</b> Udemy</span>
-            <span><b>Escolaridade:</b> Sem instrução</span>
-            <span><b>Curso:</b> Programação Front-end</span>
-          </div>
-          <div class="resume-details__box__formation--knowledge">
-            <span><b>Instituição:</b> E.E. Presidente Roosevelt</span>
-            <span><b>Escolaridade:</b> Ensino Médio</span>
+          <div
+            class="resume-details__box__formation--knowledge"
+            *ngFor="let education of resume.educations"
+          >
+            <span><b>Instituição:</b> {{ education.institution }}</span>
+            <span><b>Escolaridade:</b> {{ education.scholarity }}</span>
+            <span><b>Curso:</b> {{ education.course }}</span>
           </div>
         </div>
       </div>
@@ -133,15 +179,23 @@
         <h3 class="resume-details__box__experience--title">Experiência</h3>
 
         <div class="resume-details__box__experience--description">
-          <div class="resume-details__box__experience--skills">
-            <span><b>Nome da empresa:</b> Teleperfomance</span>
-            <span><b>Período:</b> 00/00/0000 - 00/00/0000</span>
-            <span><b>Formal:</b> Sim</span>
-          </div>
-          <div class="resume-details__box__experience--skills">
-            <span><b>Nome da empresa:</b> Mar Vermelho</span>
-            <span><b>Período:</b> 00/00/0000 - 00/00/0000</span>
-            <span><b>Formal:</b> Não </span>
+          <div
+            class="resume-details__box__experience--skills"
+            *ngFor="let workExperience of resume.workExperiences"
+          >
+            <span><b>Nome da empresa:</b> {{ workExperience.company }}</span>
+            <span
+              ><b>Período:</b> {{ workExperience.period.start }} -
+              {{
+                workExperience.period.end != null
+                  ? workExperience.period.end
+                  : '...'
+              }}</span
+            >
+            <span
+              ><b>Formal:</b>
+              {{ workExperience.isFormal ? 'Sim' : 'Não' }}</span
+            >
           </div>
         </div>
       </div>
