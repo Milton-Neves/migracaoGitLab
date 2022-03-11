@@ -1,26 +1,41 @@
-<table class="table-details">
-  <thead class="table-details__head">
-    <tr class="table-details__head--text-title">
-      <th>Nome</th>
-      <th>Telefone(s)</th>
-      <th>Cargo</th>
-      <th>Situação</th>
-      <th>Ações</th>
-    </tr>
-  </thead>
-  <tbody class="table-details__body">
-    <tr class="table-details__body--text-description">
-      <td>Lorem, ipsum</td>
-      <td>(84) 99999-9999, (84) 3272-0000</td>
-      <td class="table-details__body--bg-primary">
-        <span> professor </span>
-      </td>
-      <td class="table-details__body--color-red">Arquivado</td>
-      <td class="table-details__body--border-btn">
-        <button (click)="viewResume()">visualizar</button> |
-        <button>editar</button> |
-        <button>arquivar</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="resume-container">
+  <table class="table-details">
+    <thead class="table-details__head">
+      <tr class="table-details__head--text-title">
+        <th>Nome</th>
+        <th>Telefone(s)</th>
+        <th>Cargo</th>
+        <th>Situação</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody
+      class="table-details__body"
+      *ngIf="resumes != undefined && resumes.length != 0"
+    >
+      <tr
+        class="table-details__body--text-description"
+        *ngFor="let resume of resumes"
+      >
+        <td>{{ resume.physicalPerson.name }}</td>
+        <td>{{ resume.physicalPerson.phoneNumbers }}</td>
+        <td class="table-details__body--bg-primary">
+          <span> {{ resume.jobApplications }} </span>
+        </td>
+        <td class="table-details__body--color-red">
+          {{ resume.statusResume ? 'Disponível' : 'Arquivado' }}
+        </td>
+        <td class="table-details__body--border-btn">
+          <button (click)="viewResume(resume.id)">visualizar</button> |
+          <button>editar</button> |
+          <button>arquivar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- <div class="no-resumes--container"> -->
+  <span *ngIf="resumes == undefined || resumes.length == 0" id="no-resumes"
+    >Ainda não há currículos registrados!</span
+  >
+  <!-- </div> -->
+</div>

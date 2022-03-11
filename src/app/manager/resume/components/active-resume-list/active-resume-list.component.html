@@ -1,9 +1,13 @@
 <div class="container">
   <app-pagination-number
-    [visibleItems]="12"
-    [totalItems]="70"
+    [visibleItems]="resumes.length"
+    [totalItems]="totalCountResumes"
     class="pagination-number"
   ></app-pagination-number>
-  <app-table class="table"></app-table>
-  <app-pagination class="pagination"></app-pagination>
+  <app-table class="table" [resumes]="resumes"></app-table>
+  <app-pagination
+    class="pagination"
+    [pagination$]="pagination$"
+    (currentPageEmit)="getResumesFromServer($event)"
+  ></app-pagination>
 </div>
