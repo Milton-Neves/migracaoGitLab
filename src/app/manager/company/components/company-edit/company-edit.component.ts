@@ -1,3 +1,4 @@
+import { NgxModalService } from 'lib/ngx-modal/src/public-api'
 import { Component, OnInit } from '@angular/core'
 
 @Component({
@@ -8,7 +9,20 @@ import { Component, OnInit } from '@angular/core'
 export class CompanyEditComponent implements OnInit {
   title = 'Rayanni Modas'
   career = 'vestuário'
-  constructor() {}
 
-  ngOnInit(): void {}
+  sectionTitle = ['Dados', 'Contato', 'Endereço', 'Representante']
+  activeTab?: string
+  constructor(private modalService: NgxModalService) {}
+
+  changeTab(tab: any) {
+    this.activeTab = tab
+    console.log(this.activeTab)
+  }
+  closeModal() {
+    this.modalService.close()
+  }
+
+  ngOnInit(): void {
+    this.activeTab = this.sectionTitle[0]
+  }
 }

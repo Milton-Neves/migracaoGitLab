@@ -44,35 +44,43 @@
   }
   &__src {
     position: relative;
-    justify-content: flex-end;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     flex-grow: 1;
     flex-direction: column;
     &--icon {
+      display: flex;
+      align-items: flex-end;
+      flex-direction: column;
       flex-grow: 1;
-      width: 70%;
+      width: 100%;
+      .filter {
+        display: flex;
+        margin-top: 1rem;
+        margin-right: 1rem;
+        width: 100%;
+        justify-content: flex-end;
+      }
     }
   }
 
   &__src input {
-    padding: 0.4rem 0.4rem;
     width: 100%;
     border: 1px solid #cccccc;
+    padding: 0.4rem;
     border-radius: 4px;
     background: white;
-    margin-right: 28rem;
-    margin-bottom: 4rem;
     background-image: url(../../../assets/icons/icon-src.svg);
     background-repeat: no-repeat;
     background-position: 95% 50%;
   }
-  &__src #filter {
-    margin: 0 0 3rem 25rem;
-  }
 
   &__src #src::placeholder {
     font-size: 0.7rem;
+    max-width: 88%;
+    overflow: hidden;
+
+    display: block;
     color: $gray-500;
   }
 }
@@ -81,22 +89,50 @@
   margin-bottom: 1.5rem;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1500px) {
   .company {
     &__content {
       .buttons {
         .btn {
-          display: flex;
-          margin-bottom: 1.3rem;
+          flex-grow: 0;
         }
-        flex-direction: row;
-        flex-wrap: wrap;
       }
     }
-    &__src {
-      &--icon {
-        flex-grow: 1;
-        width: 120%;
+  }
+}
+
+@media (max-width: 1439px) {
+  .company {
+    &__content {
+      .buttons {
+        .btn {
+          button {
+            width: 14rem;
+            b {
+              font-size: 20px;
+            }
+            p {
+              font-size: 14px;
+            }
+          }
+          .btn-analyses {
+            margin: auto 1rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1300px) {
+  .company {
+    &__content {
+      .buttons {
+        .btn {
+          button {
+            width: 12rem;
+          }
+        }
       }
     }
   }
