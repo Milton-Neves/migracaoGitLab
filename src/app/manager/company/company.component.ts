@@ -1,8 +1,5 @@
-import { CompanyProps } from './entities/company.model'
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, OnDestroy, OnInit } from '@angular/core'
 import { NgxModalService } from 'lib/ngx-modal/src/public-api'
-import { Observable } from 'rxjs'
-import { map } from 'rxjs/operators'
 import { CompanyEditComponent } from './components/company-edit/company-edit.component'
 
 @Component({
@@ -10,11 +7,9 @@ import { CompanyEditComponent } from './components/company-edit/company-edit.com
   templateUrl: './company.component.html',
   styleUrls: ['./company.component.scss'],
 })
-export class CompanyComponent implements OnInit {
+export class CompanyComponent implements OnInit, OnDestroy {
   constructor(private modalService: NgxModalService) {}
-  closeModal() {
-    this.modalService.close()
-  }
+
   openModal() {
     let modal = this.modalService.open(CompanyEditComponent).subscribe()
   }
@@ -36,5 +31,9 @@ export class CompanyComponent implements OnInit {
       let btnElements = document.getElementById('btns')
       btnElements!.style.flexGrow = '1'
     }
+  }
+
+  ngOnDestroy(): void {
+    document.removeAllListeners!('click')
   }
 }

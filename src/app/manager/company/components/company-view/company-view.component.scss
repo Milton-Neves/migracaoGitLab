@@ -26,8 +26,8 @@
 
     &-title {
       padding: 0.5rem;
-      font-size: 13px;
-      color: #1c3152;
+      font-size: 0.8rem;
+      color: $blue-700;
     }
 
     &--no-border {
@@ -42,8 +42,8 @@
 
   &__informations {
     margin-left: 0.5rem;
-    font-size: 13px;
-    color: #1c3152;
+    font-size: 0.8rem;
+    color: $blue-700;
     margin-bottom: 0.3rem;
   }
 
