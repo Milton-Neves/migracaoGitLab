@@ -3,10 +3,8 @@
     <app-page-title [title]="'Listar Currículos'"></app-page-title>
   </header>
 
-  <div style="justify-content: flex-end">
-    <app-input-search
-      [style]="{ width: '30%', backgroundColor: 'red', 'flex-grow': 1 }"
-    ></app-input-search>
+  <div style="justify-content: flex-end; display: 'flex'">
+    <app-input-search [sizeWithSufix]="'22rem'"></app-input-search>
   </div>
   <section class="resume__content">
     <app-active-resume-list></app-active-resume-list>

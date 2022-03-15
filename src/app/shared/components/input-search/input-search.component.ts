@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from '@angular/core'
   styleUrls: ['./input-search.component.scss'],
 })
 export class InputSearchComponent implements OnInit {
-  @Input() style!: any
+  @Input() sizeWithSufix: string = '100%'
 
   constructor() {}
 
