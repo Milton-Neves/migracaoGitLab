@@ -1,6 +1,3 @@
-<div [ngStyle]="{ width: sizeWithSufix }">
-  <input
-    type="text"
-    placeholder="Pesquise por Nome, Nome do representante, CNPJ, Ramo"
-  />
+<div style="display: flex" [ngStyle]="align">
+  <input [ngStyle]="styles" type="text" placeholder="{{ placeholder }}" />
 </div>
