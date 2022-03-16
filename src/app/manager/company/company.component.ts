@@ -8,6 +8,11 @@ import { CompanyEditComponent } from './components/company-edit/company-edit.com
   styleUrls: ['./company.component.scss'],
 })
 export class CompanyComponent implements OnInit, OnDestroy {
+  isNavActive: boolean = true
+  changeNav(value: boolean) {
+    this.isNavActive = value
+    console.log(this.isNavActive)
+  }
   constructor(private modalService: NgxModalService) {}
 
   openModal() {
