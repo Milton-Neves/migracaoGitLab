@@ -1,31 +1,66 @@
 <div class="resume-details">
-  <header class="resume-details__header">
-    <div class="resume-details__header__view">
-      <h2 class="resume-details__header__view--title">Rayanni Modas</h2>
-      <span class="resume-details__header__view--tag">vestuário</span>
+  <app-information-card
+    style="
+      display: 'flex', 'flex-direction:' 'row-reverse',
+        'justify-content:' 'left', 'gap:' '1rem';
+    "
+    [career]="career"
+    [title]="title"
+    [stylesInformation]="{
+      border: '0',
+      'box-shadow': 'none'
+    }"
+  >
+    <div style="display: inline">
+      <span class="resume-details__header__view--since"
+        >Ativa desde: 15/10/2021</span
+      >
+      <span class="resume-details__header__situation"
+        ><b>Status:</b> Ativo</span
+      >
     </div>
 
-    <span class="resume-details__header__view--since"
-      >Ativa desde: 15/10/2021</span
-    >
-    <span class="resume-details__header__situation"><b>Status:</b> Ativo</span>
-  </header>
-  <div class="resume-details__forwarding">
-    <span class="resume-details__forwarding-icon2">
-      <img
-        src="../../../../../assets/images/icon-company.svg"
-        alt="icon-company"
-      />
-      <b>000</b>Encaminhamentos em aberto
-    </span>
-    <span class="resume-details__forwarding-icon2">
-      <img
-        src="../../../../../assets/images/icon-company-blue.svg"
-        alt="icon-company"
-      />
-      <b>000</b>Encaminhamentos em aberto
-    </span>
-  </div>
+    <header></header>
+    <div class="resume-details__forwarding">
+      <span class="resume-details__forwarding-icon2">
+        <img
+          src="../../../../../assets/images/icon-company.svg"
+          alt="icon-company"
+        />
+        <b>000</b>Encaminhamentos em aberto
+      </span>
+      <span class="resume-details__forwarding-icon2">
+        <img
+          src="../../../../../assets/images/icon-company-blue.svg"
+          alt="icon-company"
+        />
+        <b>000</b>Encaminhamentos em aberto
+      </span>
+    </div></app-information-card
+  >
+
+  <!-- <header>
+  <span class="resume-details__header__view--since"
+    >Ativa desde: 15/10/2021</span
+  >
+  <span class="resume-details__header__situation"><b>Status:</b> Ativo</span>
+</header>
+<div class="resume-details__forwarding">
+  <span class="resume-details__forwarding-icon2">
+    <img
+      src="../../../../../assets/images/icon-company.svg"
+      alt="icon-company"
+    />
+    <b>000</b>Encaminhamentos em aberto
+  </span>
+  <span class="resume-details__forwarding-icon2">
+    <img
+      src="../../../../../assets/images/icon-company-blue.svg"
+      alt="icon-company"
+    />
+    <b>000</b>Encaminhamentos em aberto
+  </span>
+</div> -->
 
   <app-tab-nav
     [titles]="sectionTitle"
