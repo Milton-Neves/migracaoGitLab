@@ -5,8 +5,8 @@
 
   <app-input-search
     [align]="{ 'justify-content': 'flex-end' }"
-    [styles]="{ width: '30%' }"
-    [placeholder]="'espaço placeholder'"
+    [styles]="{ width: '20%' }"
+    [placeholder]="'Digite CPF, nome ou e-mail'"
   >
   </app-input-search>
 
@@ -17,21 +17,18 @@
         src="../../../assets/icons/filter.svg"
         alt="filter"
       />
-      <div class="resume__search">
-        <input
-          type="text"
-          name="search"
-          id="search"
-          placeholder="Digite CPF, nome ou e-mail"
-        />
-        <img src="../../../assets/icons/search-icon.svg" alt="" />
-      </div>
     </div>
+
+    <app-tab-nav
+      [titles]="['ATIVOS', 'ARQUIVADOS']"
+      (activeTab)="changeCurrentTab($event)"
+    ></app-tab-nav>
 
     <app-button [text]="'NOVO CURRÍCULO'" [color]="'#33A93B'">
       <img src="../../../assets/icons/img-sum.svg" alt="" />
     </app-button>
 
     <app-active-resume-list></app-active-resume-list>
+    <!-- <app-archived-resume-list></app-archived-resume-list> -->
   </section>
 </main>
