@@ -1,0 +1,56 @@
+<div class="input">
+  <label for="site-search"></label>
+  <input type="search" id="site-search" name="q" />
+</div>
+
+<section class="user__content">
+  <div class="tab-nav">
+    <app-tab-nav
+      [titles]="sectionTitle"
+      (activeTab)="changeTab($event)"
+    ></app-tab-nav>
+  </div>
+
+  <div class="firstSection">
+    <ng-container *ngIf="activeTab == sectionTitle[0]">
+      <div class="pagination-number">
+        <app-pagination-number
+          [visibleItems]="12"
+          [totalItems]="70"
+          class="pagination-number"
+        ></app-pagination-number>
+      </div>
+      <app-table></app-table>
+    </ng-container>
+  </div>
+
+  <div class="secondSection">
+    <ng-container *ngIf="activeTab == sectionTitle[1]">
+      <div class="pagination-number">
+        <app-pagination-number
+          [visibleItems]="12"
+          [totalItems]="70"
+          class="pagination-number"
+        ></app-pagination-number>
+      </div>
+      <app-table></app-table>
+    </ng-container>
+  </div>
+
+  <div class="thirdSection">
+    <ng-container *ngIf="activeTab == sectionTitle[2]">
+      <div class="pagination-number">
+        <app-pagination-number
+          [visibleItems]="12"
+          [totalItems]="70"
+          class="pagination-number"
+        ></app-pagination-number>
+      </div>
+      <app-table></app-table>
+    </ng-container>
+  </div>
+
+  <div class="pagination">
+    <app-pagination></app-pagination>
+  </div>
+</section>

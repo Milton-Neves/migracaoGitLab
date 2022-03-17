@@ -1,13 +1,16 @@
-<nav class="pagination-details">
+<nav class="pagination-details" *ngIf="pagination$ | async as pagination">
   <ul class="pagination-details__page">
-    <li class="pagination-details__page__prev" *ngIf="pageAtual > 1">
-      <button>Anterior</button>
+    <li class="pagination-details__page__prev" *ngIf="pagination.current > 1">
+      <button (click)="setCurrentPage(pagination.previous)">Anterior</button>
     </li>
     <li class="pagination-details__page--active">
-      <a href="#"> {{ getNumberPage() }} </a>
+      <span> {{ getNumberPage(pagination.current) }} </span>
     </li>
-    <li class="pagination-details__page__next" *ngIf="numPaginas > pageAtual">
-      <button>Próximo</button>
+    <li
+      class="pagination-details__page__next"
+      *ngIf="pagination.next !== undefined"
+    >
+      <button (click)="setCurrentPage(pagination.next)">Próximo</button>
     </li>
   </ul>
 </nav>

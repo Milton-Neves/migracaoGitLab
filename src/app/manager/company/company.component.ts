@@ -1,12 +1,33 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnDestroy, OnInit } from '@angular/core'
 
 @Component({
   selector: 'app-company',
   templateUrl: './company.component.html',
   styleUrls: ['./company.component.scss'],
 })
-export class CompanyComponent implements OnInit {
+export class CompanyComponent implements OnInit, OnDestroy {
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.verifyWidthPage()
+    document.addEventListener('click', (el: any) => {
+      this.verifyWidthPage()
+    })
+  }
+
+  findWidthPage() {
+    let element = document.getElementById('content')
+    return element!.getBoundingClientRect().width
+  }
+
+  verifyWidthPage() {
+    if (this.findWidthPage() > 900) {
+      let btnElements = document.getElementById('btns')
+      btnElements!.style.flexGrow = '1'
+    }
+  }
+
+  ngOnDestroy(): void {
+    document.removeAllListeners!('click')
+  }
 }
