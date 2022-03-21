@@ -1,67 +1,67 @@
 <div class="resume-details">
   <app-information-card
-    style="
-      display: 'flex', 'flex-direction:' 'row-reverse',
-        'justify-content:' 'left', 'gap:' '1rem';
-    "
+    [ngStyle]="{
+      display: 'flex',
+      'flex-direction': 'row-reverse',
+      'justify-content': 'left',
+      gap: '1rem'
+    }"
     [career]="career"
     [title]="title"
     [stylesInformation]="{
       border: '0',
-      'box-shadow': 'none'
+      'box-shadow': 'none',
+      maxWidth: '53rem',
+      display: 'flex',
+      minHeight: '3rem',
+      flexWrap: 'wrap'
+    }"
+    [stylesHeader]="{
+      display: 'flex',
+      alignItems: 'flex-start',
+      'flex-direction': 'row-reverse',
+      width: '18rem',
+      justifyContent: 'space-between'
     }"
   >
-    <div style="display: inline">
-      <span class="resume-details__header__view--since"
-        >Ativa desde: 15/10/2021</span
-      >
-      <span class="resume-details__header__situation"
-        ><b>Status:</b> Ativo</span
-      >
-    </div>
-
-    <header></header>
-    <div class="resume-details__forwarding">
-      <span class="resume-details__forwarding-icon2">
-        <img
-          src="../../../../../assets/images/icon-company.svg"
-          alt="icon-company"
-        />
-        <b>000</b>Encaminhamentos em aberto
-      </span>
-      <span class="resume-details__forwarding-icon2">
-        <img
-          src="../../../../../assets/images/icon-company-blue.svg"
-          alt="icon-company"
-        />
-        <b>000</b>Encaminhamentos em aberto
-      </span>
-    </div></app-information-card
-  >
-
-  <!-- <header>
-  <span class="resume-details__header__view--since"
-    >Ativa desde: 15/10/2021</span
-  >
-  <span class="resume-details__header__situation"><b>Status:</b> Ativo</span>
-</header>
-<div class="resume-details__forwarding">
-  <span class="resume-details__forwarding-icon2">
-    <img
-      src="../../../../../assets/images/icon-company.svg"
-      alt="icon-company"
-    />
-    <b>000</b>Encaminhamentos em aberto
-  </span>
-  <span class="resume-details__forwarding-icon2">
-    <img
-      src="../../../../../assets/images/icon-company-blue.svg"
-      alt="icon-company"
-    />
-    <b>000</b>Encaminhamentos em aberto
-  </span>
-</div> -->
-
+    <section
+      [ngStyle]="{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'end',
+        justifyContent: 'space-evenly',
+        height: '3rem',
+        width: '16rem'
+      }"
+    >
+      <div>
+        <span class="resume-details__header__view--since"
+          >Ativa desde: 15/10/2021</span
+        >
+        <span class="resume-details__header__situation"
+          ><b>Status:</b> Ativo</span
+        >
+      </div>
+    </section>
+    <section>
+      <div class="resume-details__forwarding">
+        <span class="resume-details__forwarding-icon2">
+          <img
+            src="../../../../../assets/images/icon-company.svg"
+            alt="icon-company"
+          />
+          <b>000</b>Encaminhamentos em aberto
+        </span>
+        <span class="resume-details__forwarding-icon2">
+          <img
+            src="../../../../../assets/images/icon-company-blue.svg"
+            alt="icon-company"
+          />
+          <b>000</b>Encaminhamentos em aberto
+        </span>
+      </div>
+    </section>
+  </app-information-card>
   <app-tab-nav
     [titles]="sectionTitle"
     (activeTab)="changeTab($event)"
@@ -69,22 +69,54 @@
 
   <div class="container">
     <!-- Dados -->
-    <ng-container *ngIf="activeTab == sectionTitle[0]"> </ng-container>
-    <ng-container *ngIf="activeTab == sectionTitle[1]"> </ng-container>
-    <ng-container *ngIf="activeTab == sectionTitle[2]"> </ng-container>
-    <ng-container *ngIf="activeTab == sectionTitle[3]"> </ng-container>
-
-    <div class="container__content">
-      <h2>Dados da Empresa</h2>
-      <div>
-        <input type="text" placeholder="nome fantasia" />
-        <input type="text" placeholder="razão social" />
+    <ng-container *ngIf="activeTab == sectionTitle[0]">
+      <div class="container__content">
+        <h2>Dados da Empresa</h2>
+        <div>
+          <input type="text" placeholder="nome fantasia" />
+          <input type="text" placeholder="razão social" />
+        </div>
+        <div>
+          <input type="text" placeholder="CNPJ" />
+          <input type="text" placeholder="número de funcionários" />
+        </div>
       </div>
-      <div>
-        <input type="text" placeholder="CNPJ" />
-        <input type="text" placeholder="número de funcionários" />
+    </ng-container>
+    <ng-container *ngIf="activeTab == sectionTitle[1]">
+      <div class="container__content">
+        <h2>Dados da Empresa</h2>
+        <div>
+          <input type="text" placeholder="email" />
+          <input type="text" placeholder="telefone" />
+        </div>
       </div>
-    </div>
+    </ng-container>
+    <ng-container *ngIf="activeTab == sectionTitle[2]">
+      <div class="container__content">
+        <h2>Endereço da Empresa</h2>
+        <div>
+          <input type="text" placeholder="logradouro" />
+          <input type="text" placeholder="bairro" />
+        </div>
+        <div>
+          <input type="text" placeholder="cidade" />
+          <input type="text" placeholder="CEP" />
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="activeTab == sectionTitle[3]">
+      <div class="container__content">
+        <h2>Representante da Empresa</h2>
+        <div>
+          <input type="text" placeholder="nome" />
+          <input type="text" placeholder="telefone" />
+        </div>
+        <div>
+          <input type="text" placeholder="email" />
+          <input type="text" placeholder="celular" />
+        </div>
+      </div>
+    </ng-container>
 
     <div class="resume-details__btn">
       <app-button

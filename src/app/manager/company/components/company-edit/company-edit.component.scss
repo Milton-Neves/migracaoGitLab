@@ -32,6 +32,7 @@
       color: $blue-700;
     }
     &__situation {
+      margin-left: 1.2rem;
       font-size: 0.8rem;
       color: $green-500;
       font-weight: 500;
@@ -42,7 +43,8 @@
     justify-content: flex-start;
     gap: 0.8rem;
     color: $green-500;
-    margin-bottom: 0.5rem;
+    margin-left: -20rem;
+    margin-top: 0.5rem;
 
     &:last-child {
       color: $blue-700;

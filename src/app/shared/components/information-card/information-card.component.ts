@@ -9,6 +9,7 @@ export class InformationCardComponent implements OnInit {
   @Input() title!: string
   @Input() career!: string
   @Input() stylesInformation!: any
+  @Input() stylesHeader!: any
   constructor() {}
 
   ngOnInit(): void {}
