@@ -31,7 +31,7 @@
         alignItems: 'end',
         justifyContent: 'space-evenly',
         height: '3rem',
-        width: '16rem'
+        width: '21rem'
       }"
     >
       <div>
@@ -68,7 +68,6 @@
   ></app-tab-nav>
 
   <div class="container">
-    <!-- Dados -->
     <ng-container *ngIf="activeTab == sectionTitle[0]">
       <div class="container__content">
         <h2>Dados da Empresa</h2>
@@ -84,7 +83,7 @@
     </ng-container>
     <ng-container *ngIf="activeTab == sectionTitle[1]">
       <div class="container__content">
-        <h2>Dados da Empresa</h2>
+        <h2>Contato da Empresa</h2>
         <div>
           <input type="text" placeholder="email" />
           <input type="text" placeholder="telefone" />

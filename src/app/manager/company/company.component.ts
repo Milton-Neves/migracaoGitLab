@@ -8,11 +8,7 @@ import { CompanyEditComponent } from './components/company-edit/company-edit.com
   styleUrls: ['./company.component.scss'],
 })
 export class CompanyComponent implements OnInit, OnDestroy {
-  constructor(private modalService: NgxModalService) {}
-
-  openModal() {
-    let modal = this.modalService.open(CompanyEditComponent).subscribe()
-  }
+  constructor() {}
 
   ngOnInit(): void {
     this.verifyWidthPage()
