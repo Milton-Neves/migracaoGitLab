@@ -1,4 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
+import { NgxModalService } from 'lib/ngx-modal/src/public-api'
+import { CompanyEditComponent } from './components/company-edit/company-edit.component'
 
 @Component({
   selector: 'app-company',

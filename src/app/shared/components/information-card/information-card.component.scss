@@ -2,6 +2,7 @@
 
 .card {
   width: 100%;
+  cursor: pointer;
   max-width: 18.75rem;
   min-height: 10.6rem;
   background: $white;
@@ -23,7 +24,7 @@
 .career {
   font-size: 0.9rem;
   display: inline-block;
-  background: $blue-400;
+  background: $red-400;
   color: $white;
   padding: 0.3rem;
   border-radius: 2px;
