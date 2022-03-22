@@ -23,18 +23,18 @@
         <p>Contratados</p>
       </button>
     </div>
-
-    <div class="search">
-      <label for="gsearch"></label>
-      <input type="search" id="gsearch" name="gsearch" />
-    </div>
   </div>
 
   <div class="input">
-    <input type="checkbox" id="scales" name="scales" checked />
-    <label for="scales"> Selecionar todos</label>
+    <div>
+      <input type="checkbox" id="scales" name="scales" checked />
+      <label for="scales"> Selecionar todos</label>
+    </div>
+    <app-input-search
+      [placeholder]="'Digite CPF, nome ou email'"
+      [styles]="{ width: '20rem' }"
+    ></app-input-search>
   </div>
-
   <div class="table">
     <table class="table-details">
       <thead class="thead">
