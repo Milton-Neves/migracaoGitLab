@@ -7,14 +7,22 @@
   <section class="company__content" id="content">
     <div class="buttons">
       <div class="btn" id="btns">
-        <button class="btn-actives" (click)="changeNav(true)">
+        <button
+          class="btn-actives"
+          [class.button-isActive]="isNavActive"
+          (click)="changeNav(true)"
+        >
           <b class="btn-title">Ativos</b> <br />
           <p class="btn-text">
             Lista de encaminhamentos <br />
             ativos
           </p>
         </button>
-        <button class="btn-analyses" (click)="changeNav(false)">
+        <button
+          class="btn-analyses"
+          [class.button-isActive]="!isNavActive"
+          (click)="changeNav(false)"
+        >
           <b class="btn-title">Em análise</b>
           <p class="btn-text">
             Lista de encaminhamentos <br />
@@ -22,6 +30,7 @@
           </p>
         </button>
       </div>
+
       <div class="company__src">
         <div class="company__src--icon">
           <input
@@ -39,13 +48,68 @@
       </div>
     </div>
 
-    <app-button class="select" [text]="'CRIAR EMPRESA'" [color]="'#33A93B'">
-      <img src="../../../assets/icons/img-sum.svg" />
-    </app-button>
     <div *ngIf="isNavActive">
+      <app-button class="select" [text]="'CRIAR EMPRESA'" [color]="'#33A93B'">
+        <img src="../../../assets/icons/img-sum.svg" />
+      </app-button>
       <app-company-card (click)="openModal()"></app-company-card>
     </div>
-    <div *ngIf="!isNavActive"></div>
-    <app-pagination></app-pagination>
+    <div *ngIf="!isNavActive">
+      <app-pagination-number
+        class="pagination-number"
+        [visibleItems]="company.length"
+        [totalItems]="totalCompanys"
+      ></app-pagination-number>
+      <app-table>
+        <tr *ngFor="let company of companys$ | async" part="list">
+          <td
+            style="
+              color: #1c3152;
+              font-size: 14px;
+              font-weight: 400;
+              display: flex;
+              justify-content: flex-start;
+              padding: 2rem 2rem;
+            "
+          >
+            {{ company.Fantasyname }}
+          </td>
+          <td style="color: #1c3152; font-size: 14px; font-weight: 400">
+            {{ company.cnpj }}
+          </td>
+          <td style="color: #1c3152; font-size: 14px; font-weight: 400">
+            {{ company.requestDate }}
+          </td>
+          <td>
+            <button class="button-view">Visualizar</button>
+          </td>
+          <td>
+            <div class="button">
+              <div>
+                <app-button
+                  [ngStyle]="{
+                    'font-weight': '400'
+                  }"
+                  [appHighlight]="'#33A93B'"
+                  [text]="'Aceitar'"
+                  [color]="'#999999'"
+                >
+                  <img src="../../../assets/images/icon-confirm.svg" />
+                </app-button>
+              </div>
+              <div>
+                <app-button
+                  [appHighlight]="'#FD3737'"
+                  [text]="'Recusar'"
+                  [color]="'#999999'"
+                >
+                  <img src="../../../assets/images/icon-recusar.svg" />
+                </app-button>
+              </div>
+            </div>
+          </td></tr
+      ></app-table>
+    </div>
+    <app-pagination class="pagination"></app-pagination>
   </section>
 </main>

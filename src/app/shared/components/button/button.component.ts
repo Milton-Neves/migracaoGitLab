@@ -5,6 +5,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
   styleUrls: ['./button.component.scss'],
 })
 export class ButtonComponent implements OnInit {
+  focusOne: boolean = false
+  focusTwo: boolean = false
   @Input() text?: string
   @Input() textColor?: string = '#FFFFFF'
   @Input() color!: string

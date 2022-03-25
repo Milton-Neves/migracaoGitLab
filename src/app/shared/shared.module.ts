@@ -10,6 +10,7 @@ import { PaginationNumberComponent } from './components/pagination-number/pagina
 import { PaginationComponent } from './components/pagination/pagination.component'
 import { TabNavComponent } from './components/tab-nav/tab-nav.component'
 import { TableComponent } from './components/table/table.component'
+import { HighlightDirective } from './directives/highlight.directive'
 
 const components = [
   PaginationComponent,
@@ -19,6 +20,7 @@ const components = [
   PaginationNumberComponent,
   AnalyticCardComponent,
   ButtonComponent,
+  HighlightDirective,
   TabNavComponent,
 ]
 
