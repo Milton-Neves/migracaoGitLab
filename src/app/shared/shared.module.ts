@@ -9,6 +9,7 @@ import { PageTitleComponent } from './components/page-title/page-title.component
 import { PaginationNumberComponent } from './components/pagination-number/pagination-number.component'
 import { PaginationComponent } from './components/pagination/pagination.component'
 import { TabNavComponent } from './components/tab-nav/tab-nav.component'
+import { InputSearchComponent } from './components/input-search/input-search.component'
 import { TableComponent } from './components/table/table.component'
 import { HighlightDirective } from './directives/highlight.directive'
 
@@ -22,6 +23,7 @@ const components = [
   ButtonComponent,
   HighlightDirective,
   TabNavComponent,
+  InputSearchComponent,
 ]
 
 @NgModule({

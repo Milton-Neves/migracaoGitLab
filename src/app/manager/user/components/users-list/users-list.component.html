@@ -1,6 +1,8 @@
 <div class="input">
-  <label for="site-search"></label>
-  <input type="search" id="site-search" name="q" />
+  <app-input-search
+    [placeholder]="placeholderActiveSection"
+    [styles]="{ width: '20rem' }"
+  ></app-input-search>
 </div>
 
 <section class="user__content">
