@@ -1,0 +1,23 @@
+<div class="modal">
+  <div class="title">
+    <span>Outros cargos:</span>
+  </div>
+
+  <hr />
+
+  <div *ngIf="resume$ | async as resume" class="jobs">
+    <div *ngFor="let resume of resume" class="job-list">
+      <div *ngFor="let jobs of resume.jobApplications" class="view-tag">
+        {{ jobs.job.name }}
+      </div>
+    </div>
+    <app-button
+      [text]="'Fechar'"
+      [color]="'transparent'"
+      [textColor]="'#1C3152'"
+      (click)="closeModal()"
+      class="button"
+    >
+    </app-button>
+  </div>
+</div>

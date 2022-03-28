@@ -1,6 +1,6 @@
 @import 'variables';
+
 .resume-details {
-  max-width: 40rem;
   padding: 0.8rem;
 
   .container {
@@ -15,13 +15,16 @@
     justify-content: space-between;
     align-items: center;
     padding: 0.9rem 0.4rem;
+
     &__view {
       display: flex;
       gap: 1rem;
+
       &--title {
         font-size: 1.1rem;
         color: $blue-700;
       }
+
       &--tag {
         background-color: $blue-500;
         color: $white;
@@ -31,10 +34,12 @@
         font-weight: 500;
       }
     }
+
     &__situation b:first-child {
       font-size: 0.9rem;
       color: $blue-700;
     }
+
     &__situation {
       font-size: 0.8rem;
       color: $green-500;
@@ -50,26 +55,31 @@
     border: 1px solid $black-100;
     padding: 0.5rem;
     margin: 0.5rem 0;
+
     &--title {
       padding: 0.5rem;
       font-size: 0.9rem;
       color: $blue-700;
       padding: 0.5rem 0.5rem;
     }
+
     &--view {
       padding: 0.3rem;
       font-size: 0.8rem;
       color: $blue-700;
+
       &-name {
         display: flex;
         justify-content: space-between;
         padding: 0.5rem 0.2rem;
       }
+
       &-mail {
         display: flex;
         justify-content: space-between;
         padding: 0.5rem 0.2rem;
       }
+
       &-data {
         display: flex;
         justify-content: space-between;
@@ -77,6 +87,7 @@
       }
     }
   }
+
   &__box__contact {
     background: $white;
     border-radius: 5px;
@@ -84,12 +95,14 @@
     border: 1px solid $black-100;
     padding: 0.5rem;
     margin: 0.5rem 0;
+
     &--title {
       padding: 0.5rem;
       font-size: 0.9rem;
       color: $blue-700;
       padding: 0.5rem 0.5rem;
     }
+
     &--text {
       padding: 0.3rem;
       font-size: 0.8rem;
@@ -100,11 +113,13 @@
       &-phone {
         padding: 0.5rem 0.2rem;
       }
+
       &-mail {
         padding: 0.5rem 0.2rem;
       }
     }
   }
+
   &__box__address {
     background: $white;
     border-radius: 5px;
@@ -112,6 +127,7 @@
     border: 1px solid $black-100;
     padding: 0.5rem;
     margin: 0.5rem 0;
+
     &--title {
       padding: 0.5rem;
       font-size: 0.9rem;
@@ -119,6 +135,7 @@
       padding: 0.5rem 0.5rem;
       font-weight: 700;
     }
+
     &--information {
       padding: 0.3rem;
       font-size: 0.8rem;
@@ -130,11 +147,13 @@
         justify-content: space-between;
         padding: 0.5rem 0.2rem;
       }
+
       &-district {
         display: flex;
         justify-content: space-between;
         padding: 0.5rem 0.2rem;
       }
+
       &-street {
         display: flex;
         justify-content: space-between;
@@ -151,6 +170,7 @@
     border: 1px solid $black-100;
     padding: 0.5rem;
     margin: 0.5rem 0;
+
     &--title {
       padding: 0.5rem;
       font-size: 0.9rem;
@@ -158,6 +178,7 @@
       padding: 0.5rem 0.5rem;
       font-weight: 700;
     }
+
     &--description {
       padding: 0.3rem;
       font-size: 0.8rem;
@@ -168,11 +189,13 @@
         justify-content: space-between;
         padding: 0.5rem 0.2rem;
       }
+
       &-afternoon {
         display: flex;
         justify-content: space-between;
         padding: 0.5rem 0.2rem;
       }
+
       &-night {
         display: flex;
         justify-content: space-between;
@@ -180,6 +203,7 @@
       }
     }
   }
+
   &__box__trips {
     background: $white;
     border-radius: 5px;
@@ -187,12 +211,14 @@
     border: 1px solid $black-100;
     padding: 0.5rem;
     margin: 0.5rem 0;
+
     &--title {
       padding: 0.5rem;
       font-size: 0.9rem;
       color: $blue-700;
       padding: 0.5rem 0.5rem;
     }
+
     &--text {
       padding: 0.5rem;
       font-size: 0.8rem;
@@ -210,6 +236,7 @@
     border: 1px solid $black-100;
     padding: 0.3rem;
     margin: 0.5rem 0;
+
     &--title {
       padding: 0.5rem;
       font-size: 0.9rem;
@@ -217,15 +244,18 @@
       padding: 0.5rem 0.5rem;
       font-weight: 700;
     }
+
     &--description {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
     }
+
     &--knowledge span {
       justify-content: space-between;
       padding: 0.2rem 0.2rem;
     }
+
     &--knowledge {
       padding: 0.3rem;
       font-size: 0.8rem;
@@ -246,6 +276,7 @@
     border: 1px solid $black-100;
     padding: 0.5rem;
     margin: 0.5rem 0;
+
     &--title {
       padding: 0.5rem;
       font-size: 0.9rem;
@@ -253,15 +284,18 @@
       padding: 0.5rem 0.5rem;
       font-weight: 700;
     }
+
     &--description {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
     }
+
     &--skills span {
       justify-content: space-between;
       padding: 0.2rem 0.2rem;
     }
+
     &--skills {
       padding: 0.3rem;
       font-size: 0.8rem;
@@ -280,4 +314,13 @@
     display: flex;
     justify-content: flex-end;
   }
+}
+
+.more-jobs {
+  background: none;
+  border: none;
+  font-weight: 500;
+  display: flex;
+  margin-right: 5rem;
+  font-size: 0.8rem;
 }

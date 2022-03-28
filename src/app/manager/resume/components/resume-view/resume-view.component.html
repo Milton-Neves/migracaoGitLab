@@ -5,8 +5,10 @@
         {{ resume.physicalPerson.name }}
       </h2>
       <span class="resume-details__header__view--tag">{{
-        resume.jobApplications
+        resume.jobApplications[0].job.name
       }}</span>
+
+      <button class="more-jobs" (click)="openJobListModal()">ver todos</button>
     </div>
     <span class="resume-details__header__situation"
       ><b>Situação:</b>
@@ -166,7 +168,7 @@
             class="resume-details__box__formation--knowledge"
             *ngFor="let education of resume.educations"
           >
-            <span><b>Instituição:</b> {{ education.institution }}</span>
+            <span><b>Instituição:</b> ;</span>
             <span><b>Escolaridade:</b> {{ education.scholarity }}</span>
             <span><b>Curso:</b> {{ education.course }}</span>
           </div>

@@ -1,0 +1,53 @@
+@import 'variables';
+
+.overlay {
+  background: #000;
+  height: 100vh;
+  width: 100vw;
+  left: 0;
+  top: 0;
+  opacity: 0.5;
+  position: fixed;
+  z-index: 10;
+}
+
+.view-tag {
+  background-color: $blue-500;
+  color: $white;
+  border-radius: 25px;
+  padding: 0.3rem 2rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin: 0.5rem 0;
+}
+
+.modal {
+  padding: 0.8rem;
+}
+
+.title span {
+  font-size: 1.1rem;
+  color: $blue-700;
+  font-weight: 800;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+.jobs {
+  margin-top: 0.8yrem;
+}
+
+.job-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 5px 10px;
+}
+
+.button {
+  display: flex;
+  justify-content: flex-end;
+  margin: 1rem;
+}

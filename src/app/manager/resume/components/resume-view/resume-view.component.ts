@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core'
+import { JobListModalComponent } from 'app/job-list-modal/job-list-modal.component'
 import { NgxModalService } from 'lib/ngx-modal/src/public-api'
 import { Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
@@ -44,6 +45,14 @@ export class ResumeViewComponent implements OnInit {
         .getOneResume(this.resumeId)
         .pipe(map((resume) => resume.data))
     }
+  }
+
+  openJobListModal() {
+    let modal = this.modalService.open(JobListModalComponent).subscribe()
+  }
+
+  closeJobListModal() {
+    this.modalService.close()
   }
 
   ngOnInit(): void {
