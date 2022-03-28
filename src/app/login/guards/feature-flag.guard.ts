@@ -20,9 +20,7 @@ export class FeatureFlagGuard implements CanLoad {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    const {
-      data, // <-- Get the module name from route data
-    } = route
+    const { data } = route
     if (data?.feature) {
       const isEnabled = this.featureFlagService.isFeatureEnabled(data?.feature)
       if (isEnabled) {
