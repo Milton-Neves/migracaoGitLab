@@ -2,11 +2,17 @@
   <table class="table-details">
     <thead class="table-details__head">
       <tr class="table-details__head--text-title">
-        <th>Nome</th>
         <ng-container *ngIf="activedRoute == routesWithTables[0]">
           <th>Telefone(s)</th>
           <th>Cargo</th>
           <th>Situação</th>
+          <th>Ações</th>
+        </ng-container>
+        <ng-container *ngIf="activedRoute == routesWithTables[2]">
+          <th>Nome fantasia</th>
+          <th>CNPJ</th>
+          <th>Data de solicitação</th>
+          <th></th>
           <th>Ações</th>
         </ng-container>
         <ng-container *ngFor="let columnName of adittionalColumn">
