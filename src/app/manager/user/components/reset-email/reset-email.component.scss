@@ -1,0 +1,36 @@
+@import '../../../../../assets/styles/scss/variables';
+.tab-struct {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 80%;
+  align-items: center;
+  input {
+    display: flex;
+    margin-left: 1.5rem;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 0.4rem 0.4rem;
+    width: 112%;
+    border: 1px solid #cccccc;
+    padding: 0.5rem 0.5rem;
+    border-radius: 5px;
+    background: white;
+    background-repeat: no-repeat;
+    background-position: 95% 50%;
+  }
+  input :placeholder {
+    font-size: 0.7rem;
+    max-width: 88%;
+    overflow: hidden;
+    display: block;
+    color: $gray-500;
+  }
+}
+.buttons-style {
+  display: flex;
+  justify-content: flex-end;
+  margin: 1.2rem;
+  gap: 1.5rem;
+}

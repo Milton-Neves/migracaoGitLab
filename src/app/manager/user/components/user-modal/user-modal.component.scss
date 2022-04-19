@@ -1,0 +1,29 @@
+@import '../../../../../assets/styles/scss/variables';
+.card-password {
+  width: 419px;
+  height: 325px;
+  background: $white;
+  box-shadow: 1px 2px 8px -2px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  .text {
+    display: flex;
+    flex-direction: column;
+    text-align: initial;
+    padding: 0.8rem;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 100%;
+    color: $blue-700;
+  }
+  .tab-content {
+    display: flex;
+    margin-bottom: 2rem;
+    padding-left: 1rem;
+  }
+  .tab-struct {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+}

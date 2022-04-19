@@ -1,4 +1,5 @@
-import { ResetPasswordComponent } from './reset-password/reset-password.component'
+import { UserModalComponent } from './components/user-modal/user-modal.component'
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component'
 import { Component, OnInit } from '@angular/core'
 import { NgxModalService } from 'lib/ngx-modal/src/public-api'
 import { HttpClient } from '@angular/common/http'
@@ -13,10 +14,8 @@ export class UserComponent implements OnInit {
     private modalService: NgxModalService,
     private http: HttpClient
   ) {}
-
-  openModal() {
-    let modal = this.modalService.open(ResetPasswordComponent).subscribe()
+  openUserModal() {
+    let modal = this.modalService.open(UserModalComponent).subscribe()
   }
-
   ngOnInit(): void {}
 }

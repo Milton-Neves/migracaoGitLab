@@ -1,0 +1,14 @@
+<div class="tab-struct">
+  <input type="text" placeholder="novo e-mail" />
+  <input type="text" placeholder="confirmar e-mail" />
+</div>
+<div class="buttons-style">
+  <app-button
+    [text]="'Cancelar'"
+    [color]="'transparent'"
+    [textColor]="'#1C3152'"
+    (click)="closeModalEmail()"
+  >
+  </app-button>
+  <app-button [text]="'Salvar'" [color]="'#1C3152'"> </app-button>
+</div>

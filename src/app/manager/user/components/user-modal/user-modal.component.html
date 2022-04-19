@@ -1,0 +1,26 @@
+<div class="card-password">
+  <h1 class="text" style="margin: 1rem 1rem 0rem 1rem">
+    Nome
+    <p
+      class="text"
+      style="font-weight: 400; font-size: 15px; padding: 1rem 0rem 1rem"
+    >
+      Matrícula 0000
+    </p>
+  </h1>
+  <app-tab-nav
+    class="tab-content"
+    [titles]="sectionTitle"
+    (activeTab)="changeTab($event)"
+  ></app-tab-nav>
+  <ng-container *ngIf="activeTab == sectionTitle[0]">
+    <div class="tab-struct">
+      <app-reset-password></app-reset-password>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="activeTab == sectionTitle[1]">
+    <div class="tab-struct">
+      <app-reset-email></app-reset-email>
+    </div>
+  </ng-container>
+</div>
