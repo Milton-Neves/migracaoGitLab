@@ -4,8 +4,9 @@ import { NgxModalService } from 'lib/ngx-modal/src/public-api'
 import { Observable, of } from 'rxjs'
 import { map, tap } from 'rxjs/operators'
 
-import { ResumeProps } from '../../entities/resume.model'
+import { ResumeProps, Workfield } from '../../entities/resume.model'
 import { ResumeService } from '../../services/resume.service'
+import { ResumeJobsViewComponent } from '../resume-jobs-view/resume-jobs-view.component'
 import { ResumeViewComponent } from '../resume-view/resume-view.component'
 
 const ITEMS_PER_PAGE = 6
@@ -18,6 +19,8 @@ export class ActiveResumeListComponent implements OnInit {
   resumes: ResumeProps[] = []
   totalCountResumes: number = 0
   pagination$?: Observable<any>
+  workfields: Workfield[] = []
+  colorCode: string = ''
 
   constructor(
     private resumeService: ResumeService,
@@ -26,6 +29,7 @@ export class ActiveResumeListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getResumesFromServer()
+    this.getColorCode()
   }
 
   getResumesFromServer(page: number = 1, params?: any) {
@@ -63,5 +67,23 @@ export class ActiveResumeListComponent implements OnInit {
     const contentSizeHeight = document.body.getBoundingClientRect().height * 0.6
     const cardSizeHeight = 80
     return Math.floor(contentSizeHeight / cardSizeHeight)
+  }
+
+  openJobsView(resumeId: number) {
+    let modal = this.modalService
+      .open(ResumeJobsViewComponent, { resumeId })
+      .subscribe()
+  }
+
+  getColorCode() {
+    this.resumeService.getWorkfields().subscribe((workfields) => {
+      this.workfields = workfields.data
+
+      this.workfields.forEach((workfield) => {
+        if (this.resumes[0].jobApplications[0].job.workfield == workfield.id) {
+          this.colorCode = workfield.colorCode
+        }
+      })
+    })
   }
 }

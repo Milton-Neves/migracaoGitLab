@@ -1,0 +1,16 @@
+<div *ngIf="resume$ | async as resume">
+  <span
+    *ngFor="
+      let object of resume.jobApplications;
+      let isLast = last;
+      let i = index
+    "
+  >
+    <p [style.background-color]="colorCodes[i]" *ngIf="!isLast">
+      {{ object.job.name }}
+    </p>
+    <p [style.background-color]="colorCodes[i]" *ngIf="isLast">
+      {{ object.job.name }}
+    </p>
+  </span>
+</div>

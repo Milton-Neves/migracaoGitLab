@@ -20,6 +20,11 @@
   margin-left: 5rem;
 }
 
+.phone::after {
+  content: '\A';
+  white-space: pre;
+}
+
 .table-details {
   &__body {
     text-align: center;
@@ -34,11 +39,12 @@
       border-left: none;
       border-right: none;
     }
-    &--bg-primary span {
-      background-color: $blue-500;
+    &--bg-primary .jobApplicationsBorder {
+      background-color: #808080;
       color: $white;
-      border-radius: 25px;
-      padding: 0.1rem 2rem;
+      border-radius: 6px;
+      padding: 0.1rem 1rem 0.1rem 1rem;
+      margin-right: 0.5rem;
     }
     &--color-red {
       color: $red-500;
@@ -49,6 +55,13 @@
       color: $blue-700;
     }
   }
+}
+
+.openJobsViewButton {
+  text-decoration: underline;
+  border: none;
+  background-color: none;
+  margin-top: 2px;
 }
 
 #no-content {

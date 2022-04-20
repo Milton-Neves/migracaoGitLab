@@ -13,11 +13,30 @@
         class="table-details__body--text-description"
         *ngFor="let resume of resumes"
       >
-        <td>{{ resume.physicalPerson.name }}</td>
-        <td>{{ resume.physicalPerson.phoneNumbers }}</td>
-        <td class="table-details__body--bg-primary">
-          <span> {{ resume.jobApplications }} </span>
+        <td>
+          <span
+            *ngFor="
+              let phone of resume.physicalPerson.phoneNumbers;
+              let isLast = last
+            "
+            class="phone"
+          >
+            <span *ngIf="!isLast">{{ phone.number }},</span>
+            <span *ngIf="isLast">{{ phone.number }}</span>
+          </span>
         </td>
+        <td class="table-details__body--bg-primary">
+          <span
+            [style.background-color]="colorCode"
+            class="jobApplicationsBorder"
+          >
+            {{ resume.jobApplications[0].job.name }}
+          </span>
+          <button (click)="openJobsView(resume.id)" class="openJobsViewButton">
+            ver todos
+          </button>
+        </td>
+        <td>{{ resume.physicalPerson.name }}</td>
         <td class="table-details__body--color-red">
           {{ resume.statusResume ? 'Disponível' : 'Arquivado' }}
         </td>

@@ -33,4 +33,10 @@ export class ResumeService {
       `${environment.baseUrl}/api/${this.endpoints.getOne(id)}`
     )
   }
+
+  getWorkfields(): Observable<ApiResponse<any>> {
+    return this.http.get<ApiResponse<any>>(
+      `${environment.baseUrl}/api/workfield`
+    )
+  }
 }

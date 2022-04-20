@@ -41,12 +41,13 @@ export interface Language {
 export interface Job {
   id: number
   name: string
-  workfield: Workfield
+  workfield: number
 }
 
 export interface Workfield {
   id: number
   name: string
+  colorCode: string
   jobs?: Job[]
 }
 export interface JobApplication {
