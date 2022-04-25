@@ -1,0 +1,24 @@
+<div *ngIf="resume$ | async as resume" class="view-container">
+  <div class="name-div">
+    <span class="name">{{ resume.physicalPerson.name }}</span>
+  </div>
+  <div class="roles-div">
+    <span
+      *ngFor="
+        let object of resume.jobApplications;
+        let isLast = last;
+        let i = index
+      "
+    >
+      <p [style.background-color]="colorCodes[i]" *ngIf="!isLast">
+        {{ object.job.name }}
+      </p>
+      <p [style.background-color]="colorCodes[i]" *ngIf="isLast">
+        {{ object.job.name }}
+      </p>
+    </span>
+  </div>
+  <div class="button-div">
+    <button (click)="closeModal()" class="close-button">Fechar</button>
+  </div>
+</div>

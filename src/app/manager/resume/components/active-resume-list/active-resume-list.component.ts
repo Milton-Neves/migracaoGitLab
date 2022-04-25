@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core'
 import { Resume } from '@core/interfaces/resume/resume'
+import { Workfield } from '@core/interfaces/resume/workfield'
 import { createPagination } from '@shared/utils/pagination.utils'
 import { NgxModalService } from 'lib/ngx-modal/src/public-api'
 import { Observable, of } from 'rxjs'
 import { map, tap } from 'rxjs/operators'
 
 import { ResumeService } from '../../services/resume.service'
+import { ResumeJobsViewComponent } from '../resume-jobs-view/resume-jobs-view.component'
 import { ResumeViewComponent } from '../resume-view/resume-view.component'
 
 const ITEMS_PER_PAGE = 6
@@ -18,6 +20,8 @@ export class ActiveResumeListComponent implements OnInit {
   resumes: Resume[] = []
   totalCountResumes: number = 0
   pagination$?: Observable<any>
+  colorCodes: string[] = []
+  colorPromise: Promise<boolean> = Promise.resolve(false)
 
   constructor(
     private resumeService: ResumeService,
@@ -35,6 +39,7 @@ export class ActiveResumeListComponent implements OnInit {
         tap((resume) => {
           this.totalCountResumes = resume.data.length
           this.paginateResumes(page, resume.data)
+          this.getColorCodes()
         }),
         map((res) => res.data)
       )
@@ -63,5 +68,26 @@ export class ActiveResumeListComponent implements OnInit {
     const contentSizeHeight = document.body.getBoundingClientRect().height * 0.6
     const cardSizeHeight = 80
     return Math.floor(contentSizeHeight / cardSizeHeight)
+  }
+
+  openJobsView(resumeId: number) {
+    let modal = this.modalService
+      .open(ResumeJobsViewComponent, { resumeId })
+      .subscribe()
+  }
+
+  getColorCodes() {
+    this.resumeService.getWorkfields().subscribe((workfields) => {
+      let tempWorkfields: Workfield[] = workfields.data
+
+      this.resumes.forEach((resume, index) => {
+        tempWorkfields.forEach((workfield) => {
+          if (resume.jobApplications[0].job.workfield == workfield.id) {
+            this.colorCodes.push(workfield.colorCode)
+            this.colorPromise = Promise.resolve(true)
+          }
+        })
+      })
+    })
   }
 }

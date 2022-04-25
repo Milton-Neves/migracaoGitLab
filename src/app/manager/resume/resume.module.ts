@@ -7,14 +7,25 @@ import { ArchivedResumeListComponent } from './components/archived-resume-list/a
 import { ResumeViewComponent } from './components/resume-view/resume-view.component'
 import { ResumeRoutingModule } from './resume-routing.module'
 import { ResumeComponent } from './resume.component'
+import { ResumeJobsViewComponent } from './components/resume-jobs-view/resume-jobs-view.component'
+import { NgxMaskModule, IConfig } from 'ngx-mask'
 
+const maskConfig: Partial<IConfig> = {
+  validation: false,
+}
 @NgModule({
   declarations: [
     ResumeComponent,
     ActiveResumeListComponent,
     ArchivedResumeListComponent,
     ResumeViewComponent,
+    ResumeJobsViewComponent,
   ],
-  imports: [CommonModule, ResumeRoutingModule, SharedModule],
+  imports: [
+    CommonModule,
+    ResumeRoutingModule,
+    SharedModule,
+    NgxMaskModule.forRoot(maskConfig),
+  ],
 })
 export class ResumeModule {}
