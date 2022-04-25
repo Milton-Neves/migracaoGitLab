@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core'
+import { Resume } from '@core/interfaces/resume/resume'
+import { Workfield } from '@core/interfaces/resume/workfield'
 import { NgxModalService } from 'lib/ngx-modal/src/public-api'
 import { Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
-import { ResumeProps, Workfield } from '../../entities/resume.model'
 import { ResumeService } from '../../services/resume.service'
 
 @Component({
@@ -12,7 +13,7 @@ import { ResumeService } from '../../services/resume.service'
 })
 export class ResumeJobsViewComponent implements OnInit {
   @Input() resumeId?: number
-  resume$?: Observable<ResumeProps>
+  resume$?: Observable<Resume>
   colorCodes: string[] = []
 
   constructor(
