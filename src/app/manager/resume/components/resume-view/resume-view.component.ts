@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core'
+import { Resume } from '@core/interfaces/resume/resume'
 import { NgxModalService } from 'lib/ngx-modal/src/public-api'
 import { Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
 
-import { ResumeProps } from '../../entities/resume.model'
 import { ResumeService } from '../../services/resume.service'
 
 @Component({
@@ -13,7 +13,7 @@ import { ResumeService } from '../../services/resume.service'
 })
 export class ResumeViewComponent implements OnInit {
   @Input() resumeId?: number
-  resume$?: Observable<ResumeProps>
+  resume$?: Observable<Resume>
 
   sectionTitle = [
     'Dados',

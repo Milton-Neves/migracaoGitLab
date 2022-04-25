@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core'
+import { Resume } from '@core/interfaces/resume/resume'
 import { createPagination } from '@shared/utils/pagination.utils'
 import { NgxModalService } from 'lib/ngx-modal/src/public-api'
 import { Observable, of } from 'rxjs'
 import { map, tap } from 'rxjs/operators'
 
-import { ResumeProps } from '../../entities/resume.model'
 import { ResumeService } from '../../services/resume.service'
 import { ResumeViewComponent } from '../resume-view/resume-view.component'
 
@@ -15,7 +15,7 @@ const ITEMS_PER_PAGE = 6
   styleUrls: ['./active-resume-list.component.scss'],
 })
 export class ActiveResumeListComponent implements OnInit {
-  resumes: ResumeProps[] = []
+  resumes: Resume[] = []
   totalCountResumes: number = 0
   pagination$?: Observable<any>
 
@@ -41,7 +41,7 @@ export class ActiveResumeListComponent implements OnInit {
       .subscribe()
   }
 
-  paginateResumes(page: number, resumes: ResumeProps[]) {
+  paginateResumes(page: number, resumes: Resume[]) {
     let { results, pagination } = createPagination(
       page,
       resumes,
