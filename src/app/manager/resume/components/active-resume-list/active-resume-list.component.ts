@@ -19,8 +19,8 @@ export class ActiveResumeListComponent implements OnInit {
   resumes: ResumeProps[] = []
   totalCountResumes: number = 0
   pagination$?: Observable<any>
-  workfields: Workfield[] = []
-  colorCode: string = ''
+  colorCodes: string[] = []
+  colorPromise: Promise<boolean> = Promise.resolve(false)
 
   constructor(
     private resumeService: ResumeService,
@@ -29,7 +29,7 @@ export class ActiveResumeListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getResumesFromServer()
-    this.getColorCode()
+    this.getColorCodes()
   }
 
   getResumesFromServer(page: number = 1, params?: any) {
@@ -75,14 +75,19 @@ export class ActiveResumeListComponent implements OnInit {
       .subscribe()
   }
 
-  getColorCode() {
+  getColorCodes() {
     this.resumeService.getWorkfields().subscribe((workfields) => {
-      this.workfields = workfields.data
+      let tempWorkfields: Workfield[] = workfields.data
 
-      this.workfields.forEach((workfield) => {
-        if (this.resumes[0].jobApplications[0].job.workfield == workfield.id) {
-          this.colorCode = workfield.colorCode
-        }
+      this.resumes.forEach((resume, index) => {
+        tempWorkfields.forEach((workfield) => {
+          if (resume.jobApplications[0].job.workfield == workfield.id) {
+            this.colorCodes.push(workfield.colorCode)
+            if (this.colorCodes[index] !== undefined) {
+              this.colorPromise = Promise.resolve(true)
+            }
+          }
+        })
       })
     })
   }

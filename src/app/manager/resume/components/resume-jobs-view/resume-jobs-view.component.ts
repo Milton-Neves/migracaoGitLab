@@ -13,7 +13,6 @@ import { ResumeService } from '../../services/resume.service'
 export class ResumeJobsViewComponent implements OnInit {
   @Input() resumeId?: number
   resume$?: Observable<ResumeProps>
-  workfields: Workfield[] = []
   colorCodes: string[] = []
 
   constructor(
@@ -43,9 +42,10 @@ export class ResumeJobsViewComponent implements OnInit {
   getColorCodes() {
     this.resume$?.subscribe((resume) => {
       this.resumeService.getWorkfields().subscribe((workfields) => {
-        this.workfields = workfields.data
+        let tempWorkfields: Workfield[] = workfields.data
+
         resume.jobApplications.forEach((jobApplication) => {
-          this.workfields.forEach((workfield) => {
+          tempWorkfields.forEach((workfield) => {
             if (jobApplication.job.workfield == workfield.id) {
               this.colorCodes.push(workfield.colorCode)
             }
