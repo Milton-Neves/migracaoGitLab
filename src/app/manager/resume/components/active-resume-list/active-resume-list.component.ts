@@ -30,7 +30,6 @@ export class ActiveResumeListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getResumesFromServer()
-    this.getColorCodes()
   }
 
   getResumesFromServer(page: number = 1, params?: any) {
@@ -40,6 +39,7 @@ export class ActiveResumeListComponent implements OnInit {
         tap((resume) => {
           this.totalCountResumes = resume.data.length
           this.paginateResumes(page, resume.data)
+          this.getColorCodes()
         }),
         map((res) => res.data)
       )
@@ -84,9 +84,7 @@ export class ActiveResumeListComponent implements OnInit {
         tempWorkfields.forEach((workfield) => {
           if (resume.jobApplications[0].job.workfield == workfield.id) {
             this.colorCodes.push(workfield.colorCode)
-            if (this.colorCodes[index] !== undefined) {
-              this.colorPromise = Promise.resolve(true)
-            }
+            this.colorPromise = Promise.resolve(true)
           }
         })
       })
