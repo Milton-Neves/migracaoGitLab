@@ -3,6 +3,7 @@ import { Resume } from '@core/interfaces/resume/resume'
 import { Workfield } from '@core/interfaces/resume/workfield'
 import { createPagination } from '@shared/utils/pagination.utils'
 import { NgxModalService } from 'lib/ngx-modal/src/public-api'
+import { MaskApplierService } from 'ngx-mask'
 import { Observable, of } from 'rxjs'
 import { map, tap } from 'rxjs/operators'
 
@@ -25,7 +26,8 @@ export class ActiveResumeListComponent implements OnInit {
 
   constructor(
     private resumeService: ResumeService,
-    private modalService: NgxModalService
+    private modalService: NgxModalService,
+    private phoneMaskService: MaskApplierService
   ) {}
 
   ngOnInit(): void {
@@ -59,7 +61,10 @@ export class ActiveResumeListComponent implements OnInit {
 
   viewResume(resumeId: number) {
     let modal = this.modalService
-      .open(ResumeViewComponent, { resumeId })
+      .open(ResumeViewComponent, {
+        resumeId: resumeId,
+        phoneMaskService: this.phoneMaskService,
+      })
       .subscribe()
   }
 
