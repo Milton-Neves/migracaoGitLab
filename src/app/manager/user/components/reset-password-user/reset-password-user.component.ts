@@ -42,8 +42,6 @@ export class ResetPasswordUserComponent implements OnInit {
   }
 
   verify() {
-    //verificação simples pegando o valor direto de cada campo
-    //e usando isso em um change.
     this.changePasswordForm.valueChanges
       .pipe(debounceTime(400))
       .subscribe((res) => {
