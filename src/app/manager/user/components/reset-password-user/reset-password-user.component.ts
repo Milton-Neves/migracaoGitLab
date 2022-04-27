@@ -4,11 +4,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { debounceTime } from 'rxjs/operators'
 
 @Component({
-  selector: 'app-reset-password',
-  templateUrl: './reset-password.component.html',
-  styleUrls: ['./reset-password.component.scss'],
+  selector: 'app-reset-password-user',
+  templateUrl: './reset-password-user.component.html',
+  styleUrls: ['./reset-password-user.component.scss'],
 })
-export class ResetPasswordComponent implements OnInit {
+export class ResetPasswordUserComponent implements OnInit {
   form: any
   visibilityPassword = {
     password: true,
@@ -16,7 +16,8 @@ export class ResetPasswordComponent implements OnInit {
   }
   isMatch: boolean = true
   changePasswordForm!: FormGroup
-  pwdPattern = '^(?=.*d)(?=.*[az])(?=.*[AZ])(?!.*s).{6,12}$'
+  pwdPattern = `^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{6,12}$`
+
   constructor(private modalService: NgxModalService, private fb: FormBuilder) {}
 
   private buildForm(): void {
@@ -41,10 +42,11 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   verify() {
+    //verificação simples pegando o valor direto de cada campo
+    //e usando isso em um change.
     this.changePasswordForm.valueChanges
       .pipe(debounceTime(400))
       .subscribe((res) => {
-        console.log(res)
         this.isMatch = false
         if (res.newPass == res.confirmPass) {
           this.isMatch = true
@@ -54,5 +56,8 @@ export class ResetPasswordComponent implements OnInit {
 
   ngOnInit(): void {
     this.buildForm()
+    this.pass.valueChanges.subscribe((res) => {
+      console.log(this.pass)
+    })
   }
 }

@@ -1,5 +1,7 @@
 import { NgxModalService } from './../../../../../lib/ngx-modal/src/lib/ngx-modal.service'
 import { Component, OnInit } from '@angular/core'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { debounceTime } from 'rxjs/operators'
 
 @Component({
   selector: 'app-reset-email',
@@ -7,10 +9,46 @@ import { Component, OnInit } from '@angular/core'
   styleUrls: ['./reset-email.component.scss'],
 })
 export class ResetEmailComponent implements OnInit {
-  constructor(private modalService: NgxModalService) {}
+  form: any
+  visibilityEmail = {
+    email: true,
+    confirmEmail: true,
+  }
+  isMatch: boolean = true
+  changeEmailForm!: FormGroup
+  constructor(private modalService: NgxModalService, private fb: FormBuilder) {}
+  private buildFormEmail(): void {
+    this.changeEmailForm = this.fb.group({
+      newEmail: ['', Validators.required],
+      confirmEmail: ['', [Validators.required]],
+    })
+  }
   closeModalEmail() {
     this.modalService.close()
   }
 
-  ngOnInit(): void {}
+  get confirmEmail() {
+    return this.changeEmailForm.controls.confirmPass
+  }
+
+  get em() {
+    return this.changeEmailForm.controls.newPass
+  }
+
+  verifyEmail() {
+    //verificação simples pegando o valor direto de cada campo
+    //e usando isso em um change.
+    this.changeEmailForm.valueChanges
+      .pipe(debounceTime(400))
+      .subscribe((res) => {
+        this.isMatch = false
+        if (res.newEmail == res.confirmEmail) {
+          this.isMatch = true
+        }
+      })
+  }
+
+  ngOnInit(): void {
+    this.buildFormEmail()
+  }
 }
