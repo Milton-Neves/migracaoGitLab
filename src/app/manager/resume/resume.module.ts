@@ -8,7 +8,7 @@ import { ResumeViewComponent } from './components/resume-view/resume-view.compon
 import { ResumeRoutingModule } from './resume-routing.module'
 import { ResumeComponent } from './resume.component'
 import { ResumeJobsViewComponent } from './components/resume-jobs-view/resume-jobs-view.component'
-import { NgxMaskModule, IConfig } from 'ngx-mask'
+import { NgxMaskModule, IConfig, MaskApplierService } from 'ngx-mask'
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -27,5 +27,6 @@ const maskConfig: Partial<IConfig> = {
     SharedModule,
     NgxMaskModule.forRoot(maskConfig),
   ],
+  providers: [MaskApplierService],
 })
 export class ResumeModule {}
