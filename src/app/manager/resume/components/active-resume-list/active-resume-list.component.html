@@ -35,13 +35,12 @@
             [style.background-color]="colorCodes[resumeIndex]"
             class="jobApplicationsBorder"
           >
-            {{ resume.jobApplications[0].job.name }}
-          </span>
+            {{ resume.jobApplications[0].job.name }}</span
+          >
           <button (click)="openJobsView(resume.id)" class="openJobsViewButton">
             ver todos
           </button>
         </td>
-        <td>{{ resume.physicalPerson.name }}</td>
         <td class="table-details__body--color-red">
           {{ resume.statusResume ? 'Disponível' : 'Arquivado' }}
         </td>
