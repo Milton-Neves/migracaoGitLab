@@ -14,11 +14,26 @@
       <div class="login__line"></div>
     </div>
 
-    <div class="login__inputs">
-      <input type="text" placeholder="Login" />
-      <input type="password" placeholder="Senha" />
-      <button (click)="login()">Entrar</button>
-    </div>
+    <form [formGroup]="form" class="login__inputs">
+      <input
+        formControlName="login"
+        type="text"
+        placeholder="Login"
+        name="login"
+        id="login"
+      />
+      <input
+        formControlName="password"
+        type="password"
+        placeholder="Senha"
+        name="password"
+        id="password"
+      />
+
+      <button [disabled]="form.invalid" type="button" (click)="onSubmit()">
+        {{ loginRequestIsLoading ? 'Carregando...' : 'Entrar' }}
+      </button>
+    </form>
   </section>
 
   <footer class="footer">
