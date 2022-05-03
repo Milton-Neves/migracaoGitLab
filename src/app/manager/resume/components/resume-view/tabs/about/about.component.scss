@@ -1,0 +1,103 @@
+@import 'variables';
+
+.resume-details {
+  &__box__personal {
+    background: $white;
+    border-radius: 5px;
+    position: relative;
+    border: 1px solid $black-100;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    &--title {
+      padding: 0.5rem;
+      font-size: 0.9rem;
+      color: $blue-700;
+      padding: 0.5rem 0.5rem;
+    }
+    &--view {
+      padding: 0.3rem;
+      font-size: 0.8rem;
+      color: $blue-700;
+      &-name {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.5rem 0.2rem;
+      }
+      &-mail {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.5rem 0.2rem;
+      }
+      &-data {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.5rem 0.2rem;
+      }
+    }
+  }
+  &__box__contact {
+    background: $white;
+    border-radius: 5px;
+    position: relative;
+    border: 1px solid $black-100;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    &--title {
+      padding: 0.5rem;
+      font-size: 0.9rem;
+      color: $blue-700;
+      padding: 0.5rem 0.5rem;
+    }
+    &--text {
+      padding: 0.3rem;
+      font-size: 0.8rem;
+      color: $blue-700;
+      display: flex;
+      justify-content: space-between;
+
+      &-phone {
+        padding: 0.5rem 0.2rem;
+      }
+      &-mail {
+        padding: 0.5rem 0.2rem;
+      }
+    }
+  }
+  &__box__address {
+    background: $white;
+    border-radius: 5px;
+    position: relative;
+    border: 1px solid $black-100;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    &--title {
+      padding: 0.5rem;
+      font-size: 0.9rem;
+      color: $blue-700;
+      padding: 0.5rem 0.5rem;
+      font-weight: 700;
+    }
+    &--information {
+      padding: 0.3rem;
+      font-size: 0.8rem;
+      color: $blue-700;
+      width: 80%;
+
+      &-city {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.5rem 0.2rem;
+      }
+      &-district {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.5rem 0.2rem;
+      }
+      &-street {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.5rem 0.2rem;
+      }
+    }
+  }
+}
