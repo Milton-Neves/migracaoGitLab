@@ -1,0 +1,30 @@
+<div class="resume-details__box__global">
+  <div class="resume-details__box__shift">
+    <h3 class="resume-details__box__shift--title">Períodos</h3>
+
+    <div class="resume-details__box__shift--description">
+      <div class="resume-details__box__shift--description-morning">
+        <span><b>Manhã:</b> {{ willingness?.morning ? 'Sim' : 'Não' }}</span>
+        <span><b>Sábado:</b> {{ willingness?.saturday ? 'Sim' : 'Não' }}</span>
+      </div>
+      <div class="resume-details__box__shift--description-afternoon">
+        <span><b>Tarde:</b> {{ willingness?.afternoon ? 'Sim' : 'Não' }}</span>
+        <span><b>Domingo:</b> {{ willingness?.sunday ? 'Sim' : 'Não' }}</span>
+      </div>
+      <div class="resume-details__box__shift--description-night">
+        <span><b>Noite:</b> {{ willingness?.night ? 'Sim' : 'Não' }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="resume-details__box__trips">
+    <h3 class="resume-details__box__trips--title">Viagens</h3>
+
+    <div class="resume-details__box__trips--text">
+      <span
+        ><b>Disponibilidade para viagens:</b>
+        {{ willingness?.travel ? 'Sim' : 'Não' }}</span
+      >
+    </div>
+  </div>
+</div>

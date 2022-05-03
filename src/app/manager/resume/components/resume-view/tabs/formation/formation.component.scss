@@ -1,0 +1,38 @@
+@import 'variables';
+
+.resume-details {
+  &__box__formation {
+    background: $white;
+    border-radius: 5px;
+    position: relative;
+    border: 1px solid $black-100;
+    padding: 0.3rem;
+    margin: 0.5rem 0;
+    &--title {
+      padding: 0.5rem;
+      font-size: 0.9rem;
+      color: $blue-700;
+      padding: 0.5rem 0.5rem;
+      font-weight: 700;
+    }
+    &--description {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    &--knowledge span {
+      justify-content: space-between;
+      padding: 0.2rem 0.2rem;
+    }
+    &--knowledge {
+      padding: 0.3rem;
+      font-size: 0.8rem;
+      color: $blue-700;
+      display: flex;
+      width: 38%;
+      flex-wrap: wrap;
+      flex-direction: column;
+      margin-top: 0.8rem;
+    }
+  }
+}

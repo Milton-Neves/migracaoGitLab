@@ -1,0 +1,71 @@
+@import '../../../../../assets/styles/scss/variables';
+.container {
+  width: 100%;
+}
+.table {
+  display: flex;
+  justify-items: center;
+  width: 100%;
+}
+.pagination-number {
+  display: flex;
+  flex-direction: row-reverse;
+  margin-bottom: 1rem;
+  margin-right: 1rem;
+}
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+  margin-left: 5rem;
+}
+
+.phone::after {
+  content: '\A';
+  white-space: pre;
+}
+
+.table-details {
+  &__body {
+    text-align: center;
+    &--text-description td:first-child {
+      text-align: left;
+    }
+    &--text-description td {
+      padding: 0.5rem 2rem;
+    }
+    &--text-description {
+      border: 1px solid $black-100;
+      border-left: none;
+      border-right: none;
+    }
+    &--bg-primary .jobApplicationsBorder {
+      background-color: #808080;
+      color: $white;
+      border-radius: 6px;
+      padding: 0.1rem 1rem 0.1rem 1rem;
+      margin-right: 0.5rem;
+    }
+    &--color-red {
+      color: $red-500;
+    }
+    &--border-btn button {
+      border: none;
+      background: none;
+      color: $blue-700;
+    }
+  }
+}
+
+.openJobsViewButton {
+  text-decoration: underline;
+  border: none;
+  background-color: transparent;
+  margin-top: 2px;
+}
+
+#no-content {
+  margin-top: 25px;
+  text-align: center;
+  color: $blue-700;
+}

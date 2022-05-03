@@ -12,6 +12,7 @@ import { TabNavComponent } from './components/tab-nav/tab-nav.component'
 import { InputSearchComponent } from './components/input-search/input-search.component'
 import { TableComponent } from './components/table/table.component'
 import { HighlightDirective } from './directives/highlight.directive'
+import { DashOnNullPipe } from './pipes/dash-on-null.pipe'
 
 const components = [
   PaginationComponent,
@@ -24,6 +25,7 @@ const components = [
   HighlightDirective,
   TabNavComponent,
   InputSearchComponent,
+  DashOnNullPipe,
 ]
 
 @NgModule({
