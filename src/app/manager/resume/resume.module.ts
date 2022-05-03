@@ -7,6 +7,16 @@ import { ArchivedResumeListComponent } from './components/archived-resume-list/a
 import { ResumeViewComponent } from './components/resume-view/resume-view.component'
 import { ResumeRoutingModule } from './resume-routing.module'
 import { ResumeComponent } from './resume.component'
+import { ResumeJobsViewComponent } from './components/resume-jobs-view/resume-jobs-view.component'
+import { NgxMaskModule, IConfig, MaskApplierService } from 'ngx-mask'
+import { ProfessionalExperienceComponent } from './components/resume-view/tabs/professional-experience/professional-experience.component'
+import { FormationComponent } from './components/resume-view/tabs/formation/formation.component'
+import { AvailabilityComponent } from './components/resume-view/tabs/availability/availability.component'
+import { AboutComponent } from './components/resume-view/tabs/about/about.component'
+
+const maskConfig: Partial<IConfig> = {
+  validation: false,
+}
 
 @NgModule({
   declarations: [
@@ -14,7 +24,18 @@ import { ResumeComponent } from './resume.component'
     ActiveResumeListComponent,
     ArchivedResumeListComponent,
     ResumeViewComponent,
+    ResumeJobsViewComponent,
+    ProfessionalExperienceComponent,
+    FormationComponent,
+    AvailabilityComponent,
+    AboutComponent,
   ],
-  imports: [CommonModule, ResumeRoutingModule, SharedModule],
+  imports: [
+    CommonModule,
+    ResumeRoutingModule,
+    SharedModule,
+    NgxMaskModule.forRoot(maskConfig),
+  ],
+  providers: [MaskApplierService],
 })
 export class ResumeModule {}

@@ -1,10 +1,9 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
+import { Resume } from '@core/interfaces/resume/resume'
 import { ApiResponse } from '@shared/models/api-response.model'
 import { environment } from 'environments/environment'
 import { Observable } from 'rxjs'
-
-import { ResumeProps } from '../entities/resume.model'
 
 @Injectable({
   providedIn: 'root',
@@ -17,8 +16,8 @@ export class ResumeService {
 
   constructor(private http: HttpClient) {}
 
-  getResume(params?: any): Observable<ApiResponse<ResumeProps[]>> {
-    return this.http.get<ApiResponse<ResumeProps[]>>(
+  getResume(params?: any): Observable<ApiResponse<Resume[]>> {
+    return this.http.get<ApiResponse<Resume[]>>(
       `${environment.baseUrl}/api/${this.endpoints.listAll()}`,
       {
         params: {
@@ -28,9 +27,15 @@ export class ResumeService {
     )
   }
 
-  getOneResume(id: number): Observable<ApiResponse<ResumeProps>> {
-    return this.http.get<ApiResponse<ResumeProps>>(
+  getOneResume(id: number): Observable<ApiResponse<Resume>> {
+    return this.http.get<ApiResponse<Resume>>(
       `${environment.baseUrl}/api/${this.endpoints.getOne(id)}`
+    )
+  }
+
+  getWorkfields(): Observable<ApiResponse<any>> {
+    return this.http.get<ApiResponse<any>>(
+      `${environment.baseUrl}/api/workfield`
     )
   }
 }

@@ -16,7 +16,6 @@ export class CompanyEditComponent implements OnInit {
 
   changeTab(tab: any) {
     this.activeTab = tab
-    console.log(this.activeTab)
   }
   closeModal() {
     this.modalService.close()

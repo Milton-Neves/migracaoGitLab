@@ -1,0 +1,14 @@
+<div class="resume-details__box__formation">
+  <h3 class="resume-details__box__formation--title">Escolaridade e cursos</h3>
+
+  <div class="resume-details__box__formation--description">
+    <div
+      class="resume-details__box__formation--knowledge"
+      *ngFor="let education of educations"
+    >
+      <span><b>Instituição:</b> {{ education.institution | dashOnNull }}</span>
+      <span><b>Escolaridade:</b> {{ education.scholarity | dashOnNull }}</span>
+      <span><b>Curso:</b> {{ education.course | dashOnNull }}</span>
+    </div>
+  </div>
+</div>

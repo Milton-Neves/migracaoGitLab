@@ -4,6 +4,7 @@
     [totalItems]="totalCountResumes"
     class="pagination-number"
   ></app-pagination-number>
+
   <app-table class="table">
     <ng-container
       *ngIf="resumes != undefined && resumes.length != 0"
@@ -11,23 +12,43 @@
     >
       <tr
         class="table-details__body--text-description"
-        *ngFor="let resume of resumes"
+        *ngFor="let resume of resumes; let resumeIndex = index"
       >
-        <td>{{ resume.physicalPerson.name }}</td>
-        <td>{{ resume.physicalPerson.phoneNumbers }}</td>
+        <td>
+          <span
+            *ngFor="
+              let phone of resume.physicalPerson.phoneNumbers;
+              let isLast = last
+            "
+            class="phone"
+          >
+            <span *ngIf="!isLast">{{ phone.number }},</span>
+            <span *ngIf="isLast">{{ phone.number }}</span>
+          </span>
+        </td>
         <td class="table-details__body--bg-primary">
-          <span> {{ resume.jobApplications }} </span>
+          <span
+            *ngIf="colorPromise | async"
+            [style.background-color]="colorCodes[resumeIndex]"
+            class="jobApplicationsBorder"
+          >
+            {{ resume.jobApplications[0].job.name }}</span
+          >
+          <button (click)="openJobsView(resume.id)" class="openJobsViewButton">
+            ver todos
+          </button>
         </td>
         <td class="table-details__body--color-red">
           {{ resume.statusResume ? 'Disponível' : 'Arquivado' }}
         </td>
         <td class="table-details__body--border-btn">
-          <button (click)="viewResume(resume.id)">visualizar</button> |
+          <button (click)="viewResume(resume)">visualizar</button> |
           <button>editar</button> |
           <button>arquivar</button>
         </td>
       </tr>
     </ng-container>
+
     <ng-container
       part="empty"
       *ngIf="resumes == undefined || resumes.length == 0"
@@ -35,6 +56,7 @@
       <span id="no-content">Ainda não há currículos registrados!</span>
     </ng-container>
   </app-table>
+
   <app-pagination
     class="pagination"
     [pagination$]="pagination$"
