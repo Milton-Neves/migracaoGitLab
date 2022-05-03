@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { Resume } from '@core/interfaces/resume/resume'
 import { NgxModalService } from 'lib/ngx-modal/src/public-api'
-import { MaskApplierService } from 'ngx-mask'
 import { Observable, of } from 'rxjs'
 import { map, tap } from 'rxjs/operators'
 import { createPagination } from '@shared/utils/pagination.utils'
@@ -26,8 +25,7 @@ export class ArchivedResumeListComponent implements OnInit {
 
   constructor(
     private resumeService: ResumeService,
-    private modalService: NgxModalService,
-    private phoneMaskService: MaskApplierService
+    private modalService: NgxModalService
   ) {}
 
   ngOnInit(): void {
@@ -59,11 +57,10 @@ export class ArchivedResumeListComponent implements OnInit {
     this.pagination$ = of(pagination)
   }
 
-  viewResume(resumeId: number) {
+  viewResume(resume: Resume) {
     let modal = this.modalService
       .open(ResumeViewComponent, {
-        resumeId: resumeId,
-        phoneMaskService: this.phoneMaskService,
+        resume: resume,
       })
       .subscribe()
   }
