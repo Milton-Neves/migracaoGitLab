@@ -1,17 +1,38 @@
 <div class="resume-details" *ngIf="resume$ | async as resume">
   <header class="resume-details__header">
-    <div class="resume-details__header__view">
+    <div class="resume-name-status-div">
       <h2 class="resume-details__header__view--title">
         {{ resume.physicalPerson.name }}
       </h2>
-      <span class="resume-details__header__view--tag">{{
-        resume.jobApplications
-      }}</span>
+      <span class="resume-details__header__situation"
+        ><b>Situação:</b>
+        {{ resume.statusResume ? 'Disponível' : 'Indisponível' }}</span
+      >
     </div>
-    <span class="resume-details__header__situation"
-      ><b>Situação:</b>
-      {{ resume.statusResume ? 'Disponível' : 'Indisponível' }}</span
-    >
+    <div class="resume-details__header__view">
+      <span
+        *ngFor="
+          let object of resume.jobApplications;
+          let isLast = last;
+          let i = index
+        "
+      >
+        <p
+          class="resume-details__header__view--tag"
+          [style.background-color]="colorCodes[i]"
+          *ngIf="!isLast"
+        >
+          {{ object.job.name }}
+        </p>
+        <p
+          class="resume-details__header__view--tag"
+          [style.background-color]="colorCodes[i]"
+          *ngIf="isLast"
+        >
+          {{ object.job.name }}
+        </p>
+      </span>
+    </div>
   </header>
 
   <app-tab-nav
@@ -56,8 +77,27 @@
             </div>
             <div class="resume-details__box__contact--text-mail">
               <span
-                ><b>Telefone:</b> {{ resume.physicalPerson.phoneNumbers }}</span
+                *ngFor="
+                  let phone of resume.physicalPerson.phoneNumbers;
+                  let isLast = last
+                "
+                class="phone"
               >
+                <span *ngIf="!isLast"
+                  >{{
+                    this.phoneMaskService?.applyMask(
+                      phone.number,
+                      '(00) 00000-0000'
+                    )
+                  }},
+                </span>
+                <span *ngIf="isLast">{{
+                  this.phoneMaskService?.applyMask(
+                    phone.number,
+                    '(00) 00000-0000'
+                  )
+                }}</span>
+              </span>
             </div>
           </div>
         </div>

@@ -15,6 +15,7 @@ export class ResetEmailComponent implements OnInit {
     confirmEmail: true,
   }
   isMatch: boolean = true
+  emailValid: boolean = false
   changeEmailForm!: FormGroup
   constructor(private modalService: NgxModalService, private fb: FormBuilder) {}
   private buildFormEmail(): void {
@@ -36,14 +37,13 @@ export class ResetEmailComponent implements OnInit {
   }
 
   verifyEmail() {
-    //verificação simples pegando o valor direto de cada campo
-    //e usando isso em um change.
     this.changeEmailForm.valueChanges
       .pipe(debounceTime(400))
       .subscribe((res) => {
         this.isMatch = false
         if (res.newEmail == res.confirmEmail) {
           this.isMatch = true
+          this.emailValid = true
         }
       })
   }
