@@ -4,6 +4,7 @@
     [totalItems]="totalCountResumes"
     class="pagination-number"
   ></app-pagination-number>
+
   <app-table class="table">
     <ng-container
       *ngIf="resumes != undefined && resumes.length != 0"
@@ -21,12 +22,8 @@
             "
             class="phone"
           >
-            <span *ngIf="!isLast"
-              >{{ phone.number | mask: '(00) 00000-0000' }},</span
-            >
-            <span *ngIf="isLast">{{
-              phone.number | mask: '(00) 00000-0000'
-            }}</span>
+            <span *ngIf="!isLast">{{ phone.number }},</span>
+            <span *ngIf="isLast">{{ phone.number }}</span>
           </span>
         </td>
         <td class="table-details__body--bg-primary">
@@ -35,23 +32,23 @@
             [style.background-color]="colorCodes[resumeIndex]"
             class="jobApplicationsBorder"
           >
-            {{ resume.jobApplications[0].job.name }}
-          </span>
+            {{ resume.jobApplications[0].job.name }}</span
+          >
           <button (click)="openJobsView(resume.id)" class="openJobsViewButton">
             ver todos
           </button>
         </td>
-        <td>{{ resume.physicalPerson.name }}</td>
         <td class="table-details__body--color-red">
           {{ resume.statusResume ? 'Disponível' : 'Arquivado' }}
         </td>
         <td class="table-details__body--border-btn">
-          <button (click)="viewResume(resume.id)">visualizar</button> |
+          <button (click)="viewResume(resume)">visualizar</button> |
           <button>editar</button> |
           <button>arquivar</button>
         </td>
       </tr>
     </ng-container>
+
     <ng-container
       part="empty"
       *ngIf="resumes == undefined || resumes.length == 0"
@@ -59,6 +56,7 @@
       <span id="no-content">Ainda não há currículos registrados!</span>
     </ng-container>
   </app-table>
+
   <app-pagination
     class="pagination"
     [pagination$]="pagination$"
