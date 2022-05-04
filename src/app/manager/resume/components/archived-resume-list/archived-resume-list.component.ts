@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core'
-import { Resume } from '@core/interfaces/resume/resume'
+
 import { NgxModalService } from 'lib/ngx-modal/src/public-api'
 import { Observable, of } from 'rxjs'
 import { map, tap } from 'rxjs/operators'
-import { createPagination } from '@shared/utils/pagination.utils'
+
+import { Resume } from '@core/interfaces/resume/resume'
 import { ResumeService } from '../../services/resume.service'
 import { ResumeViewComponent } from '../resume-view/resume-view.component'
 import { ResumeJobsViewComponent } from '../resume-jobs-view/resume-jobs-view.component'
 import { Workfield } from '@core/interfaces/resume/workfield'
+import { WorkfieldService } from '@shared/services/workfield.service'
+import { PaginationService } from '@shared/services/pagination.service'
 
 const ITEMS_PER_PAGE = 6
 
@@ -25,7 +28,9 @@ export class ArchivedResumeListComponent implements OnInit {
 
   constructor(
     private resumeService: ResumeService,
-    private modalService: NgxModalService
+    private workfieldService: WorkfieldService,
+    private modalService: NgxModalService,
+    private paginationService: PaginationService
   ) {}
 
   ngOnInit(): void {
@@ -34,7 +39,7 @@ export class ArchivedResumeListComponent implements OnInit {
 
   getResumesFromServer(page: number = 1, params?: any) {
     this.resumeService
-      .getResume({ statusResume: false })
+      .findAll('', { statusResume: false })
       .pipe(
         tap((resume) => {
           this.totalCountResumes = resume.data.length
@@ -47,10 +52,10 @@ export class ArchivedResumeListComponent implements OnInit {
   }
 
   paginateResumes(page: number, resumes: Resume[]) {
-    let { results, pagination } = createPagination(
+    let { results, pagination } = this.paginationService.createPagination(
       page,
       resumes,
-      this.verifyPageSize()
+      this.paginationService.verifyPageSize()
     )
 
     this.resumes = results
@@ -65,13 +70,6 @@ export class ArchivedResumeListComponent implements OnInit {
       .subscribe()
   }
 
-  verifyPageSize(): number {
-    if (document.body.getBoundingClientRect().width < 768) return ITEMS_PER_PAGE
-    const contentSizeHeight = document.body.getBoundingClientRect().height * 0.6
-    const cardSizeHeight = 80
-    return Math.floor(contentSizeHeight / cardSizeHeight)
-  }
-
   openJobsView(resumeId: number) {
     let modal = this.modalService
       .open(ResumeJobsViewComponent, { resumeId })
@@ -79,8 +77,8 @@ export class ArchivedResumeListComponent implements OnInit {
   }
 
   getColorCodes() {
-    this.resumeService.getWorkfields().subscribe((workfields) => {
-      let tempWorkfields: Workfield[] = workfields.data
+    this.workfieldService.findAll().subscribe((workfield) => {
+      let tempWorkfields: Workfield[] = workfield.data
 
       this.resumes.forEach((resume, index) => {
         tempWorkfields.forEach((workfield) => {
