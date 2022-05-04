@@ -1,14 +1,13 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-
-import { Resume } from '@core/interfaces/resume/resume'
+import { Workfield } from '@core/interfaces/resume/workfield'
 import { BaseResourceService } from '@core/services/base-resource.service'
 
 @Injectable({
   providedIn: 'root',
 })
-export class ResumeService extends BaseResourceService<Resume> {
+export class WorkfieldService extends BaseResourceService<Workfield> {
   constructor(http: HttpClient) {
-    super(http, 'resume')
+    super(http, 'workfield')
   }
 }
