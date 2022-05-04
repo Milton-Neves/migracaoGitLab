@@ -17,6 +17,7 @@ export class ResetPasswordComponent implements OnInit {
   isMatch: boolean = true
   changePasswordForm!: FormGroup
   pwdPattern = `^(?=.*\d)(?=.*[a-z])[0-9a-zA-Z$*&@#]{8,}$`
+  buttonState: boolean = false
   constructor(private modalService: NgxModalService, private fb: FormBuilder) {}
 
   private buildForm(): void {
@@ -50,6 +51,10 @@ export class ResetPasswordComponent implements OnInit {
           this.isMatch = true
         }
       })
+  }
+  toggle() {
+    this.buttonState = this.buttonState ? false : true
+    console.log(this.buttonState)
   }
 
   ngOnInit(): void {
