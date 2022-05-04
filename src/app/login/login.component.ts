@@ -48,10 +48,13 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.loginRequestIsLoading = false
           this.toastrService.success('Login realizado com sucesso', 'Sucesso')
         }),
-        catchError(({ error }) => {
+        catchError((error) => {
           this.loginRequestIsLoading = false
-          this.toastrService.error(error.message, 'Error')
-          return throwError(error.message)
+          let messageError = !!error
+            ? 'Não foi possível se conectar com o servidor'
+            : error.message
+          this.toastrService.error(messageError, 'Error')
+          return throwError(messageError)
         })
       )
       .subscribe()
