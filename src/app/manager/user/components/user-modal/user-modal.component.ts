@@ -8,13 +8,11 @@ import { Component, OnInit } from '@angular/core'
 export class UserModalComponent implements OnInit {
   sectionTitle = ['Alterar senha', 'Alterar e-mail']
   activeTab?: string
-  modalService: any
 
   constructor() {}
 
   changeTab(tab: any) {
     this.activeTab = tab
-    console.log(this.activeTab)
   }
 
   ngOnInit(): void {

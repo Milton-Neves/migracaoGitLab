@@ -1,14 +1,13 @@
 <div class="tab-struct" [formGroup]="changeEmailForm">
   <h1 class="title-email">E-mail atual: loremipsum@gmail.com</h1>
   <input
-    type="text"
+    type="email"
     placeholder="novo e-mail"
     formControlName="newEmail"
-    ngModel
     required
   />
   <input
-    type="text"
+    type="email"
     placeholder="confirme e-mail"
     formControlName="confirmEmail"
     (keyup)="verifyEmail()"

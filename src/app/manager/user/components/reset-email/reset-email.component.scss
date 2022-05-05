@@ -8,9 +8,8 @@
   align-items: center;
   .title-email {
     width: 100%;
-    margin-top: -1rem;
     font-weight: 400;
-    font-size: 12px;
+    font-size: 0.8rem;
     line-height: 24px;
     color: $blue-700;
   }
@@ -19,14 +18,10 @@
     margin-left: 1.5rem;
     flex-direction: column;
     flex-grow: 1;
-    padding: 0.4rem 0.4rem;
     width: 112%;
     border: 1px solid #cccccc;
     padding: 0.5rem 0.5rem;
     border-radius: 5px;
-    background: white;
-    background-repeat: no-repeat;
-    background-position: 95% 50%;
   }
   input :placeholder {
     font-size: 0.7rem;
@@ -42,27 +37,16 @@
   margin: 1.2rem;
   gap: 1.5rem;
 }
-.text-error {
+span {
   font-size: 0.9rem;
   font-weight: 400;
-  color: $red-500;
+  margin: 0.4rem;
   display: flex;
   justify-content: center;
-  margin: 0.4rem;
-}
-.text-error {
-  font-size: 0.9rem;
-  font-weight: 400;
-  color: $red-500;
-  display: flex;
-  justify-content: center;
-  margin: 0.4rem;
-}
-.text-confirm {
-  font-size: 0.9rem;
-  font-weight: 400;
-  color: $green-500;
-  display: flex;
-  justify-content: center;
-  margin: 0.4rem;
+  .text-error {
+    color: $red-500;
+  }
+  .text-confirm {
+    color: $green-500;
+  }
 }

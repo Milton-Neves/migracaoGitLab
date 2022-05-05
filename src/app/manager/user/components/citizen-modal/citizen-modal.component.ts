@@ -14,7 +14,6 @@ export class CitizenModalComponent implements OnInit {
 
   changeTab(tab: any) {
     this.activeTab = tab
-    console.log(this.activeTab)
   }
 
   ngOnInit(): void {
