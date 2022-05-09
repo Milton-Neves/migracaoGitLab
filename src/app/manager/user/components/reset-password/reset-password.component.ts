@@ -18,6 +18,7 @@ export class ResetPasswordComponent implements OnInit {
   changePasswordForm!: FormGroup
   pwdPattern = `^(?=.*\d)(?=.*[a-z])[0-9a-zA-Z$*&@#]{8,}$`
   buttonState: boolean = false
+  activeButton: boolean = false
   constructor(private modalService: NgxModalService, private fb: FormBuilder) {}
 
   private buildForm(): void {
@@ -55,6 +56,9 @@ export class ResetPasswordComponent implements OnInit {
   toggle() {
     this.buttonState = this.buttonState ? false : true
     console.log(this.buttonState)
+  }
+  toggleTwo() {
+    this.activeButton = this.activeButton ? false : true
   }
 
   ngOnInit(): void {
