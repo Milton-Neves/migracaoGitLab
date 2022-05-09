@@ -11,6 +11,7 @@ import { ResumeService } from '../../services/resume.service'
 import { ResumeJobsViewComponent } from '../resume-jobs-view/resume-jobs-view.component'
 import { ResumeViewComponent } from '../resume-view/resume-view.component'
 import { PaginationService } from '@shared/services/pagination.service'
+import { ArchivingModalComponent } from '../archiving-modal/archiving-modal.component'
 
 @Component({
   selector: 'app-active-resume-list',
@@ -72,6 +73,9 @@ export class ActiveResumeListComponent implements OnInit {
     let modal = this.modalService
       .open(ResumeJobsViewComponent, { resumeId })
       .subscribe()
+  }
+  openArchivingModal() {
+    let modal = this.modalService.open(ArchivingModalComponent).subscribe()
   }
 
   getColorCodes() {
