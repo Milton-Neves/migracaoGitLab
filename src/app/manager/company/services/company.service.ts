@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { Resume } from '@core/interfaces/resume/resume'
 import { ApiResponse } from '@shared/models/api-response.model'
 import { environment } from 'environments/environment'
 import { Observable } from 'rxjs'
@@ -8,19 +7,15 @@ import { Observable } from 'rxjs'
 @Injectable({
   providedIn: 'root',
 })
-export class ResumeService {
+export class CompanyService {
   endpoints = {
-    listAll: () => 'resume',
-    getOne: (id: number) => `resume/${id}`,
+    listAll: () => 'company',
+    getOne: (id: number) => `company/${id}`,
   }
-
   constructor(private http: HttpClient) {}
-
-  getResume(params?: any): Observable<ApiResponse<Resume[]>> {
-    return this.http.get<ApiResponse<Resume[]>>(
-      this.endpoints +
-        '?params=' +
-        params`${environment.baseUrl}/api/${this.endpoints.listAll()}`,
+  getCompanyService(params?: any): Observable<ApiResponse<CompanyService[]>> {
+    return this.http.get<ApiResponse<CompanyService[]>>(
+      `${environment.baseUrl}/api/${this.endpoints.listAll()}`,
       {
         params: {
           ...params,
@@ -29,8 +24,8 @@ export class ResumeService {
     )
   }
 
-  getOneResume(id: number): Observable<ApiResponse<Resume>> {
-    return this.http.get<ApiResponse<Resume>>(
+  getOneCompanyService(id: number): Observable<ApiResponse<CompanyService>> {
+    return this.http.get<ApiResponse<CompanyService>>(
       `${environment.baseUrl}/api/${this.endpoints.getOne(id)}`
     )
   }
