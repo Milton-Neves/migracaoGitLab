@@ -1,3 +1,47 @@
-<app-pagination></app-pagination>
-<app-table></app-table>
-<app-pagination-number></app-pagination-number>
+<div class="container">
+  <app-table class="table">
+    <ng-container *ngIf="!!resumes" part="list">
+      <tr
+        class="table-details__body--text-description"
+        *ngFor="let resume of resumes; let resumeIndex = index"
+      >
+        <td>{{ resume?.physicalPerson?.name }}</td>
+        <td>
+          <span
+            *ngFor="
+              let phone of resume.physicalPerson.phoneNumbers;
+              let isLast = last
+            "
+            class="phone"
+          >
+            <span *ngIf="!isLast">{{ phone.number }},</span>
+            <span *ngIf="isLast">{{ phone.number }}</span>
+          </span>
+        </td>
+
+        <td class="table-details__body--color-red">
+          {{ resume.statusResume ? 'Disponível' : 'Arquivado' }}
+        </td>
+        <td class="table-details__body--border-btn">
+          <button (click)="viewResume(resume)">Visualizar</button>
+          <button>Editar</button>
+          <button>Arquivar</button>
+        </td>
+      </tr>
+    </ng-container>
+    <ng-container part="empty" *ngIf="!!resumes">
+      <span id="no-content">Ainda não há currículos registrados!</span>
+    </ng-container>
+  </app-table>
+  <div class="pagination" *ngIf="resumes.length !== 0">
+    <app-pagination-number
+      [visibleItems]="resumes.length"
+      [totalItems]="totalCountResumes"
+    ></app-pagination-number>
+
+    <app-pagination
+      [pagination$]="pagination$"
+      (currentPageEmit)="getResumesFromServer($event)"
+    ></app-pagination>
+  </div>
+</div>

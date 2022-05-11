@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core'
-import { Resume } from '@core/interfaces/resume/resume'
-import { Workfield } from '@core/interfaces/resume/workfield'
-import { createPagination } from '@shared/utils/pagination.utils'
-import { NgxModalService } from 'lib/ngx-modal/src/public-api'
-import { MaskApplierService } from 'ngx-mask'
+
 import { Observable, of } from 'rxjs'
 import { map, tap } from 'rxjs/operators'
+import { NgxModalService } from 'lib/ngx-modal/src/public-api'
 
+import { Resume } from '@core/interfaces/resume/resume'
+import { Workfield } from '@core/interfaces/resume/workfield'
+import { WorkfieldService } from '@shared/services/workfield.service'
 import { ResumeService } from '../../services/resume.service'
 import { ResumeJobsViewComponent } from '../resume-jobs-view/resume-jobs-view.component'
 import { ResumeViewComponent } from '../resume-view/resume-view.component'
+import { PaginationService } from '@shared/services/pagination.service'
 
-const ITEMS_PER_PAGE = 6
 @Component({
   selector: 'app-active-resume-list',
   templateUrl: './active-resume-list.component.html',
@@ -26,8 +26,9 @@ export class ActiveResumeListComponent implements OnInit {
 
   constructor(
     private resumeService: ResumeService,
+    private workfieldService: WorkfieldService,
     private modalService: NgxModalService,
-    private phoneMaskService: MaskApplierService
+    private paginationService: PaginationService
   ) {}
 
   ngOnInit(): void {
@@ -36,7 +37,7 @@ export class ActiveResumeListComponent implements OnInit {
 
   getResumesFromServer(page: number = 1, params?: any) {
     this.resumeService
-      .getResume({ statusResume: true })
+      .findAll('', { statusResume: true })
       .pipe(
         tap((resume) => {
           this.totalCountResumes = resume.data.length
@@ -48,31 +49,23 @@ export class ActiveResumeListComponent implements OnInit {
       .subscribe()
   }
 
-  paginateResumes(page: number, resumes: Resume[]) {
-    let { results, pagination } = createPagination(
+  paginateResumes(page: number, resumes: any[]) {
+    let { results, pagination } = this.paginationService.createPagination(
       page,
       resumes,
-      this.verifyPageSize()
+      this.paginationService.verifyPageSize()
     )
 
     this.resumes = results
     this.pagination$ = of(pagination)
   }
 
-  viewResume(resumeId: number) {
+  viewResume(resume: Resume) {
     let modal = this.modalService
       .open(ResumeViewComponent, {
-        resumeId: resumeId,
-        phoneMaskService: this.phoneMaskService,
+        resume: resume,
       })
       .subscribe()
-  }
-
-  verifyPageSize(): number {
-    if (document.body.getBoundingClientRect().width < 768) return ITEMS_PER_PAGE
-    const contentSizeHeight = document.body.getBoundingClientRect().height * 0.6
-    const cardSizeHeight = 80
-    return Math.floor(contentSizeHeight / cardSizeHeight)
   }
 
   openJobsView(resumeId: number) {
@@ -82,9 +75,8 @@ export class ActiveResumeListComponent implements OnInit {
   }
 
   getColorCodes() {
-    this.resumeService.getWorkfields().subscribe((workfields) => {
-      let tempWorkfields: Workfield[] = workfields.data
-
+    this.workfieldService.findAll().subscribe((workfield) => {
+      let tempWorkfields: Workfield[] = workfield.data
       this.resumes.forEach((resume, index) => {
         tempWorkfields.forEach((workfield) => {
           if (resume.jobApplications[0].job.workfield == workfield.id) {

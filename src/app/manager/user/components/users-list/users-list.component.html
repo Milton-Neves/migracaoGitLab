@@ -15,6 +15,9 @@
 
   <div class="firstSection">
     <ng-container *ngIf="activeTab == sectionTitle[0]">
+      <button class="buttons-style" (click)="openUserModal()">
+        Abrir modal
+      </button>
       <div class="pagination-number">
         <app-pagination-number
           [visibleItems]="12"
@@ -41,6 +44,9 @@
 
   <div class="thirdSection">
     <ng-container *ngIf="activeTab == sectionTitle[2]">
+      <button class="buttons-style" (click)="openCitizenModal()">
+        Abrir modal
+      </button>
       <div class="pagination-number">
         <app-pagination-number
           [visibleItems]="12"

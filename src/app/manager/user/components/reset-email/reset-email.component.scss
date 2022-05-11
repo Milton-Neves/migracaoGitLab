@@ -1,0 +1,52 @@
+@import '../../../../../assets/styles/scss/variables';
+.tab-struct {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 80%;
+  align-items: center;
+  .title-email {
+    width: 100%;
+    font-weight: 400;
+    font-size: 0.8rem;
+    color: $blue-700;
+  }
+  input {
+    display: flex;
+    margin-left: 1.5rem;
+    flex-direction: column;
+    flex-grow: 1;
+    width: 112%;
+    border: 1px solid $gray-300;
+    padding: 0.5rem 0.5rem;
+    border-radius: 5px;
+  }
+  input :placeholder {
+    font-size: 0.7rem;
+    max-width: 88%;
+    overflow: hidden;
+    display: block;
+    color: $gray-500;
+  }
+}
+.buttons-style {
+  display: flex;
+  justify-content: flex-end;
+  margin: 1.2rem;
+  gap: 1.5rem;
+}
+span {
+  font-size: 0.9rem;
+  font-weight: 400;
+  margin: 0.4rem;
+  display: flex;
+  justify-content: center;
+}
+.text-error {
+  color: $red-500;
+}
+.text-confirm {
+  color: $green-500;
+  margin-right: 13rem;
+}

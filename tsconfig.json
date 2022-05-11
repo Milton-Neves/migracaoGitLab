@@ -20,7 +20,8 @@
     "paths": {
       "@shared/*": ["app/shared/*"],
       "@core/*": ["app/core/*"]
-    }
+    },
+    "esModuleInterop": true
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

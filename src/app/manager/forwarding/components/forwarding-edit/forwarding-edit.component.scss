@@ -15,7 +15,7 @@
   display: flex;
   justify-content: space-between;
   font-size: 14px;
-  color: #1c3152;
+  color: $blue-700;
 }
 
 .career {
@@ -30,7 +30,7 @@
 }
 
 .company {
-  color: #1c3152;
+  color: $blue-700;
   font-size: 26px;
   font-weight: bold;
 }
@@ -113,8 +113,8 @@
 }
 
 .available {
-  background: #1c3152;
-  color: white;
+  background: $blue-700;
+  color: $white;
   border: none;
   font-weight: 500;
   font-size: 0.9rem;
@@ -123,8 +123,8 @@
 }
 
 .contracts {
-  background: #e8e8e8;
-  color: #808192;
+  background: $gray-300;
+  color: $gray-700;
   border: none;
   font-weight: 500;
   font-size: 0.9rem;
@@ -146,7 +146,7 @@
 }
 
 .input label {
-  color: #808192;
+  color: $gray-700;
   font-size: 12px;
   font-weight: 500;
 }
@@ -160,8 +160,8 @@
   width: 17px;
   height: 17px;
   border-radius: 2px;
-  background-color: white;
-  border: 1px solid gray;
+  background-color: $white;
+  border: 1px solid $gray-700;
   display: inline-block;
   vertical-align: middle;
   margin-right: 5px;
@@ -169,7 +169,7 @@
 
 .input input:checked + label:before {
   background-image: url("data:image/svg+xml,%3Csvg width='17' height='19' viewBox='0 0 15 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M13 2L5.4375 9L2 5.81818' stroke='white' stroke-width='1.5' stroke-linecap='square' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
-  background-color: #1c3152;
+  background-color: $blue-700;
   background-position: center;
   border: none;
   padding: 1px;
@@ -188,8 +188,8 @@
   width: 17px;
   height: 17px;
   border-radius: 2px;
-  background-color: white;
-  border: 1px solid gray;
+  background-color: $white;
+  border: 1px solid $gray-700;
   display: inline-block;
   vertical-align: middle;
   margin-right: 5px;
@@ -197,7 +197,7 @@
 
 .checkbox input:checked + label:before {
   background-image: url("data:image/svg+xml,%3Csvg width='17' height='19' viewBox='0 0 15 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M13 2L5.4375 9L2 5.81818' stroke='white' stroke-width='1.5' stroke-linecap='square' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
-  background-color: #1c3152;
+  background-color: $blue-700;
   background-position: center;
   border: none;
   padding: 1px;

@@ -1,0 +1,21 @@
+<div class="resume-details__box__experience">
+  <h3 class="resume-details__box__experience--title">Experiência</h3>
+
+  <div class="resume-details__box__experience--description">
+    <div
+      class="resume-details__box__experience--skills"
+      *ngFor="let workExperience of workExperiences"
+    >
+      <span
+        ><b>Nome da empresa:</b> {{ workExperience.company | dashOnNull }}</span
+      >
+      <span
+        ><b>Período:</b> {{ workExperience.period.start }} -
+        {{
+          workExperience.period.end != null ? workExperience.period.end : '...'
+        }}</span
+      >
+      <span><b>Formal:</b> {{ workExperience.isFormal ? 'Sim' : 'Não' }}</span>
+    </div>
+  </div>
+</div>

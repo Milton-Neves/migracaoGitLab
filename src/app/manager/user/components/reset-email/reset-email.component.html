@@ -1,0 +1,32 @@
+<div class="tab-struct" [formGroup]="changeEmailForm">
+  <input type="wmail" placeholder="loremipsum@gmail.com" disabled />
+  <input
+    type="email"
+    placeholder="novo e-mail"
+    formControlName="newEmail"
+    required
+  />
+  <input
+    type="email"
+    placeholder="confirme e-mail"
+    formControlName="confirmEmail"
+    (keyup)="verifyEmail()"
+  />
+</div>
+<span class="text-error" *ngIf="!isMatch">
+  Ops! Algo deu errado. Digite o mesmo email nos dois campos.</span
+>
+<span class="text-confirm" *ngIf="emailValid">
+  E-mail alterado com sucesso!</span
+>
+<div class="buttons-style">
+  <app-button
+    [text]="'Cancelar'"
+    [color]="'transparent'"
+    [textColor]="'#1C3152'"
+    (click)="closeModalEmail()"
+  >
+  </app-button>
+  <app-button [text]="'Salvar'" [color]="'#1C3152'" (click)="verifyEmail()">
+  </app-button>
+</div>
