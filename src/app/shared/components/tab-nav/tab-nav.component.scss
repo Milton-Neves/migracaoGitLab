@@ -1,11 +1,13 @@
+@import 'variables';
+
 .container {
   width: 100%;
   .tab {
     display: flex;
     width: 100%;
-    border-bottom: 1px solid #979797;
+    border-bottom: 1px solid $gray-600;
     height: 47px;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
   }
 
   .tab ul {
@@ -23,12 +25,12 @@
     cursor: pointer;
     text-align: center;
     position: relative;
-    color: #979797;
+    color: $gray-600;
   }
 
   .color {
-    color: #1c3152 !important;
-    border-bottom: 2px solid #1c3152 !important;
+    color: $blue-700 !important;
+    border-bottom: 2px solid $blue-700 !important;
   }
 
   .content {

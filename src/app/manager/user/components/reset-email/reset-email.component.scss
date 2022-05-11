@@ -10,7 +10,6 @@
     width: 100%;
     font-weight: 400;
     font-size: 0.8rem;
-    line-height: 24px;
     color: $blue-700;
   }
   input {
@@ -19,7 +18,7 @@
     flex-direction: column;
     flex-grow: 1;
     width: 112%;
-    border: 1px solid #cccccc;
+    border: 1px solid $gray-300;
     padding: 0.5rem 0.5rem;
     border-radius: 5px;
   }
@@ -43,10 +42,11 @@ span {
   margin: 0.4rem;
   display: flex;
   justify-content: center;
-  .text-error {
-    color: $red-500;
-  }
-  .text-confirm {
-    color: $green-500;
-  }
+}
+.text-error {
+  color: $red-500;
+}
+.text-confirm {
+  color: $green-500;
+  margin-right: 13rem;
 }
