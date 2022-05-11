@@ -58,3 +58,11 @@ li {
   filter: brightness(0.8);
   cursor: not-allowed;
 }
+
+html,
+body {
+  height: 100vh;
+}
+body {
+  margin: 0;
+}

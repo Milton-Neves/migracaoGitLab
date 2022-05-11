@@ -1,3 +1,4 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { CommonModule } from '@angular/common'
 import { HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core'
@@ -30,7 +31,7 @@ const components = [
 
 @NgModule({
   declarations: components,
-  imports: [CommonModule, HttpClientModule],
+  imports: [CommonModule, HttpClientModule, FormsModule, ReactiveFormsModule],
   exports: components,
 })
 export class SharedModule {}
