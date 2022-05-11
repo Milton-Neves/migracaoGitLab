@@ -1,4 +1,7 @@
+import { CitizenModalComponent } from './../citizen-modal/citizen-modal.component'
 import { Component, OnInit } from '@angular/core'
+import { NgxModalService } from 'lib/ngx-modal/src/lib/ngx-modal.service'
+import { UserModalComponent } from '../user-modal/user-modal.component'
 
 @Component({
   selector: 'app-users-list',
@@ -9,7 +12,8 @@ export class UsersListComponent implements OnInit {
   sectionTitle = ['SEMAS', 'EMPRESAS', 'CIDADÃOS']
   activeTab?: string
   placeholderActiveSection!: string
-  constructor() {}
+
+  constructor(private modalService: NgxModalService) {}
 
   changeTab(tab: any) {
     this.activeTab = tab
@@ -26,8 +30,15 @@ export class UsersListComponent implements OnInit {
         : (this.placeholderActiveSection = 'Buscar por nome ou CPF')
     }, 100)
   }
+  openUserModal() {
+    let modal = this.modalService.open(UserModalComponent).subscribe()
+  }
+  openCitizenModal() {
+    let modal = this.modalService.open(CitizenModalComponent).subscribe()
+  }
 
   ngOnInit(): void {
     this.checkPlaceholder()
+    this.activeTab = this.sectionTitle[0]
   }
 }
