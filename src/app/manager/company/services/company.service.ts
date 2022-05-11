@@ -8,6 +8,9 @@ import { Observable } from 'rxjs'
   providedIn: 'root',
 })
 export class CompanyService {
+  getCompanys() {
+    throw new Error('Method not implemented.')
+  }
   endpoints = {
     listAll: () => 'company',
     getOne: (id: number) => `company/${id}`,

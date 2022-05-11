@@ -3,7 +3,8 @@
     [visibleItems]="resumes.length"
     [totalItems]="totalCountResumes"
     class="pagination-number"
-  ></app-pagination-number>
+  >
+  </app-pagination-number>
   <app-table class="table">
     <ng-container
       *ngIf="resumes != undefined && resumes.length != 0"
@@ -62,5 +63,6 @@
     class="pagination"
     [pagination$]="pagination$"
     (currentPageEmit)="getResumesFromServer($event)"
-  ></app-pagination>
+  >
+  </app-pagination>
 </div>
