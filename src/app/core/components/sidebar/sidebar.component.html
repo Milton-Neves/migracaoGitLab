@@ -4,13 +4,13 @@
       <img
         *ngIf="isOpen"
         class="logo-bemp"
-        src="../../../../assets/icons/sidebar/logo-bemp.svg "
+        src="../../../../assets/images/icons/sidebar/logo-bemp.svg "
         alt="Banco de Empregos"
       />
       <img
         *ngIf="!isOpen"
         class="logo-prefeitura"
-        src="../../../../assets/icons/sidebar/icone-logo-prefeitura.svg "
+        src="../../../../assets/images/icons/sidebar/icone-logo-prefeitura.svg "
         alt="Prefeitura Municipal de Parnamirim"
       />
     </button>
@@ -24,7 +24,7 @@
         >
           <img
             class="icones"
-            src="../../../../assets/icons/sidebar/icone-inicio.svg"
+            src="../../../../assets/images/icons/sidebar/icone-inicio.svg"
             alt="Inicio"
           />
           <span class="items">Início</span>
@@ -38,7 +38,7 @@
         >
           <img
             class="icones"
-            src="../../../../assets/icons/sidebar/icone-curriculo.svg"
+            src="../../../../assets/images/icons/sidebar/icone-curriculo.svg"
             alt="Currículos"
           />
           <span class="items">Currículos</span>
@@ -49,7 +49,7 @@
         <a [routerLink]="['/gerenciador/empresas']" routerLinkActive="--active">
           <img
             class="icones"
-            src="../../../../assets/icons/sidebar/icone-empresas.svg"
+            src="../../../../assets/images/icons/sidebar/icone-empresas.svg"
             alt="Empresas"
           />
           <span class="items">Empresas</span>
@@ -63,7 +63,7 @@
         >
           <img
             class="icones"
-            src="../../../../assets/icons/sidebar/icone-encaminhamentos.svg"
+            src="../../../../assets/images/icons/sidebar/icone-encaminhamentos.svg"
             alt="Encaminhamentos"
           />
           <span class="items">Encaminhamentos</span>
@@ -74,7 +74,7 @@
         <a [routerLink]="['/gerenciador/cargos']" routerLinkActive="--active">
           <img
             class="icones"
-            src="../../../../assets/icons/sidebar/icone-cargos.svg"
+            src="../../../../assets/images/icons/sidebar/icone-cargos.svg"
             alt="Cargos"
           />
           <span class="items">Cargos</span>
@@ -88,7 +88,7 @@
         >
           <img
             class="icones"
-            src="../../../../assets/icons/sidebar/icone-relatorios.svg"
+            src="../../../../assets/images/icons/sidebar/icone-relatorios.svg"
             alt="Relatórios"
           />
           <span class="items">Relatórios</span>
@@ -99,7 +99,7 @@
         <a [routerLink]="['/gerenciador/usuarios']" routerLinkActive="--active">
           <img
             class="icones"
-            src="../../../../assets/icons/sidebar/icone-usuarios.svg"
+            src="../../../../assets/images/icons/sidebar/icone-usuarios.svg"
             alt="Usuários"
           />
           <span class="items">Usuários</span>
@@ -113,7 +113,10 @@
     class="toggle-button"
     [ngClass]="{ 'flex-end': isOpen }"
   >
-    <img *ngIf="!isOpen" src="../../../../assets/icons/arrow-right.svg" />
-    <img *ngIf="isOpen" src="../../../../assets/icons/arrow-left.svg" />
+    <img
+      *ngIf="!isOpen"
+      src="../../../../assets/images/icons/arrow-right.svg"
+    />
+    <img *ngIf="isOpen" src="../../../../assets/images/icons/arrow-left.svg" />
   </button>
 </div>
