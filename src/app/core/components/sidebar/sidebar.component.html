@@ -16,93 +16,19 @@
     </button>
 
     <ul>
-      <li>
+      <li *ngFor="let module of modules">
+        <span class="tooltip">{{ module.title }}</span>
         <a
-          [routerLink]="['/gerenciador']"
+          [routerLink]="[module.link]"
           routerLinkActive="--active"
           [routerLinkActiveOptions]="{ exact: true }"
         >
           <img
             class="icones"
-            src="../../../../assets/images/icons/sidebar/icone-inicio.svg"
-            alt="Inicio"
+            [src]="module.iconPath"
+            [attr.alt]="module.title"
           />
-          <span class="items">Início</span>
-        </a>
-      </li>
-
-      <li>
-        <a
-          [routerLink]="['/gerenciador/curriculos']"
-          routerLinkActive="--active"
-        >
-          <img
-            class="icones"
-            src="../../../../assets/images/icons/sidebar/icone-curriculo.svg"
-            alt="Currículos"
-          />
-          <span class="items">Currículos</span>
-        </a>
-      </li>
-
-      <li>
-        <a [routerLink]="['/gerenciador/empresas']" routerLinkActive="--active">
-          <img
-            class="icones"
-            src="../../../../assets/images/icons/sidebar/icone-empresas.svg"
-            alt="Empresas"
-          />
-          <span class="items">Empresas</span>
-        </a>
-      </li>
-
-      <li>
-        <a
-          [routerLink]="['/gerenciador/encaminhamentos']"
-          routerLinkActive="--active"
-        >
-          <img
-            class="icones"
-            src="../../../../assets/images/icons/sidebar/icone-encaminhamentos.svg"
-            alt="Encaminhamentos"
-          />
-          <span class="items">Encaminhamentos</span>
-        </a>
-      </li>
-
-      <li>
-        <a [routerLink]="['/gerenciador/cargos']" routerLinkActive="--active">
-          <img
-            class="icones"
-            src="../../../../assets/images/icons/sidebar/icone-cargos.svg"
-            alt="Cargos"
-          />
-          <span class="items">Cargos</span>
-        </a>
-      </li>
-
-      <li>
-        <a
-          [routerLink]="['/gerenciador/relatorios']"
-          routerLinkActive="--active"
-        >
-          <img
-            class="icones"
-            src="../../../../assets/images/icons/sidebar/icone-relatorios.svg"
-            alt="Relatórios"
-          />
-          <span class="items">Relatórios</span>
-        </a>
-      </li>
-
-      <li>
-        <a [routerLink]="['/gerenciador/usuarios']" routerLinkActive="--active">
-          <img
-            class="icones"
-            src="../../../../assets/images/icons/sidebar/icone-usuarios.svg"
-            alt="Usuários"
-          />
-          <span class="items">Usuários</span>
+          <span class="items">{{ module.title }}</span>
         </a>
       </li>
     </ul>
