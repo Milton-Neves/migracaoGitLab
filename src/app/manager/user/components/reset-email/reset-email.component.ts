@@ -9,46 +9,35 @@ import { debounceTime } from 'rxjs/operators'
   styleUrls: ['./reset-email.component.scss'],
 })
 export class ResetEmailComponent implements OnInit {
-  form: any
-  visibilityEmail = {
-    email: true,
-    confirmEmail: true,
-  }
   isMatch: boolean = true
-  emailValid: boolean = false
   changeEmailForm!: FormGroup
+
   constructor(private modalService: NgxModalService, private fb: FormBuilder) {}
-  private buildFormEmail(): void {
-    this.changeEmailForm = this.fb.group({
-      newEmail: ['', Validators.required],
-      confirmEmail: ['', [Validators.required]],
-    })
+
+  ngOnInit(): void {
+    this.changeEmailForm = this.createForm()
   }
-  closeModalEmail() {
+
+  get newEmail() {
+    return this.changeEmailForm.controls.newEmail
+  }
+
+  closeModalEmail(): void {
     this.modalService.close()
-  }
-
-  get confirmEmail() {
-    return this.changeEmailForm.controls.confirmPass
-  }
-
-  get em() {
-    return this.changeEmailForm.controls.newPass
   }
 
   verifyEmail() {
     this.changeEmailForm.valueChanges
       .pipe(debounceTime(400))
       .subscribe((res) => {
-        this.isMatch = false
-        if (res.newEmail == res.confirmEmail) {
-          this.isMatch = true
-          this.emailValid = true
-        }
+        this.isMatch = res.newEmail == res.confirmEmail
       })
   }
 
-  ngOnInit(): void {
-    this.buildFormEmail()
+  private createForm(): FormGroup {
+    return this.fb.group({
+      newEmail: ['', [Validators.required, Validators.email]],
+      confirmEmail: ['', [Validators.required, Validators.email]],
+    })
   }
 }

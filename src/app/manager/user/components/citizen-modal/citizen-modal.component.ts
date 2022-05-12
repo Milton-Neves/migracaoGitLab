@@ -8,7 +8,6 @@ import { Component, OnInit } from '@angular/core'
 export class CitizenModalComponent implements OnInit {
   sectionTitle = ['Alterar senha', 'Alterar e-mail']
   activeTab?: string
-  modalService: any
 
   constructor() {}
 
