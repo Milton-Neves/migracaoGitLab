@@ -4,12 +4,91 @@
   height: 331px;
   background: #ffffff;
   border-radius: 15px;
-  .title {
-    font-family: 'Roboto';
-    font-style: normal;
+  &__title {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.9rem 1.5rem 2rem;
     font-weight: 500;
     font-size: 18px;
     line-height: 100%;
     color: $blue-700;
   }
+  &__situation b:first-child {
+    font-size: 0.9rem;
+    color: $blue-700;
+  }
+  &__situation {
+    margin-left: 1.2rem;
+    font-size: 0.8rem;
+    color: $green-500;
+    font-weight: 500;
+  }
+
+  input {
+    width: 89%;
+    border: 1px solid #cccccc;
+    padding: 0.4rem;
+    border-radius: 5px;
+    background: $white;
+    background-repeat: no-repeat;
+    background-position: 95% 50%;
+    background-image: url(../../../../../assets/icons/arrow-bottom.svg);
+    //background-image: url(../../../../../assets/icons/line.svg);
+    margin: 1rem 1rem;
+
+    &::placeholder {
+      font-size: 0.9rem;
+      max-width: 88%;
+      overflow: hidden;
+      display: block;
+      color: $gray-500;
+    }
+    // &::before {
+    //   content: 'Observe esta caixa laranja';
+    //   background-color: #ffba10;
+    //   border-color: black;
+    //   border-style: dotted;
+    // }
+  }
+  &::before {
+    position: absolute;
+    left: 0;
+    top: 24px;
+    min-width: 200px;
+    border: 1px #aaaaaa solid;
+    border-radius: 10px;
+    background-color: #ffffcc;
+    padding: 12px;
+    color: #000000;
+    font-size: 14px;
+    z-index: 1;
+  }
+
+  // input {
+  //   display: flex;
+  //   flex-direction: column;
+  //   flex-grow: 1;
+  //   width: 100%;
+  //   border: 1px solid $gray-300;
+  //   padding: 0.5rem 0.5rem;
+  //   border-radius: 5px;
+  // }
+  // input :placeholder {
+  //   font-size: 0.7rem;
+  //   max-width: 88%;
+  //   overflow: hidden;
+  //   display: block;
+  //   color: $gray-500;
+  // }
+  // &--control-select {
+  // }
 }
+// #img::before {
+//   background-image: url(../../../../../assets/icons/line.svg);
+//   color: aqua;
+// }
+// #img::after {
+//   background-image: url(../../../../../assets/icons/line.svg);
+//   position: relative;
+//   background-color: aqua;
+// }
