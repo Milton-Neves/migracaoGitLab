@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core'
 
 import { Resume } from '@core/interfaces/resume/resume'
 import { Workfield } from '@core/interfaces/resume/workfield'
+import { WorkfieldService } from '@shared/services/workfield.service'
 import { NgxModalService } from 'lib/ngx-modal/src/public-api'
 import { map } from 'rxjs/operators'
 import { ResumeService } from '../../services/resume.service'
@@ -25,7 +26,7 @@ export class ResumeViewComponent implements OnInit {
 
   constructor(
     private modalService: NgxModalService,
-    private resumeService: ResumeService
+    private workfieldService: WorkfieldService
   ) {}
 
   ngOnInit(): void {
@@ -34,8 +35,8 @@ export class ResumeViewComponent implements OnInit {
   }
 
   getColorCodes() {
-    this.resumeService
-      .getWorkfields()
+    this.workfieldService
+      .findAll()
       .pipe(
         map(({ data }) => {
           let tempWorkfields: Workfield[] = data

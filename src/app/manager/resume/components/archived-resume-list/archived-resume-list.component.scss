@@ -1,4 +1,4 @@
-@import '../../../../../assets/styles/scss/variables';
+@import 'variables';
 .container {
   width: 100%;
 }
@@ -6,18 +6,6 @@
   display: flex;
   justify-items: center;
   width: 100%;
-}
-.pagination-number {
-  display: flex;
-  flex-direction: row-reverse;
-  margin-bottom: 1rem;
-  margin-right: 1rem;
-}
-.pagination {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 1rem;
-  margin-left: 5rem;
 }
 
 .phone::after {
@@ -40,7 +28,7 @@
       border-right: none;
     }
     &--bg-primary .jobApplicationsBorder {
-      background-color: #808080;
+      background-color: $gray-700;
       color: $white;
       border-radius: 6px;
       padding: 0.1rem 1rem 0.1rem 1rem;
@@ -49,10 +37,23 @@
     &--color-red {
       color: $red-500;
     }
+    &--border-btn {
+      gap: 1rem;
+      display: flex;
+      justify-content: center;
+    }
     &--border-btn button {
       border: none;
       background: none;
-      color: $blue-700;
+      color: $gray-700;
+      border: 1px solid $black-100;
+      padding: 0.3rem 1rem;
+      border-radius: 6px;
+
+      &:hover {
+        filter: brightness(1.1);
+        background: $gray-200;
+      }
     }
   }
 }
@@ -68,4 +69,12 @@
   margin-top: 25px;
   text-align: center;
   color: $blue-700;
+}
+
+.pagination {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
 }
