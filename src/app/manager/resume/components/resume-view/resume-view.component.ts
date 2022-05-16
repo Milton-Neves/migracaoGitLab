@@ -5,6 +5,7 @@ import { Workfield } from '@core/interfaces/resume/workfield'
 import { NgxModalService } from 'lib/ngx-modal/src/public-api'
 import { map } from 'rxjs/operators'
 import { ResumeService } from '../../services/resume.service'
+import { JobListModalComponent } from '../job-list-modal/job-list-modal.component'
 
 @Component({
   selector: 'app-resume-view',
@@ -50,11 +51,25 @@ export class ResumeViewComponent implements OnInit {
       .subscribe()
   }
 
+  openJobsView(resumeId: number) {
+    let modal = this.modalService
+      .open(JobListModalComponent, { resumeId })
+      .subscribe()
+  }
+
   changeTab(tab: any) {
     this.activeTab = tab
   }
 
   closeModal() {
+    this.modalService.close()
+  }
+
+  openJobListModal() {
+    let modal = this.modalService.open(JobListModalComponent).subscribe()
+  }
+
+  closeJobListModal() {
     this.modalService.close()
   }
 }

@@ -22,10 +22,7 @@
   }
 
   &__header {
-    display: flex;
-    flex-direction: column;
     justify-content: space-between;
-    align-items: center;
     padding: 0.9rem 0.4rem;
 
     &__view {
@@ -36,6 +33,7 @@
       &--title {
         font-size: 1.1rem;
         color: $blue-700;
+        margin-right: 10rem;
       }
 
       &--tag {
@@ -43,9 +41,17 @@
         color: $white;
         font-size: 0.7rem;
         padding: 0.25rem 1rem 0.25rem 1rem;
-        margin: 0.4rem 0rem 0rem 0rem;
         border-radius: 6px;
         width: fit-content;
+      }
+
+      &--button {
+        border: none;
+        background-color: transparent;
+        margin-top: 2px;
+        font-size: 13px;
+        font-weight: 500;
+        color: #1c3152;
       }
     }
 
@@ -65,13 +71,4 @@
     display: flex;
     justify-content: flex-end;
   }
-}
-
-.more-jobs {
-  background: none;
-  border: none;
-  font-weight: 500;
-  display: flex;
-  margin-right: 5rem;
-  font-size: 0.8rem;
 }
