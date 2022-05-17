@@ -1,13 +1,14 @@
 @import '../../../../../assets/styles/scss/variables';
 .card-archiving {
-  width: 501px;
-  height: 331px;
+  width: 490px;
+  height: 230px;
   background: #ffffff;
   border-radius: 15px;
+
   &__title {
     display: flex;
     justify-content: space-between;
-    padding: 1.9rem 1.5rem 2rem;
+    padding: 1.9rem 1.5rem 1rem;
     font-weight: 500;
     font-size: 18px;
     line-height: 100%;
@@ -23,72 +24,54 @@
     color: $green-500;
     font-weight: 500;
   }
-
-  input {
-    width: 89%;
-    border: 1px solid #cccccc;
-    padding: 0.4rem;
-    border-radius: 5px;
-    background: $white;
-    background-repeat: no-repeat;
-    background-position: 95% 50%;
-    background-image: url(../../../../../assets/icons/arrow-bottom.svg);
-    //background-image: url(../../../../../assets/icons/line.svg);
-    margin: 1rem 1rem;
-
-    &::placeholder {
+  &__name-actual {
+    margin-left: 1.5rem;
+    font-size: 0.8rem;
+    color: $blue-700;
+    font-weight: 500;
+    b {
       font-size: 0.9rem;
-      max-width: 88%;
+      color: $blue-700;
+      font-weight: 400;
+    }
+  }
+  &__select {
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: $blue-700;
+    font-weight: 400;
+    margin-left: 1.5rem;
+  }
+  &__inputs {
+    display: flex;
+    flex-direction: column;
+
+    select {
+      margin-top: 0.4rem;
+      margin-left: 1.2rem;
+      width: 100%;
+      border: 1px solid #cccccc;
+      padding: 0.6rem;
+      border-radius: 5px;
+      background: url(../../../../../assets/icons/arrow-bottom.svg);
+      background-position: 5rem;
+      -webkit-appearance: none;
+      color: $gray-700;
+      font-size: 0.9rem;
+      max-width: 93%;
       overflow: hidden;
       display: block;
-      color: $gray-500;
+      background-repeat: no-repeat;
+      background-position: 95% 50%;
     }
-    // &::before {
-    //   content: 'Observe esta caixa laranja';
-    //   background-color: #ffba10;
-    //   border-color: black;
-    //   border-style: dotted;
-    // }
   }
-  &::before {
-    position: absolute;
-    left: 0;
-    top: 24px;
-    min-width: 200px;
-    border: 1px #aaaaaa solid;
-    border-radius: 10px;
-    background-color: #ffffcc;
-    padding: 12px;
-    color: #000000;
-    font-size: 14px;
-    z-index: 1;
+  &__buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin: 1rem 1rem 2rem;
+    margin-top: 2rem;
+    &__submit {
+      padding: 0.2rem 0.7rem 0.9rem;
+    }
   }
-
-  // input {
-  //   display: flex;
-  //   flex-direction: column;
-  //   flex-grow: 1;
-  //   width: 100%;
-  //   border: 1px solid $gray-300;
-  //   padding: 0.5rem 0.5rem;
-  //   border-radius: 5px;
-  // }
-  // input :placeholder {
-  //   font-size: 0.7rem;
-  //   max-width: 88%;
-  //   overflow: hidden;
-  //   display: block;
-  //   color: $gray-500;
-  // }
-  // &--control-select {
-  // }
 }
-// #img::before {
-//   background-image: url(../../../../../assets/icons/line.svg);
-//   color: aqua;
-// }
-// #img::after {
-//   background-image: url(../../../../../assets/icons/line.svg);
-//   position: relative;
-//   background-color: aqua;
-// }
