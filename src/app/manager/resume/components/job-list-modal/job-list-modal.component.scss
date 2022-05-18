@@ -1,0 +1,49 @@
+@import 'variables';
+
+.view-container {
+  padding: 1rem;
+  max-width: 500px;
+}
+
+.title-div {
+  margin-bottom: 20px;
+}
+
+.title {
+  color: $blue-700;
+  font-weight: bolder;
+  font-size: 1rem;
+}
+
+.roles-div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 5px 10px;
+  font-size: 13px;
+  max-width: 50rem;
+}
+
+p {
+  padding: 0.25rem 1rem;
+  margin: 0;
+  margin-top: 0.4rem;
+  border-radius: 6px;
+  background-color: $gray-500;
+  width: fit-content;
+  color: $white;
+}
+
+.button-div {
+  display: flex;
+  flex-flow: row-reverse;
+  margin-top: 2rem;
+}
+
+.close-button {
+  border: none;
+  color: $blue-700;
+  background-color: transparent;
+  font-size: 13px;
+  font-weight: 500;
+}

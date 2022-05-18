@@ -14,6 +14,7 @@ import { FormationComponent } from './components/resume-view/tabs/formation/form
 import { AvailabilityComponent } from './components/resume-view/tabs/availability/availability.component'
 import { AboutComponent } from './components/resume-view/tabs/about/about.component'
 import { ArchivingModalComponent } from './components/archiving-modal/archiving-modal.component'
+import { JobListModalComponent } from './components/job-list-modal/job-list-modal.component'
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -31,6 +32,7 @@ const maskConfig: Partial<IConfig> = {
     AvailabilityComponent,
     AboutComponent,
     ArchivingModalComponent,
+    JobListModalComponent,
   ],
   imports: [
     CommonModule,

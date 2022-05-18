@@ -23,7 +23,6 @@ export class ActiveResumeListComponent implements OnInit {
   totalCountResumes: number = 0
   pagination$?: Observable<any>
   colorCodes: string[] = []
-  colorPromise: Promise<boolean> = Promise.resolve(false)
 
   constructor(
     private resumeService: ResumeService,
@@ -85,7 +84,6 @@ export class ActiveResumeListComponent implements OnInit {
         tempWorkfields.forEach((workfield) => {
           if (resume.jobApplications[0].job.workfield == workfield.id) {
             this.colorCodes.push(workfield.colorCode)
-            this.colorPromise = Promise.resolve(true)
           }
         })
       })

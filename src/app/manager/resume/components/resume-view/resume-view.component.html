@@ -1,38 +1,27 @@
 <div class="resume-details">
   <header class="resume-details__header">
-    <div class="resume-name-status-div">
+    <div class="resume-details__header__view">
       <h2 class="resume-details__header__view--title">
         {{ resume?.physicalPerson?.name | dashOnNull }}
       </h2>
-      <span class="resume-details__header__situation">
-        <b> Situação: </b>
-        {{ resume?.statusResume ? 'Disponível' : 'Indisponível' }}
-      </span>
-    </div>
-    <div class="resume-details__header__view">
-      <span
-        *ngFor="
-          let object of resume?.jobApplications;
-          let isLast = last;
-          let i = index
-        "
-      >
-        <p
-          class="resume-details__header__view--tag"
-          [style.background-color]="colorCodes[i]"
-          *ngIf="!isLast"
+
+      <ng-container *ngIf="!!colorCodes.length">
+        <span class="resume-details__header__view--tag">{{
+          resume!.jobApplications[0].job?.name
+        }}</span>
+
+        <button
+          (click)="openJobsView(resume!.jobApplications!, colorCodes)"
+          class="resume-details__header__view--button"
         >
-          {{ object?.job?.name | dashOnNull }}
-        </p>
-        <p
-          class="resume-details__header__view--tag"
-          [style.background-color]="colorCodes[i]"
-          *ngIf="isLast"
-        >
-          {{ object?.job?.name | dashOnNull }}
-        </p>
-      </span>
+          ver mais
+        </button>
+      </ng-container>
     </div>
+    <span class="resume-details__header__situation"
+      ><b>Situação:</b>
+      {{ resume?.statusResume ? 'Disponível' : 'Indisponível' }}</span
+    >
   </header>
 
   <app-tab-nav
