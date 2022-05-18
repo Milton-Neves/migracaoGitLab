@@ -1,9 +1,9 @@
-<div *ngIf="resume$ | async as resume" class="view-container">
+<div class="view-container">
   <div class="title-div">
     <span class="title">Outros Cargos</span>
   </div>
   <div class="roles-div">
-    <span *ngFor="let jobs of resume.jobApplications; let i = index">
+    <span *ngFor="let jobs of jobApplications; let i = index">
       <p [style.background-color]="colorCodes[i]">
         {{ jobs.job.name }}
       </p>
