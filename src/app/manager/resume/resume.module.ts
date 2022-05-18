@@ -13,6 +13,7 @@ import { ProfessionalExperienceComponent } from './components/resume-view/tabs/p
 import { FormationComponent } from './components/resume-view/tabs/formation/formation.component'
 import { AvailabilityComponent } from './components/resume-view/tabs/availability/availability.component'
 import { AboutComponent } from './components/resume-view/tabs/about/about.component'
+import { ArchivingModalComponent } from './components/archiving-modal/archiving-modal.component'
 import { JobListModalComponent } from './components/job-list-modal/job-list-modal.component'
 
 const maskConfig: Partial<IConfig> = {
@@ -30,6 +31,7 @@ const maskConfig: Partial<IConfig> = {
     FormationComponent,
     AvailabilityComponent,
     AboutComponent,
+    ArchivingModalComponent,
     JobListModalComponent,
   ],
   imports: [
