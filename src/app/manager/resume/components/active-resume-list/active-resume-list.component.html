@@ -30,7 +30,7 @@
       </tr>
     </ng-container>
 
-    <ng-container part="empty" *ngIf="!resumes">
+    <ng-container part="empty" *ngIf="!resumes.length">
       <span id="no-content">Ainda não há currículos registrados!</span>
     </ng-container>
   </app-table>

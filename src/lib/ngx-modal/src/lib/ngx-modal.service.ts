@@ -10,7 +10,7 @@ interface Options {
   providedIn: 'root',
 })
 export class NgxModalService {
-  private modals: ComponentRef<any>[] = []
+  modals: ComponentRef<any>[] = []
 
   id?: string
   constructor(private appRef: ApplicationRef) {}
@@ -60,5 +60,6 @@ export class NgxModalService {
     }
     this.modals[this.modals.length - 1].instance.close()
     this.modals[this.modals.length - 1].destroy()
+    this.modals.pop()
   }
 }

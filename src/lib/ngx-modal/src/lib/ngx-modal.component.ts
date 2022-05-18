@@ -4,6 +4,7 @@ import {
   ComponentRef,
   ElementRef,
   EventEmitter,
+  OnDestroy,
   OnInit,
   Type,
   ViewChild,
@@ -25,8 +26,8 @@ interface Options {
             <ng-container #container></ng-container>
           </div>
         </div>
+        <div class="modal-background"></div>
       </div>
-      <div class="modal-background"></div>
     </div>
   `,
   styles: [
@@ -80,7 +81,7 @@ interface Options {
     `,
   ],
 })
-export class NgxModalComponent<T> implements OnInit {
+export class NgxModalComponent<T> implements OnInit, OnDestroy {
   childComponentRef!: ComponentRef<T>
   closed: boolean = false
 
@@ -117,8 +118,8 @@ export class NgxModalComponent<T> implements OnInit {
 
     if (!options?.ignoreBackClick) {
       this.element.addEventListener('click', (el: any) => {
-        if (el.target.className === 'modal-container') {
-          this.close()
+        if (el.target.className === 'modal-background') {
+          this.modalService.close()
         }
       })
     }
@@ -128,9 +129,11 @@ export class NgxModalComponent<T> implements OnInit {
 
   close(): void {
     if (this.closed) return
-
     this.closed = true
     this.modalService.close(this.childComponentRef)
+    this.closed = false
+    this.entry?.clear()
+    this.element.style.display = 'none'
     this.emitCloseEvent()
   }
 
