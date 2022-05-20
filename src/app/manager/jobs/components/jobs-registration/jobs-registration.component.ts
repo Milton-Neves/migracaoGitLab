@@ -7,11 +7,7 @@ import { NgxModalService } from 'lib/ngx-modal/src/public-api'
   styleUrls: ['./jobs-registration.component.scss'],
 })
 export class JobsRegistrationComponent implements OnInit {
-  constructor(private modalService: NgxModalService) {}
-
-  closeModalUnarchiving() {
-    this.modalService.close()
-  }
+  constructor() {}
 
   ngOnInit(): void {}
 }
