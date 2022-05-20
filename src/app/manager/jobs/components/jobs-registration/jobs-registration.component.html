@@ -1,0 +1,22 @@
+<div class="card-job-registration">
+  <h1>Dados do cargo</h1>
+  <div class="input-position">
+    <input type="text" placeholder="Nome Fantasia" />
+    <select>
+      <option value="">Área de Atuação</option>
+    </select>
+  </div>
+  <div class="buttons">
+    <app-button
+      [text]="'Cancelar'"
+      [color]="'transparent'"
+      [textColor]="'#1C3152'"
+      (click)="closeModalUnarchiving()"
+    >
+    </app-button>
+    <div class="save">
+      <app-button [text]="'Salvar'" [color]="'#1C3152'" type="submit">
+      </app-button>
+    </div>
+  </div>
+</div>

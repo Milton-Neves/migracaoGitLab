@@ -21,6 +21,11 @@ export const MODULES: SidebarModule[] = [
     title: 'Empresas',
   },
   {
+    link: '/gerenciador/cargos',
+    iconPath: '../../../../assets/images/icons/sidebar/icone-cargos.svg',
+    title: 'Cargos',
+  },
+  {
     link: '/gerenciador/encaminhamentos',
     iconPath:
       '../../../../assets/images/icons/sidebar/icone-encaminhamentos.svg',
