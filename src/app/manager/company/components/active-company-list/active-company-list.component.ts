@@ -25,6 +25,7 @@ export class ActiveCompanyListComponent implements OnInit {
       .findAll()
       .subscribe((company: ApiResponse<Company[]>) => {
         this.company = company.data
+        console.log(company.data)
       })
   }
 }

@@ -1,21 +1,28 @@
 <section (click)="openModal()">
-  <app-information-card [title]="cardList" [career]="cardList">
-    <div class="card-details">
-      <span class="card-details__forwading-datas">
-        <img src="../../../../assets/images/icon-company.svg" />
-        <b>2</b>Encaminhamentos em aberto
-      </span>
+  <ng-container *ngFor="let card of cardList">
+    <app-information-card
+      [title]="card.title"
+      [career]="card.career"
+      [stylesInformation]="card.stylesInformation"
+      [stylesHeader]="card.stylesHeader"
+    >
+      <div class="card-details">
+        <span class="card-details__forwading-datas">
+          <img src="../../../../assets/images/icon-company.svg" />
+          <b>2</b>Encaminhamentos em aberto
+        </span>
 
-      <span class="card-details__forwading-datas">
-        <img src="../../../../assets/images/icon-company-blue.svg" />
-        <b>3</b>Encaminhamentos concluídos
-      </span>
-    </div>
+        <span class="card-details__forwading-datas">
+          <img src="../../../../assets/images/icon-company-blue.svg" />
+          <b>3</b>Encaminhamentos concluídos
+        </span>
+      </div>
 
-    <div class="card-company">
-      <span>Ativa desde: 15/10/21</span>
-      <span>Status: <span class="card-company__status">Ativa</span></span>
-    </div>
-  </app-information-card>
+      <div class="card-company">
+        <span>Ativa desde: 15/10/21</span>
+        <span>Status: <span class="card-company__status">Ativa</span></span>
+      </div>
+    </app-information-card>
+  </ng-container>
   <section></section>
 </section>

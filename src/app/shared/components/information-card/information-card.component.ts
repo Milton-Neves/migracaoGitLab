@@ -8,8 +8,8 @@ import { Component, OnInit, Input } from '@angular/core'
 export class InformationCardComponent {
   @Input() title?: string
   @Input() career?: string
-  @Input() stylesInformation!: string
-  @Input() stylesHeader!: string
+  @Input() stylesInformation?: any
+  @Input() stylesHeader?: any
 
   constructor() {}
 
