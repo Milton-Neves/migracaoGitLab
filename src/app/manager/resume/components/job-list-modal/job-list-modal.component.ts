@@ -6,6 +6,7 @@ import { Input } from '@angular/core'
 import { map } from 'rxjs/operators'
 import { Resume } from '@core/interfaces/resume/resume'
 import { Workfield } from '@core/interfaces/resume/workfield'
+import { WorkfieldService } from '@shared/services/workfield.service'
 
 @Component({
   selector: 'app-job-list-modal',
@@ -19,7 +20,8 @@ export class JobListModalComponent implements OnInit {
 
   constructor(
     private modalService: NgxModalService,
-    private resumeService: ResumeService
+    private resumeService: ResumeService,
+    private workfieldService: WorkfieldService
   ) {}
 
   ngOnInit(): void {
@@ -36,16 +38,15 @@ export class JobListModalComponent implements OnInit {
       this.closeModal()
     } else {
       this.resume$ = this.resumeService
-        .getOneResume(this.resumeId)
+        .findOne(`${this.resumeId}`)
         .pipe(map((resume) => resume.data))
     }
   }
 
   getColorCodes() {
     this.resume$?.subscribe((resume) => {
-      this.resumeService.getWorkfields().subscribe((workfields) => {
-        let tempWorkfields: Workfield[] = workfields.data
-
+      this.workfieldService.findAll().subscribe((workfield) => {
+        let tempWorkfields: Workfield[] = workfield.data
         resume.jobApplications.forEach((jobApplication) => {
           tempWorkfields.forEach((workfield) => {
             if (jobApplication.job.workfield == workfield.id) {

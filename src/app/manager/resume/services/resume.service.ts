@@ -8,6 +8,12 @@ import { BaseResourceService } from '@core/services/base-resource.service'
   providedIn: 'root',
 })
 export class ResumeService extends BaseResourceService<Resume> {
+  getOneResume(resumeId: number) {
+    throw new Error('Method not implemented.')
+  }
+  getWorkfields(): void {
+    throw new Error('Method not implemented.')
+  }
   constructor(http: HttpClient) {
     super(http, 'resume')
   }

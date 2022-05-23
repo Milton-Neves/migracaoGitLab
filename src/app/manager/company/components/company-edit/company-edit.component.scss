@@ -1,4 +1,5 @@
 @import 'variables';
+/* 
 .resume-details {
   width: 46rem;
   padding: 0.3rem 2rem;
@@ -94,4 +95,275 @@
       margin: auto 1rem;
     }
   }
+}
+*/
+
+.container {
+  width: 1299px;
+  height: 862px;
+  background-color: white;
+  border-radius: 14px;
+  box-shadow: 1px 2px 8px -2px rgba(0, 0, 0, 0.25);
+}
+
+h2 {
+  display: flex;
+  justify-content: flex-start;
+  padding: 2.4rem 1.7rem 0.5rem;
+  color: $blue-700;
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+// input {
+//   background: $white;
+//   padding: 0.5rem 0.5rem;
+//   width: 100%;
+//   border: 1px solid $gray-300;
+//   box-sizing: border-box;
+//   border-radius: 4px;
+//   margin-bottom: 1rem;
+
+//   &__inputs #inputs::placeholder {
+//     font-size: 0.7rem;
+//     overflow: hidden;
+//     display: block;
+//     color: $gray-500;
+//   }
+// }
+
+.companyData {
+  &_first {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 1.7rem;
+  }
+
+  &_first input:first-child {
+    padding: 0.5rem;
+    width: 63%;
+  }
+
+  &_first input {
+    padding: 0.7rem;
+    width: 35%;
+    border-radius: 4px;
+    border: 1px solid #cccccc;
+  }
+
+  &_second {
+    display: flex;
+    padding: 0.5rem 1.7rem;
+    gap: 20px;
+
+    &__form {
+      display: flex;
+      justify-content: space-between;
+
+      &--employees {
+        width: 56%;
+        border-radius: 4px;
+        border: 1px solid #cccccc;
+        padding: 0.7rem;
+      }
+
+      &--branch {
+        width: 60%;
+        border-radius: 4px;
+        border: 1px solid #cccccc;
+        padding: 0.7rem;
+      }
+    }
+
+    // &--branch {
+    //   color: $gray-700;
+    //   padding: .7rem;
+    //   width: 80%;
+    //   border-radius: 4px;
+    //   border: 1px solid #cccccc;
+    //   margin-right: 50px;
+    // }
+  }
+
+  &_second input {
+    padding: 0.7rem;
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid #cccccc;
+  }
+
+  // &_second form {
+  //   display: flex;
+  //
+
+  //   select {
+  //     width: 60%;
+  //   }
+  // }
+}
+
+.contact {
+  &_first {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 1.7rem;
+  }
+
+  &_first input:first-child {
+    padding: 0.5rem;
+    width: 63%;
+  }
+
+  &_first input {
+    padding: 0.7rem;
+    width: 35%;
+    border-radius: 4px;
+    border: 1px solid #cccccc;
+  }
+}
+
+.address {
+  &_first {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 1.7rem;
+
+    &--street {
+      width: 50%;
+    }
+  }
+
+  &_first input:first-child {
+    padding: 0.5rem;
+    width: 30%;
+  }
+
+  &_first input {
+    padding: 0.7rem;
+    border-radius: 4px;
+    border: 1px solid #cccccc;
+  }
+
+  &_second {
+    display: flex;
+    padding: 0.5rem 1.7rem;
+  }
+
+  &_second input {
+    padding: 0.7rem;
+    border-radius: 4px;
+    border: 1px solid #cccccc;
+
+    &--city {
+      width: 25%;
+    }
+  }
+
+  // &_second select {
+  //   color: $gray-700;
+  //   width: 100%;
+  //
+  //   border: 1px solid #cccccc;
+  // }
+
+  &_second form {
+    display: flex;
+
+    &--neighbourhood {
+      color: $gray-700;
+      border-radius: 4px;
+    }
+  }
+}
+
+.corporateName {
+  &_first {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 1.7rem;
+  }
+
+  &_first input:first-child {
+    padding: 0.5rem;
+    width: 63%;
+  }
+
+  &_first input {
+    padding: 0.7rem;
+    width: 35%;
+    border-radius: 4px;
+    border: 1px solid #cccccc;
+  }
+
+  &_second {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 1.7rem;
+  }
+
+  &_second input:first-child {
+    padding: 0.5rem;
+    width: 56%;
+  }
+
+  &_second input {
+    padding: 0.7rem;
+    width: 42%;
+    border-radius: 4px;
+    border: 1px solid #cccccc;
+  }
+}
+
+.header {
+  &_first {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 1.7rem;
+  }
+
+  &_first input:first-child {
+    padding: 0.5rem;
+    width: 63%;
+  }
+
+  &_first input {
+    padding: 0.7rem;
+    width: 35%;
+    border-radius: 4px;
+    border: 1px solid #cccccc;
+  }
+
+  &_second {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 1.7rem;
+  }
+
+  &_second input {
+    padding: 0.7rem;
+    width: 53%;
+    border-radius: 4px;
+    border: 1px solid #cccccc;
+  }
+
+  &_second select {
+    color: $gray-700;
+    padding: 0.7rem;
+    width: 48%;
+    border-radius: 4px;
+    border: 1px solid #cccccc;
+  }
+
+  &_second form {
+    display: flex;
+    justify-content: space-between;
+    width: 45%;
+  }
+}
+
+.buttons-style {
+  display: flex;
+  justify-content: flex-end;
+  margin: 1.7rem;
 }
