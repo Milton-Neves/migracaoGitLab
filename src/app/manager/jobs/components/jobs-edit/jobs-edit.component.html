@@ -1,0 +1,144 @@
+<main class="job">
+  <header class="job__header">
+    <app-page-title [title]="'Editar Cargo'"></app-page-title>
+  </header>
+
+  <section class="job__edit">
+    <div class="job__edit--content-data">
+      <h2>Dados do Cargo</h2>
+
+      <div class="job__edit--content-data--line">
+        <input type="text" placeholder="Nome Fantasia" />
+
+        <select>
+          <option value="">Área de Atuação</option>
+          <option value="1">Opção 1</option>
+          <option value="2">Opção 2</option>
+        </select>
+      </div>
+
+      <div class="buttons-style">
+        <app-button
+          class="button.decline"
+          [text]="'Voltar'"
+          [color]="'transparent'"
+          [textColor]="'#1C3152'"
+        >
+        </app-button>
+
+        <app-button
+          class="button.decline"
+          [text]="'Salvar'"
+          [color]="'#1C3152'"
+        >
+        </app-button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- <div class="job__content--text">
+      <h1>Dados do Cargo</h1>
+    </div>
+    <div class="job__content--position">
+      <input type="text" placeholder="Nome Fantasia" />
+      <select>
+        <option value="">Área de Atuação</option>
+      </select>
+    </div>
+    <div class="buttons">
+      <app-button [text]="'Cancelar'" [color]="'transparent'" [textColor]="'#1C3152'">
+      </app-button>
+      <div class="save">
+        <app-button [text]="'Salvar'" [color]="'#1C3152'" type="submit">
+        </app-button>
+      </div>
+    </div> -->
+
+<!-- <section class="edit__company">
+    <div class="edit__company--content">
+      <div class="edit__company--content-data">
+
+        <h2>Dados da Empresa</h2>
+
+        <div class="edit__company--content-data--line-one">
+          <input type="text" placeholder="Nome Fantasia" />
+          <input type="text" placeholder="CNPJ" />
+        </div>
+
+        <div class="edit__company--content-data--line-two">
+          <input type="text" placeholder="Razão Social" />
+
+          <select>
+            <option value="">Número de Funcionários</option>
+            <option value="1">Opção 1</option>
+            <option value="2">Opção 2</option>
+          </select>
+
+          <select>
+            <option value="">Ramo da Empresa</option>
+            <option value="1">Opção 1</option>
+            <option value="2">Opção 2</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="edit__company--content-contact">
+
+        <h2>Contato</h2>
+
+        <div class="edit__company--content-contact--line-one">
+          <input type="text" placeholder="E-mail" />
+          <input type="text" placeholder="Telefone" />
+          <img src="../../../../../assets/img/img-sum.svg" alt="">
+        </div>
+
+      </div>
+
+      <div class="edit__company--content-address">
+
+        <h2>Endereço</h2>
+
+        <div class="edit__company--content-address--line-one">
+          <input type="text" placeholder="CEP" />
+          <input type="text" placeholder="Rua" />
+          <input type="text" placeholder="Número" />
+        </div>
+
+        <div class="edit__company--content-address--line-two">
+          <input type="text" placeholder="Cidade" />
+
+          <select>
+            <option value="">Bairro</option>
+            <option value="1">Opção 1</option>
+            <option value="2">Opção 2</option>
+          </select>
+
+          <input type="text" placeholder="complemento" />
+        </div>
+      </div>
+
+      <div class="edit__company--content-corporate">
+
+        <h2>Representante Legal</h2>
+
+        <div class="edit__company--content-corporate--line-one">
+          <input type="text" placeholder="Nome" />
+          <input type="text" placeholder="E-mail" />
+        </div>
+
+        <div class="edit__company--content-corporate--line-two">
+          <input type="text" placeholder="Telefone" />
+          <input type="text" placeholder="celular" />
+        </div>
+      </div>
+
+      <div class="buttons-style">
+        <app-button class="button.decline" [text]="'Voltar'" [color]="'transparent'" [textColor]="'#1C3152'">
+        </app-button>
+
+        <app-button class="button.decline" [text]="'Editar'" [color]="'#1C3152'">
+        </app-button>
+      </div>
+    </div>
+  </section> -->
