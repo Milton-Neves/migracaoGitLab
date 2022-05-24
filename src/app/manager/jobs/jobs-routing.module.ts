@@ -7,10 +7,12 @@ const routes: Routes = [
   {
     path: '',
     component: JobsComponent,
-  },
-  {
-    path: 'cadastrar',
-    component: JobsRegistrationComponent,
+    children: [
+      {
+        path: 'cadastrar',
+        component: JobsRegistrationComponent,
+      },
+    ],
   },
 ]
 
