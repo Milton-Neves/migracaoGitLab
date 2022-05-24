@@ -32,11 +32,6 @@ export const MODULES: SidebarModule[] = [
     title: 'Encaminhamentos',
   },
   {
-    link: '/gerenciador/cargos',
-    iconPath: '../../../../assets/images/icons/sidebar/icone-cargos.svg',
-    title: 'Cargos',
-  },
-  {
     link: '/gerenciador/relatorios',
     iconPath: '../../../../assets/images/icons/sidebar/icone-relatorios.svg',
     title: 'Relatórios',

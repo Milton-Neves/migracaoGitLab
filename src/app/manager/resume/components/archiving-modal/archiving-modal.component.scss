@@ -1,14 +1,14 @@
-@import '../../../../../assets/styles/scss/variables';
+@import 'variables';
+
 .card-archiving {
   width: 490px;
-  height: 230px;
-  background: #ffffff;
+  background: $white;
   border-radius: 15px;
-
+  padding: 1.5rem;
   &__title {
     display: flex;
     justify-content: space-between;
-    padding: 1.9rem 1.5rem 1rem;
+    margin-bottom: 1.5rem;
     font-weight: 500;
     font-size: 18px;
     line-height: 100%;
@@ -25,7 +25,6 @@
     font-weight: 500;
   }
   &__name-actual {
-    margin-left: 1.5rem;
     font-size: 0.8rem;
     color: $blue-700;
     font-weight: 500;
@@ -40,7 +39,6 @@
     font-size: 0.9rem;
     color: $blue-700;
     font-weight: 400;
-    margin-left: 1.5rem;
   }
   &__inputs {
     display: flex;
@@ -48,7 +46,6 @@
 
     select {
       margin-top: 0.4rem;
-      margin-left: 1.2rem;
       width: 100%;
       border: 1px solid #cccccc;
       padding: 0.6rem;
@@ -58,18 +55,18 @@
       -webkit-appearance: none;
       color: $gray-700;
       font-size: 0.9rem;
-      max-width: 93%;
       overflow: hidden;
       display: block;
       background-repeat: no-repeat;
       background-position: 95% 50%;
+      cursor: pointer;
     }
   }
   &__buttons {
     display: flex;
     justify-content: flex-end;
-    margin: 1rem 1rem 2rem;
     margin-top: 2rem;
+    gap: 1rem;
     &__submit {
       padding: 0.2rem 0.7rem 0.9rem;
     }
