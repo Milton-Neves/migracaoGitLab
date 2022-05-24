@@ -42,7 +42,6 @@ export class ActiveResumeListComponent implements OnInit {
         tap((resume) => {
           this.totalCountResumes = resume.data.length
           this.paginateResumes(page, resume.data)
-          this.getColorCodes()
         }),
         map((res) => res.data)
       )
@@ -60,10 +59,10 @@ export class ActiveResumeListComponent implements OnInit {
     this.pagination$ = of(pagination)
   }
 
-  viewResume(resume: Resume) {
+  viewResume(resumeId: number) {
     let modal = this.modalService
       .open(ResumeViewComponent, {
-        resume: resume,
+        resumeId: resumeId,
       })
       .subscribe()
   }
@@ -75,18 +74,5 @@ export class ActiveResumeListComponent implements OnInit {
   }
   openArchivingModal() {
     let modal = this.modalService.open(ArchivingModalComponent).subscribe()
-  }
-
-  getColorCodes() {
-    this.workfieldService.findAll().subscribe((workfield) => {
-      let tempWorkfields: Workfield[] = workfield.data
-      this.resumes.forEach((resume, index) => {
-        tempWorkfields.forEach((workfield) => {
-          if (resume.jobApplications[0].job.workfield == workfield.id) {
-            this.colorCodes.push(workfield.colorCode)
-          }
-        })
-      })
-    })
   }
 }

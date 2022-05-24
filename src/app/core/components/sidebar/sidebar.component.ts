@@ -11,12 +11,6 @@ export class SidebarComponent {
   isOpen = false
   modules: SidebarModule[] = MODULES
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    let width = event.target.innerWidth
-    this.isOpen = width >= 670
-  }
-
   constructor() {}
 
   toggleMenu() {
