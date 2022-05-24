@@ -62,10 +62,10 @@ export class ArchivedResumeListComponent implements OnInit {
     this.pagination$ = of(pagination)
   }
 
-  openViewResumeModal(resume: Resume) {
+  openViewResumeModal(resumeId: number) {
     let modal = this.modalService
       .open(ResumeViewComponent, {
-        resume: resume,
+        resumeId,
       })
       .subscribe()
   }

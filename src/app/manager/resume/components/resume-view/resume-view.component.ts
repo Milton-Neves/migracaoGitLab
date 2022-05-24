@@ -1,14 +1,15 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core'
 
-import { map } from 'rxjs/operators'
+import { map, switchMap, tap } from 'rxjs/operators'
 import { NgxModalService } from 'lib/ngx-modal/src/public-api'
 
 import { Resume } from '@core/interfaces/resume/resume'
 import { Workfield } from '@core/interfaces/resume/workfield'
 import { WorkfieldService } from '@shared/services/workfield.service'
 import { JobListModalComponent } from '../job-list-modal/job-list-modal.component'
-import { Subscriber, Subscription } from 'rxjs'
+import { Observable, Subscriber, Subscription } from 'rxjs'
 import { JobApplications } from '@core/interfaces/resume/job-applications'
+import { ResumeService } from '../../services/resume.service'
 
 @Component({
   selector: 'app-resume-view',
@@ -16,7 +17,7 @@ import { JobApplications } from '@core/interfaces/resume/job-applications'
   styleUrls: ['./resume-view.component.scss'],
 })
 export class ResumeViewComponent implements OnInit, OnDestroy {
-  @Input() resume?: Resume
+  @Input() resumeId?: number
   colorCodes: string[] = []
   sectionTitle = [
     'Dados',
@@ -25,27 +26,37 @@ export class ResumeViewComponent implements OnInit, OnDestroy {
     'Experiência Profissional',
   ]
   activeTab?: string
-  workfieldSubscription = new Subscription()
+  resumeSubscription = new Subscription()
+  resume!: Resume
 
   constructor(
     private modalService: NgxModalService,
-    private workfieldService: WorkfieldService
+    private workfieldService: WorkfieldService,
+    private resumeService: ResumeService
   ) {}
 
   ngOnInit(): void {
     this.activeTab = this.sectionTitle[0]
-    this.workfieldSubscription = this.getColorCodes().subscribe()
+
+    this.resumeSubscription = this.resumeService
+      .findOne(`${this.resumeId}`)
+      .pipe(
+        map(({ data }) => data),
+        tap((resume) => (this.resume = resume)),
+        switchMap((resume: Resume) => this.getColorCodes(resume))
+      )
+      .subscribe()
   }
 
-  getColorCodes() {
+  getColorCodes(resume: Resume) {
     return this.workfieldService.findAll().pipe(
       map(({ data }) => {
-        if (!this.resume?.jobApplications.length) {
+        if (resume.jobApplications.length) {
           return
         }
 
         let tempWorkfields: Workfield[] = data
-        this.resume!.jobApplications.forEach((jobApplication) => {
+        resume.jobApplications.forEach((jobApplication) => {
           tempWorkfields.forEach((workfield) => {
             if (jobApplication.job.workfield == workfield.id) {
               this.colorCodes.push(workfield.colorCode)
@@ -71,6 +82,6 @@ export class ResumeViewComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.workfieldSubscription.unsubscribe()
+    this.resumeSubscription.unsubscribe()
   }
 }
