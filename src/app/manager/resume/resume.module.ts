@@ -1,3 +1,5 @@
+import { UnarchivingModalComponent } from './components/unarchiving-modal/unarchiving-modal.component'
+import { ButtonComponent } from './../../shared/components/button/button.component'
 import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
 import { SharedModule } from '@shared/shared.module'
@@ -33,6 +35,7 @@ const maskConfig: Partial<IConfig> = {
     AboutComponent,
     ArchivingModalComponent,
     JobListModalComponent,
+    UnarchivingModalComponent,
   ],
   imports: [
     CommonModule,

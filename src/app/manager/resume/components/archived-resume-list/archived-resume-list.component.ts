@@ -11,6 +11,7 @@ import { ResumeJobsViewComponent } from '../resume-jobs-view/resume-jobs-view.co
 import { Workfield } from '@core/interfaces/resume/workfield'
 import { WorkfieldService } from '@shared/services/workfield.service'
 import { PaginationService } from '@shared/services/pagination.service'
+import { UnarchivingModalComponent } from '../unarchiving-modal/unarchiving-modal.component'
 
 const ITEMS_PER_PAGE = 6
 
@@ -32,6 +33,9 @@ export class ArchivedResumeListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getResumesFromServer()
+  }
+  openUnarchivingModal() {
+    this.modalService.open(UnarchivingModalComponent).subscribe()
   }
 
   getResumesFromServer(page: number = 1, params?: any) {
