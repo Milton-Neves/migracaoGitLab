@@ -1,9 +1,8 @@
 @import '../../../../../assets/styles/scss/variables';
 .card-job-registration {
-  width: 1243px;
-  height: 212px;
+  width: 100%;
   background: $white;
-  box-shadow: 1px 2px 8px -2px rgba(0, 0, 0, 0.25);
+  box-shadow: $box-shadow;
   border-radius: 14px;
   h1 {
     padding: 1.4rem 2.2rem;

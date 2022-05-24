@@ -21,7 +21,7 @@ export const MODULES: SidebarModule[] = [
     title: 'Empresas',
   },
   {
-    link: '/gerenciador/cargos',
+    link: '/gerenciador/cadastrar',
     iconPath: '../../../../assets/images/icons/sidebar/icone-cargos.svg',
     title: 'Cargos',
   },
@@ -30,11 +30,6 @@ export const MODULES: SidebarModule[] = [
     iconPath:
       '../../../../assets/images/icons/sidebar/icone-encaminhamentos.svg',
     title: 'Encaminhamentos',
-  },
-  {
-    link: '/gerenciador/cargos',
-    iconPath: '../../../../assets/images/icons/sidebar/icone-cargos.svg',
-    title: 'Cargos',
   },
   {
     link: '/gerenciador/relatorios',
