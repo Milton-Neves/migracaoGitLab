@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
-import { NgxModalService } from 'lib/ngx-modal/src/public-api'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+
+import { NgxModalService } from 'lib/ngx-modal/src/public-api'
 import { debounceTime } from 'rxjs/operators'
 
 @Component({
@@ -9,61 +10,57 @@ import { debounceTime } from 'rxjs/operators'
   styleUrls: ['./reset-password-user.component.scss'],
 })
 export class ResetPasswordUserComponent implements OnInit {
-  form: any
-  visibilityPassword = {
-    password: true,
-    confirmPassword: true,
-  }
   isMatch: boolean = true
+  isVisibleEyeNewPasswordInput: boolean = false
+  isVisibleEyeConfirmPasswordInput: boolean = false
+  passwordPattern: string = `(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%*()_+^&}{:;?.])(?:([0-9a-zA-Z!@#$%;*(){}_+^&])){6,}`
   changePasswordForm!: FormGroup
-  pwdPattern = `(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%*()_+^&}{:;?.])(?:([0-9a-zA-Z!@#$%;*(){}_+^&])){6,}`
-  buttonState: boolean = false
-  activeButton: boolean = false
 
   constructor(private modalService: NgxModalService, private fb: FormBuilder) {}
 
-  private buildForm(): void {
-    this.changePasswordForm = this.fb.group({
-      newPass: ['', [Validators.required, Validators.pattern(this.pwdPattern)]],
-      confirmPass: [
-        '',
-        [Validators.required, Validators.pattern(this.pwdPattern)],
-      ],
-    })
+  ngOnInit(): void {
+    this.changePasswordForm = this.createForm()
   }
-  closeModalPassword() {
+
+  closeModalPassword(): void {
     this.modalService.close()
   }
 
-  get confirmPass() {
-    return this.changePasswordForm.controls.confirmPass
-  }
-
-  get pass() {
-    return this.changePasswordForm.controls.newPass
-  }
-
-  verify() {
+  verify(): void {
     this.changePasswordForm.valueChanges
       .pipe(debounceTime(400))
       .subscribe((res) => {
-        this.isMatch = false
-        if (res.newPass == res.confirmPass) {
-          this.isMatch = true
-        }
+        this.isMatch = res.newPassPassword === res.confirmPassword
       })
   }
-  toggle() {
-    this.buttonState = this.buttonState ? false : true
-  }
-  toggleTwo() {
-    this.activeButton = this.activeButton ? false : true
+
+  toggleEyeNewPasswordInput() {
+    this.isVisibleEyeNewPasswordInput = !this.isVisibleEyeNewPasswordInput
   }
 
-  ngOnInit(): void {
-    this.buildForm()
-    this.pass.valueChanges.subscribe((res) => {
-      console.log(this.pass)
+  toggleEyeConfirmPasswordInput() {
+    this.isVisibleEyeConfirmPasswordInput =
+      !this.isVisibleEyeConfirmPasswordInput
+  }
+
+  get confirmPass() {
+    return this.changePasswordForm.controls.confirmPassword
+  }
+
+  get newPassword() {
+    return this.changePasswordForm.controls.newPassword
+  }
+
+  private createForm(): FormGroup {
+    return this.fb.group({
+      newPassword: [
+        '',
+        [Validators.required, Validators.pattern(this.passwordPattern)],
+      ],
+      confirmPassword: [
+        '',
+        [Validators.required, Validators.pattern(this.passwordPattern)],
+      ],
     })
   }
 }

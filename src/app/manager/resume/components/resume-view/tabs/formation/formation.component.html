@@ -1,14 +1,29 @@
-<div class="resume-details__box__formation">
-  <h3 class="resume-details__box__formation--title">Escolaridade e cursos</h3>
+<div class="formation">
+  <div class="formation__box">
+    <h3>Escolaridade e cursos</h3>
+    <div class="formation__datas">
+      <div class="formation__group" *ngFor="let education of educations">
+        <div class="formation__data">
+          <h4>Instituição:</h4>
+          <span>
+            {{ education.institution | dashOnNull }}
+          </span>
+        </div>
 
-  <div class="resume-details__box__formation--description">
-    <div
-      class="resume-details__box__formation--knowledge"
-      *ngFor="let education of educations"
-    >
-      <span><b>Instituição:</b> {{ education.institution | dashOnNull }}</span>
-      <span><b>Escolaridade:</b> {{ education.scholarity | dashOnNull }}</span>
-      <span><b>Curso:</b> {{ education.course | dashOnNull }}</span>
+        <div class="formation__data">
+          <h4>Escolaridade:</h4>
+          <span>
+            {{ education.scholarity | dashOnNull }}
+          </span>
+        </div>
+
+        <div class="formation__data">
+          <h4>Curso:</h4>
+          <span>
+            {{ education.course | dashOnNull }}
+          </span>
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -1,0 +1,22 @@
+@import '../../../../../assets/styles/scss/variables';
+.unarchiving-card {
+  width: 455px;
+  height: 105px;
+  background: $white;
+  box-shadow: $box-shadow;
+  border-radius: 15px;
+  .title-card {
+    font-weight: 500;
+    font-size: 1.12rem;
+    color: $blue-700;
+    margin: 3rem 3.2rem 1rem;
+  }
+  .buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    &__submit {
+      padding: 0.2rem 1.4rem 0.9rem;
+    }
+  }
+}
