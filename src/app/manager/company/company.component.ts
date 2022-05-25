@@ -1,3 +1,4 @@
+import { Router } from '@angular/router'
 import { HttpClient } from '@angular/common/http'
 import { Component, OnDestroy, OnInit } from '@angular/core'
 import { NgxModalService } from 'lib/ngx-modal/src/public-api'
@@ -14,14 +15,14 @@ export class CompanyComponent implements OnInit, OnDestroy {
   totalCompanys: number = 0
   companys$!: Observable<CompanyProps[]>
   isNavActive: boolean = true
-  router: any
   changeNav(value: boolean) {
     this.isNavActive = value
   }
 
   constructor(
     private modalService: NgxModalService,
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) {}
   listar_dados() {
     this.companys$ = this.http.get<CompanyProps[]>(
@@ -31,6 +32,9 @@ export class CompanyComponent implements OnInit, OnDestroy {
 
   openModal() {
     let modal = this.modalService.open(CompanyEditComponent).subscribe()
+  }
+  abrirModuloEmpresa() {
+    this.router.navigate(['/gerenciador/empresas/cadastrar'])
   }
 
   ngOnInit(): void {

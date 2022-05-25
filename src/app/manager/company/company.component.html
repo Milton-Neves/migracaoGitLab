@@ -49,7 +49,12 @@
     </div>
 
     <div *ngIf="isNavActive">
-      <app-button class="select" [text]="'CRIAR EMPRESA'" [color]="'#33A93B'">
+      <app-button
+        class="select"
+        [text]="'CRIAR EMPRESA'"
+        [color]="'#33A93B'"
+        (click)="abrirModuloEmpresa()"
+      >
         <img src="../../../assets/images/icons/img-sum.svg" />
       </app-button>
       <app-company-card></app-company-card>
