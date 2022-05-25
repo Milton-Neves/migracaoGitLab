@@ -2,6 +2,8 @@ import { JobsRegistrationComponent } from './components/jobs-registration/jobs-r
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
 import { JobsComponent } from './jobs.component'
+import { JobsEditComponent } from './components/jobs-edit/jobs-edit.component'
+import { JobsListComponent } from './components/jobs-list/jobs-list.component'
 
 const routes: Routes = [
   {
@@ -9,8 +11,16 @@ const routes: Routes = [
     component: JobsComponent,
     children: [
       {
+        path: '',
+        component: JobsListComponent,
+      },
+      {
         path: 'cadastrar',
         component: JobsRegistrationComponent,
+      },
+      {
+        path: 'editar/:id',
+        component: JobsEditComponent,
       },
     ],
   },
