@@ -1,3 +1,5 @@
+import { UnarchivingModalComponent } from './components/unarchiving-modal/unarchiving-modal.component'
+import { ButtonComponent } from './../../shared/components/button/button.component'
 import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
 import { SharedModule } from '@shared/shared.module'
@@ -13,6 +15,7 @@ import { ProfessionalExperienceComponent } from './components/resume-view/tabs/p
 import { FormationComponent } from './components/resume-view/tabs/formation/formation.component'
 import { AvailabilityComponent } from './components/resume-view/tabs/availability/availability.component'
 import { AboutComponent } from './components/resume-view/tabs/about/about.component'
+import { ArchivingModalComponent } from './components/archiving-modal/archiving-modal.component'
 import { JobListModalComponent } from './components/job-list-modal/job-list-modal.component'
 
 const maskConfig: Partial<IConfig> = {
@@ -30,7 +33,9 @@ const maskConfig: Partial<IConfig> = {
     FormationComponent,
     AvailabilityComponent,
     AboutComponent,
+    ArchivingModalComponent,
     JobListModalComponent,
+    UnarchivingModalComponent,
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,45 @@
+<div class="card-archiving">
+  <h1 class="card-archiving__title">
+    Confirmar Arquivamento
+    <span class="card-archiving__situation">
+      <b>Situação: </b>
+      Ativo
+    </span>
+  </h1>
+  <span class="card-archiving__name-actual">
+    Nome:
+    <b>Igor José Cordeiro de Lima</b>
+  </span>
+
+  <div class="card-archiving__select">Motivo:</div>
+  <div class="card-archiving__inputs">
+    <form>
+      <select>
+        <option value="">Selecione um motivo para o arquivamento</option>
+        <option value="1">Opção 1</option>
+        <option value="2">Opção 2</option>
+      </select>
+      <div class="card-archiving__select">Empresa:</div>
+      <select>
+        <option value="">Selecione a Empresa</option>
+        <option value="1">Opção 1</option>
+        <option value="2">Opção 2</option>
+      </select>
+    </form>
+  </div>
+
+  <div class="card-archiving__buttons">
+    <app-button
+      class="card-archiving__buttons_cancel"
+      [text]="'Cancelar'"
+      [color]="'transparent'"
+      [textColor]="'#1C3152'"
+      (click)="closeModalArchiving()"
+    >
+    </app-button>
+    <div class="card_archiving_buttons__submit">
+      <app-button [text]="'Confirmar'" [color]="'#1C3152'" type="submit">
+      </app-button>
+    </div>
+  </div>
+</div>

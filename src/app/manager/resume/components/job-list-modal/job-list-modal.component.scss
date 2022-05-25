@@ -1,5 +1,8 @@
+@import 'variables';
+
 .view-container {
   padding: 1rem;
+  max-width: 500px;
 }
 
 .title-div {
@@ -7,7 +10,7 @@
 }
 
 .title {
-  color: #20365a;
+  color: $blue-700;
   font-weight: bolder;
   font-size: 1rem;
 }
@@ -22,12 +25,13 @@
 }
 
 p {
-  padding: 0.25rem 1rem 0.25rem 1rem;
-  margin: 0.4rem 0rem 0rem 0rem;
+  padding: 0.25rem 1rem;
+  margin: 0;
+  margin-top: 0.4rem;
   border-radius: 6px;
-  background-color: grey;
+  background-color: $gray-500;
   width: fit-content;
-  color: white;
+  color: $white;
 }
 
 .button-div {
@@ -38,7 +42,7 @@ p {
 
 .close-button {
   border: none;
-  color: #20365a;
+  color: $blue-700;
   background-color: transparent;
   font-size: 13px;
   font-weight: 500;

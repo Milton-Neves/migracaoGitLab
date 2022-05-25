@@ -1,74 +1,103 @@
-<div class="resume-details__box__global" *ngIf="physicalPerson">
-  <div class="resume-details__box__personal">
-    <h3 class="resume-details__box__personal--title">Dados Pessoais</h3>
+<div class="about" *ngIf="physicalPerson">
+  <div class="about__box">
+    <h3>Dados Pessoais</h3>
 
-    <div class="resume-details__box__personal--view">
-      <div class="resume-details__box__personal--view-name">
-        <span><b>Nome:</b> {{ physicalPerson.name | dashOnNull }}</span>
+    <div class="about__datas">
+      <div class="about__data">
+        <h4>Nome:</h4>
+        <span>{{ physicalPerson.name | dashOnNull }}</span>
       </div>
-      <div class="resume-details__box__personal--view-mail">
-        <span><b>E-mail:</b> {{ physicalPerson.email | dashOnNull }}</span>
-      </div>
-      <div class="resume-details__box__personal--view-data">
-        <span
-          ><b>Data de Nascimento:</b>
-          {{ physicalPerson.birthDate | dashOnNull }}</span
-        >
-        <span><b>Sexo:</b> {{ physicalPerson.sex | dashOnNull }}</span>
-        <span
-          ><b>Estado Civil:</b>
-          {{ physicalPerson.maritalStatus | dashOnNull }}</span
-        >
+
+      <div class="about__3-column">
+        <div class="about__data">
+          <h4>Data de Nascimento:</h4>
+          <span>{{ physicalPerson.birthDate | dashOnNull }}</span>
+        </div>
+        <div class="about__data">
+          <h4>Sexo:</h4>
+          <span>{{ physicalPerson.sex | dashOnNull }}</span>
+        </div>
+        <div class="about__data">
+          <h4>Estado Civil:</h4>
+          <span>{{ physicalPerson.maritalStatus | dashOnNull }}</span>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="resume-details__box__contact">
-    <h3 class="resume-details__box__contact--title">Contato</h3>
+  <div class="about__box">
+    <h3>Contato</h3>
 
-    <div class="resume-details__box__contact--text">
-      <div class="resume-details__box__contact--text-phone">
-        <span><b>E-mail:</b> {{ physicalPerson?.email | dashOnNull }}</span>
-      </div>
-      <div class="resume-details__box__contact--text-mail">
-        <span
-          *ngFor="let phone of physicalPerson?.phoneNumbers; let isLast = last"
-          class="phone"
-        >
-          <span *ngIf="!isLast">{{ phone.number }}, </span>
-          <span *ngIf="isLast">{{ phone.number }} </span>
-        </span>
+    <div class="about__datas">
+      <div class="about__2-column">
+        <div class="about__data">
+          <h4>E-mail:</h4>
+          <span>{{ physicalPerson?.email | dashOnNull }}</span>
+        </div>
+
+        <div class="about__data">
+          <h4>Telefones:</h4>
+          <span
+            *ngFor="
+              let phone of physicalPerson?.phoneNumbers;
+              let isLast = last
+            "
+            class="phone"
+          >
+            <span *ngIf="!isLast">{{ phone.number }}, </span>
+            <span *ngIf="isLast">{{ phone.number }} </span>
+          </span>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="resume-details__box__address">
-    <h3 class="resume-details__box__address--title">Endereço</h3>
+  <div class="about__box">
+    <h3>Endereço</h3>
 
-    <div class="resume-details__box__address--information">
-      <div class="resume-details__box__address--information-city">
-        <span
-          ><b>CEP:</b> {{ physicalPerson.address?.zipCode | dashOnNull }}</span
-        >
-        <span
-          ><b>Cidade:</b> {{ physicalPerson.address?.city | dashOnNull }}</span
-        >
+    <div class="about__datas">
+      <div class="about__3-column">
+        <div class="about__data">
+          <h4>CEP:</h4>
+          <span>
+            {{ physicalPerson.address?.zipCode | dashOnNull }}
+          </span>
+        </div>
+
+        <div class="about__data">
+          <h4>País:</h4>
+          <span> Brasil </span>
+        </div>
+
+        <div class="about__data">
+          <h4>Cidade:</h4>
+          <span>
+            {{ physicalPerson.address?.city | dashOnNull }}
+          </span>
+        </div>
       </div>
-      <div class="resume-details__box__address--information-district">
-        <span
-          ><b>Bairro:</b>
-          {{ physicalPerson.address?.neighborhood | dashOnNull }}</span
-        >
-        <span><b>País:</b> Brasil</span>
-      </div>
-      <div class="resume-details__box__address--information-street">
-        <span
-          ><b>Rua:</b> {{ physicalPerson.address?.street | dashOnNull }}</span
-        >
-        <span
-          ><b>Número:</b>
-          {{ physicalPerson.address?.number | dashOnNull }}</span
-        >
+
+      <div class="about__3-column">
+        <div class="about__data">
+          <h4>Bairro:</h4>
+          <span>
+            {{ physicalPerson.address?.neighborhood | dashOnNull }}
+          </span>
+        </div>
+
+        <div class="about__data">
+          <h4>Rua:</h4>
+          <span>
+            {{ physicalPerson.address?.street | dashOnNull }}
+          </span>
+        </div>
+
+        <div class="about__data">
+          <h4>Número:</h4>
+          <span>
+            {{ physicalPerson.address?.number | dashOnNull }}
+          </span>
+        </div>
       </div>
     </div>
   </div>

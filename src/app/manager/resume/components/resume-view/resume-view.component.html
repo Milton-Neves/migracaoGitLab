@@ -4,16 +4,19 @@
       <h2 class="resume-details__header__view--title">
         {{ resume?.physicalPerson?.name | dashOnNull }}
       </h2>
-      <span class="resume-details__header__view--tag">{{
-        resume!.jobApplications[0].job?.name | dashOnNull
-      }}</span>
 
-      <button
-        (click)="openJobsView(resume?.id!)"
-        class="resume-details__header__view--button"
-      >
-        ver mais
-      </button>
+      <ng-container *ngIf="!!colorCodes.length">
+        <span class="resume-details__header__view--tag">{{
+          resume!.jobApplications[0].job?.name
+        }}</span>
+
+        <button
+          (click)="openJobsView(resume!.jobApplications!, colorCodes)"
+          class="resume-details__header__view--button"
+        >
+          ver mais
+        </button>
+      </ng-container>
     </div>
     <span class="resume-details__header__situation"
       ><b>Situação:</b>

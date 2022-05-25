@@ -1,0 +1,46 @@
+@import 'variables';
+
+.job__edit {
+  background-color: $white;
+  border-radius: 14px;
+  box-shadow: $box-shadow;
+  margin-top: 1.5rem;
+  padding: 2rem;
+  &--content-data h2 {
+    justify-content: flex-start;
+    color: $blue-700;
+    font-size: 1.25rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+  }
+  &--content-data--line {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  &--content-data input {
+    border-radius: 4px;
+    border: 1px solid #cccccc;
+    width: 63%;
+    padding: 0.5rem;
+  }
+  &--content-data select {
+    border-radius: 4px;
+    border: 1px solid #cccccc;
+    width: 35%;
+    padding: 0.5rem;
+    background: url(../../../../../assets/icons/arrow-bottom.svg);
+    -webkit-appearance: none;
+    color: $gray-700;
+    font-size: 0.9rem;
+    background-repeat: no-repeat;
+    background-position: 95% 50%;
+  }
+}
+
+.buttons-style {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 2rem;
+}
