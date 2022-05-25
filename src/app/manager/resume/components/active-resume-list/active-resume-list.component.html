@@ -23,14 +23,16 @@
           {{ resume.statusResume ? 'Disponível' : 'Arquivado' }}
         </td>
         <td class="table-details__body--border-btn">
-          <button type="button" (click)="viewResume(resume)">Visualizar</button>
+          <button type="button" (click)="viewResume(resume.id)">
+            Visualizar
+          </button>
           <button type="button">Editar</button>
-          <button type="button">Arquivar</button>
+          <button type="button" (click)="openArchivingModal()">Arquivar</button>
         </td>
       </tr>
     </ng-container>
 
-    <ng-container part="empty" *ngIf="!resumes">
+    <ng-container part="empty" *ngIf="!resumes.length">
       <span id="no-content">Ainda não há currículos registrados!</span>
     </ng-container>
   </app-table>

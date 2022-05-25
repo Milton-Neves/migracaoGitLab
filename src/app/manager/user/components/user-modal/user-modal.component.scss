@@ -1,33 +1,28 @@
-@import '../../../../../assets/styles/scss/variables';
+@import 'variables';
+
 .card-password {
   width: 419px;
   background: $white;
   border-radius: 15px;
-  .text {
-    p {
-      font-weight: 400;
-      font-size: 15px;
-      padding: 1rem 0rem 1rem;
-    }
+  padding: 1.5rem;
+
+  .title {
     display: flex;
     flex-direction: column;
-    text-align: initial;
-    padding: 0.8rem;
     font-weight: 500;
     font-size: 20px;
-    line-height: 100%;
     color: $blue-700;
-    margin: 1rem 1rem 0rem 1rem;
+
+    h4 {
+      font-weight: 400;
+      font-size: 15px;
+      padding-top: 0.5rem;
+      padding-bottom: 1rem;
+    }
   }
+
   .tab-content {
     display: flex;
     margin-bottom: 1rem;
-    margin: 0 1.5rem;
-  }
-  .tab-struct {
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: space-between;
-    gap: 1rem;
   }
 }

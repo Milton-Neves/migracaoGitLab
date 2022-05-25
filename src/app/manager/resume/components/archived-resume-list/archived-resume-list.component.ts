@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnDestroy, OnInit } from '@angular/core'
 
 import { NgxModalService } from 'lib/ngx-modal/src/public-api'
 import { Observable, of } from 'rxjs'
@@ -11,6 +11,7 @@ import { ResumeJobsViewComponent } from '../resume-jobs-view/resume-jobs-view.co
 import { Workfield } from '@core/interfaces/resume/workfield'
 import { WorkfieldService } from '@shared/services/workfield.service'
 import { PaginationService } from '@shared/services/pagination.service'
+import { UnarchivingModalComponent } from '../unarchiving-modal/unarchiving-modal.component'
 
 const ITEMS_PER_PAGE = 6
 
@@ -23,12 +24,9 @@ export class ArchivedResumeListComponent implements OnInit {
   resumes: Resume[] = []
   totalCountResumes: number = 0
   pagination$?: Observable<any>
-  colorCodes: string[] = []
-  colorPromise: Promise<boolean> = Promise.resolve(false)
 
   constructor(
     private resumeService: ResumeService,
-    private workfieldService: WorkfieldService,
     private modalService: NgxModalService,
     private paginationService: PaginationService
   ) {}
@@ -36,17 +34,19 @@ export class ArchivedResumeListComponent implements OnInit {
   ngOnInit(): void {
     this.getResumesFromServer()
   }
+  openUnarchivingModal() {
+    this.modalService.open(UnarchivingModalComponent).subscribe()
+  }
 
   getResumesFromServer(page: number = 1, params?: any) {
     this.resumeService
       .findAll('', { statusResume: false })
       .pipe(
-        tap((resume) => {
-          this.totalCountResumes = resume.data.length
-          this.paginateResumes(page, resume.data)
-          this.getColorCodes()
+        tap(({ data }) => {
+          this.totalCountResumes = data.length
+          this.paginateResumes(page, data)
         }),
-        map((res) => res.data)
+        map(({ data }) => data)
       )
       .subscribe()
   }
@@ -62,32 +62,11 @@ export class ArchivedResumeListComponent implements OnInit {
     this.pagination$ = of(pagination)
   }
 
-  viewResume(resume: Resume) {
+  openViewResumeModal(resumeId: number) {
     let modal = this.modalService
       .open(ResumeViewComponent, {
-        resume: resume,
+        resumeId,
       })
       .subscribe()
-  }
-
-  openJobsView(resumeId: number) {
-    let modal = this.modalService
-      .open(ResumeJobsViewComponent, { resumeId })
-      .subscribe()
-  }
-
-  getColorCodes() {
-    this.workfieldService.findAll().subscribe((workfield) => {
-      let tempWorkfields: Workfield[] = workfield.data
-
-      this.resumes.forEach((resume, index) => {
-        tempWorkfields.forEach((workfield) => {
-          if (resume.jobApplications[0].job.workfield == workfield.id) {
-            this.colorCodes.push(workfield.colorCode)
-            this.colorPromise = Promise.resolve(true)
-          }
-        })
-      })
-    })
   }
 }

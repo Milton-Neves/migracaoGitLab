@@ -11,6 +11,7 @@ import { ResumeService } from '../../services/resume.service'
 import { ResumeJobsViewComponent } from '../resume-jobs-view/resume-jobs-view.component'
 import { ResumeViewComponent } from '../resume-view/resume-view.component'
 import { PaginationService } from '@shared/services/pagination.service'
+import { ArchivingModalComponent } from '../archiving-modal/archiving-modal.component'
 
 @Component({
   selector: 'app-active-resume-list',
@@ -22,7 +23,6 @@ export class ActiveResumeListComponent implements OnInit {
   totalCountResumes: number = 0
   pagination$?: Observable<any>
   colorCodes: string[] = []
-  colorPromise: Promise<boolean> = Promise.resolve(false)
 
   constructor(
     private resumeService: ResumeService,
@@ -42,7 +42,6 @@ export class ActiveResumeListComponent implements OnInit {
         tap((resume) => {
           this.totalCountResumes = resume.data.length
           this.paginateResumes(page, resume.data)
-          this.getColorCodes()
         }),
         map((res) => res.data)
       )
@@ -60,10 +59,10 @@ export class ActiveResumeListComponent implements OnInit {
     this.pagination$ = of(pagination)
   }
 
-  viewResume(resume: Resume) {
+  viewResume(resumeId: number) {
     let modal = this.modalService
       .open(ResumeViewComponent, {
-        resume: resume,
+        resumeId: resumeId,
       })
       .subscribe()
   }
@@ -73,18 +72,7 @@ export class ActiveResumeListComponent implements OnInit {
       .open(ResumeJobsViewComponent, { resumeId })
       .subscribe()
   }
-
-  getColorCodes() {
-    this.workfieldService.findAll().subscribe((workfield) => {
-      let tempWorkfields: Workfield[] = workfield.data
-      this.resumes.forEach((resume, index) => {
-        tempWorkfields.forEach((workfield) => {
-          if (resume.jobApplications[0].job.workfield == workfield.id) {
-            this.colorCodes.push(workfield.colorCode)
-            this.colorPromise = Promise.resolve(true)
-          }
-        })
-      })
-    })
+  openArchivingModal() {
+    let modal = this.modalService.open(ArchivingModalComponent).subscribe()
   }
 }

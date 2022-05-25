@@ -3,25 +3,25 @@
     <app-page-title [title]="'Números gerados'"></app-page-title>
   </header>
 
-  <section class="home__content">
+  <section class="home__content" *ngIf="portalMetrics | async as metric">
     <app-analytic-card
-      [data]="100"
-      [title]="'pessoas cadastradas'"
+      [data]="metric.totalPhysicalPersons"
+      [title]="'Pessoas Cadastradas'"
     ></app-analytic-card>
 
     <app-analytic-card
-      [data]="100"
-      [title]="'total de currículos'"
+      [data]="metric.totalResumes"
+      [title]="'Total de Currículos'"
     ></app-analytic-card>
 
     <app-analytic-card
-      [data]="40"
-      [title]="'pessoas contratadas'"
+      [data]="metric.totalHired"
+      [title]="'Pessoas Contratadas'"
     ></app-analytic-card>
 
     <app-analytic-card
-      [data]="28"
-      [title]="'total de encaminhamentos'"
+      [data]="metric.totalForwardings"
+      [title]="'Total de Encaminhamentos'"
     ></app-analytic-card>
   </section>
 </main>

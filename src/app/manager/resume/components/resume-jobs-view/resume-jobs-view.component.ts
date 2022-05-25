@@ -33,13 +33,9 @@ export class ResumeJobsViewComponent implements OnInit {
   }
 
   getResume() {
-    if (this.resumeId === undefined) {
-      this.closeModal()
-    } else {
-      this.resume$ = this.resumeService
-        .findOne(`${this.resumeId}`)
-        .pipe(map((resume) => resume.data))
-    }
+    this.resume$ = this.resumeService
+      .findOne(`${this.resumeId}`)
+      .pipe(map((resume) => resume.data))
   }
 
   getColorCodes() {
