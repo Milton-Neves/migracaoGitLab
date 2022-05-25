@@ -3311,20 +3311,22 @@
 "es-module-lexer@^0.7.1":
   "version" "0.7.1"
 
+"esbuild-linux-64@0.13.8":
+  "integrity" "sha512-Bm8SYmFtvfDCIu9sjKppFXzRXn2BVpuCinU1ChTuMtdKI/7aPpXIrkqBNOgPTOQO9AylJJc1Zw6EvtKORhn64w=="
+  "resolved" "https://registry.npmjs.org/esbuild-linux-64/-/esbuild-linux-64-0.13.8.tgz"
+  "version" "0.13.8"
+
+"esbuild-linux-64@0.14.11":
+  "integrity" "sha512-oeR6dIrrojr8DKVrxtH3xl4eencmjsgI6kPkDCRIIFwv4p+K7ySviM85K66BN01oLjzthpUMvBVfWSJkBLeRbg=="
+  "resolved" "https://registry.npmjs.org/esbuild-linux-64/-/esbuild-linux-64-0.14.11.tgz"
+  "version" "0.14.11"
+
 "esbuild-wasm@0.13.8":
   "version" "0.13.8"
 
 "esbuild-wasm@0.14.11":
   "integrity" "sha512-9e1R6hv0hiU+BkJI2edqUuWfXUbOP2Mox+Ijl/uY1vLLlSsunkrcADqD/4Rz+VCEDzw6ecscJM+uJqR2fRmEUg=="
   "resolved" "https://registry.npmjs.org/esbuild-wasm/-/esbuild-wasm-0.14.11.tgz"
-  "version" "0.14.11"
-
-"esbuild-windows-64@0.13.8":
-  "version" "0.13.8"
-
-"esbuild-windows-64@0.14.11":
-  "integrity" "sha512-h9FmMskMuGeN/9G9+LlHPAoiQk9jlKDUn9yA0MpiGzwLa82E7r1b1u+h2a+InprbSnSLxDq/7p5YGtYVO85Mlg=="
-  "resolved" "https://registry.npmjs.org/esbuild-windows-64/-/esbuild-windows-64-0.14.11.tgz"
   "version" "0.14.11"
 
 "esbuild@0.13.8":
