@@ -5,11 +5,11 @@
         {{ resume?.physicalPerson?.name | dashOnNull }}
       </h2>
 
-      <ng-container *ngIf="resume.jobs.length != 0">
+      <ng-container *ngIf="resume && resume.jobs.length != 0">
         <span
           class="resume-details__header__view--tag"
           [style.background-color]="colorCodes[0]"
-          >{{ resume!.jobs[0]?.name }}</span
+          >{{ resume.jobs[0].name }}</span
         >
 
         <button
