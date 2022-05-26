@@ -1,0 +1,41 @@
+@import 'variables';
+.companies-details {
+  padding: 0 0 1rem;
+  font-size: 0.9rem;
+
+  &__forwading-datas {
+    display: flex;
+    justify-content: flex-start;
+    color: $green-500;
+    gap: 0.8rem;
+    margin-bottom: 0.5rem;
+
+    &:last-child {
+      color: $blue-700;
+    }
+  }
+}
+
+.companies-company {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  gap: 1rem;
+  padding: 0 0 1rem;
+  font-size: 0.9rem;
+
+  span {
+    color: $blue-700;
+  }
+
+  &__status {
+    font-weight: 500;
+    color: $green-500;
+  }
+}
+
+section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}

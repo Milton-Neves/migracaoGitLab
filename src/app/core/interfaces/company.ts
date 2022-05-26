@@ -1,5 +1,7 @@
 export interface Company {
-  fantasyname?: string
+  name?: string
   cnpj?: string
-  requestDate?: string
+  companyName?: string
+  amountEmployees?: string
+  valid?: string
 }

@@ -1,28 +1,28 @@
 <section (click)="openModal()">
-  <ng-container *ngFor="let card of cardList">
-    <app-information-card
-      [title]="card.title"
-      [career]="card.career"
-      [stylesInformation]="card.stylesInformation"
-      [stylesHeader]="card.stylesHeader"
-    >
-      <div class="card-details">
-        <span class="card-details__forwading-datas">
-          <img src="../../../../assets/images/icon-company.svg" />
-          <b>2</b>Encaminhamentos em aberto
-        </span>
+  <app-information-card
+    [tagBackground]="card.legalPerson.workfield.colorCode"
+    [title]="card.legalPerson.companyName"
+    [career]="card.legalPerson.workfield.name"
+  >
+    <!-- [stylesInformation]="card.stylesInformation" [stylesHeader]="card.stylesHeader"> -->
+    <div class="card-details">
+      <span class="card-details__forwading-datas">
+        <img src="../../../../assets/images/icon-company.svg" />
+        <b> {{ card.legalPerson.forwardings.length }} </b>Encaminhamentos em
+        aberto
+      </span>
 
-        <span class="card-details__forwading-datas">
-          <img src="../../../../assets/images/icon-company-blue.svg" />
-          <b>3</b>Encaminhamentos concluídos
-        </span>
-      </div>
+      <span class="card-details__forwading-datas">
+        <img src="../../../../assets/images/icon-company-blue.svg" />
+        <b> {{ card.legalPerson.forwardings.length }} </b>Encaminhamentos
+        concluídos
+      </span>
+    </div>
 
-      <div class="card-company">
-        <span>Ativa desde: 15/10/21</span>
-        <span>Status: <span class="card-company__status">Ativa</span></span>
-      </div>
-    </app-information-card>
-  </ng-container>
+    <div class="card-company">
+      <span>Ativa desde: 15/10/21</span>
+      <span>Status: <span class="card-company__status">Ativa</span></span>
+    </div>
+  </app-information-card>
   <section></section>
 </section>

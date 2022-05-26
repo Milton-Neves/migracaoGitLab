@@ -1,62 +1,13 @@
-<!-- <app-pagination class="pagination"></app-pagination> -->
-<app-button class="select" [text]="'CRIAR EMPRESA'" [color]="'#33A93B'">
-  <img src="../../../assets/icons/img-sum.svg" />
-</app-button>
-
-<!-- <div>
-  <app-company-card></app-company-card>
-</div> -->
-
-<div>
-  <ng-container>
-    <app-company-card></app-company-card>
+<section>
+  <ng-container *ngFor="let company of companies">
+    <app-company-card [card]="company"> </app-company-card>
   </ng-container>
-</div>
-<!-- *ngFor="let card of cards" -->
-<!-- *ngFor="let company of companys$ | async" part="list" -->
+  <section></section>
+</section>
 
-<!-- <app-table>
-  <tr *ngFor="let company of companys$ | async" part="list">
-    <td style="
-        color: #1c3152;
-        font-size: 14px;
-        font-weight: 400;
-        display: flex;
-        justify-content: flex-start;
-        padding: 2rem 2rem;
-      ">
-      {{ company.fantasyname }}
-    </td>
-    <td style="color: #1c3152; font-size: 14px; font-weight: 400">
-      {{ company.cnpj }}
-    </td>
-    <td style="color: #1c3152; font-size: 14px; font-weight: 400">
-      {{ company.requestDate }}
-    </td>
-    <td>
-      <button class="button-view">Visualizar</button>
-    </td>
-    <td>
-      <div class="button">
-        <div>
-          <app-button [ngStyle]="{
-              'font-weight': '400'
-            }" [appHighlight]="'#33A93B'" [text]="'Aceitar'" [color]="'#999999'">
-            <img src="../../../assets/images/icon-confirm.svg" />
-          </app-button>
-        </div>
-        <div>
-          <app-button [appHighlight]="'#FD3737'" [text]="'Recusar'" [color]="'#999999'">
-            <img src="../../../assets/images/icon-recusar.svg" />
-          </app-button>
-        </div>
-      </div>
-    </td>
-  </tr>
-</app-table> -->
 <app-pagination-number
   class="pagination-number"
-  [visibleItems]="company.length"
+  [visibleItems]="companies.length"
   [totalItems]="totalCompanys"
 >
 </app-pagination-number>

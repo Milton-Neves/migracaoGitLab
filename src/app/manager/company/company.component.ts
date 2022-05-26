@@ -1,4 +1,5 @@
 import { HttpClient } from '@angular/common/http'
+import { Input } from '@angular/core'
 import { Component, OnDestroy, OnInit } from '@angular/core'
 import { NgxModalService } from 'lib/ngx-modal/src/public-api'
 import { CompanyEditComponent } from './components/company-edit/company-edit.component'
@@ -10,6 +11,7 @@ import { CompanyEditComponent } from './components/company-edit/company-edit.com
 export class CompanyComponent implements OnInit, OnDestroy {
   isNavActive: boolean = true
   router: any
+
   changeNav(value: boolean) {
     this.isNavActive = value
   }

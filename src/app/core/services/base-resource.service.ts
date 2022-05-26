@@ -33,7 +33,7 @@ export class BaseResourceService<T> {
       .pipe(take(1), catchError(this.handleError))
   }
 
-  findAll(endpoint = 'companies', params = {}): Observable<ApiResponse<T[]>> {
+  findAll(endpoint = '', params = {}): Observable<ApiResponse<T[]>> {
     return this.http
       .get<ApiResponse<T[]>>(
         `${this.API_URL}/${this.resourceEndpointBase}/${endpoint}`,

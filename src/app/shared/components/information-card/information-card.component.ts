@@ -10,6 +10,7 @@ export class InformationCardComponent {
   @Input() career?: string
   @Input() stylesInformation?: any
   @Input() stylesHeader?: any
+  @Input() tagBackground?: string
 
   constructor() {}
 

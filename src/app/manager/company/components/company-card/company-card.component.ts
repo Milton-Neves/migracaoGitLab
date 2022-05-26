@@ -9,14 +9,7 @@ import { InformationCard } from '@core/interfaces/information-card'
   styleUrls: ['./company-card.component.scss'],
 })
 export class CompanyCardComponent implements OnInit {
-  cardList: InformationCard[] = [
-    {
-      title: 'Rayanni Modas',
-      career: 'vestuário',
-      stylesInformation: {},
-      stylesHeader: {},
-    },
-  ]
+  @Input() card: any
 
   constructor(private modalService: NgxModalService) {}
 
@@ -24,5 +17,7 @@ export class CompanyCardComponent implements OnInit {
     let modal = this.modalService.open(CompanyEditComponent).subscribe()
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.card)
+  }
 }
