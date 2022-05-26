@@ -9,12 +9,13 @@
         <span
           class="resume-details__header__view--tag"
           [style.background-color]="colorCodes[0]"
-          >{{ resume.jobs[0].name }}</span
+          >{{ resume!.jobs[0]?.name }}</span
         >
 
         <button
           (click)="openJobsView(resume!.jobs!, colorCodes)"
           class="resume-details__header__view--button"
+          *ngIf="resume.jobs.length > 1"
         >
           ver mais
         </button>

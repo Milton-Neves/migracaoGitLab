@@ -29,6 +29,8 @@
       display: flex;
       gap: 0.4rem;
       flex-wrap: wrap;
+      justify-content: space-between;
+      margin-right: 20px;
 
       &--title {
         font-size: 1.1rem;
@@ -42,6 +44,7 @@
         padding: 0.25rem 1rem 0.25rem 1rem;
         border-radius: 6px;
         width: fit-content;
+        // margin-right: -20px
       }
 
       &--button {
