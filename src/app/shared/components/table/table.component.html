@@ -15,6 +15,12 @@
           <th></th>
           <th>Ações</th>
         </ng-container>
+        <ng-container *ngIf="activedRoute == routesWithTables[3]">
+          <th>Nome</th>
+          <th>Área de ATuação</th>
+          <th>Situação</th>
+          <th>Ações</th>
+        </ng-container>
         <ng-container *ngFor="let columnName of adittionalColumn">
           <th>{{ columnName }}</th>
         </ng-container>
