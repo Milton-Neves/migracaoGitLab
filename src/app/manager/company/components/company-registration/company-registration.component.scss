@@ -1,0 +1,188 @@
+@import 'variables';
+.home {
+  &__header {
+    margin-bottom: 2rem;
+  }
+}
+.register__company {
+  background-color: $white;
+  border-radius: 14px;
+  box-shadow: $box-shadow;
+  margin-top: 1.5rem;
+  padding: 3rem;
+  padding-top: 1rem;
+
+  &--content h2 {
+    justify-content: flex-start;
+    color: $blue-700;
+    font-size: 1.25rem;
+    font-weight: 400;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+  }
+
+  &--content input::placeholder {
+    font-size: 1rem;
+  }
+
+  &--content-data--line-one {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  &--content-data--line-one input:first-child {
+    width: 63%;
+  }
+
+  &--content-data--line-one input {
+    border-radius: 4px;
+    border: 1px solid #cccccc;
+    width: 35%;
+    padding: 0.6rem;
+  }
+
+  &--content-data--line-two {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  &--content-data--line-two input {
+    border-radius: 4px;
+    border: 1px solid #cccccc;
+    width: 42%;
+    padding: 0.6rem;
+  }
+
+  &--content-data--line-two select {
+    border-radius: 4px;
+    border: 1px solid #cccccc;
+    width: 27%;
+    padding: 0.6rem;
+    background: url(../../../../../assets/icons/arrow-bottom.svg);
+    -webkit-appearance: none;
+    color: $gray-700;
+    font-size: 1rem;
+    background-repeat: no-repeat;
+    background-position: 95% 50%;
+  }
+
+  &--content-contact--line-one {
+    display: flex;
+    width: 98%;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  &--content-contact--line-one input:first-child {
+    width: 55%;
+  }
+
+  &--content-contact--line-one input {
+    border-radius: 4px;
+    border: 1px solid #cccccc;
+    width: 39%;
+    padding: 0.6rem;
+  }
+
+  &--content-contact--line-one img {
+    width: 25px;
+    position: relative;
+  }
+  &--content-contact--line-one button {
+    background: transparent;
+    border: none;
+    padding-top: 0.2rem;
+  }
+
+  &--content-address--line-one {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  &--content-address--line-one input:first-child {
+    width: 26%;
+  }
+
+  &--content-address--line-one input:nth-child(2n) {
+    border-radius: 4px;
+    border: 1px solid #cccccc;
+    width: 45%;
+    padding: 0.6rem;
+  }
+
+  &--content-address--line-one input {
+    border-radius: 4px;
+    border: 1px solid #cccccc;
+    width: 25%;
+    padding: 0.6rem;
+  }
+
+  &--content-address--line-two {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  &--content-address--line-two input:first-child {
+    width: 17%;
+  }
+
+  &--content-address--line-two input {
+    border-radius: 4px;
+    border: 1px solid #cccccc;
+    width: 60%;
+    padding: 0.6rem;
+  }
+
+  &--content-address--line-two select {
+    border-radius: 4px;
+    border: 1px solid #cccccc;
+    width: 20%;
+    padding: 0.6rem;
+    background: url(../../../../../assets/icons/arrow-bottom.svg);
+    -webkit-appearance: none;
+    color: $gray-700;
+    font-size: 1rem;
+    background-repeat: no-repeat;
+    background-position: 95% 50%;
+  }
+
+  &--content-corporate--line-one {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  &--content-corporate--line-one input:first-child {
+    width: 60%;
+  }
+
+  &--content-corporate--line-one input {
+    border-radius: 4px;
+    border: 1px solid #cccccc;
+    width: 38%;
+    padding: 0.6rem;
+  }
+
+  &--content-corporate--line-two {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  &--content-corporate--line-two input {
+    border-radius: 4px;
+    border: 1px solid #cccccc;
+    width: 49%;
+    padding: 0.6rem;
+  }
+}
+
+.buttons-style {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 4rem;
+}
