@@ -1,3 +1,4 @@
+import { CompanyRemovalConfirmationComponent } from './../company-removal-confirmation/company-removal-confirmation.component'
 import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { NgxModalService } from 'lib/ngx-modal/src/public-api'
@@ -13,6 +14,9 @@ export class CompanyViewComponent implements OnInit {
 
   closeModalCompanyView() {
     this.modalService.close()
+  }
+  openModalRemovalConfirmation() {
+    this.modalService.open(CompanyRemovalConfirmationComponent).subscribe()
   }
 
   ngOnInit(): void {}
