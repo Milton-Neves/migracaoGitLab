@@ -1,5 +1,5 @@
-import { CompanyEditComponent } from './../company-edit/company-edit.component'
 import { Component, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
 import { NgxModalService } from 'lib/ngx-modal/src/public-api'
 
 @Component({
@@ -9,14 +9,11 @@ import { NgxModalService } from 'lib/ngx-modal/src/public-api'
 })
 export class CompanyViewComponent implements OnInit {
   texto = 'nome fantasia'
-  constructor(private modalService: NgxModalService) {}
+  constructor(private modalService: NgxModalService, private router: Router) {}
 
-  closeModal() {
+  closeModalCompanyView() {
     this.modalService.close()
   }
-  // navigateToCompanyEdit() {
-  //   this.router.navigate('/company-edit')
-  // }
 
   ngOnInit(): void {}
 }
