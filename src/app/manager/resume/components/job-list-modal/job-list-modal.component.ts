@@ -1,9 +1,6 @@
-import { Component } from '@angular/core'
-import { Input } from '@angular/core'
-
+import { Component, Input } from '@angular/core'
+import { Job } from '@core/interfaces/resume/job'
 import { NgxModalService } from 'lib/ngx-modal/src/public-api'
-
-import { JobApplications } from '@core/interfaces/resume/job-applications'
 
 @Component({
   selector: 'app-job-list-modal',
@@ -11,7 +8,7 @@ import { JobApplications } from '@core/interfaces/resume/job-applications'
   styleUrls: ['./job-list-modal.component.scss'],
 })
 export class JobListModalComponent {
-  @Input() jobApplications?: JobApplications[]
+  @Input() jobs?: Job[]
   @Input() colorCodes: string[] = []
 
   constructor(private modalService: NgxModalService) {}
