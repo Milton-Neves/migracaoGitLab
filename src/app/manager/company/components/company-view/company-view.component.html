@@ -91,16 +91,21 @@
     <div class="company-view__buttons">
       <app-button
         class="button.decline"
-        [text]="'Cancelar'"
-        [color]="'white'"
-        [textColor]="'#1C3152'"
+        [text]="'Remover Empresa'"
+        [color]="'#FD3737'"
       >
       </app-button>
 
-      <app-button class="button.decline" [text]="'Recusar'" [color]="'red'">
+      <app-button class="button.decline" [text]="'Editar'" [color]="'#1C3152'">
       </app-button>
 
-      <app-button class="button.decline" [text]="'Aceitar'" [color]="'#33A93B'">
+      <app-button
+        class="button.decline"
+        [text]="'Voltar'"
+        [color]="'transparent'"
+        [textColor]="'#1C3152'"
+        (click)="closeModal()"
+      >
       </app-button>
     </div>
   </div>

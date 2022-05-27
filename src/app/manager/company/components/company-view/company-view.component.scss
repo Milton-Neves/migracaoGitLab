@@ -1,14 +1,12 @@
 @import 'variables';
 .company-view {
-  max-width: 40rem;
-  padding: 0.8rem;
+  padding: 0.9rem;
+  width: 64vw;
 
   &__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.9rem 0.4rem;
-    padding-top: 0.9rem;
   }
 
   &__boxs {
@@ -32,6 +30,7 @@
 
     &--no-border {
       border: none;
+      margin-top: 1.5rem;
     }
   }
 
