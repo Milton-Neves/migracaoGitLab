@@ -5,14 +5,17 @@
         {{ resume?.physicalPerson?.name | dashOnNull }}
       </h2>
 
-      <ng-container *ngIf="!!colorCodes.length">
-        <span class="resume-details__header__view--tag">{{
-          resume!.jobApplications[0].job?.name
-        }}</span>
+      <ng-container *ngIf="resume && resume.jobs.length != 0">
+        <span
+          class="resume-details__header__view--tag"
+          [style.background-color]="colorCodes[0]"
+          >{{ resume!.jobs[0]?.name }}</span
+        >
 
         <button
-          (click)="openJobsView(resume!.jobApplications!, colorCodes)"
+          (click)="openJobsView(resume!.jobs!, colorCodes)"
           class="resume-details__header__view--button"
+          *ngIf="resume.jobs.length > 1"
         >
           ver mais
         </button>
