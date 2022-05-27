@@ -1,0 +1,101 @@
+<main class="home">
+  <header class="home__header">
+    <app-page-title [title]="'Cadastrar Empresas'"></app-page-title>
+  </header>
+  <section class="register__company">
+    <div class="register__company--content">
+      <div class="register__company--content-data">
+        <h2>Dados da Empresa</h2>
+
+        <div class="register__company--content-data--line-one">
+          <input type="text" placeholder="Nome Fantasia" />
+          <input type="text" placeholder="CNPJ" />
+        </div>
+
+        <div class="register__company--content-data--line-two">
+          <input type="text" placeholder="Razão Social" />
+
+          <select>
+            <option value="">Número de Funcionários</option>
+            <option value="1">Opção 1</option>
+            <option value="2">Opção 2</option>
+          </select>
+
+          <select>
+            <option value="">Ramo da Empresa</option>
+            <option value="1">Opção 1</option>
+            <option value="2">Opção 2</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="register__company--content-contact">
+        <h2>Contato</h2>
+
+        <div class="register__company--content-contact--line-one">
+          <input type="text" placeholder="E-mail" />
+          <input type="text" placeholder="Telefone" />
+          <button>
+            <img
+              src="../../../../../assets/icons/icon-sum.svg"
+              alt="icon-sum"
+            />
+          </button>
+        </div>
+      </div>
+
+      <div class="register__company--content-address">
+        <h2>Endereço</h2>
+
+        <div class="register__company--content-address--line-one">
+          <input type="text" placeholder="CEP" />
+          <input type="text" placeholder="Rua" />
+          <input type="text" placeholder="Número" />
+        </div>
+
+        <div class="register__company--content-address--line-two">
+          <input type="text" placeholder="Cidade" />
+
+          <select>
+            <option value="">Bairro</option>
+            <option value="1">Opção 1</option>
+            <option value="2">Opção 2</option>
+          </select>
+
+          <input type="text" placeholder="Complemento" />
+        </div>
+      </div>
+
+      <div class="register__company--content-corporate">
+        <h2>Representante Legal</h2>
+
+        <div class="register__company--content-corporate--line-one">
+          <input type="text" placeholder="Nome" />
+          <input type="text" placeholder="E-mail" />
+        </div>
+
+        <div class="register__company--content-corporate--line-two">
+          <input type="text" placeholder="Telefone" />
+          <input type="text" placeholder="Celular" />
+        </div>
+      </div>
+
+      <div class="buttons-style">
+        <app-button
+          class="button.decline"
+          [text]="'Voltar'"
+          [color]="'transparent'"
+          [textColor]="'#1C3152'"
+        >
+        </app-button>
+
+        <app-button
+          class="button.decline"
+          [text]="'Salvar'"
+          [color]="'#1C3152'"
+        >
+        </app-button>
+      </div>
+    </div>
+  </section>
+</main>
