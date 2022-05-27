@@ -4,7 +4,6 @@ import { Education } from './education'
 import { ExtraActivity } from './extra-activity'
 import { HirementResume } from './hirement-resume'
 import { Job } from './job'
-import { JobApplication } from './job-application'
 import { Language } from './language'
 import { WorkExperiences } from './work-experiences'
 
@@ -19,13 +18,12 @@ export interface Resume {
   pathFile?: string
   statusResume: boolean
   archiving?: any
-  jobs: Job[]
   attachments: Attachment[]
   physicalPerson: PhysicalPersonProps
   extraActivities: ExtraActivity[]
   languages: Language[]
   workExperiences: WorkExperiences[]
-  jobApplications: JobApplication[]
+  jobs: Job[]
   educations: Education[]
   hirementResumes?: HirementResume[]
 }

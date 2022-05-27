@@ -1,11 +1,11 @@
 <div class="view-container">
   <div class="title-div">
-    <span class="title">Outros Cargos</span>
+    <span class="title">Cargos</span>
   </div>
   <div class="roles-div">
-    <span *ngFor="let jobs of jobApplications; let i = index">
+    <span *ngFor="let job of jobs; let i = index">
       <p [style.background-color]="colorCodes[i]">
-        {{ jobs.job.name }}
+        {{ job.name }}
       </p>
     </span>
   </div>
