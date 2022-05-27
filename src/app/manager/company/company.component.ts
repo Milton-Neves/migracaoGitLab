@@ -33,7 +33,8 @@ export class CompanyComponent implements OnInit, OnDestroy {
   openModal() {
     let modal = this.modalService.open(CompanyEditComponent).subscribe()
   }
-  abrirModuloEmpresa() {
+
+  openCompanyRegistration() {
     this.router.navigate(['/gerenciador/empresas/cadastrar'])
   }
 
