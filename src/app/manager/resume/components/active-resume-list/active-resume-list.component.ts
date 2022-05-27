@@ -5,7 +5,6 @@ import { map, tap } from 'rxjs/operators'
 import { NgxModalService } from 'lib/ngx-modal/src/public-api'
 
 import { Resume } from '@core/interfaces/resume/resume'
-import { Workfield } from '@core/interfaces/resume/workfield'
 import { WorkfieldService } from '@shared/services/workfield.service'
 import { ResumeService } from '../../services/resume.service'
 import { ResumeJobsViewComponent } from '../resume-jobs-view/resume-jobs-view.component'

@@ -36,14 +36,12 @@
       <span id="no-content">Ainda não há currículos registrados!</span>
     </ng-container>
   </app-table>
-  <<<<<<< HEAD
   <app-pagination
     class="pagination"
     [pagination$]="pagination$"
     (currentPageEmit)="getResumesFromServer($event)"
   >
   </app-pagination>
-  =======
 
   <div class="pagination" *ngIf="resumes.length !== 0">
     <app-pagination-number
@@ -56,5 +54,5 @@
       (currentPageEmit)="getResumesFromServer($event)"
     ></app-pagination>
   </div>
-  >>>>>>> 5404edd42d7df356c2380c047a4cbda2baba48f0
+  <app-pagination></app-pagination>
 </div>

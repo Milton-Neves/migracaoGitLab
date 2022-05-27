@@ -1,5 +1,4 @@
 import { HttpClient } from '@angular/common/http'
-import { taggedTemplate } from '@angular/compiler/src/output/output_ast'
 import { Injectable } from '@angular/core'
 
 import { Company } from '@core/interfaces/company'
