@@ -9,6 +9,7 @@ import { CompanyCardComponent } from './components/company-card/company-card.com
 import { CompanyEditComponent } from './components/company-edit/company-edit.component'
 import { CompanyRegistrationComponent } from './components/company-registration/company-registration.component'
 import { CompanyRemovalConfirmationComponent } from './components/company-removal-confirmation/company-removal-confirmation.component'
+import { CompanyListUnderAnalysisComponent } from './components/company-list-under-analysis/company-list-under-analysis.component'
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { CompanyRemovalConfirmationComponent } from './components/company-remova
     CompanyEditComponent,
     CompanyRegistrationComponent,
     CompanyRemovalConfirmationComponent,
+    CompanyListUnderAnalysisComponent,
   ],
   imports: [CommonModule, CompanyRoutingModule, SharedModule],
 })
