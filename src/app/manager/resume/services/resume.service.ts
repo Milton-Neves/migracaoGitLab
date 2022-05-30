@@ -25,4 +25,16 @@ export class ResumeService extends BaseResourceService<Resume> {
         )
       )
   }
+
+  unarchivingResume(resumeId: number) {
+    return this.http
+      .put(`${environment.baseUrl}/api/resume/unarchiving/${resumeId}`, {})
+      .pipe(
+        tap(
+          () =>
+            this.toastrService.success('Currículo desarquivado com sucesso!'),
+          (err) => this.toastrService.error(err.message)
+        )
+      )
+  }
 }
