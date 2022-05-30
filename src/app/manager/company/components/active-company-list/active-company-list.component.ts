@@ -15,15 +15,6 @@ export class ActiveCompanyListComponent implements OnInit {
   totalCompanys: number = 0
   companys$!: Observable<Company[]>
   companies!: any[]
-  // = [
-  //   {
-  //     name: 'name',
-  //     cnpj: 'cnpj',
-  //     companyName: 'companyName',
-  //     amountEmployees: 'amountEmployees',
-  //     valid: 'valid'
-  //   },
-  // ]
 
   constructor(
     private companyService: CompanyService,
@@ -32,6 +23,7 @@ export class ActiveCompanyListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCompanysList()
+    this.getCompanyFromServer()
   }
 
   getCompanysList() {
@@ -48,7 +40,8 @@ export class ActiveCompanyListComponent implements OnInit {
       .pipe(
         tap((company) => {
           this.totalCompanys = company.data.length
-          this.paginateCompanys(page, company.data)
+          // this.paginateCompanys(page, company.data)
+          this.paginateCompanys(page, [])
         }),
         map((res) => res.data)
       )

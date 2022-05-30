@@ -40,6 +40,12 @@ section {
   gap: 2rem;
 }
 
+#no-content {
+  margin-top: 25px;
+  text-align: center;
+  color: $blue-700;
+}
+
 .pagination {
   display: flex;
   width: 100%;

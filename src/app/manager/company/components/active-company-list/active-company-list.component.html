@@ -2,30 +2,19 @@
   <ng-container *ngFor="let company of companies">
     <app-company-card [card]="company"> </app-company-card>
   </ng-container>
+
+  <ng-container part="empty" *ngIf="!companies.length">
+    <span id="no-content">Nenhuma empresa cadastrada!</span>
+  </ng-container>
+
+  <div class="pagination" *ngIf="companies.length !== 0">
+    <app-pagination-number
+      [visibleItems]="companies.length"
+      [totalItems]="totalCompanys"
+    ></app-pagination-number>
+    <app-pagination
+      [pagination$]="companys$"
+      (currentPageEmit)="getCompanyFromServer($event)"
+    ></app-pagination>
+  </div>
 </section>
-
-<!-- <app-pagination-number
-  class="pagination-number"
-  [visibleItems]="companies.length"
-  [totalItems]="totalCompanys"
->
-</app-pagination-number> -->
-
-<!-- <app-pagination
-    class="pagination"
-    [pagination$]="companys$"
-    (currentPageEmit)="getCompanyFromServer($event)"
-  >
-  </app-pagination> -->
-<div class="pagination" *ngIf="companies.length !== 0">
-  <app-pagination-number
-    [visibleItems]="companies.length"
-    [totalItems]="totalCompanys"
-  ></app-pagination-number>
-  <app-pagination
-    [pagination$]="companys$"
-    (currentPageEmit)="getCompanyFromServer($event)"
-  ></app-pagination>
-
-  aqui 5
-</div>
