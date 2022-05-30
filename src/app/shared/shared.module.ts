@@ -15,6 +15,7 @@ import { TabNavComponent } from './components/tab-nav/tab-nav.component'
 import { TableComponent } from './components/table/table.component'
 import { HighlightDirective } from './directives/highlight.directive'
 import { DashOnNullPipe } from './pipes/dash-on-null.pipe'
+import { ReplaceUnderlineToSpacePipe } from './pipes/replace-with-regex'
 
 const components = [
   PaginationComponent,
@@ -29,6 +30,7 @@ const components = [
   InputSearchComponent,
   DashOnNullPipe,
   ExpiresTokenWarningComponent,
+  ReplaceUnderlineToSpacePipe,
 ]
 
 @NgModule({

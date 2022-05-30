@@ -8,23 +8,55 @@
   </h1>
   <span class="card-archiving__name-actual">
     Nome:
-    <b>Igor José Cordeiro de Lima</b>
+    <b>{{ resume.physicalPerson.name }}</b>
   </span>
 
   <div class="card-archiving__select">Motivo:</div>
   <div class="card-archiving__inputs">
     <form>
-      <select>
-        <option value="">Selecione um motivo para o arquivamento</option>
-        <option value="1">Opção 1</option>
-        <option value="2">Opção 2</option>
+      <select
+        [(ngModel)]="archivingResume.archiving.motive"
+        (ngModelChange)="archivingResume.companyName = null"
+        name="motive"
+        id="motive"
+      >
+        <option value="null" disabled [defaultSelected]="true">
+          Selecione um motivo para o arquivamento
+        </option>
+        <option
+          *ngFor="let motive of motivesArchiving$ | async"
+          value="{{ motive }}"
+        >
+          {{ motive | replace: '_':' ' }}
+        </option>
       </select>
-      <div class="card-archiving__select">Empresa:</div>
-      <select>
-        <option value="">Selecione a Empresa</option>
-        <option value="1">Opção 1</option>
-        <option value="2">Opção 2</option>
-      </select>
+      <div
+        [ngStyle]="{
+          visibility:
+            archivingResume.archiving.motive == 'CONTRATADO'
+              ? 'visible'
+              : 'hidden'
+        }"
+      >
+        <div class="card-archiving__select">Empresa:</div>
+        <input
+          [(ngModel)]="searchCompanyName"
+          (ngModelChange)="autoComplete()"
+          name="search"
+          id="search"
+          placeholder="Busque a Empresa"
+          (focus)="changeStateFocus()"
+          (focusout)="changeStateFocus()"
+        />
+        <div class="options" *ngIf="focus">
+          <p
+            (click)="setValueToCompanyName(company)"
+            *ngFor="let company of companies$ | async"
+          >
+            {{ company.name }}
+          </p>
+        </div>
+      </div>
     </form>
   </div>
 
@@ -38,7 +70,13 @@
     >
     </app-button>
     <div class="card_archiving_buttons__submit">
-      <app-button [text]="'Confirmar'" [color]="'#1C3152'" type="submit">
+      <app-button
+        [text]="'Confirmar'"
+        [color]="'#1C3152'"
+        type="submit"
+        (handleClick)="sendArchiving()"
+        [disabled]="handleForm()"
+      >
       </app-button>
     </div>
   </div>

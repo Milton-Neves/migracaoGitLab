@@ -44,21 +44,29 @@
     display: flex;
     flex-direction: column;
 
-    select {
+    select,
+    input {
       margin-top: 0.4rem;
       width: 100%;
       border: 1px solid #cccccc;
       padding: 0.6rem;
       border-radius: 5px;
-      background: url(../../../../../assets/icons/arrow-bottom.svg);
-      background-position: 5rem;
       -webkit-appearance: none;
+      &#search {
+        background: url(../../../../../assets/images/icons/icon-src.svg) 95% 50%
+          no-repeat;
+      }
+      &#motive {
+        background: url(../../../../../assets/icons/arrow-bottom.svg) 95% 50%
+          no-repeat;
+      }
       color: $gray-700;
       font-size: 0.9rem;
+      &::placeholder {
+        font-size: 0.9rem;
+      }
       overflow: hidden;
       display: block;
-      background-repeat: no-repeat;
-      background-position: 95% 50%;
       cursor: pointer;
     }
   }
@@ -69,6 +77,29 @@
     gap: 1rem;
     &__submit {
       padding: 0.2rem 0.7rem 0.9rem;
+    }
+  }
+  .options {
+    background: #ffffff;
+    box-shadow: 2px 0px 19px #555555;
+    border-radius: 5px;
+    position: absolute;
+    height: 7rem;
+    max-height: 7rem;
+    min-height: 7rem;
+    overflow-y: auto;
+    z-index: 999;
+    width: 445px;
+    p {
+      padding: 0.5rem;
+      font-size: 0.9rem;
+      color: $gray-700;
+      font-weight: 500;
+      &:hover {
+        background: #cccccc;
+        border-radius: 5px;
+        cursor: pointer;
+      }
     }
   }
 }
