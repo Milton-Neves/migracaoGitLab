@@ -91,7 +91,7 @@ export class LoginService {
           )
           .subscribe()
       }
-    }, 1000 * 60 * 10)
+    }, 1000 * 60 * 10) // Tempo do ciclo que ele irá verificar se o token está perto de expirar... 10 min.
   }
 
   calculateExpiresDate(expiresDate: Date) {
@@ -130,6 +130,13 @@ export class LoginService {
         )}`
       )
       .subscribe()
+  }
+
+  restartTime() {
+    let expiresDate: string | null = sessionStorage.getItem(EXPIRES_TOKEN)
+    if (expiresDate != null) {
+      this.startTimer(expiresDate)
+    }
   }
 
   logout(): void {
