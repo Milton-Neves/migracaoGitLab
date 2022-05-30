@@ -1,0 +1,24 @@
+<div class="confirm-expires">
+  <div class="confirm-expires--title-container" *ngIf="currentMinuteLeft > 0">
+    <h1 id="title">
+      Sessão expira aproximadamente em
+      <strong>{{ currentMinuteLeft }}</strong> minutos!
+    </h1>
+    <p id="text">Salve o trabalho e realize novo login.</p>
+  </div>
+  <div class="confirm-expires--title-container" *ngIf="currentMinuteLeft <= 0">
+    <h1 id="title">Sessão expirada!!!</h1>
+    <p id="text">Realize novo login.</p>
+  </div>
+
+  <div class="confirm-expires--buttons">
+    <app-button
+      [color]="'#e95f5f'"
+      [textColor]="'#ffffff'"
+      [text]="currentMinuteLeft <= 0 ? 'Sair' : 'Confirmar'"
+      (handleClick)="
+        currentMinuteLeft <= 0 ? closeModalAndLogOut() : closeModal()
+      "
+    ></app-button>
+  </div>
+</div>
