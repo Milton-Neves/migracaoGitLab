@@ -63,7 +63,12 @@
 
     &__situation {
       font-size: 0.8rem;
-      color: $green-500;
+      &.active {
+        color: $green-500;
+      }
+      &.inactive {
+        color: $red-400;
+      }
       font-weight: 500;
     }
   }
