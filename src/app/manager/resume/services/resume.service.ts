@@ -1,36 +1,28 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { ApiResponse } from '@shared/models/api-response.model'
+import { Archiving } from '@core/interfaces/resume/archiving'
+import { Resume } from '@core/interfaces/resume/resume'
+import { BaseResourceService } from '@core/services/base-resource.service'
 import { environment } from 'environments/environment'
-import { Observable } from 'rxjs'
-
-import { ResumeProps } from '../entities/resume.model'
+import { ToastrService } from 'ngx-toastr'
+import { tap } from 'rxjs/operators'
 
 @Injectable({
   providedIn: 'root',
 })
-export class ResumeService {
-  endpoints = {
-    listAll: () => 'resume',
-    getOne: (id: number) => `resume/${id}`,
+export class ResumeService extends BaseResourceService<Resume> {
+  constructor(http: HttpClient, private toastrService: ToastrService) {
+    super(http, 'resume')
   }
 
-  constructor(private http: HttpClient) {}
-
-  getResume(params?: any): Observable<ApiResponse<ResumeProps[]>> {
-    return this.http.get<ApiResponse<ResumeProps[]>>(
-      `${environment.baseUrl}/api/${this.endpoints.listAll()}`,
-      {
-        params: {
-          ...params,
-        },
-      }
-    )
-  }
-
-  getOneResume(id: number): Observable<ApiResponse<ResumeProps>> {
-    return this.http.get<ApiResponse<ResumeProps>>(
-      `${environment.baseUrl}/api/${this.endpoints.getOne(id)}`
-    )
+  archivingResume(archiving: Archiving) {
+    return this.http
+      .post(`${environment.baseUrl}/api/archiving`, archiving)
+      .pipe(
+        tap(
+          () => this.toastrService.success('Currículo arquivado com sucesso!'),
+          (err) => this.toastrService.error(err.message)
+        )
+      )
   }
 }

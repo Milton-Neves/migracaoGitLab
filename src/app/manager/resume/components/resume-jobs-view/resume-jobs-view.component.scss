@@ -1,0 +1,44 @@
+@import 'variables';
+
+.view-container {
+  margin: 2rem 3rem 2rem 3rem;
+}
+
+.name-div {
+  margin-bottom: 20px;
+}
+
+.name {
+  color: $blue-700;
+  font-weight: bolder;
+  font-size: 1.5rem;
+}
+
+.roles-div {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 25rem;
+  column-gap: 13px;
+  row-gap: 4px;
+  margin-left: 0.4rem;
+}
+
+p {
+  padding: 0.25rem 1rem 0.25rem 1rem;
+  margin: 0.4rem 0rem 0rem 0rem;
+  border-radius: 6px;
+  background-color: $gray-500;
+  width: fit-content;
+  color: $white;
+}
+
+.button-div {
+  display: flex;
+  flex-flow: row-reverse;
+  margin-top: 2rem;
+}
+
+.close-button {
+  border: none;
+  color: $blue-700;
+}

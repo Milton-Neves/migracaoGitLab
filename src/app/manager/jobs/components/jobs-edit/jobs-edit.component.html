@@ -1,0 +1,38 @@
+<main class="job">
+  <header class="job__header">
+    <app-page-title [title]="'Editar Cargo'"></app-page-title>
+  </header>
+
+  <section class="job__edit">
+    <div class="job__edit--content-data">
+      <h2>Dados do Cargo</h2>
+
+      <div class="job__edit--content-data--line">
+        <input type="text" placeholder="Nome Fantasia" />
+
+        <select>
+          <option value="">Área de Atuação</option>
+          <option value="1">Opção 1</option>
+          <option value="2">Opção 2</option>
+        </select>
+      </div>
+
+      <div class="buttons-style">
+        <app-button
+          class="button.decline"
+          [text]="'Voltar'"
+          [color]="'transparent'"
+          [textColor]="'#1C3152'"
+        >
+        </app-button>
+
+        <app-button
+          class="button.decline"
+          [text]="'Salvar'"
+          [color]="'#1C3152'"
+        >
+        </app-button>
+      </div>
+    </div>
+  </section>
+</main>

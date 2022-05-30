@@ -1,0 +1,104 @@
+<div class="about" *ngIf="physicalPerson">
+  <div class="about__box">
+    <h3>Dados Pessoais</h3>
+
+    <div class="about__datas">
+      <div class="about__data">
+        <h4>Nome:</h4>
+        <span>{{ physicalPerson.name | dashOnNull }}</span>
+      </div>
+
+      <div class="about__3-column">
+        <div class="about__data">
+          <h4>Data de Nascimento:</h4>
+          <span>{{ physicalPerson.birthDate | dashOnNull }}</span>
+        </div>
+        <div class="about__data">
+          <h4>Sexo:</h4>
+          <span>{{ physicalPerson.sex | dashOnNull }}</span>
+        </div>
+        <div class="about__data">
+          <h4>Estado Civil:</h4>
+          <span>{{ physicalPerson.maritalStatus | dashOnNull }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="about__box">
+    <h3>Contato</h3>
+
+    <div class="about__datas">
+      <div class="about__2-column">
+        <div class="about__data">
+          <h4>E-mail:</h4>
+          <span>{{ physicalPerson?.email | dashOnNull }}</span>
+        </div>
+
+        <div class="about__data">
+          <h4>Telefones:</h4>
+          <span
+            *ngFor="
+              let phone of physicalPerson?.phoneNumbers;
+              let isLast = last
+            "
+            class="phone"
+          >
+            <span *ngIf="!isLast">{{ phone.number }}, </span>
+            <span *ngIf="isLast">{{ phone.number }} </span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="about__box">
+    <h3>Endereço</h3>
+
+    <div class="about__datas">
+      <div class="about__3-column">
+        <div class="about__data">
+          <h4>CEP:</h4>
+          <span>
+            {{ physicalPerson.address?.zipCode | dashOnNull }}
+          </span>
+        </div>
+
+        <div class="about__data">
+          <h4>País:</h4>
+          <span> Brasil </span>
+        </div>
+
+        <div class="about__data">
+          <h4>Cidade:</h4>
+          <span>
+            {{ physicalPerson.address?.city | dashOnNull }}
+          </span>
+        </div>
+      </div>
+
+      <div class="about__3-column">
+        <div class="about__data">
+          <h4>Bairro:</h4>
+          <span>
+            {{ physicalPerson.address?.neighborhood | dashOnNull }}
+          </span>
+        </div>
+
+        <div class="about__data">
+          <h4>Rua:</h4>
+          <span>
+            {{ physicalPerson.address?.street | dashOnNull }}
+          </span>
+        </div>
+
+        <div class="about__data">
+          <h4>Número:</h4>
+          <span>
+            {{ physicalPerson.address?.number | dashOnNull }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

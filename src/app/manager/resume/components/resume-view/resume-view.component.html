@@ -1,16 +1,29 @@
-<div class="resume-details" *ngIf="resume$ | async as resume">
+<div class="resume-details">
   <header class="resume-details__header">
     <div class="resume-details__header__view">
       <h2 class="resume-details__header__view--title">
-        {{ resume.physicalPerson.name }}
+        {{ resume?.physicalPerson?.name | dashOnNull }}
       </h2>
-      <span class="resume-details__header__view--tag">{{
-        resume.jobApplications
-      }}</span>
+
+      <ng-container *ngIf="resume && resume.jobs.length != 0">
+        <span
+          class="resume-details__header__view--tag"
+          [style.background-color]="colorCodes[0]"
+          >{{ resume!.jobs[0]?.name }}</span
+        >
+
+        <button
+          (click)="openJobsView(resume!.jobs!, colorCodes)"
+          class="resume-details__header__view--button"
+          *ngIf="resume.jobs.length > 1"
+        >
+          ver mais
+        </button>
+      </ng-container>
     </div>
     <span class="resume-details__header__situation"
       ><b>Situação:</b>
-      {{ resume.statusResume ? 'Disponível' : 'Indisponível' }}</span
+      {{ resume?.statusResume ? 'Disponível' : 'Indisponível' }}</span
     >
   </header>
 
@@ -20,188 +33,26 @@
   ></app-tab-nav>
 
   <div class="container">
-    <!-- Dados -->
     <ng-container *ngIf="activeTab == sectionTitle[0]">
-      <div class="resume-details__box__global">
-        <div class="resume-details__box__personal">
-          <h3 class="resume-details__box__personal--title">Dados Pessoais</h3>
-
-          <div class="resume-details__box__personal--view">
-            <div class="resume-details__box__personal--view-name">
-              <span><b>Nome:</b> {{ resume.physicalPerson.name }}</span>
-            </div>
-            <div class="resume-details__box__personal--view-mail">
-              <span><b>E-mail:</b> {{ resume.physicalPerson.email }}</span>
-            </div>
-            <div class="resume-details__box__personal--view-data">
-              <span
-                ><b>Data de Nascimento:</b>
-                {{ resume.physicalPerson.birthDate }}</span
-              >
-              <span><b>Sexo:</b> {{ resume.physicalPerson.sex }}</span>
-              <span
-                ><b>Estado Civil:</b>
-                {{ resume.physicalPerson.maritalStatus }}</span
-              >
-            </div>
-          </div>
-        </div>
-
-        <div class="resume-details__box__contact">
-          <h3 class="resume-details__box__contact--title">Contato</h3>
-
-          <div class="resume-details__box__contact--text">
-            <div class="resume-details__box__contact--text-phone">
-              <span><b>E-mail:</b> {{ resume.physicalPerson.email }}</span>
-            </div>
-            <div class="resume-details__box__contact--text-mail">
-              <span
-                ><b>Telefone:</b> {{ resume.physicalPerson.phoneNumbers }}</span
-              >
-            </div>
-          </div>
-        </div>
-
-        <div class="resume-details__box__address">
-          <h3 class="resume-details__box__address--title">Endereço</h3>
-
-          <div class="resume-details__box__address--information">
-            <div class="resume-details__box__address--information-city">
-              <span
-                ><b>CEP:</b> {{ resume.physicalPerson.address?.zipCode }}</span
-              >
-              <span
-                ><b>Cidade:</b> {{ resume.physicalPerson.address?.city }}</span
-              >
-            </div>
-            <div class="resume-details__box__address--information-district">
-              <span
-                ><b>Bairro:</b>
-                {{ resume.physicalPerson.address?.neighborhood }}</span
-              >
-              <span><b>País:</b> Brasil</span>
-            </div>
-            <div class="resume-details__box__address--information-street">
-              <span
-                ><b>Rua:</b> {{ resume.physicalPerson.address?.street }}</span
-              >
-              <span
-                ><b>Número:</b>
-                {{ resume.physicalPerson.address?.number }}</span
-              >
-            </div>
-          </div>
-        </div>
-      </div>
+      <app-about [physicalPerson]="resume?.physicalPerson"></app-about>
     </ng-container>
-    <!-- Disponibilidade -->
+
     <ng-container *ngIf="activeTab == sectionTitle[1]">
-      <div class="resume-details__box__global">
-        <div class="resume-details__box__shift">
-          <h3 class="resume-details__box__shift--title">Períodos</h3>
-
-          <div class="resume-details__box__shift--description">
-            <div class="resume-details__box__shift--description-morning">
-              <span
-                ><b>Manhã:</b>
-                {{
-                  resume.physicalPerson.willingness?.morning ? 'Sim' : 'Não'
-                }}</span
-              >
-              <span
-                ><b>Sábado:</b>
-                {{
-                  resume.physicalPerson.willingness?.saturday ? 'Sim' : 'Não'
-                }}</span
-              >
-            </div>
-            <div class="resume-details__box__shift--description-afternoon">
-              <span
-                ><b>Tarde:</b>
-                {{
-                  resume.physicalPerson.willingness?.afternoon ? 'Sim' : 'Não'
-                }}</span
-              >
-              <span
-                ><b>Domingo:</b>
-                {{
-                  resume.physicalPerson.willingness?.sunday ? 'Sim' : 'Não'
-                }}</span
-              >
-            </div>
-            <div class="resume-details__box__shift--description-night">
-              <span
-                ><b>Noite:</b>
-                {{
-                  resume.physicalPerson.willingness?.night ? 'Sim' : 'Não'
-                }}</span
-              >
-            </div>
-          </div>
-        </div>
-
-        <div class="resume-details__box__trips">
-          <h3 class="resume-details__box__trips--title">Viagens</h3>
-
-          <div class="resume-details__box__trips--text">
-            <span
-              ><b>Disponibilidade para viagens:</b>
-              {{
-                resume.physicalPerson.willingness?.travel ? 'Sim' : 'Não'
-              }}</span
-            >
-          </div>
-        </div>
-      </div>
+      <app-availability
+        [willingness]="resume?.physicalPerson?.willingness!"
+      ></app-availability>
     </ng-container>
-    <!-- Formação -->
+
     <ng-container *ngIf="activeTab == sectionTitle[2]">
-      <div class="resume-details__box__formation">
-        <h3 class="resume-details__box__formation--title">
-          Escolaridade e cursos
-        </h3>
-
-        <div class="resume-details__box__formation--description">
-          <div
-            class="resume-details__box__formation--knowledge"
-            *ngFor="let education of resume.educations"
-          >
-            <span><b>Instituição:</b> {{ education.institution }}</span>
-            <span><b>Escolaridade:</b> {{ education.scholarity }}</span>
-            <span><b>Curso:</b> {{ education.course }}</span>
-          </div>
-        </div>
-      </div>
+      <app-formation [educations]="resume?.educations!"></app-formation>
     </ng-container>
-    <!-- Experiencia Profissional -->
+
     <ng-container *ngIf="activeTab == sectionTitle[3]">
-      <div class="resume-details__box__experience">
-        <h3 class="resume-details__box__experience--title">Experiência</h3>
-
-        <div class="resume-details__box__experience--description">
-          <div
-            class="resume-details__box__experience--skills"
-            *ngFor="let workExperience of resume.workExperiences"
-          >
-            <span><b>Nome da empresa:</b> {{ workExperience.company }}</span>
-            <span
-              ><b>Período:</b> {{ workExperience.period.start }} -
-              {{
-                workExperience.period.end != null
-                  ? workExperience.period.end
-                  : '...'
-              }}</span
-            >
-            <span
-              ><b>Formal:</b>
-              {{ workExperience.isFormal ? 'Sim' : 'Não' }}</span
-            >
-          </div>
-        </div>
-      </div>
+      <app-professional-experience
+        [workExperiences]="resume?.workExperiences"
+      ></app-professional-experience>
     </ng-container>
 
-    <!-- button for all -->
     <div class="resume-details__btn">
       <app-button
         class="resume-details__btn__cancel"

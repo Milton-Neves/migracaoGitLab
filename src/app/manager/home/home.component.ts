@@ -1,4 +1,7 @@
-import { Component, OnInit, Output } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
+import { SGIMetrics } from '@core/interfaces/metric/sgi-metrics'
+import { Observable } from 'rxjs'
+import { SGIMetricsService } from './service/sgi-metrics.service'
 
 @Component({
   selector: 'app-home',
@@ -6,15 +9,11 @@ import { Component, OnInit, Output } from '@angular/core'
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  num = 100
-  text = 'pessoas conectadas'
-  num2 = 100
-  text2 = 'total de currículos'
-  num3 = 40
-  text3 = 'pessoas cadastradas'
-  num4 = 28
-  text4 = 'total de encaminhamentos'
-  constructor() {}
+  portalMetrics: Observable<SGIMetrics> = new Observable()
 
-  ngOnInit(): void {}
+  constructor(private sgiMetrics: SGIMetricsService) {}
+
+  ngOnInit(): void {
+    this.portalMetrics = this.sgiMetrics.getSGI()
+  }
 }

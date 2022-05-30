@@ -1,0 +1,28 @@
+@import 'variables';
+
+.card-password {
+  width: 419px;
+  background: $white;
+  border-radius: 15px;
+  padding: 1.5rem;
+
+  .title {
+    display: flex;
+    flex-direction: column;
+    font-weight: 500;
+    font-size: 20px;
+    color: $blue-700;
+
+    h4 {
+      font-weight: 400;
+      font-size: 15px;
+      padding-top: 0.5rem;
+      padding-bottom: 1rem;
+    }
+  }
+
+  .tab-content {
+    display: flex;
+    margin-bottom: 1rem;
+  }
+}

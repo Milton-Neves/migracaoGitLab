@@ -1,5 +1,7 @@
 import { Component, HostListener } from '@angular/core'
 
+import { MODULES, SidebarModule } from '@shared/constants/modules'
+
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -7,12 +9,7 @@ import { Component, HostListener } from '@angular/core'
 })
 export class SidebarComponent {
   isOpen = false
-
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    let width = event.target.innerWidth
-    this.isOpen = width >= 670
-  }
+  modules: SidebarModule[] = MODULES
 
   constructor() {}
 

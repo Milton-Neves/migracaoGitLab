@@ -40,7 +40,7 @@
           />
           <div class="filter">
             <img
-              src="../../../assets/icons/icon-filter.svg"
+              src="../../../assets/images/icons/icon-filter.svg"
               alt="icon-filter"
             />
           </div>
@@ -49,10 +49,15 @@
     </div>
 
     <div *ngIf="isNavActive">
-      <app-button class="select" [text]="'CRIAR EMPRESA'" [color]="'#33A93B'">
-        <img src="../../../assets/icons/img-sum.svg" />
+      <app-button
+        class="select"
+        [text]="'CRIAR EMPRESA'"
+        [color]="'#33A93B'"
+        (click)="openCompanyRegistration()"
+      >
+        <img src="../../../assets/images/icons/img-sum.svg" />
       </app-button>
-      <app-company-card (click)="openModal()"></app-company-card>
+      <app-company-card></app-company-card>
     </div>
     <div *ngIf="!isNavActive">
       <app-pagination-number

@@ -1,0 +1,39 @@
+<div class="availability">
+  <div class="availability__box">
+    <h3>Períodos</h3>
+
+    <div class="availability__datas">
+      <div class="availability__5-column">
+        <div class="availability__data">
+          <h4>Manhã:</h4>
+          <span>{{ willingness?.morning ? 'Sim' : 'Não' }}</span>
+        </div>
+
+        <div class="availability__data">
+          <h4>Tarde:</h4>
+          <span>{{ willingness?.afternoon ? 'Sim' : 'Não' }}</span>
+        </div>
+
+        <div class="availability__data">
+          <h4>Noite:</h4>
+          <span>{{ willingness?.night ? 'Sim' : 'Não' }}</span>
+        </div>
+
+        <div class="availability__data">
+          <h4>Sábado:</h4>
+          <span>{{ willingness?.saturday ? 'Sim' : 'Não' }}</span>
+        </div>
+
+        <div class="availability__data">
+          <h4>Domingo:</h4>
+          <span>{{ willingness?.sunday ? 'Sim' : 'Não' }}</span>
+        </div>
+      </div>
+
+      <div class="availability__data">
+        <h4>Disponibilidade para viagens:</h4>
+        <span>{{ willingness?.travel ? 'Sim' : 'Não' }}</span>
+      </div>
+    </div>
+  </div>
+</div>

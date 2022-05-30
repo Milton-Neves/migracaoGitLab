@@ -1,0 +1,80 @@
+@import 'variables';
+.container {
+  width: 100%;
+}
+.table {
+  display: flex;
+  justify-items: center;
+  width: 100%;
+}
+
+.phone::after {
+  content: '\A';
+  white-space: pre;
+}
+
+.table-details {
+  &__body {
+    text-align: center;
+    &--text-description td:first-child {
+      text-align: left;
+    }
+    &--text-description td {
+      padding: 0.5rem 2rem;
+    }
+    &--text-description {
+      border: 1px solid $black-100;
+      border-left: none;
+      border-right: none;
+    }
+    &--bg-primary .jobApplicationsBorder {
+      background-color: $gray-700;
+      color: $white;
+      border-radius: 6px;
+      padding: 0.1rem 1rem 0.1rem 1rem;
+      margin-right: 0.5rem;
+    }
+    &--color-red {
+      color: $red-500;
+    }
+    &--border-btn {
+      gap: 1rem;
+      display: flex;
+      justify-content: center;
+    }
+    &--border-btn button {
+      border: none;
+      background: none;
+      color: $gray-700;
+      border: 1px solid $black-100;
+      padding: 0.3rem 1rem;
+      border-radius: 6px;
+
+      &:hover {
+        filter: brightness(1.1);
+        background: $gray-200;
+      }
+    }
+  }
+}
+
+.openJobsViewButton {
+  text-decoration: underline;
+  border: none;
+  background-color: transparent;
+  margin-top: 2px;
+}
+
+#no-content {
+  margin-top: 25px;
+  text-align: center;
+  color: $blue-700;
+}
+
+.pagination {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+}

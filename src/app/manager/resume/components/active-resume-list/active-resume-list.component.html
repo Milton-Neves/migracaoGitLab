@@ -1,43 +1,53 @@
 <div class="container">
-  <app-pagination-number
-    [visibleItems]="resumes.length"
-    [totalItems]="totalCountResumes"
-    class="pagination-number"
-  ></app-pagination-number>
   <app-table class="table">
-    <ng-container
-      *ngIf="resumes != undefined && resumes.length != 0"
-      part="list"
-    >
+    <ng-container *ngIf="!!resumes" part="list">
       <tr
         class="table-details__body--text-description"
-        *ngFor="let resume of resumes"
+        *ngFor="let resume of resumes; let resumeIndex = index"
       >
-        <td>{{ resume.physicalPerson.name }}</td>
-        <td>{{ resume.physicalPerson.phoneNumbers }}</td>
-        <td class="table-details__body--bg-primary">
-          <span> {{ resume.jobApplications }} </span>
+        <td>{{ resume?.physicalPerson?.name }}</td>
+        <td>
+          <span
+            *ngFor="
+              let phone of resume.physicalPerson.phoneNumbers;
+              let isLast = last
+            "
+            class="phone"
+          >
+            <span *ngIf="!isLast">{{ phone.number }},</span>
+            <span *ngIf="isLast">{{ phone.number }}</span>
+          </span>
         </td>
+
         <td class="table-details__body--color-red">
           {{ resume.statusResume ? 'Disponível' : 'Arquivado' }}
         </td>
         <td class="table-details__body--border-btn">
-          <button (click)="viewResume(resume.id)">visualizar</button> |
-          <button>editar</button> |
-          <button>arquivar</button>
+          <button type="button" (click)="viewResume(resume.id)">
+            Visualizar
+          </button>
+          <button type="button">Editar</button>
+          <button type="button" (click)="openArchivingModal(resume)">
+            Arquivar
+          </button>
         </td>
       </tr>
     </ng-container>
-    <ng-container
-      part="empty"
-      *ngIf="resumes == undefined || resumes.length == 0"
-    >
+
+    <ng-container part="empty" *ngIf="!resumes.length">
       <span id="no-content">Ainda não há currículos registrados!</span>
     </ng-container>
   </app-table>
-  <app-pagination
-    class="pagination"
-    [pagination$]="pagination$"
-    (currentPageEmit)="getResumesFromServer($event)"
-  ></app-pagination>
+
+  <div class="pagination" *ngIf="resumes.length !== 0">
+    <app-pagination-number
+      [visibleItems]="resumes.length"
+      [totalItems]="totalCountResumes"
+    ></app-pagination-number>
+
+    <app-pagination
+      [pagination$]="pagination$"
+      (currentPageEmit)="getResumesFromServer($event)"
+    ></app-pagination>
+  </div>
 </div>

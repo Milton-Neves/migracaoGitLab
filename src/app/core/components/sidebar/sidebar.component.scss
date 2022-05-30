@@ -28,8 +28,43 @@ button {
   display: block;
 }
 
+.sidebar.ativado ul li .tooltip {
+  display: none;
+}
+
 .nav_items {
   padding: 1rem;
+}
+
+.sidebar:not(.ativado) .nav_items ul li:hover .tooltip {
+  position: absolute;
+  display: block;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: $green-500;
+  left: 2rem;
+  font-size: 0.8rem;
+  padding: 0.3rem 0.5rem;
+  z-index: 9999;
+  border-radius: 5px;
+  box-shadow: $box-shadow;
+  transition: 200ms linear all;
+
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: -5px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-right: 5px solid $green-500;
+  }
+}
+
+.nav_items ul li {
+  position: relative;
 }
 
 .nav_items li a {

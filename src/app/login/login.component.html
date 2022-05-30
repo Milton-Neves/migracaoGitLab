@@ -1,41 +1,49 @@
-<div class="page">
-  <h1>
-    <img
-      class="img-logo"
-      src="../../assets/images/logo-bemp.svg"
-      alt="Banco de Empregos"
-    />
-  </h1>
-  <div class="card-login">
-    <div class="card-login__top-card">
+<main class="page">
+  <header class="header">
+    <img src="../../assets/images/logo-bemp.svg" alt="Banco de Empregos" />
+  </header>
+
+  <section class="login">
+    <div class="login__title">
       <img
-        class="card-login__top-card--logo-parnamirim"
         src="../../assets/images/logo-parnamirim.svg"
         alt="Prefeitura Municipal de Parnamirim"
       />
-      <h2 class="card-login__top-card--title">Gerenciador Banco de Empregos</h2>
-      <h3 class="card-login__top-card--title--subtitle">
-        Prefeitura Munipal de Parnamirim
-      </h3>
-      <div class="card-login__top-card--line-bottom"></div>
+      <h1>Gerenciador Banco de Empregos</h1>
+      <h2>Prefeitura Munipal de Parnamirim</h2>
+      <div class="login__line"></div>
     </div>
 
-    <div class="input__group">
-      <input class="input__group--line-login" type="text" placeholder="Login" />
+    <form [formGroup]="form" class="login__inputs">
       <input
-        class="input__group--line-password"
+        formControlName="login"
+        type="text"
+        placeholder="Login"
+        name="login"
+        id="login"
+      />
+      <input
+        formControlName="password"
         type="password"
         placeholder="Senha"
+        name="password"
+        id="password"
       />
-      <button (click)="login()" class="input__group--btn-style">Entrar</button>
-    </div>
-  </div>
-  <div class="text">
-    Desenvolvido por
-    <img class="img-gcti" src="../../assets/images/logo-gcti.svg" alt="GCTI" />
-  </div>
 
-  <span class="text-footer">
-    ©{{ currentDate | date: 'yyyy' }} - Prefeitura Munipal de Parnamirim
-  </span>
-</div>
+      <button [disabled]="form.invalid" type="button" (click)="onSubmit()">
+        {{ loginRequestIsLoading ? 'Carregando...' : 'Entrar' }}
+      </button>
+    </form>
+  </section>
+
+  <footer class="footer">
+    <span class="footer__gcti">
+      Desenvolvido por
+      <img src="../../assets/images/logo-gcti.svg" alt="GCTI" />
+    </span>
+
+    <span class="footer__copyright">
+      ©{{ currentDate | date: 'yyyy' }} - Prefeitura Munipal de Parnamirim
+    </span>
+  </footer>
+</main>

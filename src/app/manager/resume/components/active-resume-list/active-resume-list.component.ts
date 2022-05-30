@@ -1,27 +1,32 @@
 import { Component, OnInit } from '@angular/core'
-import { createPagination } from '@shared/utils/pagination.utils'
+import { Resume } from '@core/interfaces/resume/resume'
+import { PaginationService } from '@shared/services/pagination.service'
+import { WorkfieldService } from '@shared/services/workfield.service'
 import { NgxModalService } from 'lib/ngx-modal/src/public-api'
 import { Observable, of } from 'rxjs'
-import { map, tap } from 'rxjs/operators'
+import { map, switchMap, tap } from 'rxjs/operators'
 
-import { ResumeProps } from '../../entities/resume.model'
 import { ResumeService } from '../../services/resume.service'
+import { ArchivingModalComponent } from '../archiving-modal/archiving-modal.component'
+import { ResumeJobsViewComponent } from '../resume-jobs-view/resume-jobs-view.component'
 import { ResumeViewComponent } from '../resume-view/resume-view.component'
 
-const ITEMS_PER_PAGE = 6
 @Component({
   selector: 'app-active-resume-list',
   templateUrl: './active-resume-list.component.html',
   styleUrls: ['./active-resume-list.component.scss'],
 })
 export class ActiveResumeListComponent implements OnInit {
-  resumes: ResumeProps[] = []
+  resumes: Resume[] = []
   totalCountResumes: number = 0
   pagination$?: Observable<any>
-
+  colorCodes: string[] = []
+  currentPage!: number
   constructor(
     private resumeService: ResumeService,
-    private modalService: NgxModalService
+    private workfieldService: WorkfieldService,
+    private modalService: NgxModalService,
+    private paginationService: PaginationService
   ) {}
 
   ngOnInit(): void {
@@ -30,9 +35,10 @@ export class ActiveResumeListComponent implements OnInit {
 
   getResumesFromServer(page: number = 1, params?: any) {
     this.resumeService
-      .getResume({ statusResume: true })
+      .findAll('', { statusResume: true })
       .pipe(
         tap((resume) => {
+          this.currentPage = page
           this.totalCountResumes = resume.data.length
           this.paginateResumes(page, resume.data)
         }),
@@ -41,11 +47,11 @@ export class ActiveResumeListComponent implements OnInit {
       .subscribe()
   }
 
-  paginateResumes(page: number, resumes: ResumeProps[]) {
-    let { results, pagination } = createPagination(
+  paginateResumes(page: number, resumes: any[]) {
+    let { results, pagination } = this.paginationService.createPagination(
       page,
       resumes,
-      this.verifyPageSize()
+      this.paginationService.verifyPageSize()
     )
 
     this.resumes = results
@@ -54,14 +60,25 @@ export class ActiveResumeListComponent implements OnInit {
 
   viewResume(resumeId: number) {
     let modal = this.modalService
-      .open(ResumeViewComponent, { resumeId })
+      .open(ResumeViewComponent, {
+        resumeId: resumeId,
+      })
       .subscribe()
   }
 
-  verifyPageSize(): number {
-    if (document.body.getBoundingClientRect().width < 768) return ITEMS_PER_PAGE
-    const contentSizeHeight = document.body.getBoundingClientRect().height * 0.6
-    const cardSizeHeight = 80
-    return Math.floor(contentSizeHeight / cardSizeHeight)
+  openJobsView(resumeId: number) {
+    let modal = this.modalService
+      .open(ResumeJobsViewComponent, { resumeId })
+      .subscribe()
+  }
+
+  openArchivingModal(resume: Resume) {
+    let modal = this.modalService
+      .open(ArchivingModalComponent, { resume })
+      .pipe(
+        switchMap((reference) => reference.onClose),
+        tap(() => this.getResumesFromServer(this.currentPage))
+      )
+      .subscribe()
   }
 }

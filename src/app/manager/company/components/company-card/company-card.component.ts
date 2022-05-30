@@ -13,9 +13,5 @@ export class CompanyCardComponent implements OnInit {
 
   constructor(private modalService: NgxModalService) {}
 
-  openModal() {
-    let modal = this.modalService.open(CompanyEditComponent).subscribe()
-  }
-
   ngOnInit(): void {}
 }
