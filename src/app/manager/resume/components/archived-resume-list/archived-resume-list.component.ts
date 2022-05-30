@@ -1,16 +1,12 @@
-import { Component, OnDestroy, OnInit } from '@angular/core'
-
+import { Component, OnInit } from '@angular/core'
+import { Resume } from '@core/interfaces/resume/resume'
+import { PaginationService } from '@shared/services/pagination.service'
 import { NgxModalService } from 'lib/ngx-modal/src/public-api'
 import { Observable, of } from 'rxjs'
-import { map, tap } from 'rxjs/operators'
+import { map, switchMap, tap } from 'rxjs/operators'
 
-import { Resume } from '@core/interfaces/resume/resume'
 import { ResumeService } from '../../services/resume.service'
 import { ResumeViewComponent } from '../resume-view/resume-view.component'
-import { ResumeJobsViewComponent } from '../resume-jobs-view/resume-jobs-view.component'
-import { Workfield } from '@core/interfaces/resume/workfield'
-import { WorkfieldService } from '@shared/services/workfield.service'
-import { PaginationService } from '@shared/services/pagination.service'
 import { UnarchivingModalComponent } from '../unarchiving-modal/unarchiving-modal.component'
 
 const ITEMS_PER_PAGE = 6
@@ -23,6 +19,7 @@ const ITEMS_PER_PAGE = 6
 export class ArchivedResumeListComponent implements OnInit {
   resumes: Resume[] = []
   totalCountResumes: number = 0
+  currentPage!: number
   pagination$?: Observable<any>
 
   constructor(
@@ -34,8 +31,15 @@ export class ArchivedResumeListComponent implements OnInit {
   ngOnInit(): void {
     this.getResumesFromServer()
   }
-  openUnarchivingModal() {
-    this.modalService.open(UnarchivingModalComponent).subscribe()
+
+  openUnarchivingModal(resumeId: number) {
+    this.modalService
+      .open(UnarchivingModalComponent, { resumeId })
+      .pipe(
+        switchMap((reference) => reference.onClose),
+        tap(() => this.getResumesFromServer(this.currentPage))
+      )
+      .subscribe()
   }
 
   getResumesFromServer(page: number = 1, params?: any) {
@@ -43,6 +47,7 @@ export class ArchivedResumeListComponent implements OnInit {
       .findAll('', { statusResume: false })
       .pipe(
         tap(({ data }) => {
+          this.currentPage = page
           this.totalCountResumes = data.length
           this.paginateResumes(page, data)
         }),
