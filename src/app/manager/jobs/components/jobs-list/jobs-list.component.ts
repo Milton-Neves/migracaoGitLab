@@ -44,7 +44,7 @@ export class JobsListComponent implements OnInit {
       jobs,
       this.paginationService.verifyPageSize()
     )
-    console.log(results)
+
     this.jobs = results
     this.jobs$ = of(pagination)
   }
