@@ -52,6 +52,10 @@ const routes: Routes = [
         path: 'cargos',
         loadChildren: () =>
           import('./jobs/jobs.module').then((m) => m.JobsModule),
+        canLoad: [FeatureFlagGuard],
+        data: {
+          feature: 'workField',
+        },
       },
 
       {
@@ -68,10 +72,6 @@ const routes: Routes = [
         path: 'usuarios',
         loadChildren: () =>
           import('./user/user.module').then((m) => m.UserModule),
-        canLoad: [FeatureFlagGuard],
-        data: {
-          feature: 'physicalUser',
-        },
       },
       {
         path: 'funcionalidade-desativada',

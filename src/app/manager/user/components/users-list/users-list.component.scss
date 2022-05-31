@@ -13,3 +13,9 @@
 .pagination {
   margin-top: 2.5rem;
 }
+
+::ng-deep {
+  .method-not-allowed {
+    height: 40vh !important;
+  }
+}
