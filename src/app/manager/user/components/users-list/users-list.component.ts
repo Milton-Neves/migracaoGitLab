@@ -49,8 +49,6 @@ export class UsersListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.featureFlag)
-
     this.checkPlaceholder()
     this.activeTab = this.sectionTitle[0]
   }
