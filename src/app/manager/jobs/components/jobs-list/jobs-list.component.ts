@@ -2,10 +2,8 @@ import { Component, Input, OnInit } from '@angular/core'
 import { Job } from '@core/interfaces/resume/job'
 import { Observable, of } from 'rxjs'
 import { map, tap } from 'rxjs/operators'
-import { ResumeService } from 'app/manager/resume/services/resume.service'
 import { PaginationService } from '@shared/services/pagination.service'
 import { JobService } from '../../services/job.service'
-import { ApiResponse } from '@core/interfaces/api-response.model'
 
 @Component({
   selector: 'app-jobs-list',
@@ -14,10 +12,8 @@ import { ApiResponse } from '@core/interfaces/api-response.model'
 })
 export class JobsListComponent implements OnInit {
   @Input() stylesInformation: any
-  // jobs: Job[] = []
-  jobs!: any[]
+  jobs: any[] = []
   totalCountJobs: number = 0
-  // pagination$?: Observable<any>
   jobs$!: Observable<Job[]>
 
   constructor(
@@ -27,17 +23,7 @@ export class JobsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getJobsFromServer()
-    // this.getJobList()
   }
-
-  // getJobList() {
-  //   this.jobService
-  //     .findAll()
-  //     .subscribe((job: ApiResponse<Job[]>) => {
-  //       this.jobs = job.data
-  //       console.log(job.data)
-  //     })
-  // }
 
   getJobsFromServer(page: number = 1, params?: any) {
     this.jobService
@@ -58,7 +44,7 @@ export class JobsListComponent implements OnInit {
       jobs,
       this.paginationService.verifyPageSize()
     )
-
+    console.log(results)
     this.jobs = results
     this.jobs$ = of(pagination)
   }
