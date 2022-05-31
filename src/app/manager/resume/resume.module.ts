@@ -17,6 +17,7 @@ import { AvailabilityComponent } from './components/resume-view/tabs/availabilit
 import { AboutComponent } from './components/resume-view/tabs/about/about.component'
 import { ArchivingModalComponent } from './components/archiving-modal/archiving-modal.component'
 import { JobListModalComponent } from './components/job-list-modal/job-list-modal.component'
+import { AttachmentsComponent } from './components/resume-view/attachments/attachments.component'
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -36,6 +37,7 @@ const maskConfig: Partial<IConfig> = {
     ArchivingModalComponent,
     JobListModalComponent,
     UnarchivingModalComponent,
+    AttachmentsComponent,
   ],
   imports: [
     CommonModule,

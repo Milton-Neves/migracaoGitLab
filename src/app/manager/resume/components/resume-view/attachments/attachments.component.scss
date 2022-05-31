@@ -1,0 +1,15 @@
+@import 'variables';
+
+.attachments {
+  &__box {
+    border-radius: 5px;
+    border: 1px solid $black-100;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    color: $blue-700;
+
+    > h3 {
+      font-size: 1rem;
+    }
+  }
+}
