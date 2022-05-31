@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common'
 import { HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { IConfig, NgxMaskModule } from 'ngx-mask'
 
 import { AnalyticCardComponent } from './../manager/home/components/analytic-card/analytic-card.component'
 import { ButtonComponent } from './components/button/button.component'
@@ -17,6 +18,10 @@ import { TableComponent } from './components/table/table.component'
 import { HighlightDirective } from './directives/highlight.directive'
 import { DashOnNullPipe } from './pipes/dash-on-null.pipe'
 import { ReplaceUnderlineToSpacePipe } from './pipes/replace-with-regex'
+
+const maskConfig: Partial<IConfig> = {
+  validation: false,
+}
 
 const components = [
   PaginationComponent,
@@ -37,7 +42,13 @@ const components = [
 
 @NgModule({
   declarations: components,
-  imports: [CommonModule, HttpClientModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxMaskModule.forRoot(maskConfig),
+  ],
   exports: components,
 })
 export class SharedModule {}

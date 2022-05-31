@@ -112,7 +112,6 @@
   justify-content: flex-end;
 }
 .button-view {
-  width: 100%;
   background: $white;
   border: 1px solid $gray-300;
   box-sizing: border-box;
@@ -120,7 +119,14 @@
   font-weight: 400;
   font-size: 13px;
   color: $gray-700;
-  padding: 0.4rem 0.5rem;
+  padding: 0.5rem 3.1rem;
+}
+#no-content {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  font-size: 1.2rem;
+  color: $gray-700;
 }
 @media (max-width: 1500px) {
   .company {

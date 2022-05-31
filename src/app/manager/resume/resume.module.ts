@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
 import { FormsModule } from '@angular/forms'
 import { SharedModule } from '@shared/shared.module'
-import { IConfig, MaskApplierService, NgxMaskModule } from 'ngx-mask'
+import { MaskApplierService } from 'ngx-mask'
 
 import { ActiveResumeListComponent } from './components/active-resume-list/active-resume-list.component'
 import { ArchivedResumeListComponent } from './components/archived-resume-list/archived-resume-list.component'
@@ -17,10 +17,6 @@ import { ProfessionalExperienceComponent } from './components/resume-view/tabs/p
 import { UnarchivingModalComponent } from './components/unarchiving-modal/unarchiving-modal.component'
 import { ResumeRoutingModule } from './resume-routing.module'
 import { ResumeComponent } from './resume.component'
-
-const maskConfig: Partial<IConfig> = {
-  validation: false,
-}
 
 @NgModule({
   declarations: [
@@ -37,13 +33,7 @@ const maskConfig: Partial<IConfig> = {
     JobListModalComponent,
     UnarchivingModalComponent,
   ],
-  imports: [
-    CommonModule,
-    ResumeRoutingModule,
-    FormsModule,
-    SharedModule,
-    NgxMaskModule.forRoot(maskConfig),
-  ],
+  imports: [CommonModule, ResumeRoutingModule, FormsModule, SharedModule],
   providers: [MaskApplierService],
 })
 export class ResumeModule {}
