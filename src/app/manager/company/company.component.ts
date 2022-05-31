@@ -6,6 +6,7 @@ import { Observable, of } from 'rxjs'
 import { map, tap } from 'rxjs/operators'
 
 import { CompanyEditComponent } from './components/company-edit/company-edit.component'
+import { Company } from './entities/company.model'
 import { CompanyService } from './services/company.service'
 
 @Component({
@@ -14,7 +15,7 @@ import { CompanyService } from './services/company.service'
   styleUrls: ['./company.component.scss'],
 })
 export class CompanyComponent implements OnInit, OnDestroy {
-  companies: any[] = []
+  companies: Company[] = []
   totalCompanys: number = 0
   pagination$!: Observable<any>
   isNavActive: boolean = true
@@ -46,7 +47,7 @@ export class CompanyComponent implements OnInit, OnDestroy {
       .subscribe()
   }
 
-  paginateCompanies(page: number, companies: any[]) {
+  paginateCompanies(page: number, companies: Company[]) {
     let { results, pagination } = this.paginationService.createPagination(
       page,
       companies,
