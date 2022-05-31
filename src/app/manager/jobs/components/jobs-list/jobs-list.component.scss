@@ -1,58 +1,79 @@
 @import 'variables';
 
-// .career {
-//   font-size: 0.9rem;
-//   display: inline-block;
-//   background: $red-400;
-//   color: $white;
-//   padding: 0.3rem;
-//   border-radius: 2px;
-//   text-align: center;
-//   margin-bottom: 10px;
-// }
+.job__list {
+  margin-top: 5.5rem;
+  margin-bottom: 1rem;
+  &--content {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  &--table-details {
+    &__body {
+      text-align: center;
 
-.table-details {
-  &__body {
-    text-align: center;
-    &--text-description td:first-child {
-      text-align: left;
-    }
-    &--text-description td {
-      padding: 0.5rem 2rem;
-    }
-    &--text-description {
-      border: 1px solid $black-100;
-      border-left: none;
-      border-right: none;
-    }
-    &--bg-primary .jobApplicationsBorder {
-      background-color: $gray-700;
-      color: $white;
-      border-radius: 6px;
-      padding: 0.1rem 1rem 0.1rem 1rem;
-      margin-right: 0.5rem;
-    }
-    &--color-active {
-      font-weight: 500;
-      color: $green-500;
-    }
-    &--border-btn {
-      gap: 1rem;
-      display: flex;
-      justify-content: center;
-    }
-    &--border-btn button {
-      border: none;
-      background: none;
-      color: $gray-700;
-      border: 1px solid $black-100;
-      padding: 0.3rem 1rem;
-      border-radius: 6px;
+      &--text-description td:first-child {
+        text-align: left;
+      }
 
-      &:hover {
-        filter: brightness(1.1);
-        background: $gray-200;
+      &--text-description td {
+        padding: 0.5rem 2rem;
+      }
+
+      &--text-description {
+        border: 1px solid $black-100;
+        border-left: none;
+        border-right: none;
+      }
+
+      &--bg-primary .jobApplicationsBorder {
+        background-color: $gray-700;
+        color: $white;
+        border-radius: 6px;
+        padding: 0.1rem 1rem 0.1rem 1rem;
+        margin-right: 0.5rem;
+      }
+
+      &--text {
+        font-size: 0.9rem;
+        display: inline-block;
+        background: $red-400;
+        color: $white;
+        padding: 0.3rem;
+        border-radius: 2px;
+        text-align: center;
+      }
+
+      &--active {
+        font-weight: 500;
+        color: $green-500;
+      }
+
+      &--border-btn {
+        gap: 1rem;
+        display: flex;
+        justify-content: center;
+      }
+
+      &--border-btn button {
+        border: none;
+        background: none;
+        color: $gray-700;
+        border: 1px solid $black-100;
+        padding: 0.3rem 1rem;
+        border-radius: 6px;
+
+        &:hover {
+          filter: brightness(1.1);
+          background: $gray-200;
+        }
       }
     }
+  }
+
+  &--pagination {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
   }
 }
