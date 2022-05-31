@@ -9,5 +9,7 @@ export class CompanyListUnderAnalysisComponent implements OnInit {
   @Input() company!: any
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.company.createdAt = this.company.createdAt.split(' ')[0]
+  }
 }
