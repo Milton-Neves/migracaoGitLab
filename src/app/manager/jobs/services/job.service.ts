@@ -8,6 +8,6 @@ import { BaseResourceService } from '@core/services/base-resource.service'
 })
 export class JobService extends BaseResourceService<Job> {
   constructor(http: HttpClient) {
-    super(http, 'legal_user')
+    super(http, 'job')
   }
 }

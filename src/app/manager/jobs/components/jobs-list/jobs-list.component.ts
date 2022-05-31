@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core'
 import { Job } from '@core/interfaces/resume/job'
+import { PaginationService } from '@shared/services/pagination.service'
 import { Observable, of } from 'rxjs'
 import { map, tap } from 'rxjs/operators'
-import { PaginationService } from '@shared/services/pagination.service'
+
 import { JobService } from '../../services/job.service'
 
 @Component({
@@ -27,10 +28,12 @@ export class JobsListComponent implements OnInit {
 
   getJobsFromServer(page: number = 1, params?: any) {
     this.jobService
-      .findAll('', { statusJob: true })
+      .findAll('', {})
       .pipe(
         tap((jobs) => {
           this.totalCountJobs = jobs.data.length
+          console.log(this.totalCountJobs)
+
           this.paginateJobs(page, jobs.data)
         }),
         map((res) => res.data)
