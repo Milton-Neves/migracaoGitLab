@@ -14,7 +14,8 @@ import { CompanyService } from '../../services/company.service'
 export class ActiveCompanyListComponent implements OnInit {
   totalCompanys: number = 0
   companys$!: Observable<Company[]>
-  companies!: any[]
+  companies: any[] = []
+  companies$!: Observable<Company[]>
 
   constructor(
     private companyService: CompanyService,
@@ -27,13 +28,18 @@ export class ActiveCompanyListComponent implements OnInit {
   }
 
   getCompanysList() {
-    this.companyService
-      .findAll()
-      .subscribe((company: ApiResponse<Company[]>) => {
-        this.companies = company.data
-        console.log(company.data)
-      })
+    this.companies$ = this.companyService
+      .findAll() // ApiResponse<Company[]> // {data: Company[], mensagem: "", status: 200 }
+      .pipe(
+        map((res) => {
+          return []
+        })
+      )
+    // .subscribe((company: ApiResponse<Company[]>) => {
+    //   this.companies = company.data
+    // })
   }
+
   getCompanyFromServer(page: number = 1, params?: any) {
     this.companyService
       .findAll('', { statusCompany: true })

@@ -1,4 +1,4 @@
-<section>
+<section *ngIf="companies$ | async as companies">
   <ng-container *ngFor="let company of companies">
     <app-company-card [card]="company"> </app-company-card>
   </ng-container>
