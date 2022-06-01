@@ -53,7 +53,11 @@ export class JobsListComponent implements OnInit {
     this.jobs$ = of(pagination)
   }
 
-  navigateToNewJob() {
-    this.router.navigateByUrl('/gerenciador/cargos/cadastrar')
+  navigaToRegistrationPage() {
+    this.router.navigate(['/gerenciador/cargos/cadastrar'])
+  }
+
+  navigaToEditPage(jobsId?: number) {
+    this.router.navigate(['/gerenciador/cargos', 'editar', '1'])
   }
 }

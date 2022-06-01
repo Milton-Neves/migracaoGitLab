@@ -11,11 +11,12 @@
         [placeholder]="'Digite CPF, nome ou email'"
       >
       </app-input-search>
+
       <app-button
+        (click)="navigaToRegistrationPage()"
         class="select"
         [text]="'NOVO CARGO'"
         [color]="'#33A93B'"
-        (handleClick)="navigateToNewJob()"
       >
         <img src="../../../assets/images/icons/img-sum.svg" />
       </app-button>
@@ -37,7 +38,7 @@
 
           <td class="job__list--table-details__body--active">Ativo</td>
           <td class="job__list--table-details__body--border-btn">
-            <button>Editar</button>
+            <button (click)="navigaToEditPage()">Editar</button>
           </td>
         </tr>
       </ng-container>
