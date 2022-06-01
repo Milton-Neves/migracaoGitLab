@@ -1,5 +1,7 @@
 export interface Archiving {
-  id: number
-  motive: String
-  responsible: String
+  resumeId: number
+  companyName: String | null
+  archiving: {
+    motive: String | null
+  }
 }

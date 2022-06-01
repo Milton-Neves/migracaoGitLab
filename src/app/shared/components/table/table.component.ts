@@ -13,6 +13,7 @@ export class TableComponent implements OnInit {
     '/gerenciador/curriculos',
     '/gerenciador/usuarios',
     '/gerenciador/empresas',
+    '/gerenciador/cargos',
   ]
   activedRoute!: string
   constructor(private modalService: NgxModalService, private router: Router) {}

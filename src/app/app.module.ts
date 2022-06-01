@@ -1,15 +1,17 @@
 import { HTTP_INTERCEPTORS } from '@angular/common/http'
-import { NgModule } from '@angular/core'
+import { APP_INITIALIZER, NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-
-import { ErrorInterceptor } from '@core/interceptors/error-interceptor'
 import { JwtInterceptor } from '@core/interceptors/jwt-interceptor'
+import { FeatureFlagService } from '@shared/services/feature-flag.service'
 import { SharedModule } from '@shared/shared.module'
-import { AppRoutingModule } from './app-routing.module'
-import { AppComponent } from './app.component'
 import { ToastrModule } from 'ngx-toastr'
 
+import { AppRoutingModule } from './app-routing.module'
+import { AppComponent } from './app.component'
+
+const featureFactory = (featureFlagsService: FeatureFlagService) => () =>
+  featureFlagsService.getFeatureFlag()
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -25,7 +27,12 @@ import { ToastrModule } from 'ngx-toastr'
       useClass: JwtInterceptor,
       multi: true,
     },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: featureFactory,
+      deps: [FeatureFlagService],
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
 })

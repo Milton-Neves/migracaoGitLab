@@ -3,5 +3,50 @@
     <app-page-title [title]="'Listar Cargos'"></app-page-title>
   </header>
 
-  <section class="job__edit"></section>
+  <section class="job__list">
+    <div class="job__list--content">
+      <app-input-search
+        [align]="{ 'justify-content': 'flex-end' }"
+        [styles]="{ width: '100%' }"
+        [placeholder]="'Digite CPF, nome ou email'"
+      >
+      </app-input-search>
+      <app-button class="select" [text]="'NOVO CARGO'" [color]="'#33A93B'">
+        <img src="../../../assets/images/icons/img-sum.svg" />
+      </app-button>
+    </div>
+
+    <app-table class="job__list--table">
+      <ng-container part="list">
+        <tr class="job__list--table-details__body--text-description">
+          <td>Lorem ipsum dolor sit amet.</td>
+          <td>
+            <span class="job__list--table-details__body--area">
+              <span
+                class="job__list--table-details__body--text"
+                [ngStyle]="stylesInformation"
+                >vesturário</span
+              >
+            </span>
+          </td>
+
+          <td class="job__list--table-details__body--active">Ativo</td>
+          <td class="job__list--table-details__body--border-btn">
+            <button>Editar</button>
+          </td>
+        </tr>
+      </ng-container>
+    </app-table>
+
+    <div class="job__list--pagination" *ngIf="jobs.length !== 0">
+      <app-pagination-number
+        [visibleItems]="jobs.length"
+        [totalItems]="totalCountJobs"
+      ></app-pagination-number>
+      <app-pagination
+        [pagination$]="jobs$"
+        (currentPageEmit)="getJobsFromServer($event)"
+      ></app-pagination>
+    </div>
+  </section>
 </main>

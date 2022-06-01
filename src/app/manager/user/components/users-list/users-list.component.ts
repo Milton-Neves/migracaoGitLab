@@ -2,6 +2,9 @@ import { CitizenModalComponent } from './../citizen-modal/citizen-modal.componen
 import { Component, OnInit } from '@angular/core'
 import { NgxModalService } from 'lib/ngx-modal/src/lib/ngx-modal.service'
 import { UserModalComponent } from '../user-modal/user-modal.component'
+import { FeatureFlagService } from '@shared/services/feature-flag.service'
+import { ToastrService } from 'ngx-toastr'
+import { FeatureFlagProps } from '@core/interfaces/Feature-flag.model'
 
 @Component({
   selector: 'app-users-list',
@@ -12,8 +15,16 @@ export class UsersListComponent implements OnInit {
   sectionTitle = ['SEMAS', 'EMPRESAS', 'CIDADÃOS']
   activeTab?: string
   placeholderActiveSection!: string
+  featureFlag: { legalUser: boolean; physicalUser: boolean } = {
+    legalUser: this.featureFlagService.featureFlagConfig!['legalUser'],
+    physicalUser: this.featureFlagService.featureFlagConfig!['physicalUser'],
+  }
 
-  constructor(private modalService: NgxModalService) {}
+  constructor(
+    private modalService: NgxModalService,
+    private featureFlagService: FeatureFlagService,
+    private toastr: ToastrService
+  ) {}
 
   changeTab(tab: any) {
     this.activeTab = tab
