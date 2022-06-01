@@ -7,21 +7,46 @@
   <div class="card-job-registration">
     <h1>Dados do cargo</h1>
     <div class="input-position">
-      <input type="text" placeholder="Nome Fantasia" />
-      <select>
-        <option value="">Área de Atuação</option>
-      </select>
+      <input
+        type="text"
+        placeholder="Nome do cargo"
+        [(ngModel)]="job.name"
+        #jobName
+        (keyup)="changeToTitleCase(jobName.value)"
+      />
+      <input
+        [(ngModel)]="searchWorkfield"
+        (ngModelChange)="autoComplete()"
+        name="search"
+        id="search"
+        placeholder="Busque a area de atuação"
+        (focus)="changeStateFocus()"
+        (focusout)="changeStateFocus()"
+      />
+      <div class="options" *ngIf="focus">
+        <p
+          (click)="setValueToJobWorkfield(workField)"
+          *ngFor="let workField of workFields$ | async"
+        >
+          {{ workField.name }}
+        </p>
+      </div>
     </div>
     <div class="buttons">
       <app-button
         [text]="'Voltar'"
         [color]="'transparent'"
         [textColor]="'#1C3152'"
-        (click)="back()"
+        (handleClick)="redirectToViewJob()"
       >
       </app-button>
       <div class="save">
-        <app-button [text]="'Salvar'" [color]="'#1C3152'" type="submit">
+        <app-button
+          [text]="'Salvar'"
+          [color]="'#1C3152'"
+          [disabled]="verifyIfJobIsAvaliableToRegister()"
+          (handleClick)="createNewJob()"
+        >
         </app-button>
       </div>
     </div>
