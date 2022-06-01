@@ -29,8 +29,10 @@
     </ng-container>
   </div>
 
-  <div class="secondSection">
-    <ng-container *ngIf="activeTab == sectionTitle[1]">
+  <div class="secondSection" *ngIf="activeTab == sectionTitle[1]">
+    <ng-container
+      *ngIf="this.featureFlag.legalUser; else legal_module_desabled"
+    >
       <div class="pagination-number">
         <app-pagination-number
           [visibleItems]="12"
@@ -40,10 +42,15 @@
       </div>
       <app-table></app-table>
     </ng-container>
+    <ng-template #legal_module_desabled>
+      <app-not-allowed></app-not-allowed>
+    </ng-template>
   </div>
 
-  <div class="thirdSection">
-    <ng-container *ngIf="activeTab == sectionTitle[2]">
+  <div class="thirdSection" *ngIf="activeTab == sectionTitle[2]">
+    <ng-container
+      *ngIf="this.featureFlag.physicalUser; else physical_module_desabled"
+    >
       <button class="buttons-style" (click)="openCitizenModal()">
         Abrir modal
       </button>
@@ -56,6 +63,9 @@
       </div>
       <app-table></app-table>
     </ng-container>
+    <ng-template #physical_module_desabled>
+      <app-not-allowed></app-not-allowed>
+    </ng-template>
   </div>
 
   <div class="pagination">
