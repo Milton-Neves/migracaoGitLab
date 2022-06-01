@@ -11,7 +11,12 @@
         [placeholder]="'Digite CPF, nome ou email'"
       >
       </app-input-search>
-      <app-button class="select" [text]="'NOVO CARGO'" [color]="'#33A93B'">
+      <app-button
+        class="select"
+        [text]="'NOVO CARGO'"
+        [color]="'#33A93B'"
+        (handleClick)="navigateToNewJob()"
+      >
         <img src="../../../assets/images/icons/img-sum.svg" />
       </app-button>
     </div>
