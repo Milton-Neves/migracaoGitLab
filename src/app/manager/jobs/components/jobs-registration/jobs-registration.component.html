@@ -7,7 +7,7 @@
   <div class="card-job-registration">
     <h1>Dados do cargo</h1>
     <div class="input-position">
-      <input type="text" placeholder="Nome" [(ngModel)]="job.name" />
+      <input type="text" placeholder="Nome do cargo" [(ngModel)]="job.name" />
       <input
         [(ngModel)]="searchWorkfield"
         (ngModelChange)="autoComplete()"
@@ -31,7 +31,7 @@
         [text]="'Cancelar'"
         [color]="'transparent'"
         [textColor]="'#1C3152'"
-        (handleClick)="clearFormInformations()"
+        (handleClick)="redirectToViewJob()"
       >
       </app-button>
       <div class="save">

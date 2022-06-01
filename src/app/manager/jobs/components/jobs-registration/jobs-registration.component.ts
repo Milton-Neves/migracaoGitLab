@@ -42,14 +42,14 @@ export class JobsRegistrationComponent implements OnInit {
       .create(this.job)
       .pipe(
         tap((res) => {
-          this.clearFormInformations()
+          this.redirectToViewJob()
           this.toastr.success('Cargo criado com sucesso!', 'Sucesso')
         })
       )
       .subscribe()
   }
 
-  clearFormInformations() {
+  redirectToViewJob() {
     this.router.navigateByUrl('/gerenciador/cargos')
   }
 
