@@ -49,6 +49,6 @@ const components = [
     ReactiveFormsModule,
     NgxMaskModule.forRoot(maskConfig),
   ],
-  exports: [components, FormsModule],
+  exports: [components, FormsModule, NgxMaskModule],
 })
 export class SharedModule {}

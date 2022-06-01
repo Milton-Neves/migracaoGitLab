@@ -11,7 +11,8 @@
         type="text"
         placeholder="Nome do cargo"
         [(ngModel)]="job.name"
-        (ngModelChange)="job.name = changeToTitleCase($event)"
+        #jobName
+        (keyup)="changeToTitleCase(jobName.value)"
       />
       <input
         [(ngModel)]="searchWorkfield"

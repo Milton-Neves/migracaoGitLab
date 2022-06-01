@@ -38,12 +38,16 @@ export class JobsRegistrationComponent implements OnInit {
   }
 
   changeToTitleCase(str: string) {
-    return str
-      .split(' ')
-      .map((word) => {
-        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
-      })
-      .join(' ')
+    if (!str.match(/\d+/g)) {
+      this.job.name = str
+        .split(' ')
+        .map((word) => {
+          return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+        })
+        .join(' ')
+    } else {
+      this.job.name = str.replace(/\d+/g, '')
+    }
   }
 
   createNewJob() {
