@@ -1,0 +1,21 @@
+<td
+  style="
+    color: #1c3152;
+    font-size: 14px;
+    font-weight: 400;
+    display: flex;
+    justify-content: flex-start;
+    padding: 1rem 2rem;
+  "
+>
+  {{ company.name }}
+</td>
+<td style="color: #1c3152; font-size: 14px; font-weight: 400">
+  {{ company.cnpj | mask: 'XX.XXX.XXX/XXXX-XX' }}
+</td>
+<td style="color: #1c3152; font-size: 14px; font-weight: 400">
+  {{ company.createdAt }}
+</td>
+<td>
+  <button class="button-view">Visualizar</button>
+</td>

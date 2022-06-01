@@ -3,18 +3,12 @@
     <span class="name">{{ resume.physicalPerson.name }}</span>
   </div>
   <div class="roles-div">
-    <span
-      *ngFor="
-        let object of resume.jobApplications;
-        let isLast = last;
-        let i = index
-      "
-    >
+    <span *ngFor="let object of resume.jobs; let isLast = last; let i = index">
       <p [style.background-color]="colorCodes[i]" *ngIf="!isLast">
-        {{ object.job.name }}
+        {{ object.name }}
       </p>
       <p [style.background-color]="colorCodes[i]" *ngIf="isLast">
-        {{ object.job.name }}
+        {{ object.name }}
       </p>
     </span>
   </div>

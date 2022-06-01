@@ -9,7 +9,12 @@
     >
     </app-button>
     <div class="buttons__submit">
-      <app-button [text]="'Confirmar'" [color]="'#1C3152'" type="submit">
+      <app-button
+        [text]="'Confirmar'"
+        [color]="'#1C3152'"
+        type="submit"
+        (handleClick)="unarchiveResume()"
+      >
       </app-button>
     </div>
   </div>

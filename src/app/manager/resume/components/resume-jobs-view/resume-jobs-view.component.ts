@@ -5,6 +5,7 @@ import { WorkfieldService } from '@shared/services/workfield.service'
 import { NgxModalService } from 'lib/ngx-modal/src/public-api'
 import { Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
+
 import { ResumeService } from '../../services/resume.service'
 
 @Component({
@@ -42,9 +43,9 @@ export class ResumeJobsViewComponent implements OnInit {
     this.resume$?.subscribe((resume) => {
       this.workfieldService.findAll().subscribe((workfield) => {
         let tempWorkfields: Workfield[] = workfield.data
-        resume.jobApplications.forEach((jobApplication) => {
+        resume.jobs.forEach((job) => {
           tempWorkfields.forEach((workfield) => {
-            if (jobApplication.job.workfield == workfield.id) {
+            if (job.workfield == workfield.id) {
               this.colorCodes.push(workfield.colorCode)
             }
           })
