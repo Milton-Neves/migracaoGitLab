@@ -7,7 +7,12 @@
   <div class="card-job-registration">
     <h1>Dados do cargo</h1>
     <div class="input-position">
-      <input type="text" placeholder="Nome do cargo" [(ngModel)]="job.name" />
+      <input
+        type="text"
+        placeholder="Nome do cargo"
+        [(ngModel)]="job.name"
+        (ngModelChange)="job.name = changeToTitleCase($event)"
+      />
       <input
         [(ngModel)]="searchWorkfield"
         (ngModelChange)="autoComplete()"

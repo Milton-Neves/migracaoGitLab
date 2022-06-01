@@ -70,16 +70,16 @@
     box-shadow: 2px 0px 19px #555555;
     border-radius: 5px;
     position: absolute;
-    top: 41%;
-    left: 53.5%;
-    height: 7rem;
-    max-height: 7rem;
-    min-height: 7rem;
+    top: 18rem;
+    right: 4rem;
+    height: 10rem;
+    max-height: 10rem;
+    min-height: 10rem;
     overflow-y: auto;
     z-index: 999;
     width: 42%;
     p {
-      padding: 0.5rem;
+      padding: 1rem;
       font-size: 0.9rem;
       color: $gray-700;
       font-weight: 500;
