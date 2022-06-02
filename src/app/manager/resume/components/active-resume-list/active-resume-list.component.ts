@@ -1,17 +1,15 @@
 import { Component, OnInit } from '@angular/core'
-
-import { Observable, of } from 'rxjs'
-import { map, tap } from 'rxjs/operators'
-import { NgxModalService } from 'lib/ngx-modal/src/public-api'
-
 import { Resume } from '@core/interfaces/resume/resume'
-import { Workfield } from '@core/interfaces/resume/workfield'
+import { PaginationService } from '@shared/services/pagination.service'
 import { WorkfieldService } from '@shared/services/workfield.service'
+import { NgxModalService } from 'lib/ngx-modal/src/public-api'
+import { Observable, of } from 'rxjs'
+import { map, switchMap, tap } from 'rxjs/operators'
+
 import { ResumeService } from '../../services/resume.service'
+import { ArchivingModalComponent } from '../archiving-modal/archiving-modal.component'
 import { ResumeJobsViewComponent } from '../resume-jobs-view/resume-jobs-view.component'
 import { ResumeViewComponent } from '../resume-view/resume-view.component'
-import { PaginationService } from '@shared/services/pagination.service'
-import { ArchivingModalComponent } from '../archiving-modal/archiving-modal.component'
 
 @Component({
   selector: 'app-active-resume-list',
@@ -23,7 +21,7 @@ export class ActiveResumeListComponent implements OnInit {
   totalCountResumes: number = 0
   pagination$?: Observable<any>
   colorCodes: string[] = []
-
+  currentPage!: number
   constructor(
     private resumeService: ResumeService,
     private workfieldService: WorkfieldService,
@@ -40,6 +38,7 @@ export class ActiveResumeListComponent implements OnInit {
       .findAll('', { statusResume: true })
       .pipe(
         tap((resume) => {
+          this.currentPage = page
           this.totalCountResumes = resume.data.length
           this.paginateResumes(page, resume.data)
         }),
@@ -72,7 +71,14 @@ export class ActiveResumeListComponent implements OnInit {
       .open(ResumeJobsViewComponent, { resumeId })
       .subscribe()
   }
-  openArchivingModal() {
-    let modal = this.modalService.open(ArchivingModalComponent).subscribe()
+
+  openArchivingModal(resume: Resume) {
+    let modal = this.modalService
+      .open(ArchivingModalComponent, { resume })
+      .pipe(
+        switchMap((reference) => reference.onClose),
+        tap(() => this.getResumesFromServer(this.currentPage))
+      )
+      .subscribe()
   }
 }

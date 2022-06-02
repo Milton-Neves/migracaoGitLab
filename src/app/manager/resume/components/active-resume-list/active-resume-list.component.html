@@ -19,15 +19,15 @@
           </span>
         </td>
 
-        <td class="table-details__body--color-red">
-          {{ resume.statusResume ? 'Disponível' : 'Arquivado' }}
-        </td>
+        <td class="table-details__body--color-green">Disponível</td>
         <td class="table-details__body--border-btn">
           <button type="button" (click)="viewResume(resume.id)">
             Visualizar
           </button>
           <button type="button">Editar</button>
-          <button type="button" (click)="openArchivingModal()">Arquivar</button>
+          <button type="button" (click)="openArchivingModal(resume)">
+            Arquivar
+          </button>
         </td>
       </tr>
     </ng-container>

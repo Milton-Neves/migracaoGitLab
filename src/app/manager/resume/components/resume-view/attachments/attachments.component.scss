@@ -8,8 +8,31 @@
     margin: 0.5rem 0;
     color: $blue-700;
 
-    > h3 {
+    h3 {
       font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    .informations {
+      display: inline-flex;
+      flex-direction: row;
+      gap: 1rem;
+      align-items: center;
+      h4 {
+        font-weight: 400;
+        font-size: 0.9rem;
+        color: $blue-700;
+      }
+      button {
+        border: none;
+        background: none;
+        color: $gray-700;
+        border: 1px solid $black-100;
+        padding: 0.3rem 1rem;
+        border-radius: 6px;
+        gap: 1rem;
+        display: flex;
+        justify-content: center;
+      }
     }
   }
 }

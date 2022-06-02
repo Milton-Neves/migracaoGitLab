@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { JobsListComponent } from './jobs-list.component'
+import { NotAllowedComponent } from './not-allowed.component'
 
-describe('JobsListComponent', () => {
-  let component: JobsListComponent
-  let fixture: ComponentFixture<JobsListComponent>
+describe('NotAllowedComponent', () => {
+  let component: NotAllowedComponent
+  let fixture: ComponentFixture<NotAllowedComponent>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [JobsListComponent],
+      declarations: [NotAllowedComponent],
     }).compileComponents()
   })
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(JobsListComponent)
+    fixture = TestBed.createComponent(NotAllowedComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
   })

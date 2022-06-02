@@ -21,7 +21,12 @@
         </button>
       </ng-container>
     </div>
-    <span class="resume-details__header__situation"
+    <span
+      class="resume-details__header__situation"
+      [ngClass]="{
+        active: resume?.statusResume,
+        inactive: !resume?.statusResume
+      }"
       ><b>Situação:</b>
       {{ resume?.statusResume ? 'Disponível' : 'Indisponível' }}</span
     >
