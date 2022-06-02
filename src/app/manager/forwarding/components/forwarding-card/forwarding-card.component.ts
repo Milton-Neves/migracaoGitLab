@@ -1,6 +1,7 @@
-import { ForwardingEditComponent } from './../forwarding-edit/forwarding-edit.component'
-import { NgxModalService } from './../../../../../lib/ngx-modal/src/lib/ngx-modal.service'
 import { Component, OnInit } from '@angular/core'
+import { NgxForwardingModalComponent } from 'lib/forwarding-modal/src/public-api'
+
+import { NgxModalService } from './../../../../../lib/ngx-modal/src/lib/ngx-modal.service'
 
 @Component({
   selector: 'app-forwarding-card',
@@ -14,7 +15,12 @@ export class ForwardingCardComponent implements OnInit {
   constructor(private modalService: NgxModalService) {}
 
   editForwarding() {
-    let modal = this.modalService.open(ForwardingEditComponent).subscribe()
+    let modal = this.modalService
+      .open(NgxForwardingModalComponent, {
+        colorCode: '#65fa5a',
+        id: '20220600001',
+      })
+      .subscribe()
   }
 
   ngOnInit(): void {}

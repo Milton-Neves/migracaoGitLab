@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 
 @Component({
   selector: 'app-input-search',
@@ -9,8 +9,12 @@ export class InputSearchComponent implements OnInit {
   @Input() styles!: any
   @Input() align!: any
   @Input() placeholder!: string
-
+  @Output() onSearch = new EventEmitter<string>()
   constructor() {}
 
   ngOnInit(): void {}
+
+  changeValue(value: string) {
+    this.onSearch.emit(value)
+  }
 }
