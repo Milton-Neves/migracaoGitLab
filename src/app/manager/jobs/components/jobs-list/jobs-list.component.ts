@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
 import { Job } from '@core/interfaces/resume/job'
 import { PaginationService } from '@shared/services/pagination.service'
 import { Observable, of } from 'rxjs'
@@ -19,7 +20,8 @@ export class JobsListComponent implements OnInit {
 
   constructor(
     private jobService: JobService,
-    private paginationService: PaginationService
+    private paginationService: PaginationService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -49,5 +51,13 @@ export class JobsListComponent implements OnInit {
 
     this.jobs = results
     this.jobs$ = of(pagination)
+  }
+
+  navigaToRegistrationPage() {
+    this.router.navigate(['/gerenciador/cargos/cadastrar'])
+  }
+
+  navigaToEditPage(jobsId?: number) {
+    this.router.navigate(['/gerenciador/cargos', 'editar', '1'])
   }
 }

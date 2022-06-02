@@ -1,3 +1,4 @@
+import { AttachmentsComponent } from './components/resume-view/attachments/attachments.component'
 import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
 import { FormsModule } from '@angular/forms'
@@ -32,6 +33,7 @@ import { ResumeComponent } from './resume.component'
     ArchivingModalComponent,
     JobListModalComponent,
     UnarchivingModalComponent,
+    AttachmentsComponent,
   ],
   imports: [CommonModule, ResumeRoutingModule, FormsModule, SharedModule],
   providers: [MaskApplierService],

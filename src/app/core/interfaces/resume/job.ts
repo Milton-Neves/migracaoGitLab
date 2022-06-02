@@ -3,3 +3,5 @@ export interface Job {
   name: string
   workfield: number
 }
+
+export type jobWithoutId = Omit<Job, 'id'>

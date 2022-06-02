@@ -57,6 +57,9 @@
         [workExperiences]="resume?.workExperiences"
       ></app-professional-experience>
     </ng-container>
+    <ng-container *ngIf="activeTab == sectionTitle[4]">
+      <app-attachments></app-attachments>
+    </ng-container>
 
     <div class="resume-details__btn">
       <app-button
