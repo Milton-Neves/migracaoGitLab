@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core'
 import { ForwardingService } from '@shared/services/forwarding.service'
+import { ResumeViewComponent } from 'app/manager/resume/components/resume-view/resume-view.component'
 import { NgxModalService } from 'lib/ngx-modal/src/public-api'
 import { ToastrService } from 'ngx-toastr'
 import { Observable } from 'rxjs'
@@ -449,7 +450,6 @@ export class NgxForwardingModalComponent implements OnInit {
   }
 
   openInNewTab(id: number) {
-    localStorage.setItem('id', id.toString())
-    window.open('#/empresa/visualizar', '_blank')
+    this.modalService.open(ResumeViewComponent, { resumeId: id }).subscribe()
   }
 }
