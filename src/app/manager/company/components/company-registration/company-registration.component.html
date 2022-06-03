@@ -3,19 +3,27 @@
     <app-page-title [title]="'Cadastrar Empresas'"></app-page-title>
   </header>
   <section class="register__company">
-    <div class="register__company--content">
+    <form [formGroup]="form" class="register__company--content">
       <div class="register__company--content-data">
         <h2>Dados da Empresa</h2>
 
         <div class="register__company--content-data--line-one">
-          <input type="text" placeholder="Nome Fantasia" />
-          <input type="text" placeholder="CNPJ" />
+          <input
+            formControlName="name"
+            type="text"
+            placeholder="Nome Fantasia"
+          />
+          <input formControlName="cnpj" type="text" placeholder="CNPJ" />
         </div>
 
         <div class="register__company--content-data--line-two">
-          <input type="text" placeholder="Razão Social" />
+          <input
+            formControlName="companyName"
+            type="text"
+            placeholder="Razão Social"
+          />
 
-          <select>
+          <select formControlName="amountEmployees">
             <option value="">Número de Funcionários</option>
             <option value="1">Opção 1</option>
             <option value="2">Opção 2</option>
@@ -96,6 +104,6 @@
         >
         </app-button>
       </div>
-    </div>
+    </form>
   </section>
 </main>
