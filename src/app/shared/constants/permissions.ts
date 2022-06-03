@@ -19,5 +19,3 @@ export const permissions: PermissionsProps = {
   reportPermissions: [roles.superAdmin, roles.adminSemas],
   usersPermissions: [roles.superAdmin, roles.adminSemas],
 }
-
-//LEMBRAR QUE DENTRO DE USERS TEM O PHYSICALUSER... TROCAR A PERMISSÃO DENTRO DO COMPONENTE
