@@ -6,15 +6,18 @@ import { JwtResponse } from 'app/login/interfaces/jwt-response'
 import { Login } from 'app/login/interfaces/login'
 import { environment } from 'environments/environment'
 import { NgxModalService } from 'lib/ngx-modal/src/public-api'
+import { ToastrService } from 'ngx-toastr'
 import { BehaviorSubject, Observable } from 'rxjs'
 import { take, tap } from 'rxjs/operators'
 
+import { roles } from '../../shared/constants/roles'
 import { User } from '../interfaces/user'
 
 const TOKEN_KEY: string = 'sgi-banco-de-empregos:token'
 const REFRESH_TOKEN_KEY: string = 'sgi-banco-de-empregos:refresh_token'
 const USER_KEY: string = 'sgi-banco-de-empregos:user'
 const EXPIRES_TOKEN: string = 'sgi-banco-de-empregos:expiresTime'
+const USER_ROLE: string = 'sgi-banco-de-empregos:userRole'
 
 @Injectable({
   providedIn: 'root',
@@ -26,10 +29,14 @@ export class LoginService {
   private endpoints = {
     refreshToken: (token?: string) =>
       `refresh_token${token == undefined ? '' : `/${token}`}`,
+    checkRole: (role: string) => `/auth_check`,
   }
 
   interval: any
   isAuthenticated = new BehaviorSubject<boolean>(false)
+  isSuperAdmin$ = new BehaviorSubject<boolean>(false)
+  isAdminSemas$ = new BehaviorSubject<boolean>(false)
+  isEmployeeSemas$ = new BehaviorSubject<boolean>(false)
   authenticatedUser = new BehaviorSubject<User>({
     id: 0,
     login: '',
@@ -39,7 +46,8 @@ export class LoginService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private modalService: NgxModalService
+    private modalService: NgxModalService,
+    private toastr: ToastrService
   ) {
     const isAuthenticated = !!sessionStorage.getItem(TOKEN_KEY)
     this.isAuthenticated.next(isAuthenticated)
@@ -51,6 +59,7 @@ export class LoginService {
         let currentTimeDate = new Date()
         currentTimeDate.setHours(currentTimeDate.getHours() + 6)
         this.isAuthenticated.next(true)
+        this.setPermissions(roles)
         this.saveTokens(token, refreshToken)
         sessionStorage.setItem(EXPIRES_TOKEN, currentTimeDate.toString())
         this.startTimer(currentTimeDate.toString())
@@ -132,16 +141,43 @@ export class LoginService {
       .subscribe()
   }
 
-  restartTime() {
+  /**
+   * Função para fazer reload em algumas informações para quando
+   * o usuario der reload na pagina.
+   */
+  refreshInformation() {
     let expiresDate: string | null = sessionStorage.getItem(EXPIRES_TOKEN)
+    let userRole: string | null = sessionStorage.getItem(USER_ROLE)
     if (expiresDate != null) {
       this.startTimer(expiresDate)
+    }
+
+    if (userRole !== null) {
+      const role = userRole
+
+      this.http
+        .get(`${this.API_URL}${this.endpoints.checkRole(role)}`, {
+          params: {
+            role,
+          },
+        })
+        .subscribe((res: any) => {
+          if (!res.data) {
+            this.toastr.warning('Opss, um erro inesperado ocorreu!')
+            this.logout()
+          } else {
+            this.setPermissions([role])
+          }
+        })
     }
   }
 
   logout(): void {
     this.removeRefreshToken()
     this.isAuthenticated.next(false)
+    this.isAdminSemas$.next(false)
+    this.isEmployeeSemas$.next(false)
+    this.isSuperAdmin$.next(false)
     sessionStorage.clear()
     clearInterval(this.interval)
     this.router.navigate(['/login'])
@@ -163,8 +199,49 @@ export class LoginService {
     return JSON.parse(token)
   }
 
+  verifyPermissions(rolesPermitted: string[]) {
+    const havePermission: boolean[] = []
+    const actualRole: any = {
+      superadmin: this.isSuperAdmin$.getValue(),
+      admin_semas: this.isAdminSemas$.getValue(),
+      employee_semas: this.isEmployeeSemas$.getValue(),
+    }
+
+    rolesPermitted.map((role: string) => {
+      havePermission.push(actualRole[role.toLowerCase()])
+    })
+
+    return havePermission.some((res: any) => res)
+  }
+
+  private setPermissions(role: string[]) {
+    this.isSuperAdmin$.next(this.verifyIfIsSuperAdmin(role))
+    this.isAdminSemas$.next(this.verifyIfIsAdminSemas(role))
+    this.isEmployeeSemas$.next(this.verifyIfIsEmployeeSemas(role))
+    sessionStorage.setItem(USER_ROLE, role[0])
+  }
+
   private saveUserToLocalStorage(user: User): void {
     this.authenticatedUser.next(user)
     sessionStorage.setItem(USER_KEY, JSON.stringify(user))
+  }
+
+  private verifyIfIsSuperAdmin(role: string[]): boolean {
+    if (role[0] === roles.superAdmin) {
+      return true
+    }
+    return false
+  }
+  private verifyIfIsAdminSemas(role: string[]): boolean {
+    if (role[0] === roles.adminSemas) {
+      return true
+    }
+    return false
+  }
+  private verifyIfIsEmployeeSemas(role: string[]): boolean {
+    if (role[0] === roles.employeeSemas) {
+      return true
+    }
+    return false
   }
 }
