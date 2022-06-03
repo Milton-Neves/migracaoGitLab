@@ -9,4 +9,6 @@ export class CompanyRemovalConfirmationComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  // USAR ESSE MODAL PARA CONFIRMA O DELETE E O RECUSE DO MODAL
 }

@@ -17,5 +17,7 @@
   {{ company.createdAt }}
 </td>
 <td>
-  <button class="button-view">Visualizar</button>
+  <button class="button-view" (click)="openModal(company.id)">
+    Visualizar
+  </button>
 </td>

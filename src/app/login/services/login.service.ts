@@ -73,6 +73,7 @@ export class LoginService {
         expiresMinutes: number
         expiresSeconds: number
       } = this.calculateExpiresDate(new Date(leftTimeDate))
+      console.log(leftTime)
 
       if (
         leftTime.expiresHours <= 0 &&
@@ -91,7 +92,7 @@ export class LoginService {
           )
           .subscribe()
       }
-    }, 1000 * 60 * 10) // Tempo do ciclo que ele irá verificar se o token está perto de expirar... 10 min.
+    }, 5000) // Tempo do ciclo que ele irá verificar se o token está perto de expirar... 10 min.
   }
 
   calculateExpiresDate(expiresDate: Date) {
