@@ -23,6 +23,7 @@ export class ResumeViewComponent implements OnInit, OnDestroy {
     'Disponibilidade',
     'Formação',
     'Experiência Profissional',
+    'Anexos',
   ]
   activeTab?: string
   resumeSubscription = new Subscription()
