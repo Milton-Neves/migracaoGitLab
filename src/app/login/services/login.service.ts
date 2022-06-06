@@ -33,10 +33,12 @@ export class LoginService {
   }
 
   interval: any
+  isPermitted$ = new BehaviorSubject<any>({
+    superAdmin: false,
+    adminSemas: false,
+    employeeSemas: false,
+  })
   isAuthenticated = new BehaviorSubject<boolean>(false)
-  isSuperAdmin$ = new BehaviorSubject<boolean>(false)
-  isAdminSemas$ = new BehaviorSubject<boolean>(false)
-  isEmployeeSemas$ = new BehaviorSubject<boolean>(false)
   authenticatedUser = new BehaviorSubject<User>({
     id: 0,
     login: '',
@@ -175,9 +177,7 @@ export class LoginService {
   logout(): void {
     this.removeRefreshToken()
     this.isAuthenticated.next(false)
-    this.isAdminSemas$.next(false)
-    this.isEmployeeSemas$.next(false)
-    this.isSuperAdmin$.next(false)
+    this.isPermitted$.next(false)
     sessionStorage.clear()
     clearInterval(this.interval)
     this.router.navigate(['/login'])
@@ -202,9 +202,9 @@ export class LoginService {
   verifyPermissions(rolesPermitted: string[]) {
     const havePermission: boolean[] = []
     const actualRole: any = {
-      superadmin: this.isSuperAdmin$.getValue(),
-      admin_semas: this.isAdminSemas$.getValue(),
-      employee_semas: this.isEmployeeSemas$.getValue(),
+      superadmin: this.isPermitted$.getValue().superAdmin,
+      admin_semas: this.isPermitted$.getValue().adminSemas,
+      employee_semas: this.isPermitted$.getValue().employeeSemas,
     }
 
     rolesPermitted.map((role: string) => {
@@ -215,9 +215,11 @@ export class LoginService {
   }
 
   private setPermissions(role: string[]) {
-    this.isSuperAdmin$.next(this.verifyUserRole(role, roles.superAdmin))
-    this.isAdminSemas$.next(this.verifyUserRole(role, roles.adminSemas))
-    this.isEmployeeSemas$.next(this.verifyUserRole(role, roles.employeeSemas))
+    this.isPermitted$.next({
+      superAdmin: this.verifyUserRole(role, roles.superAdmin),
+      adminSemas: this.verifyUserRole(role, roles.adminSemas),
+      employeeSemas: this.verifyUserRole(role, roles.employeeSemas),
+    })
     sessionStorage.setItem(USER_ROLE, role[0])
   }
 
