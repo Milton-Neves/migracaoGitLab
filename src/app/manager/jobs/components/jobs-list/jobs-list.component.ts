@@ -17,11 +17,11 @@ export class JobsListComponent implements OnInit {
   tempJobsList: any[] = []
   totalCountJobs: number = 0
   pagination$?: Observable<any>
+  router: any
 
   constructor(
-    private workfieldService: WorkfieldService,
     private paginationService: PaginationService,
-    private router: Router
+    private workfieldService: WorkfieldService
   ) {}
 
   ngOnInit(): void {
