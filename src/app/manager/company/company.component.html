@@ -67,6 +67,7 @@
           app-company-list-under-analysis
           *ngFor="let company of companies"
           [company]="company"
+          (modalClosed)="getCompaniesFromServer()"
           part="list"
           style="border-bottom: #cccbcb solid 2px"
         ></tr

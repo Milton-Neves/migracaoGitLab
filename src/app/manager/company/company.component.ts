@@ -44,7 +44,7 @@ export class CompanyComponent implements OnInit, OnDestroy {
         }),
         map((res: any) => res.content)
       )
-      .subscribe(console.log)
+      .subscribe()
   }
 
   paginateCompanies(page: number, companies: Company[]) {

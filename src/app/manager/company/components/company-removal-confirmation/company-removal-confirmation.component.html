@@ -1,6 +1,9 @@
 <div class="modal">
   <div class="text">
-    <h2>Deseja realmente Remover a Empresa?</h2>
+    <h2>
+      Deseja realmente
+      <span>{{ isAcceptCompany ? 'recusar' : 'remover' }}</span> a Empresa?
+    </h2>
   </div>
 
   <div class="buttons-style">
@@ -9,10 +12,16 @@
       [text]="'Cancelar'"
       [color]="'transparent'"
       [textColor]="'#1C3152'"
+      (click)="closeModal()"
     >
     </app-button>
 
-    <app-button class="button.decline" [text]="'Confirmar'" [color]="'#1C3152'">
+    <app-button
+      class="button.decline"
+      [text]="'Confirmar'"
+      [color]="'#1C3152'"
+      (click)="deleteCompany()"
+    >
     </app-button>
   </div>
 </div>

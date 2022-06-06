@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { NgxModalService } from 'lib/ngx-modal/src/public-api'
+import { Subscriber } from 'rxjs'
+import { switchMap } from 'rxjs/operators'
 
 import { CompanyViewComponent } from '../company-view/company-view.component'
 
@@ -10,6 +12,8 @@ import { CompanyViewComponent } from '../company-view/company-view.component'
 })
 export class CompanyListUnderAnalysisComponent implements OnInit {
   @Input() company!: any
+  @Output() modalClosed = new EventEmitter<boolean>()
+  subscrptions = new Subscriber()
   constructor(private modal: NgxModalService) {}
 
   ngOnInit(): void {
@@ -17,10 +21,15 @@ export class CompanyListUnderAnalysisComponent implements OnInit {
   }
 
   openModal(id: number): void {
-    console.log(id)
-
     this.modal
       .open(CompanyViewComponent, { id, isAcceptCompany: true })
-      .subscribe()
+      .pipe(switchMap((modal) => modal.onClose))
+      .subscribe((res) => {
+        this.modalClosed.emit(true)
+      })
+  }
+
+  ngOnDestroy(): void {
+    this.subscrptions.unsubscribe()
   }
 }
