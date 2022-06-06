@@ -1,11 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
-
+import { LoginService } from 'app/login/services/login.service'
 import { ToastrService } from 'ngx-toastr'
 import { Subscription, throwError } from 'rxjs'
 import { catchError, map, tap } from 'rxjs/operators'
 
-import { LoginService } from 'app/login/services/login.service'
 import { Login } from './interfaces/login'
 
 @Component({
@@ -50,11 +49,8 @@ export class LoginComponent implements OnInit, OnDestroy {
         }),
         catchError((error) => {
           this.loginRequestIsLoading = false
-          let messageError = !!error
-            ? 'Não foi possível se conectar com o servidor'
-            : error.message
-          this.toastrService.error(messageError, 'Error')
-          return throwError(messageError)
+          this.toastrService.error(error.error.message, 'Error')
+          return throwError(error.error.message)
         })
       )
       .subscribe()

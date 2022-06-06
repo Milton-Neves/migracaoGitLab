@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, Input, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
+import { Job } from '@core/interfaces/resume/job'
 import { PaginationService } from '@shared/services/pagination.service'
 import { Observable, of } from 'rxjs'
 import { map, tap } from 'rxjs/operators'
@@ -15,6 +17,7 @@ export class JobsListComponent implements OnInit {
   tempJobsList: any[] = []
   totalCountJobs: number = 0
   pagination$?: Observable<any>
+  router: any
 
   constructor(
     private paginationService: PaginationService,
@@ -60,5 +63,13 @@ export class JobsListComponent implements OnInit {
 
     this.workfield = results
     this.pagination$ = of(pagination)
+  }
+
+  navigaToRegistrationPage() {
+    this.router.navigate(['/gerenciador/cargos/cadastrar'])
+  }
+
+  navigaToEditPage(jobsId?: number) {
+    this.router.navigate(['/gerenciador/cargos', 'editar', '1'])
   }
 }

@@ -9,6 +9,7 @@ import { ButtonComponent } from './components/button/button.component'
 import { ExpiresTokenWarningComponent } from './components/expires-token-warning/expires-token-warning.component'
 import { InformationCardComponent } from './components/information-card/information-card.component'
 import { InputSearchComponent } from './components/input-search/input-search.component'
+import { NotAllowedComponent } from './components/not-allowed/not-allowed.component'
 import { PageTitleComponent } from './components/page-title/page-title.component'
 import { PaginationNumberComponent } from './components/pagination-number/pagination-number.component'
 import { PaginationComponent } from './components/pagination/pagination.component'
@@ -36,6 +37,7 @@ const components = [
   DashOnNullPipe,
   ExpiresTokenWarningComponent,
   ReplaceUnderlineToSpacePipe,
+  NotAllowedComponent,
 ]
 
 @NgModule({
@@ -47,6 +49,6 @@ const components = [
     ReactiveFormsModule,
     NgxMaskModule.forRoot(maskConfig),
   ],
-  exports: components,
+  exports: [components, FormsModule, NgxMaskModule],
 })
 export class SharedModule {}

@@ -1,14 +1,11 @@
 @import 'variables';
 .company-view {
-  max-width: 40rem;
-  padding: 0.8rem;
+  padding: 1.2rem;
+  width: 100%;
 
   &__header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 0.9rem 0.4rem;
-    padding-top: 0.9rem;
   }
 
   &__boxs {
@@ -25,13 +22,20 @@
     margin: 0.5rem 0;
 
     &-title {
-      padding: 0.5rem;
-      font-size: 0.8rem;
+      margin-bottom: 0.4rem;
+      font-size: 0.86em;
       color: $blue-700;
     }
 
     &--no-border {
       border: none;
+      margin-top: 1.5rem;
+      margin-right: 0.5rem;
+    }
+    &--no-border b {
+      border: none;
+      margin-top: 1.5rem;
+      margin-right: 0.5rem;
     }
   }
 
@@ -41,10 +45,16 @@
   }
 
   &__informations {
-    margin-left: 0.5rem;
-    font-size: 0.8rem;
+    font-size: 0.86em;
     color: $blue-700;
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.8rem;
+    b {
+      margin-right: 1rem;
+    }
+  }
+  &__contact {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
   }
 
   &__buttons {
@@ -57,7 +67,7 @@
     align-items: center;
     justify-content: flex-end;
     grid-gap: 1rem;
-    gap: 1rem;
+    gap: 2rem;
     font-size: 0.9rem;
 
     .decline {
@@ -97,6 +107,7 @@
 
   &__date {
     font-size: 12px;
+    margin-left: 9rem;
     color: $blue-700;
     align-self: flex-end;
   }
