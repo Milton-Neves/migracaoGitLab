@@ -12,6 +12,6 @@ export class AppComponent {
   constructor(private loginService: LoginService) {}
 
   ngOnInit(): void {
-    this.loginService.restartTime()
+    this.loginService.refreshInformation()
   }
 }
