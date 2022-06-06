@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
-import { FormBuilder, FormGroup } from '@angular/forms'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { NgxViacepService } from '@brunoc/ngx-viacep'
 import { EMPTY, Subscription } from 'rxjs'
 import { catchError, map } from 'rxjs/operators'
 import { Company } from '../../entities/company.model'
@@ -16,7 +17,8 @@ export class CompanyRegistrationComponent implements OnInit, OnDestroy {
 
   constructor(
     private builder: FormBuilder,
-    private companyService: CompanyService
+    private companyService: CompanyService,
+    private viacep: NgxViacepService
   ) {}
 
   ngOnInit(): void {
@@ -37,11 +39,38 @@ export class CompanyRegistrationComponent implements OnInit, OnDestroy {
 
   private createForm(): FormGroup {
     return this.builder.group({
-      name: [''],
-      cnpj: [''],
-      companyName: [],
-      amountEmployees: [],
+      name: this.builder.control('', [Validators.required]),
+      cnpj: this.builder.control('', [Validators.required]),
+      companyName: this.builder.control('', [Validators.required]),
+      amountEmployees: this.builder.control(0, [Validators.required]),
+      workfield: this.builder.control(null, [Validators.required]),
+      email: this.builder.control('', [Validators.required]),
+      phoneNumbers: this.builder.array([
+        {
+          number: this.builder.control('', [Validators.required]),
+          isOwner: this.builder.control(false, [Validators.required]),
+        },
+      ]),
+      address: this.builder.group({
+        city: this.builder.control('', [Validators.required]),
+        neighborhood: this.builder.control('', [Validators.required]),
+        zipCode: this.builder.control('', [Validators.required]),
+        street: this.builder.control('', [Validators.required]),
+        state: this.builder.control('', [Validators.required]),
+        number: this.builder.control('', [Validators.required]),
+        complement: this.builder.control(''),
+      }),
+      legalRepresentative: {
+        name: this.builder.control('', [Validators.required]),
+        cellNumber: this.builder.control('', [Validators.required]),
+        email: this.builder.control('', [Validators.required]),
+        phoneNumber: this.builder.control('', [Validators.required]),
+      },
     })
+  }
+
+  get legalRepresentative(): FormGroup {
+    return this.form.get('legalRepresentative')
   }
 
   ngOnDestroy(): void {

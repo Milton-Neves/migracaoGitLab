@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
 import { ReactiveFormsModule } from '@angular/forms'
+import { NgxViacepModule } from '@brunoc/ngx-viacep'
 import { SharedModule } from '@shared/shared.module'
 import { NgxMaskModule } from 'ngx-mask'
 
@@ -29,6 +30,7 @@ import { CompanyViewComponent } from './components/company-view/company-view.com
     SharedModule,
     ReactiveFormsModule,
     NgxMaskModule.forChild(),
+    NgxViacepModule,
   ],
 })
 export class CompanyModule {}

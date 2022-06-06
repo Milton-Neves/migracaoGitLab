@@ -13,7 +13,12 @@
             type="text"
             placeholder="Nome Fantasia"
           />
-          <input formControlName="cnpj" type="text" placeholder="CNPJ" />
+          <input
+            formControlName="cnpj"
+            mask="00.000.000/0000-00"
+            type="text"
+            placeholder="CNPJ"
+          />
         </div>
 
         <div class="register__company--content-data--line-two">
@@ -23,14 +28,10 @@
             placeholder="Razão Social"
           />
 
-          <select formControlName="amountEmployees">
-            <option value="">Número de Funcionários</option>
-            <option value="1">Opção 1</option>
-            <option value="2">Opção 2</option>
-          </select>
+          <input type="number" formControlName="amountEmployees" />
 
-          <select>
-            <option value="">Ramo da Empresa</option>
+          <select formControlName="cnpj">
+            <option selected hidden disabled value="">Ramo da Empresa</option>
             <option value="1">Opção 1</option>
             <option value="2">Opção 2</option>
           </select>
@@ -41,7 +42,7 @@
         <h2>Contato</h2>
 
         <div class="register__company--content-contact--line-one">
-          <input type="text" placeholder="E-mail" />
+          <input formControlName="cnpj" type="text" placeholder="E-mail" />
           <input type="text" placeholder="Telefone" />
           <button>
             <img
@@ -52,29 +53,39 @@
         </div>
       </div>
 
-      <div class="register__company--content-address">
+      <div
+        [formGroupName]="form.get('address')"
+        class="register__company--content-address"
+      >
         <h2>Endereço</h2>
 
         <div class="register__company--content-address--line-one">
-          <input type="text" placeholder="CEP" />
-          <input type="text" placeholder="Rua" />
-          <input type="text" placeholder="Número" />
+          <input formControlName="zipCode" type="text" placeholder="CEP" />
+          <input formControlName="street" type="text" placeholder="Rua" />
+          <input formControlName="number" type="text" placeholder="Número" />
         </div>
 
         <div class="register__company--content-address--line-two">
-          <input type="text" placeholder="Cidade" />
+          <input formControlName="city" type="text" placeholder="Cidade" />
 
-          <select>
-            <option value="">Bairro</option>
-            <option value="1">Opção 1</option>
-            <option value="2">Opção 2</option>
-          </select>
+          <input
+            formControlName="neighborhood"
+            type="text"
+            placeholder="Bairro"
+          />
 
-          <input type="text" placeholder="Complemento" />
+          <input
+            formControlName="complement"
+            type="text"
+            placeholder="Complemento"
+          />
         </div>
       </div>
 
-      <div class="register__company--content-corporate">
+      <div
+        [formGroupName]="legalRepresentative"
+        class="register__company--content-corporate"
+      >
         <h2>Representante Legal</h2>
 
         <div class="register__company--content-corporate--line-one">
