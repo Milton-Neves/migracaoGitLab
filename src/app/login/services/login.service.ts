@@ -215,9 +215,9 @@ export class LoginService {
   }
 
   private setPermissions(role: string[]) {
-    this.isSuperAdmin$.next(this.verifyIfIsSuperAdmin(role))
-    this.isAdminSemas$.next(this.verifyIfIsAdminSemas(role))
-    this.isEmployeeSemas$.next(this.verifyIfIsEmployeeSemas(role))
+    this.isSuperAdmin$.next(this.verifyUserRole(role, roles.superAdmin))
+    this.isAdminSemas$.next(this.verifyUserRole(role, roles.adminSemas))
+    this.isEmployeeSemas$.next(this.verifyUserRole(role, roles.employeeSemas))
     sessionStorage.setItem(USER_ROLE, role[0])
   }
 
@@ -226,22 +226,7 @@ export class LoginService {
     sessionStorage.setItem(USER_KEY, JSON.stringify(user))
   }
 
-  private verifyIfIsSuperAdmin(role: string[]): boolean {
-    if (role[0] === roles.superAdmin) {
-      return true
-    }
-    return false
-  }
-  private verifyIfIsAdminSemas(role: string[]): boolean {
-    if (role[0] === roles.adminSemas) {
-      return true
-    }
-    return false
-  }
-  private verifyIfIsEmployeeSemas(role: string[]): boolean {
-    if (role[0] === roles.employeeSemas) {
-      return true
-    }
-    return false
+  private verifyUserRole(userRole: string[], systemRole: string): boolean {
+    return userRole[0] === systemRole
   }
 }
