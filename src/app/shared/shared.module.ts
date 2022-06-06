@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common'
 import { HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { NgxFilteringModule } from 'lib/ngx-filtering/src/public-api'
 import { IConfig, NgxMaskModule } from 'ngx-mask'
 
 import { AnalyticCardComponent } from './../manager/home/components/analytic-card/analytic-card.component'
@@ -49,6 +50,6 @@ const components = [
     ReactiveFormsModule,
     NgxMaskModule.forRoot(maskConfig),
   ],
-  exports: [components, FormsModule, NgxMaskModule],
+  exports: [components, FormsModule, NgxMaskModule, NgxFilteringModule],
 })
 export class SharedModule {}

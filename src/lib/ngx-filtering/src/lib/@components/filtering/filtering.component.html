@@ -1,0 +1,493 @@
+<div class="filtering">
+  <div class="filtering-title-container">
+    <h2 class="filtering-title global-text">Filtros</h2>
+  </div>
+  <form [formGroup]="filterForm">
+    <div class="filtering-search-container">
+      <input
+        placeholder="Cargo"
+        [(ngModel)]="jobName"
+        [ngModelOptions]="{ standalone: true }"
+        (focus)="showAutoComplete()"
+        maxlength="23"
+        (focusout)="showAutoComplete()"
+        (keyup)="onChangeJobName()"
+        id="job"
+      />
+      <div id="autocomplete" *ngIf="openAutoComplete">
+        <ul name="" id="">
+          <li
+            *ngFor="let option of filteredOptions$ | async"
+            [value]="option"
+            (click)="selectJobName(option)"
+          >
+            {{ option }}
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="filtering-scrolling">
+      <div class="filtering-content-container" formGroupName="experience">
+        <div class="filtering-content">
+          <h3
+            class="filtering-content-title global-text"
+            (click)="toggleGroupFilters('experience')"
+          >
+            <svg
+              style="margin-right: 5px"
+              [class.filtering-content-title-icon]="
+                filterActive.experience && !openAutoComplete
+              "
+              width="12"
+              height="8"
+              viewBox="0 0 10 6"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M2 2L5 5L8 2"
+                stroke="#1C3152"
+                stroke-width="1.5"
+                stroke-linecap="square"
+                stroke-linejoin="round"
+              />
+            </svg>
+            Experiência
+          </h3>
+          <div
+            class="filtering-content-checkbox"
+            [class.filtering-content-checkbox-active]="!filterActive.experience"
+          >
+            <span>
+              <input type="checkbox" formControlName="withExperience" />Com
+              Experiência
+            </span>
+            <span>
+              <input type="checkbox" formControlName="withoutExperience" />Sem
+              Experiência
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="filtering-content-container" formGroupName="scholarity">
+        <div class="filtering-content">
+          <h3
+            class="filtering-content-title global-text"
+            (click)="toggleGroupFilters('schooling')"
+          >
+            <svg
+              style="margin-right: 5px"
+              [class.filtering-content-title-icon]="
+                filterActive.schooling && !openAutoComplete
+              "
+              width="12"
+              height="8"
+              viewBox="0 0 10 6"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M2 2L5 5L8 2"
+                stroke="#1C3152"
+                stroke-width="1.5"
+                stroke-linecap="square"
+                stroke-linejoin="round"
+              />
+            </svg>
+            Escolaridade
+          </h3>
+          <div
+            class="filtering-content-checkbox"
+            [class.filtering-content-checkbox-active]="!filterActive.schooling"
+          >
+            <span>
+              <input type="checkbox" formControlName="noInstruction" />Sem
+              Instrução
+            </span>
+            <span>
+              <input type="checkbox" formControlName="elementarySchool" />Ensino
+              Fundamental
+            </span>
+            <span>
+              <input
+                type="checkbox"
+                formControlName="elementarySchoolIncomplete"
+              />Ensino Fundamental Incompleto
+            </span>
+            <span>
+              <input type="checkbox" formControlName="secondarySchool" />Ensino
+              Médio
+            </span>
+            <span>
+              <input
+                type="checkbox"
+                formControlName="secondarySchoolIncomplete"
+              />Ensino Médio Incompleto
+            </span>
+            <span>
+              <input type="checkbox" formControlName="vocationalSchool" />Ensino
+              Técnico
+            </span>
+            <span>
+              <input
+                type="checkbox"
+                formControlName="vocationalSchoolIncomplete"
+              />Ensino Técnico Incompleto
+            </span>
+            <span>
+              <input type="checkbox" formControlName="higherEducation" />Ensino
+              Superior
+            </span>
+            <span>
+              <input
+                type="checkbox"
+                formControlName="higherEducationIncomplete"
+              />Ensino Superior Incompleto
+            </span>
+            <span>
+              <input
+                type="checkbox"
+                formControlName="postGraduate"
+              />Pós-Graduação
+            </span>
+            <span>
+              <input
+                type="checkbox"
+                formControlName="postGraduateIncomplete"
+              />Pós-Graduação Incompleta
+            </span>
+            <span>
+              <input type="checkbox" formControlName="doctoral" />Doutorado
+            </span>
+            <span>
+              <input
+                type="checkbox"
+                formControlName="doctoralIncomplete"
+              />Doutorado Incompleto
+            </span>
+            <span>
+              <input
+                type="checkbox"
+                formControlName="postDoctoral"
+              />Pós-Doutorado
+            </span>
+            <span>
+              <input
+                type="checkbox"
+                formControlName="postDoctoralIncomplete"
+              />Pós-Doutorado Incompleto
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="filtering-content-container" formGroupName="sexes">
+        <div class="filtering-content">
+          <h3
+            class="filtering-content-title global-text"
+            (click)="toggleGroupFilters('sex')"
+          >
+            <svg
+              style="margin-right: 5px"
+              [class.filtering-content-title-icon]="
+                filterActive.sex && !openAutoComplete
+              "
+              width="12"
+              height="8"
+              viewBox="0 0 10 6"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M2 2L5 5L8 2"
+                stroke="#1C3152"
+                stroke-width="1.5"
+                stroke-linecap="square"
+                stroke-linejoin="round"
+              />
+            </svg>
+            Sexo
+          </h3>
+          <div
+            class="filtering-content-checkbox"
+            [class.filtering-content-checkbox-active]="!filterActive.sex"
+          >
+            <span>
+              <input type="checkbox" formControlName="female" />Feminino
+            </span>
+            <span>
+              <input type="checkbox" formControlName="male" />Masculino
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="filtering-content-container" formGroupName="pcd">
+        <div class="filtering-content">
+          <h3
+            class="filtering-content-title global-text"
+            (click)="toggleGroupFilters('pcd')"
+          >
+            <svg
+              style="margin-right: 5px"
+              [class.filtering-content-title-icon]="
+                filterActive.pcd && !openAutoComplete
+              "
+              width="12"
+              height="8"
+              viewBox="0 0 10 6"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M2 2L5 5L8 2"
+                stroke="#1C3152"
+                stroke-width="1.5"
+                stroke-linecap="square"
+                stroke-linejoin="round"
+              />
+            </svg>
+            Pessoa com deficiência
+          </h3>
+          <div
+            class="filtering-content-checkbox"
+            [class.filtering-content-checkbox-active]="!filterActive.pcd"
+          >
+            <span>
+              <input type="checkbox" formControlName="withPCD" />Com deficiência
+            </span>
+            <span>
+              <input type="checkbox" formControlName="withoutPCD" />Sem
+              deficiência
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="filtering-content-container" formGroupName="dependents">
+        <div class="filtering-content">
+          <h3
+            class="filtering-content-title global-text"
+            (click)="toggleGroupFilters('dependent')"
+          >
+            <svg
+              style="margin-right: 5px"
+              [class.filtering-content-title-icon]="
+                filterActive.dependent && !openAutoComplete
+              "
+              width="12"
+              height="8"
+              viewBox="0 0 10 6"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M2 2L5 5L8 2"
+                stroke="#1C3152"
+                stroke-width="1.5"
+                stroke-linecap="square"
+                stroke-linejoin="round"
+              />
+            </svg>
+            Dependente
+          </h3>
+          <div
+            class="filtering-content-checkbox"
+            [class.filtering-content-checkbox-active]="!filterActive.dependent"
+          >
+            <span>
+              <input type="checkbox" formControlName="withDependents" />Com
+              dependentes
+            </span>
+            <span>
+              <input type="checkbox" formControlName="withoutDependents" />Sem
+              dependentes
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="filtering-content-container" formGroupName="vehicle">
+        <div class="filtering-content">
+          <h3
+            class="filtering-content-title global-text"
+            (click)="toggleGroupFilters('vehicle')"
+          >
+            <svg
+              style="margin-right: 5px"
+              [class.filtering-content-title-icon]="
+                filterActive.vehicle && !openAutoComplete
+              "
+              width="12"
+              height="8"
+              viewBox="0 0 10 6"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M2 2L5 5L8 2"
+                stroke="#1C3152"
+                stroke-width="1.5"
+                stroke-linecap="square"
+                stroke-linejoin="round"
+              />
+            </svg>
+            Veículo próprio
+          </h3>
+          <div
+            class="filtering-content-checkbox"
+            [class.filtering-content-checkbox-active]="!filterActive.vehicle"
+          >
+            <span>
+              <input type="checkbox" formControlName="withVehicle" />Com Veículo
+            </span>
+            <span>
+              <input type="checkbox" formControlName="withoutVehicle" />Sem
+              Veículo
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="filtering-content-container" formGroupName="youngApprentice">
+        <div class="filtering-content">
+          <h3
+            class="filtering-content-title global-text"
+            (click)="toggleGroupFilters('contract')"
+          >
+            <svg
+              style="margin-right: 5px"
+              [class.filtering-content-title-icon]="
+                filterActive.contract && !openAutoComplete
+              "
+              width="12"
+              height="8"
+              viewBox="0 0 10 6"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M2 2L5 5L8 2"
+                stroke="#1C3152"
+                stroke-width="1.5"
+                stroke-linecap="square"
+                stroke-linejoin="round"
+              />
+            </svg>
+            Jovem aprendiz
+          </h3>
+          <div
+            class="filtering-content-checkbox"
+            [class.filtering-content-checkbox-active]="!filterActive.contract"
+          >
+            <span>
+              <input type="checkbox" formControlName="onlyYoungApprentice" />Sim
+            </span>
+            <span>
+              <input
+                type="checkbox"
+                formControlName="withoutYoungApprentice"
+              />Não
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="filtering-content-container" formGroupName="cnh">
+        <div class="filtering-content">
+          <h3
+            class="filtering-content-title global-text"
+            (click)="toggleGroupFilters('cnh')"
+          >
+            <svg
+              style="margin-right: 5px"
+              [class.filtering-content-title-icon]="
+                filterActive.cnh && !openAutoComplete
+              "
+              width="12"
+              height="8"
+              viewBox="0 0 10 6"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M2 2L5 5L8 2"
+                stroke="#1C3152"
+                stroke-width="1.5"
+                stroke-linecap="square"
+                stroke-linejoin="round"
+              />
+            </svg>
+            CNH
+          </h3>
+          <div
+            class="filtering-content-checkbox"
+            [class.filtering-content-checkbox-active]="!filterActive.cnh"
+          >
+            <span> <input type="checkbox" formControlName="catA" />A </span>
+            <span> <input type="checkbox" formControlName="catB" />B </span>
+            <span> <input type="checkbox" formControlName="catC" />C </span>
+            <span> <input type="checkbox" formControlName="catD" />D </span>
+            <span> <input type="checkbox" formControlName="catE" />E </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="filtering-content-container" formGroupName="willingness">
+        <div class="filtering-content">
+          <h3
+            class="filtering-content-title global-text"
+            (click)="toggleGroupFilters('willingness')"
+          >
+            <svg
+              style="margin-right: 5px"
+              [class.filtering-content-title-icon]="
+                filterActive.cnh && !openAutoComplete
+              "
+              width="12"
+              height="8"
+              viewBox="0 0 10 6"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M2 2L5 5L8 2"
+                stroke="#1C3152"
+                stroke-width="1.5"
+                stroke-linecap="square"
+                stroke-linejoin="round"
+              />
+            </svg>
+            Disponibilidade
+          </h3>
+          <div
+            class="filtering-content-checkbox"
+            [class.filtering-content-checkbox-active]="
+              !filterActive.willingness
+            "
+          >
+            <span>
+              <input type="checkbox" formControlName="morning" />Manhã
+            </span>
+            <span>
+              <input type="checkbox" formControlName="afternoon" />Tarde
+            </span>
+            <span>
+              <input type="checkbox" formControlName="night" />Noite
+            </span>
+            <span>
+              <input type="checkbox" formControlName="saturday" />Sábado
+            </span>
+            <span>
+              <input type="checkbox" formControlName="sunday" />Domingo
+            </span>
+            <span>
+              <input type="checkbox" formControlName="travel" />Viagem
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
