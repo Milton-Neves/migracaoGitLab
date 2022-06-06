@@ -73,7 +73,6 @@ export class LoginService {
         expiresMinutes: number
         expiresSeconds: number
       } = this.calculateExpiresDate(new Date(leftTimeDate))
-      console.log(leftTime)
 
       if (
         leftTime.expiresHours <= 0 &&
