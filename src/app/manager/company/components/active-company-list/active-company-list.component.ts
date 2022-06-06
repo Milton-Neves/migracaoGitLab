@@ -31,13 +31,16 @@ export class ActiveCompanyListComponent implements OnInit {
     this.companies$ = this.companyService
       .findAll() // ApiResponse<Company[]> // {data: Company[], mensagem: "", status: 200 }
       .pipe(
-        map((res) => {
-          return []
+        map((res: any) => {
+          // return []
+          console.log(res)
+          this.companies = res.data?.content
+          // console.log(res.data?.content)
+          return res.data?.content
+          // return res.data?.pagination
         })
       )
-    // .subscribe((company: ApiResponse<Company[]>) => {
-    //   this.companies = company.data
-    // })
+    // .subscribe()
   }
 
   getCompanyFromServer(page: number = 1, params?: any) {
@@ -46,8 +49,8 @@ export class ActiveCompanyListComponent implements OnInit {
       .pipe(
         tap((company) => {
           this.totalCompanys = company.data.length
-          // this.paginateCompanys(page, company.data)
-          this.paginateCompanys(page, [])
+          this.paginateCompanys(page, company.data)
+          // this.paginateCompanys(page, [])
         }),
         map((res) => res.data)
       )

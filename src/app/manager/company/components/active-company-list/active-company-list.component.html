@@ -1,9 +1,9 @@
 <section *ngIf="companies$ | async as companies">
   <ng-container *ngFor="let company of companies">
-    <app-company-card [card]="company"> </app-company-card>
+    <app-company-card [card]="company"></app-company-card>
   </ng-container>
 
-  <ng-container part="empty" *ngIf="!companies.length">
+  <ng-container part="empty" *ngIf="!companies?.length">
     <span id="no-content">Nenhuma empresa cadastrada!</span>
   </ng-container>
 
@@ -13,7 +13,7 @@
       [totalItems]="totalCompanys"
     ></app-pagination-number>
     <app-pagination
-      [pagination$]="companys$"
+      [pagination$]="companies$"
       (currentPageEmit)="getCompanyFromServer($event)"
     ></app-pagination>
   </div>

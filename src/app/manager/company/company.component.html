@@ -1,4 +1,4 @@
-<main class="company">
+<!-- <main class="company">
   <header class="company__header">
     <app-page-title [title]="'Empresas'"></app-page-title>
   </header>
@@ -92,5 +92,66 @@
   </section>
   <section id="no-content" *ngIf="companies.length <= 0">
     <p>Nenhuma empresa cadastrada</p>
+  </section>
+</main> -->
+
+<main class="company">
+  <header class="company__header">
+    <app-page-title [title]="'Empresas'"></app-page-title>
+  </header>
+  <div class="actives"></div>
+
+  <section class="company__content" id="content">
+    <div class="buttons">
+      <div class="btn" id="btns">
+        <button
+          class="btn-actives"
+          [class.button-isActive]="isNavActive"
+          (click)="changeNav(true)"
+        >
+          <b class="btn-title">Ativos</b> <br />
+          <p class="btn-text">
+            Lista de encaminhamentos <br />
+            ativos
+          </p>
+        </button>
+        <button
+          class="btn-analyses"
+          [class.button-isActive]="!isNavActive"
+          (click)="changeNav(false)"
+        >
+          <b class="btn-title">Em análise</b>
+          <p class="btn-text">
+            Lista de encaminhamentos <br />
+            em análise
+          </p>
+        </button>
+      </div>
+
+      <div class="company__src">
+        <div class="company__src--icon">
+          <input
+            type="text"
+            id="src"
+            placeholder="Pesquise por Nome, Nome do representante, CNPJ, Ramo"
+          />
+          <div class="filter">
+            <img
+              src="../../../assets/images/icons/icon-filter.svg"
+              alt="icon-filter"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="isNavActive">
+      <app-button class="select" [text]="'CRIAR EMPRESA'" [color]="'#33A93B'">
+        <img src="../../../assets/images/icons/img-sum.svg" />
+      </app-button>
+      <app-active-company-list></app-active-company-list>
+    </div>
+    <div *ngIf="!isNavActive"></div>
+    <app-pagination class="pagination"></app-pagination>
   </section>
 </main>
