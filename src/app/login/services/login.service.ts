@@ -92,7 +92,7 @@ export class LoginService {
           )
           .subscribe()
       }
-    }, 5000) // Tempo do ciclo que ele irá verificar se o token está perto de expirar... 10 min.
+    }, 1000 * 60 * 10) // Tempo do ciclo que ele irá verificar se o token está perto de expirar... 10 min.
   }
 
   calculateExpiresDate(expiresDate: Date) {
