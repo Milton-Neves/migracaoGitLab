@@ -17,16 +17,17 @@
     </div>
 
     <app-table class="job__list--table">
-      <ng-container part="list">
+      <ng-container part="list" *ngFor="let job of workfield">
         <tr class="job__list--table-details__body--text-description">
-          <td>Lorem ipsum dolor sit amet.</td>
+          <td style="width: 50%">{{ job.name }}</td>
           <td>
             <span class="job__list--table-details__body--area">
               <span
                 class="job__list--table-details__body--text"
-                [ngStyle]="stylesInformation"
-                >vesturário</span
+                [style.background-color]="job.color"
               >
+                {{ job.workfield }}
+              </span>
             </span>
           </td>
 
@@ -38,15 +39,16 @@
       </ng-container>
     </app-table>
 
-    <div class="job__list--pagination" *ngIf="jobs.length !== 0">
+    <div class="job__list--pagination" *ngIf="workfield.length !== 0">
       <app-pagination-number
-        [visibleItems]="jobs.length"
+        [visibleItems]="workfield.length"
         [totalItems]="totalCountJobs"
       ></app-pagination-number>
       <app-pagination
-        [pagination$]="jobs$"
-        (currentPageEmit)="getJobsFromServer($event)"
-      ></app-pagination>
+        [pagination$]="pagination$"
+        (currentPageEmit)="paginateJobs($event, tempJobsList)"
+      >
+      </app-pagination>
     </div>
   </section>
 </main>
