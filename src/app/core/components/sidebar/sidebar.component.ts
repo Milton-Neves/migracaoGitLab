@@ -1,6 +1,6 @@
-import { Component, HostListener } from '@angular/core'
-
+import { Component } from '@angular/core'
 import { MODULES, SidebarModule } from '@shared/constants/modules'
+import { LoginService } from 'app/login/services/login.service'
 
 @Component({
   selector: 'app-sidebar',
@@ -11,9 +11,13 @@ export class SidebarComponent {
   isOpen = false
   modules: SidebarModule[] = MODULES
 
-  constructor() {}
+  constructor(private loginService: LoginService) {}
 
   toggleMenu() {
     this.isOpen = !this.isOpen
+  }
+
+  verifyPermissions(roles: string[]) {
+    return this.loginService.verifyPermissions(roles)
   }
 }
