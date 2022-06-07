@@ -28,7 +28,9 @@ export class CompanyRemovalConfirmationComponent implements OnInit {
         this.toastr.success(
           this.isAcceptCompany
             ? 'Empresa recusada com sucesso!'
-            : 'Empresa deletada com sucesso!'
+            : 'Empresa deletada com sucesso!',
+          'Sucesso!',
+          { timeOut: 7000 }
         )
         this.modalClosedBySystem = true
         this.closeModal()

@@ -15,8 +15,8 @@
   </header>
 
   <div class="company-view__box--no-border">
-    <span class="company-view__informations"
-      ><b>CNPJ</b> {{ company.cnpj | mask: 'XX.XXX.XXX/XXXX-XX' }}</span
+    <span class="company-view__informations--no-border">
+      <b>CNPJ</b> {{ company.cnpj | mask: 'XX.XXX.XXX/XXXX-XX' }}</span
     >
     <div class="company-view__informations grid-2">
       <span><b>Razão Social</b> {{ company.companyName }} </span>
@@ -46,7 +46,7 @@
         class="company-view__content-informations company-view__cep-and-city"
       >
         <span class="company-view__informations"
-          ><b>CEP:</b> {{ company.address.zipCode | mask: '00000-00' }}
+          ><b>CEP:</b> {{ company.address.zipCode | mask: '00000-000' }}
         </span>
         <span class="company-view__informations"
           ><b>Cidade:</b> {{ company.address.city }}</span
@@ -86,7 +86,8 @@
         <span class="company-view__informations"
           ><b>Telefone:</b>
           {{
-            company.legalRepresentative.phoneNumber | mask: '(00) 00000-0000'
+            (company.legalRepresentative.phoneNumber
+              | mask: '(00) 0000-0000') || 'Não informado'
           }}</span
         >
       </div>

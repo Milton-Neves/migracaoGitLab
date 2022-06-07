@@ -60,7 +60,7 @@ export class CompanyViewComponent implements OnInit {
   handleAcceptCompany(company: Company) {
     company.valid = true
     this.companyService.update(company).subscribe((res) => {
-      this.toastr.success('Empresa aceita com sucesso!')
+      this.toastr.success('Empresa aceita com sucesso!', 'Sucesso!')
       this.closeModalCompanyView()
     })
   }

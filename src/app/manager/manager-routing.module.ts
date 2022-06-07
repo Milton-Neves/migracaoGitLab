@@ -22,7 +22,7 @@ const routes: Routes = [
         path: 'curriculos',
         loadChildren: () =>
           import('./resume/resume.module').then((m) => m.ResumeModule),
-        canActivateChild: [PermissionsGuard],
+        canActivate: [PermissionsGuard],
         canLoad: [FeatureFlagGuard],
         data: {
           feature: 'resume',
@@ -34,7 +34,7 @@ const routes: Routes = [
         path: 'empresas',
         loadChildren: () =>
           import('./company/company.module').then((m) => m.CompanyModule),
-        canActivateChild: [PermissionsGuard],
+        canActivate: [PermissionsGuard],
         canLoad: [FeatureFlagGuard],
         data: {
           feature: 'legalUser',
@@ -48,7 +48,7 @@ const routes: Routes = [
           import('./forwarding/forwarding.module').then(
             (m) => m.ForwardingModule
           ),
-        canActivateChild: [PermissionsGuard],
+        canActivate: [PermissionsGuard],
         canLoad: [FeatureFlagGuard],
         data: {
           feature: 'forwarding',
@@ -60,7 +60,7 @@ const routes: Routes = [
         path: 'cargos',
         loadChildren: () =>
           import('./jobs/jobs.module').then((m) => m.JobsModule),
-        canActivateChild: [PermissionsGuard],
+        canActivate: [PermissionsGuard],
         canLoad: [FeatureFlagGuard],
         data: {
           feature: 'workField',
@@ -72,7 +72,7 @@ const routes: Routes = [
         path: 'relatorios',
         loadChildren: () =>
           import('./report/report.module').then((m) => m.ReportModule),
-        canActivateChild: [PermissionsGuard],
+        canActivate: [PermissionsGuard],
         canLoad: [FeatureFlagGuard],
         data: {
           feature: 'report',
@@ -84,7 +84,7 @@ const routes: Routes = [
         path: 'usuarios',
         loadChildren: () =>
           import('./user/user.module').then((m) => m.UserModule),
-        canActivateChild: [PermissionsGuard],
+        canActivate: [PermissionsGuard],
         data: {
           rolesPermission: permissions.usersPermissions,
         },
