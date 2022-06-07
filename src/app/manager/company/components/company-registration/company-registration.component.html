@@ -1,3 +1,140 @@
+<main class="company-registration">
+  <header class="company-registration__header">
+    <app-page-title [title]="'Cadastrar Empresas'"></app-page-title>
+  </header>
+  <section class="company-registration__form">
+    <form [formGroup]="form">
+      <div class="company-registration__form-container">
+        <h2>Dados da Empresa</h2>
+
+        <div class="company-registration__input-group row">
+          <input
+            formControlName="name"
+            type="text"
+            placeholder="Nome Fantasia"
+          />
+          <input
+            formControlName="cnpj"
+            mask="00.000.000/0000-00"
+            type="text"
+            placeholder="CNPJ"
+          />
+        </div>
+
+        <div class="company-registration__input-group row">
+          <input
+            formControlName="companyName"
+            type="text"
+            placeholder="Razão Social"
+          />
+
+          <input type="number" formControlName="amountEmployees" />
+
+          <select formControlName="cnpj">
+            <option selected hidden disabled value="">Ramo da Empresa</option>
+            <option value="1">Opção 1</option>
+            <option value="2">Opção 2</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="company-registration__form-container">
+        <h2>Contato</h2>
+
+        <div
+          class="company-registration__input-group company-registration__input-group--phone-number-array row"
+        >
+          <input formControlName="cnpj" type="text" placeholder="E-mail" />
+          <input type="text" placeholder="Telefone" />
+          <button>
+            <img
+              src="../../../../../assets/icons/icon-sum.svg"
+              alt="icon-sum"
+            />
+          </button>
+        </div>
+      </div>
+
+      <div formGroupName="address" class="company-registration__form-container">
+        <h2>Endereço</h2>
+
+        <div class="company-registration__input-group row">
+          <input
+            formControlName="zipCode"
+            type="text"
+            placeholder="CEP"
+            mask="00000-000"
+            (change)="getCEP($event)"
+          />
+          <input formControlName="street" type="text" placeholder="Rua" />
+          <input formControlName="number" type="text" placeholder="Número" />
+        </div>
+
+        <div class="company-registration__input-group row">
+          <input formControlName="city" type="text" placeholder="Cidade" />
+
+          <input
+            required
+            formControlName="neighborhood"
+            type="text"
+            placeholder="Bairro"
+          />
+
+          <input
+            formControlName="complement"
+            type="text"
+            placeholder="Complemento"
+          />
+        </div>
+      </div>
+
+      <div
+        formGroupName="legalRepresentative"
+        class="company-registration__form-container"
+      >
+        <h2>Representante Legal</h2>
+
+        <div class="company-registration__input-group row">
+          <input formControlName="name" type="text" placeholder="Nome" />
+          <input formControlName="email" type="text" placeholder="E-mail" />
+        </div>
+
+        <div class="company-registration__input-group row">
+          <input
+            formControlName="phoneNumber"
+            type="text"
+            placeholder="Telefone"
+            mask="(00) 90000-0000"
+          />
+          <input
+            formControlName="cellNumber"
+            type="text"
+            placeholder="Celular"
+            mask="(00) 0000-0000"
+          />
+        </div>
+      </div>
+
+      <div class="company-registration__buttons">
+        <app-button
+          class="button.decline"
+          [text]="'Voltar'"
+          [color]="'transparent'"
+          [textColor]="'#1C3152'"
+        >
+        </app-button>
+
+        <app-button
+          class="button.decline"
+          [text]="'Salvar'"
+          [color]="'#1C3152'"
+        >
+        </app-button>
+      </div>
+    </form>
+  </section>
+</main>
+<!--
 <main class="home">
   <header class="home__header">
     <app-page-title [title]="'Cadastrar Empresas'"></app-page-title>
@@ -53,14 +190,11 @@
         </div>
       </div>
 
-      <div
-        [formGroupName]="form.get('address')"
-        class="register__company--content-address"
-      >
+      <div formGroupName="address" class="register__company--content-address">
         <h2>Endereço</h2>
 
         <div class="register__company--content-address--line-one">
-          <input formControlName="zipCode" type="text" placeholder="CEP" />
+          <input formControlName="zipCode" type="text" placeholder="CEP" mask="00000-000" />
           <input formControlName="street" type="text" placeholder="Rua" />
           <input formControlName="number" type="text" placeholder="Número" />
         </div>
@@ -69,6 +203,7 @@
           <input formControlName="city" type="text" placeholder="Cidade" />
 
           <input
+            required
             formControlName="neighborhood"
             type="text"
             placeholder="Bairro"
@@ -83,19 +218,29 @@
       </div>
 
       <div
-        [formGroupName]="legalRepresentative"
+        formGroupName="legalRepresentative"
         class="register__company--content-corporate"
       >
         <h2>Representante Legal</h2>
 
         <div class="register__company--content-corporate--line-one">
-          <input type="text" placeholder="Nome" />
-          <input type="text" placeholder="E-mail" />
+          <input formControlName="name" type="text" placeholder="Nome" />
+          <input formControlName="email" type="text" placeholder="E-mail" />
         </div>
 
         <div class="register__company--content-corporate--line-two">
-          <input type="text" placeholder="Telefone" />
-          <input type="text" placeholder="Celular" />
+          <input
+            formControlName="phoneNumber"
+            type="text"
+            placeholder="Telefone"
+            mask="(00) 90000-0000"
+          />
+          <input
+            formControlName="cellNumber"
+            type="text"
+            placeholder="Celular"
+            mask="(00) 0000-0000"
+          />
         </div>
       </div>
 
@@ -117,4 +262,4 @@
       </div>
     </form>
   </section>
-</main>
+</main> -->

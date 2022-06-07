@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { NgxViacepService } from '@brunoc/ngx-viacep'
 import { EMPTY, Subscription } from 'rxjs'
-import { catchError, map } from 'rxjs/operators'
+import { catchError, map, tap } from 'rxjs/operators'
 import { Company } from '../../entities/company.model'
 import { CompanyService } from '../../services/company.service'
 
@@ -60,17 +60,17 @@ export class CompanyRegistrationComponent implements OnInit, OnDestroy {
         number: this.builder.control('', [Validators.required]),
         complement: this.builder.control(''),
       }),
-      legalRepresentative: {
+      legalRepresentative: this.builder.group({
         name: this.builder.control('', [Validators.required]),
         cellNumber: this.builder.control('', [Validators.required]),
         email: this.builder.control('', [Validators.required]),
         phoneNumber: this.builder.control('', [Validators.required]),
-      },
+      }),
     })
   }
 
-  get legalRepresentative(): FormGroup {
-    return this.form.get('legalRepresentative')
+  getCEP(cep: any) {
+    this.viacep.buscarPorCep(cep).pipe(tap(console.log)).subscribe()
   }
 
   ngOnDestroy(): void {
