@@ -23,7 +23,8 @@
 
     &-title {
       margin-bottom: 0.4rem;
-      font-size: 0.86em;
+      font-size: 0.96em;
+      font-weight: bold;
       color: $blue-700;
     }
 
@@ -31,10 +32,18 @@
       border: none;
       margin-top: 1.5rem;
       margin-right: 0.5rem;
+
+      .company-view__informations--no-border {
+        font-size: 0.86em;
+        color: $blue-700;
+        margin-bottom: 0.8rem;
+        b {
+          margin-right: 0.25rem;
+        }
+      }
     }
     &--no-border b {
       border: none;
-      margin-top: 1.5rem;
       margin-right: 0.5rem;
     }
   }
@@ -45,11 +54,13 @@
   }
 
   &__informations {
+    display: grid;
+    grid-template-columns: 0.3fr 1fr;
     font-size: 0.86em;
     color: $blue-700;
     margin-bottom: 0.8rem;
     b {
-      margin-right: 1rem;
+      margin-right: 0.25rem;
     }
   }
   &__contact {

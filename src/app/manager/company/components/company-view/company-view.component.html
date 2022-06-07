@@ -1,17 +1,26 @@
-<div class="company-view">
+<div class="company-view" *ngIf="company$ | async as company">
   <header class="company-view__header">
-    <h2 class="header__title"><b>Nome Fantasia</b></h2>
-    <span class="header__tag">ramo da empresa</span>
-    <span class="header__date">Data de solicitação: 00/00/000</span>
+    <h2 class="header__title">
+      <b>{{ company.name }}</b>
+    </h2>
+    <span
+      class="header__tag"
+      [ngStyle]="{ 'background-color': company.workfield.colorCode }"
+      >{{ company.workfield.name }}</span
+    >
+    <span class="header__date"
+      ><b>Data de solicitação:</b>
+      {{ removeHourFromDate(company.createdAt.toString()) }}</span
+    >
   </header>
 
   <div class="company-view__box--no-border">
-    <span class="company-view__informations"
-      ><b>CNPJ</b> 00.000.000/0000-00</span
+    <span class="company-view__informations--no-border">
+      <b>CNPJ</b> {{ company.cnpj | mask: 'XX.XXX.XXX/XXXX-XX' }}</span
     >
     <div class="company-view__informations grid-2">
-      <span><b>Razão Social</b> Lorem Ipsum Dolor Sit Amet </span>
-      <span><b>Número de Funcionários</b> 00000 </span>
+      <span><b>Razão Social</b> {{ company.companyName }} </span>
+      <span><b>Número de Funcionários</b> {{ company.amountEmployees }} </span>
     </div>
   </div>
 
@@ -21,10 +30,11 @@
 
       <div class="company-view__contact">
         <span class="company-view__informations"
-          ><b>Telefone:</b> (00) 0000-0000
+          ><b>Telefone:</b>
+          {{ company.phoneNumbers[0].number | mask: '(00) 00000-0000' }}
         </span>
         <span class="company-view__informations"
-          ><b>E-mail:</b> lorem.ipsum@dolor.sit</span
+          ><b>E-mail:</b> {{ company.email }}</span
         >
       </div>
     </div>
@@ -35,9 +45,11 @@
       <div
         class="company-view__content-informations company-view__cep-and-city"
       >
-        <span class="company-view__informations"><b>CEP:</b> 00.000.000 </span>
         <span class="company-view__informations"
-          ><b>Cidade:</b> Parnamirim</span
+          ><b>CEP:</b> {{ company.address.zipCode | mask: '00000-000' }}
+        </span>
+        <span class="company-view__informations"
+          ><b>Cidade:</b> {{ company.address.city }}</span
         >
       </div>
 
@@ -45,7 +57,7 @@
         class="company-view__content-informations company-view__neigh-and-country"
       >
         <span class="company-view__informations"
-          ><b>Bairro:</b> Lorem Ipsum
+          ><b>Bairro:</b> {{ company.address.neighborhood }}
         </span>
         <span class="company-view__informations"><b>País:</b> Brasil</span>
       </div>
@@ -54,10 +66,10 @@
         class="company-view__content-informations company-view__street-and-number"
       >
         <span class="company-view__informations"
-          ><b>Rua:</b> Lorem ipsum sit dolor amet
+          ><b>Rua:</b> {{ company.address.street }}
         </span>
         <span class="company-view__informations"
-          ><b>Número:</b> 00.000.000</span
+          ><b>Número:</b> {{ company.address.number }}</span
         >
       </div>
     </div>
@@ -69,10 +81,14 @@
         class="company-view__content-informations company-view__name-and-tel"
       >
         <span class="company-view__informations"
-          ><b>Nome:</b> Lorem ipsum sit dolor amet
+          ><b>Nome:</b> {{ company.legalRepresentative.name }}
         </span>
         <span class="company-view__informations"
-          ><b>Telefone:</b> (00) 0000-0000</span
+          ><b>Telefone:</b>
+          {{
+            (company.legalRepresentative.phoneNumber
+              | mask: '(00) 0000-0000') || 'Não informado'
+          }}</span
         >
       </div>
 
@@ -80,10 +96,11 @@
         class="company-view__content-informations company-view__cel-and-email"
       >
         <span class="company-view__informations"
-          ><b>Celular:</b> (00) 00000-0000
+          ><b>Celular:</b>
+          {{ company.legalRepresentative.cellNumber | mask: '(00) 00000-0000' }}
         </span>
         <span class="company-view__informations"
-          ><b>E-mail:</b> lorem.ipsum@dolor.sit</span
+          ><b>E-mail:</b> {{ company.legalRepresentative.email }}</span
         >
       </div>
     </div>
@@ -91,21 +108,35 @@
     <div class="company-view__buttons">
       <app-button
         class="button.decline"
-        [text]="'Remover Empresa'"
-        [color]="'#FD3737'"
-        (click)="openModalRemovalConfirmation()"
+        [text]="isAcceptCompany ? 'Cancelar' : 'Remover Empresa'"
+        [color]="isAcceptCompany ? 'transparent' : '#FD3737'"
+        [textColor]="isAcceptCompany ? '#1c3152' : '#ffffff'"
+        (click)="
+          isAcceptCompany
+            ? closeModalCompanyView()
+            : openModalRemovalConfirmation()
+        "
       >
-      </app-button>
-
-      <app-button class="button.decline" [text]="'Editar'" [color]="'#1C3152'">
       </app-button>
 
       <app-button
         class="button.decline"
-        [text]="'Voltar'"
-        [color]="'transparent'"
-        [textColor]="'#1C3152'"
-        (click)="closeModalCompanyView()"
+        [text]="isAcceptCompany ? 'Recusar' : 'Editar'"
+        [color]="isAcceptCompany ? '#FD3737' : '#1C3152'"
+        (click)="isAcceptCompany ? openModalRemovalConfirmation() : ''"
+      >
+      </app-button>
+
+      <app-button
+        class="button.decline"
+        [text]="isAcceptCompany ? 'Aceitar' : 'Voltar'"
+        [color]="isAcceptCompany ? '#33a93b' : 'transparent'"
+        [textColor]="isAcceptCompany ? '#ffffff' : '#1C3152'"
+        (click)="
+          isAcceptCompany
+            ? handleAcceptCompany(company)
+            : closeModalCompanyView()
+        "
       >
       </app-button>
     </div>
