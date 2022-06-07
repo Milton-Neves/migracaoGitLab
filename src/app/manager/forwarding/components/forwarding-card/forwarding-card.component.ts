@@ -18,7 +18,7 @@ export class ForwardingCardComponent implements OnInit {
     let modal = this.modalService
       .open(NgxForwardingModalComponent, {
         colorCode: '#65fa5a',
-        id: '20220600001',
+        id: '20220600009',
       })
       .subscribe()
   }

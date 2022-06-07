@@ -591,6 +591,8 @@ footer {
         background-color: $gray-300;
         color: $blue-700;
         margin: 0 11px;
+        border: 0;
+        padding: 0.5rem 1rem;
         border-radius: 5px;
       }
 
@@ -598,6 +600,8 @@ footer {
         background-color: $red-400;
         color: $white;
         margin: 0 11px;
+        border: 0;
+        padding: 0.5rem 1rem;
         border-radius: 5px;
       }
     }

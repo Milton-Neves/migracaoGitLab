@@ -331,40 +331,36 @@ export class NgxForwardingModalComponent implements OnInit {
 
   onSingleInputChange(forwarding: any, term: string, page?: number) {
     this.searchTerm = term
-    if (term != '') {
-      if (this.validateEmail(term)) {
-        this.getResume(
-          forwarding.forwardingResumes.filter((res: any) =>
-            res.resume.physicalPerson.email
-              .toLowerCase()
-              .replace(/\s/g, '')
-              .includes(term.toLowerCase().replace(/\s/g, ''))
-          ),
-          forwarding.isFinished,
-          page
-        )
-      } else if (isNaN(Number.parseInt(term))) {
-        this.getResume(
-          forwarding.forwardingResumes.filter((res: any) =>
-            res.resume.physicalPerson.name
-              .toLowerCase()
-              .replace(/\s/g, '')
-              .includes(term.toLowerCase().replace(/\s/g, ''))
-          ),
-          forwarding.isFinished,
-          page
-        )
-      } else {
-        this.getResume(
-          forwarding.forwardingResumes.filter((res: any) =>
-            res.resume.physicalPerson.cpf?.includes(term)
-          ),
-          forwarding.isFinished,
-          page
-        )
-      }
+    if (term.includes('@')) {
+      this.getResume(
+        forwarding.forwardingResumes.filter((res: any) =>
+          res.resume.physicalPerson.email
+            .toLowerCase()
+            .replace(/\s/g, '')
+            .match(term.toLowerCase().replace(/\s/g, ''))
+        ),
+        forwarding.isFinished,
+        page
+      )
+    } else if (!term.includes('@') && isNaN(Number.parseInt(term))) {
+      this.getResume(
+        forwarding.forwardingResumes.filter((res: any) =>
+          res.resume.physicalPerson.name
+            .toLowerCase()
+            .replace(/\s/g, '')
+            .match(term.toLowerCase().replace(/\s/g, ''))
+        ),
+        forwarding.isFinished,
+        page
+      )
     } else {
-      this.getResume(forwarding.forwardingResumes, forwarding.isFinished, page)
+      this.getResume(
+        forwarding.forwardingResumes.filter((res: any) =>
+          res.resume.physicalPerson.cpf?.match(term)
+        ),
+        forwarding.isFinished,
+        page
+      )
     }
   }
 
