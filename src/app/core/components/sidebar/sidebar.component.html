@@ -16,21 +16,23 @@
     </button>
 
     <ul>
-      <li *ngFor="let module of modules">
-        <span class="tooltip">{{ module.title }}</span>
-        <a
-          [routerLink]="[module.link]"
-          routerLinkActive="--active"
-          [routerLinkActiveOptions]="{ exact: true }"
-        >
-          <img
-            class="icones"
-            [src]="module.iconPath"
-            [attr.alt]="module.title"
-          />
-          <span class="items">{{ module.title }}</span>
-        </a>
-      </li>
+      <ng-container *ngFor="let module of modules">
+        <li *ngIf="verifyPermissions(module.canActive)">
+          <span class="tooltip">{{ module.title }}</span>
+          <a
+            [routerLink]="[module.link]"
+            routerLinkActive="--active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <img
+              class="icones"
+              [src]="module.iconPath"
+              [attr.alt]="module.title"
+            />
+            <span class="items">{{ module.title }}</span>
+          </a>
+        </li>
+      </ng-container>
     </ul>
   </nav>
 
