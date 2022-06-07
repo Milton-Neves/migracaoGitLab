@@ -1,9 +1,11 @@
 import {
   Component,
   EventEmitter,
+  Input,
   OnDestroy,
   OnInit,
   Output,
+  SimpleChanges,
 } from '@angular/core'
 import { FormBuilder, FormGroup } from '@angular/forms'
 import { ToastrService } from 'ngx-toastr'
@@ -16,7 +18,7 @@ import {
 @Component({
   selector: 'ngx-filtering',
   template: `
-    <div class="modal-background" *ngIf="filterActive.filterContainer"></div>
+    <div class="modal-back" *ngIf="filterActive.filterContainer"></div>
     <div class="app-filtering" *ngIf="filterActive.filterContainer">
       <ngx-modal-filtering
         (filterEvent)="setFilters($event)"
@@ -59,6 +61,7 @@ import {
 export class NgxFilteringComponent implements OnInit, OnDestroy {
   @Output() paramsToRequest = new EventEmitter<any>()
   @Output() filtersName = new EventEmitter<any>()
+  @Input() toReset: boolean = false
   filters: string[] = []
   jobFiltered = ''
   concatedObjectFilters: any = {}
@@ -73,12 +76,22 @@ export class NgxFilteringComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.filters = []
     this.concatedObjectFilters = {}
-    document.removeAllListeners!('click')
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.toReset) {
+      this.filters = []
+      this.concatedObjectFilters = {}
+      this.toReset = false
+    }
   }
 
   ngOnInit(): void {
     document.addEventListener('click', (el: any) => {
-      if (el.target.className === 'modal-background') {
+      if (
+        el.target.className === 'modal-back' ||
+        el.target.className === 'modal-back ng-star-inserted'
+      ) {
         this.filterActive.filterContainer = false
       }
     })

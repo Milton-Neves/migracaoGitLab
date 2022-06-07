@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup } from '@angular/forms'
-import { ForwardingService } from '@shared/services/forwarding.service'
 import { WorkfieldService } from '@shared/services/workfield.service'
+import { ResumeViewComponent } from 'app/manager/resume/components/resume-view/resume-view.component'
 import { ResumeService } from 'app/manager/resume/services/resume.service'
 import { NgxModalService } from 'lib/ngx-modal/src/public-api'
 import { ToastrService } from 'ngx-toastr'
@@ -11,8 +11,11 @@ import {
   distinctUntilChanged,
   map,
   shareReplay,
+  switchMap,
   tap,
 } from 'rxjs/operators'
+
+import { ConfirmationForwardingModalComponent } from '../@modal/confirmation-forwarding-modal/confirmation-forwarding-modal.component'
 
 const ITEMS_PER_PAGE = 6
 
@@ -25,6 +28,7 @@ const ITEMS_PER_PAGE = 6
         <ngx-filtering
           (paramsToRequest)="setParams($event)"
           (filtersName)="setFilters($event)"
+          [toReset]="filters.length < 1"
         ></ngx-filtering>
         <div class="search">
           <form [formGroup]="singleFormCriteria">
@@ -52,26 +56,20 @@ const ITEMS_PER_PAGE = 6
             />
             <svg
               style="margin-left: 5px;"
-              width="12"
-              height="8"
-              viewBox="0 0 10 6"
+              width="13"
+              height="6"
+              viewBox="0 0 16 9"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M2 2L5 5L8 2"
-                stroke="#1C3152"
-                stroke-width="1.5"
+                d="M2 2L8 8L14 2"
+                stroke="#ACACA9"
+                stroke-width="2"
                 stroke-linecap="square"
                 stroke-linejoin="round"
               />
             </svg>
-            <!-- <mat-checkbox
-          color="primary"
-          [checked]="desactiveCheck()"
-          (change)="checkAllResumes($event)"
-        ></mat-checkbox>
-        <mat-icon>keyboard_arrow_down</mat-icon> -->
           </div>
           <button
             class="top--content--left--open-forwarding"
@@ -178,7 +176,7 @@ const ITEMS_PER_PAGE = 6
                       <span class="thead">Ação</span>
                       <span
                         id="see-curriculum"
-                        (click)="openInNewTab(resume.id)"
+                        (click)="openViewResumeModal(resume.id)"
                         >ver currículo</span
                       >
                     </td>
@@ -203,40 +201,40 @@ const ITEMS_PER_PAGE = 6
             </ng-template>
 
             <ng-container *ngIf="isLoading">
-              <!-- <tbody>
-            <tr *ngFor="let itens of repeat">
-              <td>
-                <ngx-skeleton-loader
-                  count="1"
-                  appearance="line"
-                ></ngx-skeleton-loader>
-              </td>
-              <td>
-                <ngx-skeleton-loader
-                  count="1"
-                  appearance="line"
-                ></ngx-skeleton-loader>
-              </td>
-              <td>
-                <ngx-skeleton-loader
-                  count="1"
-                  appearance="line"
-                ></ngx-skeleton-loader>
-              </td>
-              <td>
-                <ngx-skeleton-loader
-                  count="1"
-                  appearance="line"
-                ></ngx-skeleton-loader>
-              </td>
-              <td>
-                <ngx-skeleton-loader
-                  count="1"
-                  appearance="line"
-                ></ngx-skeleton-loader>
-              </td>
-            </tr>
-          </tbody> -->
+              <tbody>
+                <tr *ngFor="let itens of repeat">
+                  <td>
+                    <ngx-skeleton-loader
+                      count="1"
+                      appearance="line"
+                    ></ngx-skeleton-loader>
+                  </td>
+                  <td>
+                    <ngx-skeleton-loader
+                      count="1"
+                      appearance="line"
+                    ></ngx-skeleton-loader>
+                  </td>
+                  <td>
+                    <ngx-skeleton-loader
+                      count="1"
+                      appearance="line"
+                    ></ngx-skeleton-loader>
+                  </td>
+                  <td>
+                    <ngx-skeleton-loader
+                      count="1"
+                      appearance="line"
+                    ></ngx-skeleton-loader>
+                  </td>
+                  <td>
+                    <ngx-skeleton-loader
+                      count="1"
+                      appearance="line"
+                    ></ngx-skeleton-loader>
+                  </td>
+                </tr>
+              </tbody>
             </ng-container>
           </table>
         </div>
@@ -292,7 +290,6 @@ export class NgxResumeListComponent implements OnInit {
     private resumeService: ResumeService,
     private fb: FormBuilder,
     private modalService: NgxModalService,
-    private forwardingService: ForwardingService,
     private workfieldService: WorkfieldService,
     private toastr: ToastrService
   ) {}
@@ -461,19 +458,27 @@ export class NgxResumeListComponent implements OnInit {
   }
 
   openConfirmationModal() {
-    // this.modalService
-    //   .open(ConfirmationForwardingModalComponent, {
-    //     selectedResumes: this.stateResumes.filter((resume) => resume.isChecked),
-    //     jobSelected: this.jobFiltered,
-    //     selectedJobColor: this.selectedJobColor,
-    //   })
-    //   .pipe(switchMap((modal) => modal.onClose))
-    //   .subscribe((data: any) => {
-    //     if (data.selectedResumes.length === 0) {
-    //       this.resetResumeProperties();
-    //       this.filters = [];
-    //     }
-    //   });
+    this.modalService
+      .open(ConfirmationForwardingModalComponent, {
+        selectedResumes: this.stateResumes.filter((resume) => resume.isChecked),
+        jobSelected: this.jobFiltered,
+        selectedJobColor: this.selectedJobColor,
+      })
+      .pipe(switchMap((modal) => modal.onClose))
+      .subscribe((data: any) => {
+        if (data.selectedResumes.length === 0) {
+          this.resetResumeProperties()
+          this.filters = []
+        }
+      })
+  }
+
+  openViewResumeModal(resumeId: any) {
+    this.modalService
+      .open(ResumeViewComponent, {
+        resumeId: resumeId,
+      })
+      .subscribe()
   }
 
   findAllWorkfields() {
@@ -512,10 +517,5 @@ export class NgxResumeListComponent implements OnInit {
   // problema -> null
   getJobSelected(jobs: any[]) {
     return jobs.filter((job) => job.name === this.jobFiltered)[0].name
-  }
-
-  openInNewTab(id: number) {
-    // localStorage.setItem('id', id.toString());
-    // window.open('#/empresa/visualizar', '_blank');
   }
 }

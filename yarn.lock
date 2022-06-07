@@ -182,7 +182,7 @@
     "symbol-observable" "4.0.0"
     "uuid" "8.3.2"
 
-"@angular/common@^12.0.0 || ^13.0.0-0", "@angular/common@>=10.0.0", "@angular/common@>=12.0.0-0", "@angular/common@~12.2.0", "@angular/common@12.2.16":
+"@angular/common@^12.0.0 || ^13.0.0-0", "@angular/common@>=10.0.0", "@angular/common@>=12.0.0-0", "@angular/common@>=8.0.0", "@angular/common@~12.2.0", "@angular/common@12.2.16":
   "integrity" "sha512-FEqTXTEsnbDInqV1yFlm97Tz1OFqZS5t0TUkm8gzXRgpIce/F/jLwAg0u1VQkgOsno6cNm0xTWPoZgu85NI4ug=="
   "resolved" "https://registry.npmjs.org/@angular/common/-/common-12.2.16.tgz"
   "version" "12.2.16"
@@ -216,7 +216,7 @@
   dependencies:
     "tslib" "^2.2.0"
 
-"@angular/core@^12.0.0 || ^13.0.0-0", "@angular/core@>=10.0.0", "@angular/core@>=12.0.0-0", "@angular/core@~12.2.0", "@angular/core@12.2.16":
+"@angular/core@^12.0.0 || ^13.0.0-0", "@angular/core@>=10.0.0", "@angular/core@>=12.0.0-0", "@angular/core@>=8.0.0", "@angular/core@~12.2.0", "@angular/core@12.2.16":
   "integrity" "sha512-jsmvaRdAfng99z2a9mAmkfcsCE1wm+tBYVDxnc5JquSXznwtncjzcoc2X0J0dzrkCDvzFfpTsZ9vehylytBc+A=="
   "resolved" "https://registry.npmjs.org/@angular/core/-/core-12.2.16.tgz"
   "version" "12.2.16"
@@ -6993,6 +6993,14 @@
   dependencies:
     "tslib" "^2.3.0"
 
+"ngx-skeleton-loader@^5.0.0":
+  "integrity" "sha512-6cz8UAu4WcYnBp/LnU053LCIwjKNZWX8GX1v3bvqQVdDa1ubsEeJm+CZxk5B8W2jP9CcFhvWrBlmmVUyl1Yxug=="
+  "resolved" "https://registry.npmjs.org/ngx-skeleton-loader/-/ngx-skeleton-loader-5.0.0.tgz"
+  "version" "5.0.0"
+  dependencies:
+    "perf-marks" "^1.13.4"
+    "tslib" "^2.0.0"
+
 "ngx-toastr@^14.3.0":
   "integrity" "sha512-d8j/sOr60w5U7rGlcKQ0Ff4u+m2NzhqU5ZdJXn7QW3aR3Zf/rY7/Fd14BmUindTOWVr2NeTYcQXCjLpir0ldpA=="
   "resolved" "https://registry.npmjs.org/ngx-toastr/-/ngx-toastr-14.3.0.tgz"
@@ -7577,6 +7585,13 @@
   "integrity" "sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw=="
   "resolved" "https://registry.npmjs.org/path-type/-/path-type-4.0.0.tgz"
   "version" "4.0.0"
+
+"perf-marks@^1.13.4":
+  "integrity" "sha512-N0/bQcuTlETpgox/DsXS1voGjqaoamMoiyhncgeW3rSHy/qw8URVgmPRYfFDQns/+C6yFUHDbeSBGL7ixT6Y4A=="
+  "resolved" "https://registry.npmjs.org/perf-marks/-/perf-marks-1.14.2.tgz"
+  "version" "1.14.2"
+  dependencies:
+    "tslib" "^2.1.0"
 
 "picocolors@^0.2.1":
   "integrity" "sha512-cMlDqaLEqfSaW8Z7N5Jw+lyIW869EzT73/F5lhtY9cLGoVxSXznfgfXMO0Z5K0o0Q2TkTXq+0KFsdnSe3jDViA=="

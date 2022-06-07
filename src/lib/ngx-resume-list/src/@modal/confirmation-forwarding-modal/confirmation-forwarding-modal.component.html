@@ -1,0 +1,134 @@
+<div class="confirm-forwarding">
+  <div>
+    <h2 id="title">Gerar encaminhamento</h2>
+  </div>
+
+  <div class="confirm-forwarding--identification">
+    <div class="confirm-forwarding--resume-quantity">
+      <svg
+        id="resume-icon"
+        width="13"
+        height="16"
+        viewBox="0 0 13 16"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M7.875 1.25H2.375C2.01033 1.25 1.66059 1.39487 1.40273 1.65273C1.14487 1.91059 1 2.26033 1 2.625V13.625C1 13.9897 1.14487 14.3394 1.40273 14.5973C1.66059 14.8551 2.01033 15 2.375 15H10.625C10.9897 15 11.3394 14.8551 11.5973 14.5973C11.8551 14.3394 12 13.9897 12 13.625V5.375L7.875 1.25Z"
+          stroke="#1C3152"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M7.875 1.25V5.375H12"
+          stroke="#1C3152"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M9.25 8.8125H3.75"
+          stroke="#1C3152"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M9.25 11.5625H3.75"
+          stroke="#1C3152"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M5.125 6.0625H4.4375H3.75"
+          stroke="#1C3152"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+      <p id="resume-quantity-text">{{ selectedResumes.length }} currículos</p>
+    </div>
+    <span
+      id="profission"
+      [ngStyle]="{ 'background-color': selectedJobColor }"
+      >{{ jobSelected }}</span
+    >
+  </div>
+
+  <div class="confirm-forwarding--informations">
+    <div class="confirm-forwarding--informations-container">
+      <div class="confirm-forwarding--informations-container-content">
+        <h1 id="information-title">Abertura</h1>
+        <span id="text-information">{{
+          currentDate | date: 'dd/MM/yyyy'
+        }}</span>
+      </div>
+      <div class="confirm-forwarding--informations-container-content">
+        <h1 id="information-title">Finalização</h1>
+        <span id="text-information">{{ 'EM ANDAMENTO' }}</span>
+      </div>
+      <div class="confirm-forwarding--informations-container-content">
+        <h1 id="information-title">Situação</h1>
+        <span id="text-information-situation">{{ 'Ativo' }}</span>
+      </div>
+    </div>
+  </div>
+  <div class="confirm-forwarding--informations">
+    <div class="confirm-forwarding--informations-container">
+      <div
+        class="confirm-forwarding--informations-container-content"
+        id="legalPerson"
+        style="position: relative"
+      >
+        <h1 id="information-title">Empresa</h1>
+        <input
+          type="text"
+          (focus)="openCloseDropdown()"
+          (focusout)="openCloseDropdown()"
+          [(ngModel)]="companyName"
+          (ngModelChange)="filtering()"
+        />
+        <div id="autocomplete" *ngIf="showAutoComplete">
+          <ul>
+            <ng-container
+              *ngFor="
+                let company of filteredCompanies$ | async as filteredCompanies
+              "
+            >
+              <li
+                *ngIf="filteredCompanies.length > 0 && !company.disabled"
+                (click)="selectCompany(company.companyName)"
+              >
+                {{ company.companyName }}
+              </li>
+              <li *ngIf="company.disabled">{{ company.companyName }}</li>
+            </ng-container>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="confirm-forwarding--textarea-container">
+    <h1 id="information-title">Observação</h1>
+    <div class="textarea-container">
+      <textarea
+        rows="3"
+        [maxlength]="complementCharactersLimit"
+        [(ngModel)]="complement"
+        (keyup)="verifyChangeComplement()"
+        [value]="complement"
+        [class.textareaError]="complement.length >= complementCharactersLimit"
+      ></textarea>
+      <span [class.error]="complement.length >= complementCharactersLimit"
+        >{{ complement.length }}/{{ complementCharactersLimit }}</span
+      >
+    </div>
+  </div>
+
+  <div class="confirm-forwarding--buttons">
+    <button mat-flat-button id="cancel-button" (click)="closeModal()">
+      Cancelar
+    </button>
+    <button mat-flat-button id="confirm-button" (click)="postForwarding()">
+      Confirmar
+    </button>
+  </div>
+</div>
