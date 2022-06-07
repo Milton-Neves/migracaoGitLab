@@ -1,100 +1,3 @@
-<!-- <main class="company">
-  <header class="company__header">
-    <app-page-title [title]="'Empresas'"></app-page-title>
-  </header>
-  <div class="actives"></div>
-
-  <section class="company__content" id="content">
-    <div class="buttons">
-      <div class="btn" id="btns">
-        <button
-          class="btn-actives"
-          [class.button-isActive]="isNavActive"
-          (click)="changeNav(true)"
-          [disabled]="isNavActive"
-        >
-          <b class="btn-title">Ativos</b> <br />
-          <p class="btn-text">
-            Lista de encaminhamentos <br />
-            ativos
-          </p>
-        </button>
-        <button
-          class="btn-analyses"
-          [class.button-isActive]="!isNavActive"
-          (click)="changeNav(false)"
-          [disabled]="!isNavActive"
-        >
-          <b class="btn-title">Em análise</b>
-          <p class="btn-text">
-            Lista de encaminhamentos <br />
-            em análise
-          </p>
-        </button>
-      </div>
-
-      <div class="company__src">
-        <div class="company__src--icon">
-          <input
-            type="text"
-            id="src"
-            placeholder="Pesquise por Nome, Nome do representante, CNPJ, Ramo"
-          />
-          <div class="filter">
-            <img
-              src="../../../assets/images/icons/icon-filter.svg"
-              alt="icon-filter"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div *ngIf="isNavActive">
-      <app-button
-        class="select"
-        [text]="'CRIAR EMPRESA'"
-        [color]="'#33A93B'"
-        (click)="openCompanyRegistration()"
-      >
-        <img src="../../../assets/images/icons/img-sum.svg" />
-      </app-button>
-      <app-company-card></app-company-card>
-    </div>
-    <div *ngIf="!isNavActive">
-      <app-table>
-        <tr
-          app-company-list-under-analysis
-          *ngFor="let company of companies"
-          [company]="company"
-          part="list"
-          style="border-bottom: #cccbcb solid 2px"
-        ></tr>
-      </app-table>
-    </div>
-    <footer
-      style="display: flex; justify-content: space-between; margin-top: 2rem"
-      *ngIf="companies.length > 0"
-    >
-      <app-pagination-number
-        class="pagination-number"
-        [visibleItems]="companies.length"
-        [totalItems]="totalCompanys"
-      >
-      </app-pagination-number>
-      <app-pagination
-        class="pagination"
-        (currentPageEmit)="getCompaniesFromServer($event)"
-        [pagination$]="pagination$"
-      >
-      </app-pagination>
-    </footer>
-  </section>
-  <section id="no-content" *ngIf="companies.length <= 0">
-    <p>Nenhuma empresa cadastrada</p>
-  </section>
-</main> -->
-
 <main class="company">
   <header class="company__header">
     <app-page-title [title]="'Empresas'"></app-page-title>
@@ -146,12 +49,51 @@
     </div>
 
     <div *ngIf="isNavActive">
-      <app-button class="select" [text]="'CRIAR EMPRESA'" [color]="'#33A93B'">
+      <app-button
+        class="select"
+        [text]="'CRIAR EMPRESA'"
+        [color]="'#33A93B'"
+        (click)="openCompanyRegistration()"
+      >
         <img src="../../../assets/images/icons/img-sum.svg" />
       </app-button>
-      <app-active-company-list></app-active-company-list>
+      <app-active-company-list
+        [companies]="companies"
+      ></app-active-company-list>
     </div>
-    <div *ngIf="!isNavActive"></div>
-    <app-pagination class="pagination"></app-pagination>
+
+    <div *ngIf="!isNavActive">
+      <app-table>
+        <tr
+          app-company-list-under-analysis
+          *ngFor="let company of companies"
+          [company]="company"
+          (modalClosed)="getCompaniesFromServer()"
+          part="list"
+          style="border-bottom: #cccbcb solid 2px"
+        ></tr>
+      </app-table>
+    </div>
+    <footer
+      style="display: flex; justify-content: space-between; margin-top: 2rem"
+      *ngIf="companies.length > 0"
+    >
+      <app-pagination-number
+        class="pagination-number"
+        [visibleItems]="companies.length"
+        [totalItems]="totalCompanys"
+      >
+      </app-pagination-number>
+      <app-pagination
+        class="pagination"
+        (currentPageEmit)="getCompaniesFromServer($event)"
+        [pagination$]="pagination$"
+      >
+      </app-pagination>
+    </footer>
+
+    <section id="no-content" *ngIf="companies.length <= 0">
+      <p>Nenhuma empresa cadastrada</p>
+    </section>
   </section>
 </main>

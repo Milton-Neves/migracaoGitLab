@@ -27,11 +27,8 @@ export class PaginationService {
     if (startIndex > 0) pagination.previous = page - 1
 
     pagination.current = page
-    pagination.totalElementPerPage = object.content?.slice(
-      startIndex,
-      endIndex
-    ).length
+    pagination.totalElementPerPage = object.slice(startIndex, endIndex).length
 
-    return { results: object.content?.slice(startIndex, endIndex), pagination }
+    return { results: object.slice(startIndex, endIndex), pagination }
   }
 }
