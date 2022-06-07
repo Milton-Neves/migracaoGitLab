@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core'
 import { FormsModule } from '@angular/forms'
 import { SharedModule } from '@shared/shared.module'
 import { NgxForwardingModalModule } from 'lib/forwarding-modal/src/public-api'
+import { NgxResumeListModule } from 'lib/ngx-resume-list/src/public-api'
 import { NgxMaskModule } from 'ngx-mask'
 
 import { ForwardingCardComponent } from './components/forwarding-card/forwarding-card.component'
@@ -17,6 +18,7 @@ import { ForwardingComponent } from './forwarding.component'
     ForwardingRoutingModule,
     NgxForwardingModalModule,
     SharedModule,
+    NgxResumeListModule,
     NgxMaskModule.forChild(),
   ],
 })

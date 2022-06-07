@@ -7,7 +7,6 @@ import {
 } from '@angular/core'
 import { FormBuilder, FormGroup } from '@angular/forms'
 import { ToastrService } from 'ngx-toastr'
-import { debounceTime, distinctUntilChanged, filter, tap } from 'rxjs/operators'
 
 import {
   criteriaScholarity,
@@ -59,6 +58,7 @@ import {
 })
 export class NgxFilteringComponent implements OnInit, OnDestroy {
   @Output() paramsToRequest = new EventEmitter<any>()
+  @Output() filtersName = new EventEmitter<any>()
   filters: string[] = []
   jobFiltered = ''
   concatedObjectFilters: any = {}
@@ -72,11 +72,11 @@ export class NgxFilteringComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.filters = []
+    this.concatedObjectFilters = {}
     document.removeAllListeners!('click')
   }
 
   ngOnInit(): void {
-    this.onSingleInputChange()
     document.addEventListener('click', (el: any) => {
       if (el.target.className === 'modal-background') {
         this.filterActive.filterContainer = false
@@ -87,7 +87,9 @@ export class NgxFilteringComponent implements OnInit, OnDestroy {
   setFilters(filters: any) {
     let checkGeneralInfo = this.filters.find((f) => f == 'Informações Gerais')
     this.filters = filters
-    if (checkGeneralInfo) this.filters.push('Informações Gerais')
+    if (checkGeneralInfo && this.jobFiltered)
+      this.filters.push('Informações Gerais')
+    this.filtersName.emit(this.filters)
   }
 
   checkDisponibility() {
@@ -96,36 +98,6 @@ export class NgxFilteringComponent implements OnInit, OnDestroy {
         'Selecione um cargo em filtros para realizar a pesquisa de currículos!',
         'Filtro Indisponível'
       )
-  }
-
-  onSingleInputChange() {
-    this.singleFormCriteria.valueChanges
-      .pipe(
-        distinctUntilChanged(),
-        debounceTime(500),
-        tap((res) => {
-          let filterGeneral = this.filters.find(
-            (el) => el == 'Informações Gerais'
-          )
-          if (res.generalInfo.length <= 3 && filterGeneral != undefined)
-            this.filters.splice(
-              this.filters.indexOf(filterGeneral as string),
-              1
-            )
-          else if (res.generalInfo.length >= 3 && filterGeneral == undefined)
-            this.filters.push('Informações Gerais')
-        }),
-        filter(
-          (res) => res.generalInfo.length >= 3 || res.generalInfo.length == 0
-        ),
-        tap((res) => {
-          if (res.generalInfo != '')
-            this.concatedObjectFilters.generalInfo = res.generalInfo
-          else delete this.concatedObjectFilters.generalInfo
-          this.paramsToRequest.emit(this.concatedObjectFilters)
-        })
-      )
-      .subscribe()
   }
 
   /**
@@ -287,6 +259,7 @@ export class NgxFilteringComponent implements OnInit, OnDestroy {
           this.concatedObjectFilters,
           this.clearNullValues(event[eventGroup])
         )
+        this.paramsToRequest.emit(this.concatedObjectFilters)
       }
     })
   }

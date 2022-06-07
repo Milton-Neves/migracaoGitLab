@@ -5,5 +5,7 @@
     type="text"
     placeholder="{{ placeholder }}"
     (keyup)="changeValue(input.value)"
+    [readonly]="readonly"
+    [value]="value"
   />
 </div>
