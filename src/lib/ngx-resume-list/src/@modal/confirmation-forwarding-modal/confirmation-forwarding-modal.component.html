@@ -127,7 +127,11 @@
     <button mat-flat-button id="cancel-button" (click)="closeModal()">
       Cancelar
     </button>
-    <button mat-flat-button id="confirm-button" (click)="postForwarding()">
+    <button
+      id="confirm-button"
+      (click)="postForwarding()"
+      [disabled]="companyName == ''"
+    >
       Confirmar
     </button>
   </div>

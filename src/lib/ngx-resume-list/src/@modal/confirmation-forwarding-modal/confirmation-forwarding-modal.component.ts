@@ -36,12 +36,16 @@ export class ConfirmationForwardingModalComponent implements OnInit {
       this.closeModal()
     }
     this.companyService
-      .findAll()
+      .findAll('', { valid: true })
       .pipe(
         map((res: any) => res.data.content),
         tap((res) => {
           this.companiesList = res
-          this.filteredCompanies$ = of(res)
+          this.filteredCompanies$ = of(
+            res.length > 0
+              ? res
+              : [{ companyName: 'Nenhuma empresa encontrada', disabled: true }]
+          )
         })
       )
       .subscribe()

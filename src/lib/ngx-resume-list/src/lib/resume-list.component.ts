@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup } from '@angular/forms'
+import { Router } from '@angular/router'
 import { WorkfieldService } from '@shared/services/workfield.service'
 import { ResumeViewComponent } from 'app/manager/resume/components/resume-view/resume-view.component'
 import { ResumeService } from 'app/manager/resume/services/resume.service'
@@ -23,6 +24,9 @@ const ITEMS_PER_PAGE = 6
   selector: 'ngx-resume-list',
   template: `
     <div class="global-container">
+      <header class="forwarding__header">
+        <app-page-title [title]="'Novo Encaminhamento'"> </app-page-title>
+      </header>
       <div class="modal-background" *ngIf="filterActive.filterContainer"></div>
       <div class="app-filtering">
         <ngx-filtering
@@ -43,7 +47,15 @@ const ITEMS_PER_PAGE = 6
           </form>
         </div>
       </div>
-
+      <span
+        style="
+    display: block;
+    height: 2px;
+    margin-top: 2rem;
+    margin-bottom: .5rem;
+    width: 100%;
+    background-color: #979797;"
+      ></span>
       <div class="top--content">
         <section class="top--content--left">
           <div class="top--content--left--select-all-container">
@@ -77,6 +89,13 @@ const ITEMS_PER_PAGE = 6
             [disabled]="countResumesChecked <= 0"
           >
             GERAR ENCAMINHAMENTO
+          </button>
+          <button
+            class="top--content--left--open-forwarding"
+            id="return"
+            (click)="redirectToList()"
+          >
+            IR PARA A LISTAGEM
           </button>
         </section>
         <section
@@ -291,7 +310,8 @@ export class NgxResumeListComponent implements OnInit {
     private fb: FormBuilder,
     private modalService: NgxModalService,
     private workfieldService: WorkfieldService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) {}
 
   clearNullValues(form: any) {
@@ -332,6 +352,10 @@ export class NgxResumeListComponent implements OnInit {
         'Selecione um cargo em filtros para realizar a pesquisa de currículos!',
         'Filtro Indisponível'
       )
+  }
+
+  redirectToList() {
+    this.router.navigate(['/gerenciador/encaminhamentos'])
   }
 
   onSingleInputChange() {

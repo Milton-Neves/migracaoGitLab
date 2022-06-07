@@ -19,6 +19,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 1rem;
 }
 
 .top--content {
@@ -66,7 +67,9 @@
       border: none;
       font-size: 13px;
       margin-left: 1rem;
-
+      &#return {
+        background-color: $blue-700;
+      }
       &:hover {
         filter: brightness(92%);
       }
@@ -97,8 +100,8 @@
 
 table {
   width: 100%;
-  border-top: 1px solid #cccbcb;
-  border-bottom: 1px solid #cccbcb;
+  border-top: 2px solid #cccbcb;
+  border-bottom: 2px solid #cccbcb;
   padding: 0.7rem 1rem;
   border-collapse: collapse;
 
@@ -111,8 +114,8 @@ table {
     width: 100%;
   }
   tr {
-    border-top: 1px solid #cccbcb;
-    border-bottom: 1px solid #cccbcb;
+    border-top: 2px solid #cccbcb;
+    border-bottom: 2px solid #cccbcb;
 
     th:first-child,
     td:first-child {
