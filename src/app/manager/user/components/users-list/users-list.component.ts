@@ -4,7 +4,6 @@ import { NgxModalService } from 'lib/ngx-modal/src/lib/ngx-modal.service'
 import { UserModalComponent } from '../user-modal/user-modal.component'
 import { FeatureFlagService } from '@shared/services/feature-flag.service'
 import { ToastrService } from 'ngx-toastr'
-import { FeatureFlagProps } from '@core/interfaces/Feature-flag.model'
 
 @Component({
   selector: 'app-users-list',
@@ -19,6 +18,8 @@ export class UsersListComponent implements OnInit {
     legalUser: this.featureFlagService.featureFlagConfig!['legalUser'],
     physicalUser: this.featureFlagService.featureFlagConfig!['physicalUser'],
   }
+  pageAtual = 1
+  numPaginas = 14
 
   constructor(
     private modalService: NgxModalService,
@@ -41,6 +42,13 @@ export class UsersListComponent implements OnInit {
         : (this.placeholderActiveSection = 'Buscar por nome ou CPF')
     }, 100)
   }
+  getNumberPage() {
+    if (this.pageAtual > 0 && this.pageAtual < 10) {
+      return '0' + this.pageAtual
+    }
+    return this.pageAtual
+  }
+
   openUserModal() {
     let modal = this.modalService.open(UserModalComponent).subscribe()
   }

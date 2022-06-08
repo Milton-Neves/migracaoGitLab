@@ -12,34 +12,10 @@
       (activeTab)="changeTab($event)"
     ></app-tab-nav>
   </div>
-
-  <div class="firstSection">
-    <ng-container *ngIf="activeTab == sectionTitle[0]">
-      <button class="buttons-style" (click)="openUserModal()">
-        Abrir modal
-      </button>
-      <div class="pagination-number">
-        <app-pagination-number
-          [visibleItems]="12"
-          [totalItems]="70"
-          class="pagination-number"
-        ></app-pagination-number>
-      </div>
-      <app-table></app-table>
-    </ng-container>
-  </div>
-
-  <div class="secondSection" *ngIf="activeTab == sectionTitle[1]">
+  <div class="secondSection" *ngIf="activeTab == sectionTitle[0]">
     <ng-container
       *ngIf="this.featureFlag.legalUser; else legal_module_desabled"
     >
-      <div class="pagination-number">
-        <app-pagination-number
-          [visibleItems]="12"
-          [totalItems]="70"
-          class="pagination-number"
-        ></app-pagination-number>
-      </div>
       <app-table></app-table>
     </ng-container>
     <ng-template #legal_module_desabled>
@@ -47,28 +23,58 @@
     </ng-template>
   </div>
 
-  <div class="thirdSection" *ngIf="activeTab == sectionTitle[2]">
-    <ng-container
-      *ngIf="this.featureFlag.physicalUser; else physical_module_desabled"
-    >
-      <button class="buttons-style" (click)="openCitizenModal()">
-        Abrir modal
-      </button>
+  <div class="firstSection">
+    <ng-container *ngIf="activeTab == sectionTitle[1]">
+      <app-table class="table-details">
+        <ng-container part="list">
+          <tr class="table-details__body--text-description">
+            <td>Lorem ipsum dolor sit amet.</td>
+            <td>
+              <span>000000</span>
+            </td>
+            <td class="table-details__body--btn">
+              <button type="button" (click)="openUserModal()">
+                Alterar Senha
+              </button>
+            </td>
+          </tr>
+          <td></td>
+        </ng-container>
+      </app-table>
+
       <div class="pagination-number">
         <app-pagination-number
           [visibleItems]="12"
           [totalItems]="70"
-          class="pagination-number"
         ></app-pagination-number>
+        <div class="pagination-details">
+          <ul class="pagination-details__page">
+            <li class="pagination-details__page__prev" *ngIf="pageAtual > 1">
+              <button>Anterior</button>
+            </li>
+            <li class="pagination-details__page--active">
+              <a href="#"> {{ getNumberPage() }} </a>
+            </li>
+            <li
+              class="pagination-details__page__next"
+              *ngIf="numPaginas > pageAtual"
+            >
+              <button>Próxima</button>
+            </li>
+          </ul>
+        </div>
       </div>
-      <app-table></app-table>
-    </ng-container>
-    <ng-template #physical_module_desabled>
-      <app-not-allowed></app-not-allowed>
-    </ng-template>
-  </div>
 
-  <div class="pagination">
-    <app-pagination></app-pagination>
+      <div class="thirdSection" *ngIf="activeTab == sectionTitle[2]">
+        <ng-container
+          *ngIf="this.featureFlag.physicalUser; else physical_module_desabled"
+        >
+          <app-table></app-table>
+        </ng-container>
+        <ng-template #physical_module_desabled>
+          <app-not-allowed></app-not-allowed>
+        </ng-template>
+      </div>
+    </ng-container>
   </div>
 </section>

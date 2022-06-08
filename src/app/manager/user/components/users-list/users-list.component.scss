@@ -1,3 +1,4 @@
+@import '../../../../../assets/styles/scss/variables';
 .input {
   display: flex;
   justify-content: flex-end;
@@ -5,17 +6,78 @@
 
 .pagination-number {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   margin-top: 0.8rem;
   margin-bottom: 0.4rem;
 }
 
-.pagination {
-  margin-top: 2.5rem;
+// .pagination {
+//   margin-top: 2.5rem;
+// }
+.pagination-details {
+  &__page {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    // margin: auto 2rem;
+    &__prev button,
+    &__next button {
+      color: $blue-100;
+      margin: auto 0.5rem;
+      border: none;
+      background: none;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+    &--active {
+      font-size: 0.9rem;
+      color: $blue-700;
+      font-weight: 500;
+    }
+  }
+  &__page ul {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
 }
 
 ::ng-deep {
   .method-not-allowed {
     height: 40vh !important;
+  }
+  .table-details {
+    width: 100%;
+    border-collapse: collapse;
+    overflow-x: auto;
+    color: $blue-700;
+    &__body {
+      text-align: center;
+
+      &--text-description td:first-child {
+        text-align: left;
+      }
+      &--text-description td {
+        padding: 0.5rem 2rem;
+      }
+      &--text-description {
+        border: 1px solid $black-100;
+        border-left: none;
+        border-right: none;
+      }
+      &--btn button {
+        border: none;
+        background: none;
+        color: $gray-700;
+        border: 1px solid $black-100;
+        padding: 0.3rem 1rem;
+        border-radius: 6px;
+
+        &:hover {
+          filter: brightness(1.1);
+          background: $gray-200;
+        }
+      }
+    }
   }
 }
