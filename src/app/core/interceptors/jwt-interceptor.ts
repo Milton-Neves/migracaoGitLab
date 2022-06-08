@@ -14,7 +14,6 @@ import { catchError, filter, switchMap, take, tap } from 'rxjs/operators'
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
-  private publicPaths = ['/login']
   private isRefreshing = false
   private refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(
     null
@@ -30,7 +29,6 @@ export class JwtInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    let actualRoute = this.router.url
     let authReq = req
     const token = this.loginService.getToken()
     if (token != null) {
@@ -46,7 +44,7 @@ export class JwtInterceptor implements HttpInterceptor {
             case 4:
               if (err.status == 400)
                 this.toastrService.info(err.error.message, 'Ação indisponível!')
-              else if (err.status == 403)
+              else if (err.status == 403 || err.status == 404)
                 this.toastrService.warning(err.error.message, 'Atenção')
               break
             default:
@@ -61,7 +59,7 @@ export class JwtInterceptor implements HttpInterceptor {
       catchError((err) => {
         if (
           err instanceof HttpErrorResponse &&
-          !this.publicPaths.includes(actualRoute) &&
+          !authReq.url.includes('/api/auth/signin') &&
           err.status === 401
         ) {
           return this.handle401Error(authReq, next)
@@ -89,12 +87,14 @@ export class JwtInterceptor implements HttpInterceptor {
           }),
           catchError((err) => {
             this.isRefreshing = false
-
-            this.loginService.logout()
+            if (err.status == 403 && err.error.path == '/api/refresh_token') {
+              this.loginService.logout()
+            }
             return throwError(err)
           })
         )
     }
+    this.isRefreshing = false
     return this.refreshTokenSubject.pipe(
       filter((token) => token !== null),
       take(1),
