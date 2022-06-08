@@ -52,6 +52,9 @@ export class ConfirmationForwardingModalComponent implements OnInit {
   }
 
   verifyChangeComplement() {
+    this.complement =
+      this.complement.charAt(0).toUpperCase() +
+      this.complement.slice(1, this.complement.length)
     if (this.complement.length > this.complementCharactersLimit) {
       this.complement = this.complement.slice(0, this.complementCharactersLimit)
     }
