@@ -11,7 +11,7 @@ export class InputSearchComponent implements OnInit {
   @Input() placeholder!: string
   @Input() readonly: boolean = false
   @Output() onSearch = new EventEmitter<string>()
-  @Input() value!: any
+  @Input() value: any = ''
   constructor() {}
 
   ngOnInit(): void {}

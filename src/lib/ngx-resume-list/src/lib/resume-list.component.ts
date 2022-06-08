@@ -381,8 +381,7 @@ export class NgxResumeListComponent implements OnInit {
           if (res.generalInfo != '' || res.generalInfo)
             this.concatedObjectFilters.generalInfo = res.generalInfo
           else delete this.concatedObjectFilters.generalInfo
-          if (this.concatedObjectFilters.generalInfo != null)
-            this.getResumesFromServer(this.concatedObjectFilters)
+          this.getResumesFromServer(this.concatedObjectFilters)
         })
       )
       .subscribe()
