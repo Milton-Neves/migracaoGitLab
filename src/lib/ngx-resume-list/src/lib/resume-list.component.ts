@@ -6,7 +6,7 @@ import { ResumeViewComponent } from 'app/manager/resume/components/resume-view/r
 import { ResumeService } from 'app/manager/resume/services/resume.service'
 import { NgxModalService } from 'lib/ngx-modal/src/public-api'
 import { ToastrService } from 'ngx-toastr'
-import { Observable, of } from 'rxjs'
+import { Observable, of, Subscription } from 'rxjs'
 import {
   debounceTime,
   distinctUntilChanged,
@@ -304,7 +304,7 @@ export class NgxResumeListComponent implements OnInit {
   listWorkfield!: any[]
   selectedJobColor?: string
   singleResumeJobApplications: any[] = []
-
+  inputSubscription: Subscription = new Subscription()
   constructor(
     private resumeService: ResumeService,
     private fb: FormBuilder,
@@ -359,32 +359,37 @@ export class NgxResumeListComponent implements OnInit {
   }
 
   onSingleInputChange() {
-    this.singleFormCriteria.valueChanges
-      .pipe(
-        distinctUntilChanged(),
-        debounceTime(500),
-        tap((res) => {
-          let filterGeneral = this.filters.find(
-            (el) => el == 'Informações Gerais'
-          )
-          if (res.generalInfo != null) {
-            if (res.generalInfo.length <= 3 && filterGeneral != undefined)
-              this.filters.splice(
-                this.filters.indexOf(filterGeneral as string),
-                1
+    this.inputSubscription.add(
+      this.singleFormCriteria.valueChanges
+        .pipe(
+          distinctUntilChanged(),
+          debounceTime(500),
+          tap((res) => {
+            let filterGeneral = this.filters.find(
+              (el) => el == 'Informações Gerais'
+            )
+            if (res.generalInfo != null) {
+              if (res.generalInfo.length <= 3 && filterGeneral != undefined)
+                this.filters.splice(
+                  this.filters.indexOf(filterGeneral as string),
+                  1
+                )
+              else if (
+                res.generalInfo.length >= 3 &&
+                filterGeneral == undefined
               )
-            else if (res.generalInfo.length >= 3 && filterGeneral == undefined)
-              this.filters.push('Informações Gerais')
-          }
-        }),
-        map((res) => {
-          if (res.generalInfo != '' || res.generalInfo)
-            this.concatedObjectFilters.generalInfo = res.generalInfo
-          else delete this.concatedObjectFilters.generalInfo
-          this.getResumesFromServer(this.concatedObjectFilters)
-        })
-      )
-      .subscribe()
+                this.filters.push('Informações Gerais')
+            }
+          }),
+          map((res) => {
+            if (res.generalInfo != '' || res.generalInfo != null)
+              this.concatedObjectFilters.generalInfo = res.generalInfo
+            else delete this.concatedObjectFilters.generalInfo
+            this.getResumesFromServer(this.concatedObjectFilters)
+          })
+        )
+        .subscribe()
+    )
   }
 
   setParams(event: any) {
@@ -394,6 +399,7 @@ export class NgxResumeListComponent implements OnInit {
       this.getResumesFromServer(this.concatedObjectFilters)
     else {
       this.resetResumeProperties()
+      this.inputSubscription.unsubscribe()
       this.singleFormCriteria.reset()
     }
   }
