@@ -8,7 +8,6 @@ import { Observable } from 'rxjs'
 })
 export class PaginationComponent implements OnInit {
   @Input() pagination$?: Observable<any>
-  // @Input() companys$?: Observable<any>
   @Output() currentPageEmit = new EventEmitter<number>()
 
   constructor() {}

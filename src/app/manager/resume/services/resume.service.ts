@@ -1,5 +1,4 @@
 import { HttpClient } from '@angular/common/http'
-import { areAllEquivalent } from '@angular/compiler/src/output/output_ast'
 import { Injectable } from '@angular/core'
 import { Archiving } from '@core/interfaces/resume/archiving'
 import { Resume } from '@core/interfaces/resume/resume'
