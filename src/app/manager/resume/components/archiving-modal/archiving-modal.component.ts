@@ -43,9 +43,15 @@ export class ArchivingModalComponent implements OnInit {
     this.motivesArchiving$ = this.enumService
       .findAll('motive_archiving')
       .pipe(map((res: any) => res as String[]))
-    this.companies$ = this.companyService
+    this.companyService
       .findAll()
-      .pipe(map((res: any) => res.data.content))
+      .pipe(
+        map((res: any) => res.data.content),
+        tap((res) => {
+          this.companies$ = of(res)
+        })
+      )
+      .subscribe()
     this.archivingResume = {
       companyName: null,
       resumeId: this.resume.id,

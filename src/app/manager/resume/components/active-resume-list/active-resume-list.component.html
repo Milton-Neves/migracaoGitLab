@@ -1,5 +1,5 @@
 <div class="container">
-  <app-table class="table">
+  <app-table class="table" [setColumns]="tableColumns">
     <ng-container *ngIf="!!resumes" part="list">
       <tr
         class="table-details__body--text-description"

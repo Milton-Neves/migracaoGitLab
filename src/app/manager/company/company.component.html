@@ -56,7 +56,7 @@
       <app-company-card></app-company-card>
     </div>
     <div *ngIf="!isNavActive">
-      <app-table>
+      <app-table [setColumns]="tableColumns">
         <tr
           app-company-list-under-analysis
           *ngFor="let company of companies"
