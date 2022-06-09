@@ -1,3 +1,4 @@
+@import 'variables';
 .input {
   display: flex;
   justify-content: flex-end;
@@ -17,5 +18,48 @@
 ::ng-deep {
   .method-not-allowed {
     height: 40vh !important;
+  }
+}
+
+.thirdSection {
+  margin-bottom: 1rem;
+  &--table-details {
+    &__body {
+      text-align: center;
+
+      &--text-description td:first-child {
+        text-align: left;
+      }
+
+      &--text-description td {
+        padding: 0.5rem 2rem;
+      }
+
+      &--text-description {
+        border: 1px solid $black-100;
+        border-left: none;
+        border-right: none;
+      }
+
+      &--border-btn {
+        gap: 1rem;
+        display: flex;
+        justify-content: center;
+      }
+
+      &--border-btn button {
+        border: none;
+        background: $green-500;
+        color: #fff;
+        border: 1px solid $black-100;
+        padding: 0.3rem 1rem;
+        border-radius: 6px;
+      }
+    }
+  }
+  &--pagination {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
   }
 }
