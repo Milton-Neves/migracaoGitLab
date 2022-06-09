@@ -13,6 +13,7 @@ import { JobService } from '../../services/job.service'
   styleUrls: ['./jobs-list.component.scss'],
 })
 export class JobsListComponent implements OnInit {
+  tableColumns = ['Nome', 'Área de Atuação', 'Situação', 'Ações']
   @Input() stylesInformation: any
   jobs: any[] = []
   totalCountJobs: number = 0
