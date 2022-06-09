@@ -17,6 +17,7 @@ const ITEMS_PER_PAGE = 6
   styleUrls: ['./archived-resume-list.component.scss'],
 })
 export class ArchivedResumeListComponent implements OnInit {
+  tableColumns = ['Nome', 'Telefone(s)', 'Situação', 'Ações']
   resumes: Resume[] = []
   totalCountResumes: number = 0
   currentPage!: number

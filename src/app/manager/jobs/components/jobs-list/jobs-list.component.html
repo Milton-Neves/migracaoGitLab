@@ -22,7 +22,7 @@
       </app-button>
     </div>
 
-    <app-table class="job__list--table">
+    <app-table class="job__list--table" [setColumns]="tableColumns">
       <ng-container part="list" *ngFor="let job of workfield">
         <tr class="job__list--table-details__body--text-description">
           <td style="width: 50%">{{ job.name }}</td>

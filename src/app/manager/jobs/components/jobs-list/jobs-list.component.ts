@@ -15,6 +15,9 @@ import { WorkfieldService } from '@shared/services/workfield.service'
 export class JobsListComponent implements OnInit {
   workfield: any[] = []
   tempJobsList: any[] = []
+  tableColumns = ['Nome', 'Área de Atuação', 'Situação', 'Ações']
+  @Input() stylesInformation: any
+  jobs: any[] = []
   totalCountJobs: number = 0
   pagination$?: Observable<any>
   router: any
