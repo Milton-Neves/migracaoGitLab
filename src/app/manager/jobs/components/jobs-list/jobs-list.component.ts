@@ -3,9 +3,9 @@ import { Router } from '@angular/router'
 import { Job } from '@core/interfaces/resume/job'
 import { PaginationService } from '@shared/services/pagination.service'
 import { Observable, of } from 'rxjs'
-import { map, tap } from 'rxjs/operators'
 
 import { WorkfieldService } from '@shared/services/workfield.service'
+import { tap } from 'rxjs/operators'
 
 @Component({
   selector: 'app-jobs-list',
@@ -17,11 +17,11 @@ export class JobsListComponent implements OnInit {
   tempJobsList: any[] = []
   totalCountJobs: number = 0
   pagination$?: Observable<any>
-  router: any
 
   constructor(
     private paginationService: PaginationService,
-    private workfieldService: WorkfieldService
+    private workfieldService: WorkfieldService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -48,8 +48,7 @@ export class JobsListComponent implements OnInit {
             this.totalCountJobs = this.tempJobsList.length
           })
           this.paginateJobs(page, this.tempJobsList)
-        }),
-        map((res) => res.data)
+        })
       )
       .subscribe()
   }

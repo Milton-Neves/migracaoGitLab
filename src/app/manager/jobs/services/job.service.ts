@@ -11,7 +11,4 @@ export class JobService extends BaseResourceService<Job> {
   constructor(http: HttpClient) {
     super(http, 'job')
   }
-  getWorkfields() {
-    return this.http.get(`${environment.baseUrl}/api/workfield`)
-  }
 }
