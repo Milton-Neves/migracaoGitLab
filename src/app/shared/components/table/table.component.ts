@@ -8,17 +8,10 @@ import { NgxModalService } from 'lib/ngx-modal/src/public-api'
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements OnInit {
-  @Input() adittionalColumn?: string[]
-  routesWithTables = [
-    '/gerenciador/curriculos',
-    '/gerenciador/usuarios',
-    '/gerenciador/empresas',
-    '/gerenciador/cargos',
+  @Input() setColumns?: string[] = [
+    'Adicione as colunas através do [setColumns]',
   ]
-  activedRoute!: string
   constructor(private modalService: NgxModalService, private router: Router) {}
 
-  ngOnInit(): void {
-    this.activedRoute = this.router.url
-  }
+  ngOnInit(): void {}
 }

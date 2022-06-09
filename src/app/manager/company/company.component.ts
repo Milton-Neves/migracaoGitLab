@@ -15,6 +15,7 @@ import { CompanyService } from './services/company.service'
   styleUrls: ['./company.component.scss'],
 })
 export class CompanyComponent implements OnInit, OnDestroy {
+  tableColumns = ['Nome Fantasia', 'CNPJ', 'Data de Solicitação', 'Ações']
   companies: Company[] = []
   totalCompanys: number = 0
   pagination$!: Observable<any>
