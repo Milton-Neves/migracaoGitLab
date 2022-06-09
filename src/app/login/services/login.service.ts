@@ -156,6 +156,7 @@ export class LoginService {
 
     if (userRole !== null) {
       const role = userRole
+      this.setPermissions([role])
 
       this.http
         .get(`${this.API_URL}${this.endpoints.checkRole(role)}`, {
