@@ -168,8 +168,6 @@ export class LoginService {
           if (!res.data) {
             this.toastr.warning('Opss, um erro inesperado ocorreu!')
             this.logout()
-          } else {
-            this.setPermissions([role])
           }
         })
     }
