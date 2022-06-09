@@ -15,6 +15,8 @@ import { tap } from 'rxjs/operators'
 export class JobsListComponent implements OnInit {
   workfield: any[] = []
   tempJobsList: any[] = []
+  tableColumns = ['Nome', 'Área de Atuação', 'Situação', 'Ações']
+  @Input() stylesInformation: any
   totalCountJobs: number = 0
   pagination$?: Observable<any>
 
