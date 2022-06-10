@@ -1,22 +1,28 @@
 <div class="card" (click)="editForwarding()">
-  <app-information-card [career]="career" [title]="title">
-    <span class="id-details">#20220100001</span>
+  <app-information-card
+    [stylesHeader]="{ background: infos.selectedColor }"
+    [career]="infos.job"
+    [title]="infos.companyName"
+  >
+    <span class="id-details">#{{ infos.id }}</span>
     <div class="forwarding-details">
       <img
         src="../../../../../assets/images/icons/icon-forwarding-card.svg"
         alt=""
       />
-      <p><b>05</b> currículos</p>
+      <p>
+        <b>{{ infos.forwardingResumes.length }}</b> currículo(s)
+      </p>
     </div>
 
     <div class="process-details">
       <span class="process-details__open">
         <p>Abertura</p>
-        <b>00/00/00</b>
+        <b>{{ infos.createdAt }}</b>
       </span>
       <span class="process-details__finish">
         <p>Finalização</p>
-        <b>00/00/00</b>
+        <b>{{ infos.isFinished ? infos.lastModifiedAt : 'EM ANDAMENTO' }}</b>
       </span>
     </div>
   </app-information-card>
