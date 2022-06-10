@@ -2,7 +2,6 @@
   <header class="company__header">
     <app-page-title [title]="'Empresas'"></app-page-title>
   </header>
-  <div class="actives"></div>
 
   <section class="company__content" id="content">
     <div class="buttons">
@@ -62,32 +61,35 @@
           app-company-list-under-analysis
           *ngFor="let company of companies"
           [company]="company"
-          (modalClosed)="getCompaniesFromServer()"
+          (modalClosed)="getCompanies()"
           part="list"
           style="border-bottom: #cccbcb solid 2px"
         ></tr>
       </app-table>
     </div>
+
     <footer
       style="display: flex; justify-content: space-between; margin-top: 2rem"
-      *ngIf="companies.length > 0"
+      *ngIf="companies.length > 0; else noContent"
     >
       <app-pagination-number
         class="pagination-number"
-        [visibleItems]="companies.length"
-        [totalItems]="totalCompanys"
+        [visibleItems]="visibleItems"
+        [totalItems]="totalCompanies"
       >
       </app-pagination-number>
       <app-pagination
         class="pagination"
-        (currentPageEmit)="getCompaniesFromServer($event)"
+        (currentPageEmit)="getCompanies($event)"
         [pagination$]="pagination$"
       >
       </app-pagination>
     </footer>
-
-    <section id="no-content" *ngIf="companies.length <= 0">
-      <p>Nenhuma empresa cadastrada</p>
-    </section>
   </section>
 </main>
+
+<ng-template #noContent>
+  <span id="no-content" *ngIf="companies.length <= 0">
+    <p>Nenhuma empresa cadastrada</p>
+  </span>
+</ng-template>

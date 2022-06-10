@@ -1,67 +1,9 @@
 @import 'variables';
-.companies-details {
-  padding: 0 0 1rem;
-  font-size: 0.9rem;
-
-  &__forwading-datas {
-    display: flex;
-    justify-content: flex-start;
-    color: $green-500;
-    gap: 0.8rem;
-    margin-bottom: 0.5rem;
-
-    &:last-child {
-      color: $blue-700;
-    }
-  }
-}
-
-.companies-company {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-  gap: 1rem;
-  padding: 0 0 1rem;
-  font-size: 0.9rem;
-
-  span {
-    color: $blue-700;
-  }
-
-  &__status {
-    font-weight: 500;
-    color: $green-500;
-  }
-}
 
 section {
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
-  // justify-content: center;
-}
-
-#no-content {
-  margin-top: 25px;
-  text-align: center;
-  color: $blue-700;
-}
-
-.pagination {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 1.5rem;
-  &-one {
-    display: flex;
-    flex-direction: row-reverse;
-    margin-bottom: 1rem;
-    margin-right: 1rem;
-  }
-  &-two {
-    display: flex;
-    justify-content: flex-end;
-    background-color: aqua;
-  }
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }

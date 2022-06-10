@@ -17,8 +17,13 @@
     </div>
 
     <div class="card-company">
-      <span>Ativa desde: 15/10/21</span>
-      <span>Status: <span class="card-company__status">Ativa</span></span>
+      <span>Ativa desde: {{ card.createdAt | date: 'dd/MM/yyyy' }}</span>
+      <span
+        >Status:
+        <span class="card-company__status">{{
+          card.valid ? 'Ativa' : 'Em Análise'
+        }}</span></span
+      >
     </div>
   </app-information-card>
 </section>
