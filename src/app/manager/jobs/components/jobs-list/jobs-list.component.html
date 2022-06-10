@@ -22,7 +22,7 @@
       </app-button>
     </div>
 
-    <app-table class="job__list--table">
+    <app-table class="job__list--table" [setColumns]="tableColumns">
       <ng-container part="list">
         <tr class="job__list--table-details__body--text-description">
           <td>Lorem ipsum dolor sit amet.</td>

@@ -17,6 +17,7 @@ import { ResumeViewComponent } from '../resume-view/resume-view.component'
   styleUrls: ['./active-resume-list.component.scss'],
 })
 export class ActiveResumeListComponent implements OnInit {
+  tableColumns = ['Nome', 'Telefone(s)', 'Situação', 'Ações']
   resumes: Resume[] = []
   totalCountResumes: number = 0
   pagination$?: Observable<any>
