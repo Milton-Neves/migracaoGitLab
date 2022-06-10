@@ -28,12 +28,24 @@
             placeholder="Razão Social"
           />
 
-          <input type="number" formControlName="amountEmployees" />
+          <select formControlName="amountEmployees">
+            <option selected hidden disabled>Ramo da Empresa</option>
+            <option
+              *ngFor="let amountEmployee of amountEmployees"
+              [value]="amountEmployee"
+            >
+              {{ amountEmployee }}
+            </option>
+          </select>
 
-          <select formControlName="cnpj">
+          <select formControlName="workfield">
             <option selected hidden disabled value="">Ramo da Empresa</option>
-            <option value="1">Opção 1</option>
-            <option value="2">Opção 2</option>
+            <option
+              *ngFor="let workfield of workfields"
+              [value]="workfield | json"
+            >
+              {{ workfield.name }}
+            </option>
           </select>
         </div>
       </div>
@@ -45,13 +57,15 @@
           class="company-registration__input-group company-registration__input-group--phone-number-array row"
         >
           <input formControlName="cnpj" type="text" placeholder="E-mail" />
-          <input type="text" placeholder="Telefone" />
-          <button>
-            <img
-              src="../../../../../assets/icons/icon-sum.svg"
-              alt="icon-sum"
-            />
-          </button>
+          <ng-container formArrayName="phoneNumbers">
+            <input type="text" placeholder="Telefone" />
+            <button type="button">
+              <img
+                src="../../../../../assets/icons/icon-sum.svg"
+                alt="icon-sum"
+              />
+            </button>
+          </ng-container>
         </div>
       </div>
 
@@ -64,7 +78,7 @@
             type="text"
             placeholder="CEP"
             mask="00000-000"
-            (change)="getCEP($event)"
+            (blur)="getZipCode()"
           />
           <input formControlName="street" type="text" placeholder="Rua" />
           <input formControlName="number" type="text" placeholder="Número" />
@@ -128,6 +142,7 @@
           class="button.decline"
           [text]="'Salvar'"
           [color]="'#1C3152'"
+          (click)="onSubmit()"
         >
         </app-button>
       </div>
