@@ -19,13 +19,6 @@
       <button class="buttons-style" (click)="openUserModal()">
         Abrir modal
       </button>
-      <div class="pagination-number">
-        <app-pagination-number
-          [visibleItems]="12"
-          [totalItems]="70"
-          class="pagination-number"
-        ></app-pagination-number>
-      </div>
     </ng-container>
   </div>
 
@@ -34,13 +27,6 @@
       *ngIf="this.featureFlag.legalUser; else legal_module_desabled"
     >
       <app-table [setColumns]="tableColumns"></app-table>
-      <div class="pagination-number">
-        <app-pagination-number
-          [visibleItems]="12"
-          [totalItems]="70"
-          class="pagination-number"
-        ></app-pagination-number>
-      </div>
     </ng-container>
     <ng-template #legal_module_desabled>
       <app-not-allowed></app-not-allowed>
@@ -51,32 +37,26 @@
     <ng-container
       *ngIf="this.featureFlag.physicalUser; else physical_module_desabled"
     >
-      <app-table [setColumns]="tableColumns" class="thirdSection--table">
+      <app-table [setColumns]="tableColumns">
         <ng-container part="list">
-          <tr class="thirdSection--table-details__body--text-description">
+          <tr class="table__text-description">
             <td>Lorem ipsum dolor sit amet.</td>
             <td>000.000.000-00</td>
-            <td class="thirdSection--table-details__body--border-btn">
+            <td class="table__button">
               <button>Resetar Senha</button>
             </td>
           </tr>
         </ng-container>
       </app-table>
-
-      <div class="thirdSection--pagination">
-        <app-pagination-number
-          [visibleItems]="12"
-          [totalItems]="70"
-        ></app-pagination-number>
-        <app-pagination> </app-pagination>
-      </div>
     </ng-container>
     <ng-template #physical_module_desabled>
       <app-not-allowed></app-not-allowed>
     </ng-template>
   </div>
 
-  <div class="pagination">
-    <app-pagination></app-pagination>
-  </div>
+  <footer class="footer">
+    <app-pagination-number [visibleItems]="10" [totalItems]="20">
+    </app-pagination-number>
+    <app-pagination> </app-pagination>
+  </footer>
 </section>

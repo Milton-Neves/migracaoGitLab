@@ -1,18 +1,8 @@
 @import 'variables';
+
 .input {
   display: flex;
   justify-content: flex-end;
-}
-
-.pagination-number {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 0.8rem;
-  margin-bottom: 0.4rem;
-}
-
-.pagination {
-  margin-top: 2.5rem;
 }
 
 ::ng-deep {
@@ -21,45 +11,39 @@
   }
 }
 
-.thirdSection {
-  margin-bottom: 1rem;
-  &--table-details {
-    &__body {
-      text-align: center;
+.table {
+  &__text-description {
+    border: 1px solid $black-100;
+    border-left: none;
+    border-right: none;
 
-      &--text-description td:first-child {
+    td {
+      padding: 0.5rem 2rem;
+
+      &:first-child {
         text-align: left;
-      }
-
-      &--text-description td {
-        padding: 0.5rem 2rem;
-      }
-
-      &--text-description {
-        border: 1px solid $black-100;
-        border-left: none;
-        border-right: none;
-      }
-
-      &--border-btn {
-        gap: 1rem;
-        display: flex;
-        justify-content: center;
-      }
-
-      &--border-btn button {
-        border: none;
-        background: $green-500;
-        color: #fff;
-        border: 1px solid $black-100;
-        padding: 0.3rem 1rem;
-        border-radius: 6px;
       }
     }
   }
-  &--pagination {
+
+  &__button {
+    gap: 1rem;
     display: flex;
-    justify-content: space-between;
-    margin-top: 2rem;
+    justify-content: center;
+
+    button {
+      border: none;
+      background: $green-500;
+      color: $white;
+      border: 1px solid $black-100;
+      padding: 0.3rem 1rem;
+      border-radius: 6px;
+    }
   }
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
 }
