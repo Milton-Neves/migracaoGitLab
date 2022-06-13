@@ -23,16 +23,17 @@
     </div>
 
     <app-table class="job__list--table" [setColumns]="tableColumns">
-      <ng-container part="list">
+      <ng-container part="list" *ngFor="let j of jobWorkfieldList">
         <tr class="job__list--table-details__body--text-description">
-          <td>Lorem ipsum dolor sit amet.</td>
+          <td style="width: 50%">{{ j.job.name }}</td>
           <td>
             <span class="job__list--table-details__body--area">
               <span
                 class="job__list--table-details__body--text"
-                [ngStyle]="stylesInformation"
-                >vesturário</span
+                [style.background-color]="j.colorCode"
               >
+                {{ j.workfieldName }}
+              </span>
             </span>
           </td>
 
@@ -44,15 +45,25 @@
       </ng-container>
     </app-table>
 
-    <div class="job__list--pagination" *ngIf="jobs.length !== 0">
+    <div
+      class="job__list--pagination"
+      *ngIf="jobWorkfieldList.length > 0; else noContent"
+    >
       <app-pagination-number
-        [visibleItems]="jobs.length"
+        [visibleItems]="visibleItems"
         [totalItems]="totalCountJobs"
       ></app-pagination-number>
       <app-pagination
-        [pagination$]="jobs$"
-        (currentPageEmit)="getJobsFromServer($event)"
-      ></app-pagination>
+        (currentPageEmit)="getJobs($event)"
+        [pagination$]="pagination$"
+      >
+      </app-pagination>
     </div>
   </section>
 </main>
+
+<ng-template #noContent>
+  <span id="no-content" *ngIf="jobWorkfieldList.length <= 0">
+    <p>Nenhuma cargo cadastrada</p>
+  </span>
+</ng-template>
