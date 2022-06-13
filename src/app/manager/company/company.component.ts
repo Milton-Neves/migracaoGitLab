@@ -40,7 +40,7 @@ export class CompanyComponent implements OnInit, OnDestroy {
           const { content, pagination } = data
           this.companies = content
           this.totalCompanies = pagination.totalNumberOfElements
-          this.visibleItems = this.getTotalVisibleItems(pagination)
+          this.visibleItems = pagination.offset + pagination.numberOfElements
 
           this.pagination$ = of({
             current: page + 1,
@@ -50,17 +50,6 @@ export class CompanyComponent implements OnInit, OnDestroy {
         })
       )
       .subscribe()
-  }
-
-  private getTotalVisibleItems(pagination: any) {
-    if (pagination.numberOfPages === 1) {
-      return pagination.numberOfElements
-    }
-
-    return (
-      (pagination.numberOfPages - 1) * pagination.size * pagination.page -
-      (pagination.size - pagination.numberOfElements)
-    )
   }
 
   openCompanyRegistration() {
