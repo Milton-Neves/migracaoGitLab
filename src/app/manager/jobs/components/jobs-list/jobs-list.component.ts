@@ -1,11 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
-import { Job } from '@core/interfaces/resume/job'
-import { PaginationService } from '@shared/services/pagination.service'
 import { Observable, of } from 'rxjs'
-import { map, tap } from 'rxjs/operators'
 
-import { WorkfieldService } from '@shared/services/workfield.service'
+import { tap } from 'rxjs/operators'
+import { JobService } from '../../services/job.service'
+import { JobWorkfield } from '../../entities/job-workfield'
 
 @Component({
   selector: 'app-jobs-list',
@@ -13,59 +12,40 @@ import { WorkfieldService } from '@shared/services/workfield.service'
   styleUrls: ['./jobs-list.component.scss'],
 })
 export class JobsListComponent implements OnInit {
-  workfield: any[] = []
-  tempJobsList: any[] = []
-  tableColumns = ['Nome', 'Área de Atuação', 'Situação', 'Ações']
   @Input() stylesInformation: any
-  jobs: any[] = []
-  totalCountJobs: number = 0
+  tableColumns = ['Nome', 'Área de Atuação', 'Situação', 'Ações']
+  jobWorkfieldList: JobWorkfield[] = []
   pagination$?: Observable<any>
-  router: any
+  totalCountJobs = 0
+  visibleItems = 0
 
-  constructor(
-    private paginationService: PaginationService,
-    private workfieldService: WorkfieldService
-  ) {}
+  constructor(private router: Router, private jobService: JobService) {}
 
   ngOnInit(): void {
-    this.getJobsFromServer()
+    this.getJobs()
   }
 
-  getJobsFromServer(page: number = 1, params?: any) {
-    this.workfieldService
-      .findAll()
+  getJobs(page: number = 0, params?: any) {
+    this.jobService
+      .listAllWithWorkfieldColor({
+        page,
+        size: 10,
+      })
       .pipe(
-        tap((workfields: any) => {
-          this.totalCountJobs = 0
-          this.tempJobsList = []
-          workfields.data.forEach((position: any) => {
-            this.tempJobsList = this.tempJobsList.concat(
-              position.jobs.map((value: any) => {
-                return {
-                  name: value.name,
-                  color: position.colorCode,
-                  workfield: position.name,
-                }
-              })
-            )
-            this.totalCountJobs = this.tempJobsList.length
+        tap(({ data }) => {
+          const { content, pagination } = data
+          this.jobWorkfieldList = content
+          this.totalCountJobs = pagination.totalNumberOfElements
+          this.visibleItems = pagination.offset + pagination.numberOfElements
+
+          this.pagination$ = of({
+            current: page + 1,
+            next: pagination.lastPage ? undefined : page + 1,
+            previous: pagination.firstPage ? undefined : page - 1,
           })
-          this.paginateJobs(page, this.tempJobsList)
-        }),
-        map((res) => res.data)
+        })
       )
       .subscribe()
-  }
-
-  paginateJobs(page: number, workfield: any[]) {
-    let { results, pagination } = this.paginationService.createPagination(
-      page,
-      workfield,
-      this.paginationService.verifyPageSize()
-    )
-
-    this.workfield = results
-    this.pagination$ = of(pagination)
   }
 
   navigaToRegistrationPage() {
