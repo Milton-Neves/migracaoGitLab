@@ -1,5 +1,3 @@
-import { CompanyViewComponent } from './../company-view/company-view.component'
-import { NgxModalService } from './../../../../../lib/ngx-modal/src/lib/ngx-modal.service'
 import { Component, Input, OnInit } from '@angular/core'
 
 @Component({
@@ -8,14 +6,9 @@ import { Component, Input, OnInit } from '@angular/core'
   styleUrls: ['./company-card.component.scss'],
 })
 export class CompanyCardComponent implements OnInit {
-  title = 'Rayanni Modas'
-  career = 'vestuário'
+  @Input() card: any
 
-  constructor(private modalService: NgxModalService) {}
-
-  openModal() {
-    let modal = this.modalService.open(CompanyViewComponent).subscribe()
-  }
+  constructor() {}
 
   ngOnInit(): void {}
 }
