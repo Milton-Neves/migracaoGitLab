@@ -19,6 +19,8 @@ export class ForwardingComponent implements OnInit {
   listWorkfield!: Workfield[]
   isFinished!: boolean
   messageNotFound: boolean = false
+  visibleItems = 0
+  totalCountForwardings = 0
   constructor(
     private forwardingService: ForwardingService,
     private paginationService: PaginationService,
@@ -46,6 +48,9 @@ export class ForwardingComponent implements OnInit {
             ? (this.messageNotFound = true)
             : (this.messageNotFound = false)
           this.paginateCompanies(res.content, res.pagination)
+          this.visibleItems =
+            res.pagination.offset + res.pagination.numberOfElements
+          this.totalCountForwardings = res.pagination.totalNumberOfElements
         })
       )
       .subscribe()

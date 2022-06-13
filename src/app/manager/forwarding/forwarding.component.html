@@ -49,10 +49,16 @@
   <p id="not-found" *ngIf="messageNotFound">
     Nenhum encaminhamento foi encontrado.
   </p>
+</main>
+<footer class="footer">
+  <app-pagination-number
+    [visibleItems]="visibleItems"
+    [totalItems]="totalCountForwardings"
+  ></app-pagination-number>
   <app-pagination
     *ngIf="forwardings.length > 0"
     class="forwarding__pagination"
     (currentPageEmit)="getForwardings(isFinished, $event)"
     [pagination$]="pagination$"
   ></app-pagination>
-</main>
+</footer>
