@@ -1,4 +1,9 @@
 @import 'variables';
+
+.card {
+  width: 300px;
+}
+
 .id-details {
   font-size: 0.9rem;
   position: absolute;
@@ -8,7 +13,9 @@
 
 .forwarding-details {
   display: flex;
-  gap: 1rem;
+  img + p {
+    margin-left: 0.3rem;
+  }
   margin-bottom: 1rem;
   color: $blue-700;
   margin-top: 1rem;
@@ -16,7 +23,6 @@
 
 .process-details {
   display: flex;
-  text-align: center;
   color: $blue-700;
   &__finish {
     margin-left: 2rem;
