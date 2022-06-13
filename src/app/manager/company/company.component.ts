@@ -1,11 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 
-import { NgxModalService } from 'lib/ngx-modal/src/public-api'
 import { Observable, of, Subscription } from 'rxjs'
-import { map, tap } from 'rxjs/operators'
+import { tap } from 'rxjs/operators'
 
-import { CompanyEditComponent } from './components/company-edit/company-edit.component'
 import { Company } from './entities/company.model'
 import { CompanyService } from './services/company.service'
 
@@ -24,11 +22,7 @@ export class CompanyComponent implements OnInit, OnDestroy {
 
   subscription$ = new Subscription()
 
-  constructor(
-    private modalService: NgxModalService,
-    private companyService: CompanyService,
-    private router: Router
-  ) {}
+  constructor(private companyService: CompanyService, private router: Router) {}
 
   ngOnInit(): void {
     this.subscription$ = this.getCompanies()
@@ -67,10 +61,6 @@ export class CompanyComponent implements OnInit, OnDestroy {
       (pagination.numberOfPages - 1) * pagination.size * pagination.page -
       (pagination.size - pagination.numberOfElements)
     )
-  }
-
-  openModal() {
-    let modal = this.modalService.open(CompanyEditComponent).subscribe()
   }
 
   openCompanyRegistration() {

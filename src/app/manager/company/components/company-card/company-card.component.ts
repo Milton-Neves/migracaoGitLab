@@ -1,6 +1,4 @@
-import { NgxModalService } from './../../../../../lib/ngx-modal/src/lib/ngx-modal.service'
 import { Component, Input, OnInit } from '@angular/core'
-import { CompanyEditComponent } from '../company-edit/company-edit.component'
 
 @Component({
   selector: 'app-company-card',
@@ -10,10 +8,7 @@ import { CompanyEditComponent } from '../company-edit/company-edit.component'
 export class CompanyCardComponent implements OnInit {
   @Input() card: any
 
-  constructor(private modalService: NgxModalService) {}
+  constructor() {}
 
-  openModal() {
-    let modal = this.modalService.open(CompanyEditComponent).subscribe()
-  }
   ngOnInit(): void {}
 }

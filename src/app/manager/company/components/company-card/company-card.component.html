@@ -1,29 +1,27 @@
-<section (click)="openModal()">
-  <app-information-card
-    [tagBackground]="card.workfield.colorCode"
-    [title]="card.companyName"
-    [career]="card.workfield.name"
-  >
-    <div class="card-details">
-      <span class="card-details__forwading-datas">
-        <img src="../../../../assets/images/icon-company.svg" />
-        <b> {{ card.forwardings.length }} </b>Encaminhamentos em aberto
-      </span>
+<app-information-card
+  [tagBackground]="card.workfield.colorCode"
+  [title]="card.companyName"
+  [career]="card.workfield.name"
+>
+  <div class="card-details">
+    <span class="card-details__forwading-datas">
+      <img src="../../../../assets/images/icon-company.svg" />
+      <b> {{ card.forwardings.length }} </b>Encaminhamentos em aberto
+    </span>
 
-      <span class="card-details__forwading-datas">
-        <img src="../../../../assets/images/icon-company-blue.svg" />
-        <b> {{ card.forwardings.length }} </b>Encaminhamentos concluídos
-      </span>
-    </div>
+    <span class="card-details__forwading-datas">
+      <img src="../../../../assets/images/icon-company-blue.svg" />
+      <b> {{ card.forwardings.length }} </b>Encaminhamentos concluídos
+    </span>
+  </div>
 
-    <div class="card-company">
-      <span>Ativa desde: {{ card.createdAt | date: 'dd/MM/yyyy' }}</span>
-      <span
-        >Status:
-        <span class="card-company__status">{{
-          card.valid ? 'Ativa' : 'Em Análise'
-        }}</span></span
-      >
-    </div>
-  </app-information-card>
-</section>
+  <div class="card-company">
+    <span>Ativa desde: {{ card.createdAt | date: 'dd/MM/yyyy' }}</span>
+    <span
+      >Status:
+      <span class="card-company__status">{{
+        card.valid ? 'Ativa' : 'Em Análise'
+      }}</span></span
+    >
+  </div>
+</app-information-card>

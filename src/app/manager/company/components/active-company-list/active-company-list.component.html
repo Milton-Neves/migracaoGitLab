@@ -1,5 +1,8 @@
 <section>
   <ng-container *ngFor="let company of companies">
-    <app-company-card [card]="company"></app-company-card>
+    <app-company-card
+      (click)="openModal(company.id)"
+      [card]="company"
+    ></app-company-card>
   </ng-container>
 </section>
