@@ -12,7 +12,7 @@ import { CitizenModalComponent } from './../citizen-modal/citizen-modal.componen
   styleUrls: ['./users-list.component.scss'],
 })
 export class UsersListComponent implements OnInit {
-  tableColumns?: string[]
+  tableColumns = ['Nome', 'CPF', 'Ações']
   sectionTitle = ['SEMAS', 'EMPRESAS', 'CIDADÃOS']
   activeTab?: string
   placeholderActiveSection!: string
