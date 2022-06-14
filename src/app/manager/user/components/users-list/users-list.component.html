@@ -15,16 +15,25 @@
 
   <div class="firstSection">
     <ng-container *ngIf="activeTab == sectionTitle[0]">
-      <app-table [setColumns]="tableColumns"></app-table>
-      <button class="buttons-style" (click)="openUserModal()">
-        Abrir modal
-      </button>
+      <app-table [setColumns]="tableColumns">
+        <td class="table-details__body--btn">
+          <button type="button" (click)="openUserModal()">Alterar Senha</button>
+        </td></app-table
+      >
+
+      <div class="pagination-number">
+        <app-pagination-number
+          [visibleItems]="12"
+          [totalItems]="70"
+          class="pagination-number"
+        ></app-pagination-number>
+      </div>
     </ng-container>
   </div>
 
   <div class="secondSection" *ngIf="activeTab == sectionTitle[1]">
     <ng-container
-      *ngIf="this.featureFlag.legalUser; else legal_module_desabled"
+      *ngIf="this.featureFlag.physicalUser; else physical_module_desabled"
     >
       <app-table [setColumns]="tableColumns"></app-table>
     </ng-container>
@@ -48,15 +57,45 @@
           </tr>
         </ng-container>
       </app-table>
+
+      <!-- FALTA VERIFICAR O CSS !!! -->
+
+      <div class="user__content__page">
+        <div class="secondSection--pagination">
+          <app-pagination-number
+            [visibleItems]="users.length"
+            [totalItems]="totalCountUsers"
+          ></app-pagination-number>
+
+          <app-pagination
+            class="pagination"
+            [pagination$]="pagination$"
+            (currentPageEmit)="getUsersFromServer($event)"
+          ></app-pagination>
+        </div>
+      </div>
     </ng-container>
     <ng-template #physical_module_desabled>
       <app-not-allowed></app-not-allowed>
     </ng-template>
   </div>
 
-  <footer class="footer">
-    <app-pagination-number [visibleItems]="10" [totalItems]="20">
-    </app-pagination-number>
-    <app-pagination> </app-pagination>
-  </footer>
+  <div class="thirdSection" *ngIf="activeTab == sectionTitle[2]">
+    <ng-container>
+      <button class="buttons-style" (click)="openCitizenModal()"></button>
+      <div class="pagination-number">
+        <app-pagination-number [totalItems]="70"></app-pagination-number>
+        <div class="secondSection--pagination">
+          <app-pagination
+            class="pagination"
+            (currentPageEmit)="getNumberPage()"
+            [pagination$]="pagination$"
+          ></app-pagination>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #physical_module_desabled>
+      <app-not-allowed></app-not-allowed>
+    </ng-template>
+  </div>
 </section>

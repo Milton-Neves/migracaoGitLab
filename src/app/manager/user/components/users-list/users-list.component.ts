@@ -1,10 +1,16 @@
+import { LegalUserService } from './../../../company/services/legal-user.service'
 import { Component, OnInit } from '@angular/core'
 import { FeatureFlagService } from '@shared/services/feature-flag.service'
 import { NgxModalService } from 'lib/ngx-modal/src/lib/ngx-modal.service'
 import { ToastrService } from 'ngx-toastr'
+import { Observable } from 'rxjs/internal/Observable'
 
 import { UserModalComponent } from '../user-modal/user-modal.component'
 import { CitizenModalComponent } from './../citizen-modal/citizen-modal.component'
+import { PaginationService } from '@shared/services/pagination.service'
+import { User } from 'app/login/interfaces/user'
+import { of } from 'rxjs'
+import { map, tap } from 'rxjs/operators'
 
 @Component({
   selector: 'app-users-list',
@@ -13,9 +19,15 @@ import { CitizenModalComponent } from './../citizen-modal/citizen-modal.componen
 })
 export class UsersListComponent implements OnInit {
   tableColumns = ['Nome', 'CPF', 'Ações']
+  tableLegalColumns = ['Nome', 'CNPJ', 'Ações']
   sectionTitle = ['SEMAS', 'EMPRESAS', 'CIDADÃOS']
+  users: User[] = []
+  data: any
   activeTab?: string
+  currentPage!: number
+  totalCountUsers: number = 0
   placeholderActiveSection!: string
+  pagination$!: Observable<any>
   featureFlag: { legalUser: boolean; physicalUser: boolean } = {
     legalUser: this.featureFlagService.featureFlagConfig!['legalUser'],
     physicalUser: this.featureFlagService.featureFlagConfig!['physicalUser'],
@@ -26,7 +38,9 @@ export class UsersListComponent implements OnInit {
   constructor(
     private modalService: NgxModalService,
     private featureFlagService: FeatureFlagService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private legalUserService: LegalUserService,
+    private paginationService: PaginationService
   ) {}
 
   changeTab(tab: any) {
@@ -67,8 +81,33 @@ export class UsersListComponent implements OnInit {
       : (this.tableColumns = ['Nome', 'CPF', 'Ações'])
   }
 
+  getUsersFromServer(page: number = 1, params?: any) {
+    this.legalUserService
+      .findAll('', { statusResume: false })
+      .pipe(
+        tap(({ data }) => {
+          this.currentPage = page
+          this.totalCountUsers = data.length
+          this.paginateUsers(page, data)
+        }),
+        map(({ data }) => data)
+      )
+      .subscribe()
+  }
+  paginateUsers(page: number, users: User[]) {
+    let { results, pagination } = this.paginationService.createPagination(
+      page,
+      users,
+      this.paginationService.verifyPageSize()
+    )
+
+    this.users = results
+    this.pagination$ = of(pagination)
+  }
+
   ngOnInit(): void {
     this.checkPlaceholder()
     this.activeTab = this.sectionTitle[0]
+    this.getUsersFromServer()
   }
 }

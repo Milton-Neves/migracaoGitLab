@@ -9,39 +9,55 @@
   .method-not-allowed {
     height: 40vh !important;
   }
-  .table-details {
-    width: 100%;
-    border-collapse: collapse;
-    overflow-x: auto;
-    color: $blue-700;
+}
+
+.secondSection {
+  margin-bottom: 1rem;
+  &--table-details {
     &__body {
       text-align: center;
-
-      &--text-description td:first-child {
+      & &--text-description td:first-child {
         text-align: left;
       }
+
       &--text-description td {
         padding: 0.5rem 2rem;
       }
+      &--text-description td:first-child {
+        text-align: start;
+      }
+
       &--text-description {
         border: 1px solid $black-100;
         border-left: none;
         border-right: none;
       }
-      &--btn button {
+
+      &--border-btn {
+        gap: 1rem;
+        display: flex;
+        justify-content: center;
+      }
+
+      &--border-btn button {
         border: none;
         background: none;
         color: $gray-700;
         border: 1px solid $black-100;
-        padding: 0.3rem 1rem;
+        padding: 0.3rem 3rem;
         border-radius: 6px;
-
         &:hover {
           filter: brightness(1.1);
           background: $gray-200;
         }
       }
     }
+  }
+  &--pagination {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+    align-items: self-end;
   }
 }
 
