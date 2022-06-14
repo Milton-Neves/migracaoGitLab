@@ -13,6 +13,7 @@ import { NotAllowedComponent } from './components/not-allowed/not-allowed.compon
 import { PageTitleComponent } from './components/page-title/page-title.component'
 import { PaginationNumberComponent } from './components/pagination-number/pagination-number.component'
 import { PaginationComponent } from './components/pagination/pagination.component'
+import { SortFilterComponent } from './components/sort-filter/sort-filter.component'
 import { TabNavComponent } from './components/tab-nav/tab-nav.component'
 import { TableComponent } from './components/table/table.component'
 import { HighlightDirective } from './directives/highlight.directive'
@@ -28,6 +29,7 @@ const components = [
   PageTitleComponent,
   InformationCardComponent,
   TableComponent,
+  SortFilterComponent,
   PaginationNumberComponent,
   AnalyticCardComponent,
   ButtonComponent,
