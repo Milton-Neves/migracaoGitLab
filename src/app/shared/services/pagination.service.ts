@@ -17,7 +17,6 @@ export class PaginationService {
   }
 
   createPagination(page: number, object: any, size: number) {
-    // console.log(object)
     let startIndex = (page - 1) * size
     let endIndex = page * size
     let pagination: any = {}
