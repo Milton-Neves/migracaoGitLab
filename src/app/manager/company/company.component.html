@@ -2,7 +2,6 @@
   <header class="company__header">
     <app-page-title [title]="'Empresas'"></app-page-title>
   </header>
-  <div class="actives"></div>
 
   <section class="company__content" id="content">
     <div class="buttons">
@@ -11,7 +10,6 @@
           class="btn-actives"
           [class.button-isActive]="isNavActive"
           (click)="changeNav(true)"
-          [disabled]="isNavActive"
         >
           <b class="btn-title">Ativos</b> <br />
           <p class="btn-text">Lista de empresas ativas</p>
@@ -20,7 +18,6 @@
           class="btn-analyses"
           [class.button-isActive]="!isNavActive"
           (click)="changeNav(false)"
-          [disabled]="!isNavActive"
         >
           <b class="btn-title">Em análise</b>
           <p class="btn-text">Lista de empresas em análise</p>
@@ -53,37 +50,46 @@
       >
         <img src="../../../assets/images/icons/img-sum.svg" />
       </app-button>
-      <app-company-card></app-company-card>
+      <app-active-company-list
+        [companies]="companies"
+      ></app-active-company-list>
     </div>
+
     <div *ngIf="!isNavActive">
-      <app-table>
+      <app-table [setColumns]="tableColumns">
         <tr
           app-company-list-under-analysis
           *ngFor="let company of companies"
           [company]="company"
-          (modalClosed)="getCompaniesFromServer()"
+          (modalClosed)="getCompanies()"
           part="list"
           style="border-bottom: #cccbcb solid 2px"
-        ></tr
-      ></app-table>
+        ></tr>
+      </app-table>
     </div>
+
     <footer
       style="display: flex; justify-content: space-between; margin-top: 2rem"
-      *ngIf="companies.length > 0"
+      *ngIf="companies.length > 0; else noContent"
     >
       <app-pagination-number
         class="pagination-number"
-        [visibleItems]="companies.length"
-        [totalItems]="totalCompanys"
-      ></app-pagination-number>
+        [visibleItems]="visibleItems"
+        [totalItems]="totalCompanies"
+      >
+      </app-pagination-number>
       <app-pagination
         class="pagination"
-        (currentPageEmit)="getCompaniesFromServer($event)"
+        (currentPageEmit)="getCompanies($event)"
         [pagination$]="pagination$"
-      ></app-pagination>
+      >
+      </app-pagination>
     </footer>
   </section>
-  <section id="no-content" *ngIf="companies.length <= 0">
-    <p>Nenhuma empresa cadastrada</p>
-  </section>
 </main>
+
+<ng-template #noContent>
+  <span id="no-content" *ngIf="companies.length <= 0">
+    <p>Nenhuma empresa cadastrada</p>
+  </span>
+</ng-template>

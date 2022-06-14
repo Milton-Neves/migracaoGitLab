@@ -156,6 +156,7 @@ export class LoginService {
 
     if (userRole !== null) {
       const role = userRole
+      this.setPermissions([role])
 
       this.http
         .get(`${this.API_URL}${this.endpoints.checkRole(role)}`, {
@@ -167,8 +168,6 @@ export class LoginService {
           if (!res.data) {
             this.toastr.warning('Opss, um erro inesperado ocorreu!')
             this.logout()
-          } else {
-            this.setPermissions([role])
           }
         })
     }

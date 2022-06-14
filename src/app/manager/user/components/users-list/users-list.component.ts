@@ -1,9 +1,10 @@
-import { CitizenModalComponent } from './../citizen-modal/citizen-modal.component'
 import { Component, OnInit } from '@angular/core'
-import { NgxModalService } from 'lib/ngx-modal/src/lib/ngx-modal.service'
-import { UserModalComponent } from '../user-modal/user-modal.component'
 import { FeatureFlagService } from '@shared/services/feature-flag.service'
+import { NgxModalService } from 'lib/ngx-modal/src/lib/ngx-modal.service'
 import { ToastrService } from 'ngx-toastr'
+
+import { UserModalComponent } from '../user-modal/user-modal.component'
+import { CitizenModalComponent } from './../citizen-modal/citizen-modal.component'
 
 @Component({
   selector: 'app-users-list',
@@ -11,6 +12,7 @@ import { ToastrService } from 'ngx-toastr'
   styleUrls: ['./users-list.component.scss'],
 })
 export class UsersListComponent implements OnInit {
+  tableColumns = ['Nome', 'CPF', 'Ações']
   sectionTitle = ['SEMAS', 'EMPRESAS', 'CIDADÃOS']
   activeTab?: string
   placeholderActiveSection!: string
@@ -33,6 +35,7 @@ export class UsersListComponent implements OnInit {
   }
 
   checkPlaceholder() {
+    this.setColumns()
     setTimeout(() => {
       this.activeTab == this.sectionTitle[0]
         ? (this.placeholderActiveSection =
@@ -54,6 +57,14 @@ export class UsersListComponent implements OnInit {
   }
   openCitizenModal() {
     let modal = this.modalService.open(CitizenModalComponent).subscribe()
+  }
+
+  setColumns() {
+    this.activeTab == this.sectionTitle[0]
+      ? (this.tableColumns = ['Nome', 'Matrícula', 'Ações'])
+      : this.activeTab == this.sectionTitle[1]
+      ? (this.tableColumns = ['Nome', 'CNPJ', 'Ações'])
+      : (this.tableColumns = ['Nome', 'CPF', 'Ações'])
   }
 
   ngOnInit(): void {

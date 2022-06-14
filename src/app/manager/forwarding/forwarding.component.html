@@ -2,8 +2,63 @@
   <header class="forwarding__header">
     <app-page-title [title]="'Encaminhamentos'"> </app-page-title>
   </header>
-
+  <div class="forwarding__buttons">
+    <button
+      (click)="getForwardings(false)"
+      [disabled]="!isFinished"
+      [class.button-active]="!isFinished"
+    >
+      <span>Ativos</span>
+      <span>Lista de encaminhamentos ativos</span>
+    </button>
+    <button
+      (click)="getForwardings(true)"
+      [disabled]="isFinished"
+      [class.button-active]="isFinished"
+    >
+      <span>Finalizados</span>
+      <span>Lista de encaminhamentos finalizados</span>
+    </button>
+  </div>
+  <div class="forwarding__filters">
+    <app-input-search
+      [styles]="{ width: '100%' }"
+      [placeholder]="
+        'Pesquise por  Empresa, Ramo, Cargo ou ID do Encaminhamento'
+      "
+    >
+    </app-input-search>
+  </div>
+  <div class="forwarding__create-button">
+    <app-button
+      class="select"
+      [text]="'CRIAR ENCAMINHAMENTO'"
+      [color]="'#33A93B'"
+    >
+      <img src="../../../assets/images/icons/img-sum.svg" />
+    </app-button>
+  </div>
   <section class="forwarding__content">
-    <app-forwarding-card></app-forwarding-card>
+    <app-forwarding-card
+      [infos]="forwarding"
+      *ngFor="let forwarding of forwardings"
+      style="width: 300px"
+    >
+    </app-forwarding-card>
   </section>
+  <p id="not-found" *ngIf="messageNotFound">
+    Nenhum encaminhamento foi encontrado.
+  </p>
 </main>
+<footer class="footer">
+  <app-pagination-number
+    [visibleItems]="visibleItems"
+    [totalItems]="totalCountForwardings"
+  ></app-pagination-number>
+  <app-pagination
+    *ngIf="forwardings.length > 0"
+    class="forwarding__pagination"
+    (currentPageEmit)="getForwardings(isFinished, $event)"
+    [pagination$]="pagination$"
+  ></app-pagination>
+</footer>

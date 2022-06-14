@@ -2,33 +2,7 @@
   <table class="table-details">
     <thead class="table-details__head">
       <tr class="table-details__head--text-title">
-        <ng-container *ngIf="activedRoute == routesWithTables[0]">
-          <th>Nome</th>
-          <th>Telefone(s)</th>
-          <th>Situação</th>
-          <th>Ações</th>
-        </ng-container>
-        <ng-container *ngIf="activedRoute == routesWithTables[1]">
-          <th>Nome</th>
-          <th>CNPJ</th>
-          <th>Ações</th>
-        </ng-container>
-        <ng-container *ngIf="activedRoute == routesWithTables[2]">
-          <th>Nome Fantasia</th>
-          <th>CNPJ</th>
-          <th>Data de Solicitação</th>
-          <th>Ações</th>
-        </ng-container>
-
-        <ng-container *ngIf="activedRoute == routesWithTables[3]">
-          <th>Nome Fantasia</th>
-          <th>CNPJ</th>
-          <th>Data de Solicitação</th>
-          <th>Ações</th>
-        </ng-container>
-        <ng-container *ngFor="let columnName of adittionalColumn">
-          <th>{{ columnName }}</th>
-        </ng-container>
+        <th *ngFor="let columnName of setColumns">{{ columnName }}</th>
       </tr>
     </thead>
     <tbody class="table-details__body">
