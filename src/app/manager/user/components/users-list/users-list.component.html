@@ -47,17 +47,28 @@
         </ng-container>
       </app-table>
 
-      <div class="secondSection--pagination">
-        <app-pagination-number
-          [visibleItems]="12"
-          [totalItems]="70"
-        ></app-pagination-number>
+      <!-- FALTA VERIFICAR O CSS !!! -->
+
+      <div class="user__content__page">
+        <div class="secondSection--pagination">
+          <app-pagination-number
+            [visibleItems]="users.length"
+            [totalItems]="totalCountUsers"
+          ></app-pagination-number>
+
+          <app-pagination
+            class="pagination"
+            [pagination$]="pagination$"
+            (currentPageEmit)="getUsersFromServer($event)"
+          ></app-pagination>
+        </div>
       </div>
     </ng-container>
     <ng-template #physical_module_desabled>
       <app-not-allowed></app-not-allowed>
     </ng-template>
   </div>
+
   <div class="thirdSection" *ngIf="activeTab == sectionTitle[2]">
     <ng-container>
       <button class="buttons-style" (click)="openCitizenModal()"></button>
