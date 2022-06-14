@@ -32,12 +32,12 @@ export class ForwardingComponent implements OnInit {
     this.getForwardings(false)
   }
 
-  getForwardings(isFinished: boolean, page: number = 0) {
+  getForwardings(isFinished: boolean, page: number = 0, sort: string = 'asc') {
     this.isFinished = isFinished
     this.forwardingService
       .findAll('', {
         isFinished,
-        sort: 'asc',
+        sort,
         page,
         size: this.paginationService.verifyPageSize(),
       })

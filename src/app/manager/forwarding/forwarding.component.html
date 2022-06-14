@@ -28,6 +28,9 @@
       "
     >
     </app-input-search>
+    <app-sort-filter
+      (sort)="getForwardings(isFinished, 0, $event)"
+    ></app-sort-filter>
   </div>
   <div class="forwarding__create-button">
     <app-button
