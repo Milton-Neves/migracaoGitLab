@@ -1,4 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { FormBuilder, FormGroup } from '@angular/forms'
+import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators'
 
 @Component({
   selector: 'app-input-search',
@@ -9,8 +11,26 @@ export class InputSearchComponent implements OnInit {
   @Input() styles!: any
   @Input() align!: any
   @Input() placeholder!: string
+  @Output() search = new EventEmitter<string>()
+  singleSearchForm: FormGroup = this.fb.group({
+    search: [''],
+  })
 
-  constructor() {}
+  constructor(private fb: FormBuilder) {}
 
-  ngOnInit(): void {}
+  singleFormChange() {
+    this.singleSearchForm.valueChanges
+      .pipe(
+        distinctUntilChanged(),
+        debounceTime(600),
+        tap((res) => {
+          this.search.emit(res.search)
+        })
+      )
+      .subscribe()
+  }
+
+  ngOnInit(): void {
+    this.singleFormChange()
+  }
 }
