@@ -17,7 +17,11 @@ export class ForwardingComponent implements OnInit {
   forwardings: any[] = []
   pagination$!: Observable<any>
   listWorkfield!: Workfield[]
-  isFinished!: boolean
+  paramsToRequst!: {
+    isFinished: boolean
+    actualPage: number
+    sort: string
+  }
   messageNotFound: boolean = false
   visibleItems = 0
   totalCountForwardings = 0
@@ -33,7 +37,11 @@ export class ForwardingComponent implements OnInit {
   }
 
   getForwardings(isFinished: boolean, page: number = 0, sort: string = 'asc') {
-    this.isFinished = isFinished
+    this.paramsToRequst = {
+      isFinished,
+      actualPage: page,
+      sort,
+    }
     this.forwardingService
       .findAll('', {
         isFinished,
