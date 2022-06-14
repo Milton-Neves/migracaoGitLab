@@ -54,7 +54,6 @@ export class JobsListComponent implements OnInit {
   }
 
   searchJobEvent(search: string) {
-    console.log('jobList', search)
     if (search.length > 0) {
       this.criteriaObject.search = search
     } else {
