@@ -7,46 +7,56 @@
       <div class="company-registration__form-container">
         <h2>Dados da Empresa</h2>
 
-        <div class="company-registration__input-group row">
-          <input
-            formControlName="name"
-            type="text"
-            placeholder="Nome Fantasia"
-          />
-          <input
-            formControlName="cnpj"
-            mask="00.000.000/0000-00"
-            type="text"
-            placeholder="CNPJ"
-          />
+        <div class="grid line-1">
+          <div class="company-registration__input-group">
+            <input
+              formControlName="name"
+              type="text"
+              placeholder="Nome Fantasia"
+            />
+          </div>
+
+          <div class="company-registration__input-group">
+            <input
+              formControlName="cnpj"
+              mask="00.000.000/0000-00"
+              type="text"
+              placeholder="CNPJ"
+            />
+          </div>
         </div>
 
-        <div class="company-registration__input-group row">
-          <input
-            formControlName="companyName"
-            type="text"
-            placeholder="Razão Social"
-          />
+        <div class="grid line-2">
+          <div class="company-registration__input-group">
+            <input
+              formControlName="companyName"
+              type="text"
+              placeholder="Razão Social"
+            />
+          </div>
+          <div class="company-registration__input-group">
+            <select formControlName="amountEmployees">
+              <option value="" selected hidden disabled>Ramo da Empresa</option>
+              <option
+                *ngFor="let amountEmployee of amountEmployees"
+                [value]="amountEmployee"
+              >
+                {{ amountEmployee }}
+              </option>
+            </select>
+          </div>
 
-          <select formControlName="amountEmployees">
-            <option selected hidden disabled>Ramo da Empresa</option>
-            <option
-              *ngFor="let amountEmployee of amountEmployees"
-              [value]="amountEmployee"
-            >
-              {{ amountEmployee }}
-            </option>
-          </select>
-
-          <select formControlName="workfield">
-            <option selected hidden disabled value="">Ramo da Empresa</option>
-            <option
-              *ngFor="let workfield of workfields"
-              [value]="workfield | json"
-            >
-              {{ workfield.name }}
-            </option>
-          </select>
+          <div class="company-registration__input-group">
+            <select formControlName="workfield">
+              <option selected hidden disabled value="">Ramo da Empresa</option>
+              <option
+                *ngFor="let workfield of workfields"
+                [value]="workfield | json"
+              >
+                {{ workfield.name }}
+              </option>
+            </select>
+          </div>
         </div>
       </div>
 
@@ -54,51 +64,130 @@
         <h2>Contato</h2>
 
         <div
-          class="company-registration__input-group company-registration__input-group--phone-number-array row"
+          class="company-registration__input-group company-registration__input-group--phone-number-array grid line-3"
         >
-          <input formControlName="cnpj" type="text" placeholder="E-mail" />
-          <ng-container formArrayName="phoneNumbers">
-            <input type="text" placeholder="Telefone" />
-            <button type="button">
-              <img
-                src="../../../../../assets/icons/icon-sum.svg"
-                alt="icon-sum"
-              />
-            </button>
-          </ng-container>
+          <input
+            class="email-input"
+            formControlName="cnpj"
+            type="text"
+            placeholder="E-mail"
+          />
+          <div class="phone-number-array__array">
+            <ng-container
+              formArrayName="phoneNumbers"
+              *ngFor="
+                let pn of phoneNumbers.controls;
+                let i = index;
+                let first = first
+              "
+            >
+              <div
+                class="phone-number-array__phone-number"
+                *ngIf="first"
+                [formGroupName]="i"
+              >
+                <div
+                  class="phone-number-array__input company-registration__input-group"
+                >
+                  <input
+                    formControlName="number"
+                    type="text"
+                    placeholder="Telefone"
+                  />
+                  <button type="button" (click)="addNewPhoneNumber()">
+                    <img
+                      src="../../../../../assets/icons/icon-sum.svg"
+                      alt="icon-sum"
+                    />
+                  </button>
+                </div>
+                <div class="phone-number-array__checkbox">
+                  <label for="isOwner">É proprietario?</label>
+                  <input
+                    type="checkbox"
+                    formControlName="isOwner"
+                    name="isOwner"
+                    id="isOwner"
+                  />
+                </div>
+              </div>
+
+              <div
+                class="phone-number-array__phone-number"
+                *ngIf="!first"
+                [formGroupName]="i"
+              >
+                <div
+                  class="company-registration__input-group phone-number-array__input"
+                >
+                  <input
+                    formControlName="number"
+                    type="text"
+                    placeholder="Telefone"
+                  />
+                  <button type="button" (click)="removePhoneNumber(i)">
+                    <img
+                      src="../../../../../assets/images/icon-recusar-vermelho.svg"
+                      alt="icon-sum"
+                      class="icon-recursa"
+                    />
+                  </button>
+                </div>
+                <div class="phone-number-array__checkbox">
+                  <label for="isOwner">É proprietario?</label>
+                  <input
+                    type="checkbox"
+                    formControlName="isOwner"
+                    name="isOwner"
+                    id="isOwner"
+                  />
+                </div>
+              </div>
+            </ng-container>
+          </div>
         </div>
       </div>
 
       <div formGroupName="address" class="company-registration__form-container">
         <h2>Endereço</h2>
 
-        <div class="company-registration__input-group row">
-          <input
-            formControlName="zipCode"
-            type="text"
-            placeholder="CEP"
-            mask="00000-000"
-            (blur)="getZipCode()"
-          />
-          <input formControlName="street" type="text" placeholder="Rua" />
-          <input formControlName="number" type="text" placeholder="Número" />
+        <div class="grid line-4">
+          <div class="company-registration__input-group">
+            <input
+              formControlName="zipCode"
+              type="text"
+              placeholder="CEP"
+              mask="00000-000"
+              (blur)="getZipCode()"
+            />
+          </div>
+          <div class="company-registration__input-group">
+            <input formControlName="street" type="text" placeholder="Rua" />
+          </div>
+          <div class="company-registration__input-group">
+            <input formControlName="number" type="text" placeholder="Número" />
+          </div>
         </div>
 
-        <div class="company-registration__input-group row">
-          <input formControlName="city" type="text" placeholder="Cidade" />
-
-          <input
-            required
-            formControlName="neighborhood"
-            type="text"
-            placeholder="Bairro"
-          />
-
-          <input
-            formControlName="complement"
-            type="text"
-            placeholder="Complemento"
-          />
+        <div class="grid line-5">
+          <div class="company-registration__input-group">
+            <input formControlName="city" type="text" placeholder="Cidade" />
+          </div>
+          <div class="company-registration__input-group">
+            <input
+              required
+              formControlName="neighborhood"
+              type="text"
+              placeholder="Bairro"
+            />
+          </div>
+          <div class="company-registration__input-group">
+            <input
+              formControlName="complement"
+              type="text"
+              placeholder="Complemento"
+            />
+          </div>
         </div>
       </div>
 
@@ -108,30 +197,37 @@
       >
         <h2>Representante Legal</h2>
 
-        <div class="company-registration__input-group row">
-          <input formControlName="name" type="text" placeholder="Nome" />
-          <input formControlName="email" type="text" placeholder="E-mail" />
+        <div class="grid line-6">
+          <div class="company-registration__input-group">
+            <input formControlName="name" type="text" placeholder="Nome" />
+          </div>
+          <div class="company-registration__input-group">
+            <input formControlName="email" type="text" placeholder="E-mail" />
+          </div>
         </div>
 
-        <div class="company-registration__input-group row">
-          <input
-            formControlName="phoneNumber"
-            type="text"
-            placeholder="Telefone"
-            mask="(00) 90000-0000"
-          />
-          <input
-            formControlName="cellNumber"
-            type="text"
-            placeholder="Celular"
-            mask="(00) 0000-0000"
-          />
+        <div class="grid line-7">
+          <div class="company-registration__input-group">
+            <input
+              formControlName="phoneNumber"
+              type="text"
+              placeholder="Telefone"
+              mask="(00) 90000-0000"
+            />
+          </div>
+          <div class="company-registration__input-group">
+            <input
+              formControlName="cellNumber"
+              type="text"
+              placeholder="Celular"
+              mask="(00) 0000-0000"
+            />
+          </div>
         </div>
       </div>
 
       <div class="company-registration__buttons">
         <app-button
-          class="button.decline"
           [text]="'Voltar'"
           [color]="'transparent'"
           [textColor]="'#1C3152'"
@@ -139,142 +235,13 @@
         </app-button>
 
         <app-button
-          class="button.decline"
           [text]="'Salvar'"
           [color]="'#1C3152'"
           (click)="onSubmit()"
+          [disabled]="form.invalid"
         >
         </app-button>
       </div>
     </form>
   </section>
 </main>
-<!--
-<main class="home">
-  <header class="home__header">
-    <app-page-title [title]="'Cadastrar Empresas'"></app-page-title>
-  </header>
-  <section class="register__company">
-    <form [formGroup]="form" class="register__company--content">
-      <div class="register__company--content-data">
-        <h2>Dados da Empresa</h2>
-
-        <div class="register__company--content-data--line-one">
-          <input
-            formControlName="name"
-            type="text"
-            placeholder="Nome Fantasia"
-          />
-          <input
-            formControlName="cnpj"
-            mask="00.000.000/0000-00"
-            type="text"
-            placeholder="CNPJ"
-          />
-        </div>
-
-        <div class="register__company--content-data--line-two">
-          <input
-            formControlName="companyName"
-            type="text"
-            placeholder="Razão Social"
-          />
-
-          <input type="number" formControlName="amountEmployees" />
-
-          <select formControlName="cnpj">
-            <option selected hidden disabled value="">Ramo da Empresa</option>
-            <option value="1">Opção 1</option>
-            <option value="2">Opção 2</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="register__company--content-contact">
-        <h2>Contato</h2>
-
-        <div class="register__company--content-contact--line-one">
-          <input formControlName="cnpj" type="text" placeholder="E-mail" />
-          <input type="text" placeholder="Telefone" />
-          <button>
-            <img
-              src="../../../../../assets/icons/icon-sum.svg"
-              alt="icon-sum"
-            />
-          </button>
-        </div>
-      </div>
-
-      <div formGroupName="address" class="register__company--content-address">
-        <h2>Endereço</h2>
-
-        <div class="register__company--content-address--line-one">
-          <input formControlName="zipCode" type="text" placeholder="CEP" mask="00000-000" />
-          <input formControlName="street" type="text" placeholder="Rua" />
-          <input formControlName="number" type="text" placeholder="Número" />
-        </div>
-
-        <div class="register__company--content-address--line-two">
-          <input formControlName="city" type="text" placeholder="Cidade" />
-
-          <input
-            required
-            formControlName="neighborhood"
-            type="text"
-            placeholder="Bairro"
-          />
-
-          <input
-            formControlName="complement"
-            type="text"
-            placeholder="Complemento"
-          />
-        </div>
-      </div>
-
-      <div
-        formGroupName="legalRepresentative"
-        class="register__company--content-corporate"
-      >
-        <h2>Representante Legal</h2>
-
-        <div class="register__company--content-corporate--line-one">
-          <input formControlName="name" type="text" placeholder="Nome" />
-          <input formControlName="email" type="text" placeholder="E-mail" />
-        </div>
-
-        <div class="register__company--content-corporate--line-two">
-          <input
-            formControlName="phoneNumber"
-            type="text"
-            placeholder="Telefone"
-            mask="(00) 90000-0000"
-          />
-          <input
-            formControlName="cellNumber"
-            type="text"
-            placeholder="Celular"
-            mask="(00) 0000-0000"
-          />
-        </div>
-      </div>
-
-      <div class="buttons-style">
-        <app-button
-          class="button.decline"
-          [text]="'Voltar'"
-          [color]="'transparent'"
-          [textColor]="'#1C3152'"
-        >
-        </app-button>
-
-        <app-button
-          class="button.decline"
-          [text]="'Salvar'"
-          [color]="'#1C3152'"
-        >
-        </app-button>
-      </div>
-    </form>
-  </section>
-</main> -->
