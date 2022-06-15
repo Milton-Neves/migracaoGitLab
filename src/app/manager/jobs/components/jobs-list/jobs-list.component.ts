@@ -53,6 +53,6 @@ export class JobsListComponent implements OnInit {
   }
 
   navigaToEditPage(jobsId?: number) {
-    this.router.navigate(['/gerenciador/cargos', 'editar', '1'])
+    this.router.navigate(['/gerenciador/cargos', 'editar', jobsId])
   }
 }
