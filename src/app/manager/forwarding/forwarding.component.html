@@ -23,9 +23,8 @@
   <div class="forwarding__filters">
     <app-input-search
       [styles]="{ width: '100%' }"
-      [placeholder]="
-        'Pesquise por  Empresa, Ramo, Cargo ou ID do Encaminhamento'
-      "
+      [placeholder]="'Pesquise por  Empresa, Cargo ou ID do Encaminhamento'"
+      (search)="checkInputSearch($event)"
     >
     </app-input-search>
     <app-sort-filter
@@ -50,6 +49,7 @@
   <section class="forwarding__content">
     <app-forwarding-card
       [infos]="forwarding"
+      [workfield]="findColorAndNameByJobName(forwarding.job)"
       *ngFor="let forwarding of forwardings"
       style="width: 300px"
     >

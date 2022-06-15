@@ -10,6 +10,7 @@ import { ForwardingEditComponent } from './../forwarding-edit/forwarding-edit.co
 })
 export class ForwardingCardComponent implements OnInit {
   @Input() infos: any
+  @Input() workfield: any
   constructor(private modalService: NgxModalService) {}
 
   editForwarding() {
