@@ -49,6 +49,7 @@
   <section class="forwarding__content">
     <app-forwarding-card
       [infos]="forwarding"
+      [workfield]="findColorAndNameByJobName(forwarding.job)"
       *ngFor="let forwarding of forwardings"
       style="width: 300px"
     >

@@ -16,7 +16,7 @@ import { ForwardingService } from './services/forwarding.service'
 export class ForwardingComponent implements OnInit {
   forwardings: any[] = []
   pagination$!: Observable<any>
-  listWorkfield!: Workfield[]
+  listWorkfield: Workfield[] = []
   paramsToRequst!: {
     isFinished: boolean
     actualPage: number
@@ -88,13 +88,7 @@ export class ForwardingComponent implements OnInit {
       previous: !pagination.firstPage ? pagination.page - 2 : undefined,
       totalElementPerPage: pagination.size,
     }
-    this.forwardings = forwardings.map(
-      (value) =>
-        (value = Object.assign({
-          ...value,
-          ...this.findColorAndNameByJobName(value.job),
-        }))
-    )
+    this.forwardings = forwardings
     this.pagination$ = of(paginated)
   }
 
