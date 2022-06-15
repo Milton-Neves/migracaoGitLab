@@ -1,0 +1,16 @@
+@import 'variables';
+
+div {
+  position: relative;
+}
+span {
+  font-size: 12px;
+  margin-top: 0.2rem;
+  margin-left: 0.6rem;
+  text-align: left;
+  color: $red-400;
+  position: absolute;
+}
+:host {
+  width: 100%;
+}
