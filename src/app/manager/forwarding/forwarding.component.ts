@@ -16,12 +16,14 @@ import { ForwardingService } from './services/forwarding.service'
 export class ForwardingComponent implements OnInit {
   forwardings: any[] = []
   pagination$!: Observable<any>
-  listWorkfield!: Workfield[]
+  listWorkfield: Workfield[] = []
   paramsToRequst!: {
     isFinished: boolean
     actualPage: number
     sort: string
+    search: string
   }
+  searchTerm: string = ''
   messageNotFound: boolean = false
   visibleItems = 0
   totalCountForwardings = 0
@@ -36,11 +38,25 @@ export class ForwardingComponent implements OnInit {
     this.getForwardings(false)
   }
 
-  getForwardings(isFinished: boolean, page: number = 0, sort: string = 'asc') {
+  checkInputSearch(term: string) {
+    term != '' ? (this.searchTerm = term) : (this.searchTerm = '')
+    setTimeout(
+      () =>
+        this.getForwardings(
+          this.paramsToRequst.isFinished,
+          this.paramsToRequst.actualPage,
+          this.paramsToRequst.sort
+        ),
+      100
+    )
+  }
+
+  getForwardings(isFinished: boolean, page: number = 0, sort: string = 'desc') {
     this.paramsToRequst = {
       isFinished,
       actualPage: page,
       sort,
+      search: this.searchTerm,
     }
     this.forwardingService
       .findAll('', {
@@ -48,6 +64,7 @@ export class ForwardingComponent implements OnInit {
         sort,
         page,
         size: this.paginationService.verifyPageSize(),
+        search: this.paramsToRequst.search,
       })
       .pipe(
         map((res: any) => res.data),
@@ -71,13 +88,7 @@ export class ForwardingComponent implements OnInit {
       previous: !pagination.firstPage ? pagination.page - 2 : undefined,
       totalElementPerPage: pagination.size,
     }
-    this.forwardings = forwardings.map(
-      (value) =>
-        (value = Object.assign({
-          ...value,
-          ...this.findColorAndNameByJobName(value.job),
-        }))
-    )
+    this.forwardings = forwardings
     this.pagination$ = of(paginated)
   }
 

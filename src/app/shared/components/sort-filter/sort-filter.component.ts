@@ -20,7 +20,7 @@ export class SortFilterComponent implements OnInit {
 
   createSimpleForm() {
     this.form = this.fb.group({
-      checked: ['asc', [Validators.required]],
+      checked: ['desc', [Validators.required]],
     })
   }
 }
