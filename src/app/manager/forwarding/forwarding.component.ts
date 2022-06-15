@@ -51,7 +51,7 @@ export class ForwardingComponent implements OnInit {
     )
   }
 
-  getForwardings(isFinished: boolean, page: number = 0, sort: string = 'asc') {
+  getForwardings(isFinished: boolean, page: number = 0, sort: string = 'desc') {
     this.paramsToRequst = {
       isFinished,
       actualPage: page,
