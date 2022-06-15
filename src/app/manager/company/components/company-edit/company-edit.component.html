@@ -1,27 +1,47 @@
 <section class="edit__company">
-  <div class="edit__company--content">
+  <form class="edit__company--content" [formGroup]="form">
     <div class="edit__company--content-data">
       <h2>Dados da Empresa</h2>
 
       <div class="edit__company--content-data--line-one">
-        <input type="text" placeholder="Nome Fantasia" />
-        <input type="text" placeholder="CNPJ" />
+        <input type="text" placeholder="Nome Fantasia" formControlName="name" />
+        <input
+          type="text"
+          placeholder="CNPJ"
+          formControlName="cnpj"
+          mask="00.000.000/0000-00"
+        />
       </div>
 
       <div class="edit__company--content-data--line-two">
-        <input type="text" placeholder="Razão Social" />
+        <input
+          type="text"
+          placeholder="Razão Social"
+          formControlName="companyName"
+        />
 
-        <select>
-          <option value="">Número de Funcionários</option>
-          <option value="1">Opção 1</option>
-          <option value="2">Opção 2</option>
+        <select formControlName="amountEmployees">
+          <option value="" selected hidden disabled>
+            Número de Funcionário
+          </option>
+          <option
+            *ngFor="let amountEmployee of amountEmployees"
+            [value]="amountEmployee"
+          >
+            {{ amountEmployee }}
+          </option>
         </select>
-
-        <select>
-          <option value="">Ramo da Empresa</option>
-          <option value="1">Opção 1</option>
-          <option value="2">Opção 2</option>
-        </select>
+        <ng-container>
+          <select formControlName="workfield">
+            <option selected hidden disabled value="">Ramo da Empresa</option>
+            <option
+              *ngFor="let workfield of workfields"
+              [value]="workfield.name"
+            >
+              {{ workfield.name }}
+            </option>
+          </select>
+        </ng-container>
       </div>
     </div>
 
@@ -29,45 +49,138 @@
       <h2>Contato</h2>
 
       <div class="edit__company--content-contact--line-one">
-        <input type="text" placeholder="E-mail" />
-        <input type="text" placeholder="Telefone" />
-        <img src="../../../../../assets/images/icons/icon-sum.svg" alt="" />
+        <input type="text" placeholder="E-mail" formControlName="email" />
+        <div class="phone-number-array__array">
+          <ng-container
+            formArrayName="phoneNumbers"
+            *ngFor="
+              let pn of phoneNumbers.controls;
+              let i = index;
+              let first = first
+            "
+          >
+            <div
+              class="phone-number-array__phone-number"
+              *ngIf="first"
+              [formGroupName]="i"
+            >
+              <div class="phone-number-array__input">
+                <input
+                  formControlName="number"
+                  type="text"
+                  placeholder="Telefone"
+                  mask="(00) 00000-0000"
+                />
+                <button type="button" (click)="addNewPhoneNumber()">
+                  <img
+                    src="../../../../../assets/icons/icon-sum.svg"
+                    alt="icon-sum"
+                  />
+                </button>
+              </div>
+              <div class="phone-number-array__checkbox">
+                <label for="isNotOwner">Não é proprietario?</label>
+                <input
+                  type="checkbox"
+                  formControlName="isNotOwner"
+                  name="isNotOwner"
+                  id="isNotOwner"
+                />
+              </div>
+            </div>
+
+            <div
+              class="phone-number-array__phone-number"
+              *ngIf="!first"
+              [formGroupName]="i"
+            >
+              <div class="phone-number-array__input">
+                <input
+                  formControlName="number"
+                  type="text"
+                  placeholder="Telefone"
+                  mask="(00) 00000-0000"
+                />
+                <button type="button" (click)="removePhoneNumber(i)">
+                  <img
+                    src="../../../../../assets/images/icon-recusar-vermelho.svg"
+                    alt="icon-sum"
+                    class="icon-recursa"
+                  />
+                </button>
+              </div>
+              <div class="phone-number-array__checkbox">
+                <label for="isNotOwner">Não é proprietario?</label>
+                <input
+                  type="checkbox"
+                  formControlName="isNotOwner"
+                  name="isNotOwner"
+                  id="isNotOwner"
+                />
+              </div>
+            </div>
+          </ng-container>
+        </div>
       </div>
     </div>
 
-    <div class="edit__company--content-address">
+    <div class="edit__company--content-address" formGroupName="address">
       <h2>Endereço</h2>
 
       <div class="edit__company--content-address--line-one">
-        <input type="text" placeholder="CEP" />
-        <input type="text" placeholder="Rua" />
-        <input type="text" placeholder="Número" />
+        <input
+          type="text"
+          formControlName="zipCode"
+          placeholder="CEP"
+          (blur)="getZipCode()"
+          mask="00000-000"
+        />
+        <input type="text" placeholder="Rua" formControlName="street" />
+        <input type="text" placeholder="Número" formControlName="number" />
       </div>
 
       <div class="edit__company--content-address--line-two">
-        <input type="text" placeholder="Cidade" />
+        <input type="text" placeholder="Cidade" formControlName="city" />
 
-        <select>
-          <option value="">Bairro</option>
-          <option value="1">Opção 1</option>
-          <option value="2">Opção 2</option>
-        </select>
+        <input
+          required
+          formControlName="neighborhood"
+          type="text"
+          placeholder="Bairro"
+        />
 
-        <input type="text" placeholder="Complemento" />
+        <input
+          type="text"
+          placeholder="Complemento"
+          formControlName="complement"
+        />
       </div>
     </div>
 
-    <div class="edit__company--content-corporate">
+    <div
+      class="edit__company--content-corporate"
+      formGroupName="legalRepresentative"
+    >
       <h2>Representante Legal</h2>
 
       <div class="edit__company--content-corporate--line-one">
-        <input type="text" placeholder="Nome" />
-        <input type="text" placeholder="E-mail" />
+        <input type="text" placeholder="Nome" formControlName="name" />
+        <input type="text" placeholder="E-mail" formControlName="email" />
       </div>
 
       <div class="edit__company--content-corporate--line-two">
-        <input type="text" placeholder="Telefone" />
-        <input type="text" placeholder="Celular" />
+        <input
+          type="text"
+          placeholder="Telefone"
+          formControlName="phoneNumber"
+          mask="(00) 0000-0000"
+        />
+        <input
+          type="text"
+          placeholder="Celular"
+          formControlName="cellNumber"
+          mask="(00) 00000-0000"
+        />
       </div>
     </div>
 
@@ -77,11 +190,17 @@
         [text]="'Voltar'"
         [color]="'transparent'"
         [textColor]="'#1C3152'"
+        (click)="closeModal()"
       >
       </app-button>
 
-      <app-button class="button.decline" [text]="'Editar'" [color]="'#1C3152'">
+      <app-button
+        class="button.decline"
+        [text]="'Editar'"
+        [color]="'#1C3152'"
+        (click)="handleUpdateCompany()"
+      >
       </app-button>
     </div>
-  </div>
+  </form>
 </section>

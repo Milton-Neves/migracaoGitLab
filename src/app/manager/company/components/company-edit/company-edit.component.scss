@@ -1,11 +1,24 @@
 @import 'variables';
 
+::-webkit-scrollbar-track {
+  background-color: #d5d8dc;
+}
+::-webkit-scrollbar {
+  width: 10px;
+  background: #f4f4f4;
+}
+::-webkit-scrollbar-thumb {
+  background: #abb2b9;
+  border-radius: 20px;
+}
+
 .edit__company {
   background-color: $white;
   border-radius: 14px;
   box-shadow: $box-shadow;
-  margin-top: 1.5rem;
-  padding: 3rem;
+  padding: 1rem 3rem 2rem;
+  max-height: 90vh;
+  overflow-y: auto;
 
   &--content h2 {
     justify-content: flex-start;
@@ -67,11 +80,11 @@
     display: flex;
     width: 98%;
     justify-content: space-between;
-    margin-bottom: 1rem;
   }
 
   &--content-contact--line-one input:first-child {
     width: 55%;
+    height: 3rem;
   }
 
   &--content-contact--line-one input {
@@ -118,6 +131,10 @@
 
   &--content-address--line-two input:first-child {
     width: 17%;
+  }
+  &--content-address--line-two input:nth-child(2) {
+    margin: 0 10px;
+    width: 20%;
   }
 
   &--content-address--line-two input {
@@ -168,6 +185,49 @@
     border: 1px solid #cccccc;
     width: 49%;
     padding: 0.8rem;
+  }
+}
+
+.phone-number-array {
+  &__array {
+    display: grid;
+    gap: 1rem;
+  }
+  &__phone-number {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+  &__input {
+    display: flex;
+    width: 100%;
+    input {
+      width: 100% !important;
+      height: 2.5rem;
+      margin-right: 0.5rem;
+    }
+    button {
+      background: none;
+      border: none;
+    }
+
+    .icon-recursa {
+      width: 2rem;
+    }
+  }
+
+  &__checkbox {
+    margin-top: 0.5rem;
+    display: flex;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    align-items: center;
+    color: $gray-700;
+    margin-left: 0.2rem;
+
+    input {
+      width: 20px !important;
+    }
   }
 }
 
