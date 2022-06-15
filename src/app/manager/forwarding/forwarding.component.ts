@@ -21,7 +21,9 @@ export class ForwardingComponent implements OnInit {
     isFinished: boolean
     actualPage: number
     sort: string
+    search: string
   }
+  searchTerm: string = ''
   messageNotFound: boolean = false
   visibleItems = 0
   totalCountForwardings = 0
@@ -36,11 +38,25 @@ export class ForwardingComponent implements OnInit {
     this.getForwardings(false)
   }
 
+  checkInputSearch(term: string) {
+    term != '' ? (this.searchTerm = term) : (this.searchTerm = '')
+    setTimeout(
+      () =>
+        this.getForwardings(
+          this.paramsToRequst.isFinished,
+          this.paramsToRequst.actualPage,
+          this.paramsToRequst.sort
+        ),
+      100
+    )
+  }
+
   getForwardings(isFinished: boolean, page: number = 0, sort: string = 'asc') {
     this.paramsToRequst = {
       isFinished,
       actualPage: page,
       sort,
+      search: this.searchTerm,
     }
     this.forwardingService
       .findAll('', {
@@ -48,6 +64,7 @@ export class ForwardingComponent implements OnInit {
         sort,
         page,
         size: this.paginationService.verifyPageSize(),
+        search: this.paramsToRequst.search,
       })
       .pipe(
         map((res: any) => res.data),
