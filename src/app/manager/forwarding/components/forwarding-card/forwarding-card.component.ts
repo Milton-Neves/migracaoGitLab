@@ -1,6 +1,7 @@
-import { ForwardingEditComponent } from './../forwarding-edit/forwarding-edit.component'
+import { Component, Input, OnInit } from '@angular/core'
+
 import { NgxModalService } from './../../../../../lib/ngx-modal/src/lib/ngx-modal.service'
-import { Component, OnInit } from '@angular/core'
+import { ForwardingEditComponent } from './../forwarding-edit/forwarding-edit.component'
 
 @Component({
   selector: 'app-forwarding-card',
@@ -8,14 +9,16 @@ import { Component, OnInit } from '@angular/core'
   styleUrls: ['./forwarding-card.component.scss'],
 })
 export class ForwardingCardComponent implements OnInit {
-  career = 'professor'
-  title = 'Nome da Empresa'
-
+  @Input() infos: any
+  @Input() workfield: any
   constructor(private modalService: NgxModalService) {}
 
   editForwarding() {
     let modal = this.modalService.open(ForwardingEditComponent).subscribe()
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.infos.createdAt = this.infos.createdAt.split(' ')[0]
+    this.infos.lastModifiedAt = this.infos.lastModifiedAt.split(' ')[0]
+  }
 }

@@ -16,7 +16,7 @@ export class PaginationService {
     return Math.floor(contentSizeHeight / cardSizeHeight)
   }
 
-  createPagination(page: number, object: any[], size: number) {
+  createPagination(page: number, object: any, size: number) {
     let startIndex = (page - 1) * size
     let endIndex = page * size
     let pagination: any = {}

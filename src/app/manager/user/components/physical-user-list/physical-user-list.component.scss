@@ -1,0 +1,44 @@
+@import 'variables';
+
+.table {
+  &__text-description {
+    border: 1px solid $black-100;
+    border-left: none;
+    border-right: none;
+
+    td {
+      padding: 0.5rem 2rem;
+      border: 1px solid $black-100;
+      border-left: none;
+      border-right: none;
+      &:first-child {
+        text-align: left;
+      }
+    }
+  }
+
+  &__button {
+    gap: 1rem;
+    display: flex;
+    justify-content: center;
+    button {
+      border: none;
+      background: $green-500;
+      color: $white;
+      border: 1px solid $black-100;
+      padding: 0.3rem 1rem;
+      border-radius: 6px;
+    }
+  }
+
+  &__page {
+    margin-bottom: 1rem;
+  }
+
+  &__pagination {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+    align-items: self-end;
+  }
+}

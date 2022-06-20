@@ -1,6 +1,8 @@
 <div class="card" id="card" [ngStyle]="stylesInformation">
   <div class="top-card" [ngStyle]="stylesHeader">
-    <p class="career">{{ career }}</p>
+    <p class="career" [ngStyle]="{ 'background-color': tagBackground }">
+      {{ career }}
+    </p>
     <h3 class="title">{{ title }}</h3>
   </div>
   <div
