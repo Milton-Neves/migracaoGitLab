@@ -18,6 +18,8 @@ import { Company } from '../../entities/company.model'
 import { CompanyService } from '../../services/company.service'
 import { ToastrService } from 'ngx-toastr'
 import { LegalUserService } from '../../services/legal-user.service'
+import { LegalUser } from '@core/interfaces/legal-user'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-company-registration',
@@ -36,12 +38,12 @@ export class CompanyRegistrationComponent implements OnInit, OnDestroy {
 
   constructor(
     private builder: FormBuilder,
-    private companyService: CompanyService,
     private viacep: NgxViacepService,
     private enumService: EnumService,
     private workfieldService: WorkfieldService,
     private toastr: ToastrService,
-    private legalUserService: LegalUserService
+    private legalUserService: LegalUserService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -68,23 +70,33 @@ export class CompanyRegistrationComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    const values = {
+    const legalPerson = {
       ...this.form.value,
       workfield: JSON.parse(this.form.get('workfield')?.value),
+      valid: true,
     } as Company
 
-    // const legalUser = {} as LegalUser
+    const legalUser = {
+      login: this.form.get('loginEmail')?.value,
+      password: '',
+      roles: ['COMPANY'],
+      legalPerson,
+    } as LegalUser
 
-    this.serviceSubscription = this.companyService
-      .create(values)
+    this.serviceSubscription = this.legalUserService
+      .create(legalUser)
       .pipe(
-        tap((res) => console.log(res)),
-        map((res) => {
-          this.toastr.success('Cargo criado com sucesso!', 'Sucesso')
-          return res
+        map((response) => {
+          this.toastr.success('Empresas criada com sucesso!', 'Sucesso')
+          this.cleanForm()
+          return response
         })
       )
       .subscribe()
+  }
+
+  private cleanForm() {
+    this.form.reset()
   }
 
   private createForm(): FormGroup {
@@ -102,10 +114,14 @@ export class CompanyRegistrationComponent implements OnInit, OnDestroy {
       amountEmployees: this.builder.control('', [Validators.required]),
       workfield: this.builder.control('', [Validators.required]),
       email: this.builder.control('', [Validators.required, Validators.email]),
+      loginEmail: this.builder.control('', [
+        Validators.required,
+        Validators.email,
+      ]),
       phoneNumbers: this.builder.array([
         this.builder.group({
           number: this.builder.control('', [Validators.required]),
-          isNotOwner: this.builder.control(true, [Validators.required]),
+          isNotOwner: this.builder.control(false, [Validators.required]),
         }),
       ]),
       address: this.builder.group({
@@ -182,13 +198,17 @@ export class CompanyRegistrationComponent implements OnInit, OnDestroy {
   }
 
   getMaskByPhoneNumberSize(field: string) {
-    return this.form.get(field)?.value.length <= 10
+    return this.form.get(field)?.value?.length <= 10
       ? '(00) 0000-00009'
       : '(00) 00000-0000'
   }
 
   getFormFieldName(i: number) {
     return `phoneNumbers.${i}.number`
+  }
+
+  goToCompanyListPage() {
+    this.router.navigate(['../gerenciador/empresas'])
   }
 
   get f(): { [key: string]: AbstractControl } {
