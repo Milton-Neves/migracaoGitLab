@@ -1,14 +1,23 @@
 import { NgxModalService } from 'lib/ngx-modal/src/public-api'
 import { Component, Input, OnInit } from '@angular/core'
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms'
+import {
+  AbstractControl,
+  FormArray,
+  FormBuilder,
+  FormGroup,
+  ValidationErrors,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms'
 import { Workfield } from '@core/interfaces/resume/workfield'
-import { EMPTY, iif, Observable, of, Subscription } from 'rxjs'
+import { Subscription } from 'rxjs'
 import { CompanyService } from '../../services/company.service'
 import { NgxViacepService } from '@brunoc/ngx-viacep'
 import { EnumService } from '@shared/services/enum.service'
 import { WorkfieldService } from '@shared/services/workfield.service'
-import { catchError, filter, map, mergeMap, tap } from 'rxjs/operators'
+import { map, tap } from 'rxjs/operators'
 import { Company } from '@core/interfaces/company'
+import { phoneNumberValidator } from '@shared/validators/phoneNumber.validator'
 
 @Component({
   selector: 'app-company-edit',
@@ -45,22 +54,19 @@ export class CompanyEditComponent implements OnInit {
   }
 
   handleUpdateCompany() {
-    console.log(this.form.invalid)
-    console.log(this.form.value)
+    const values = {
+      ...this.form.value,
+      workfield: this.workfields.filter((workfield) => {
+        return workfield.name === this.form.get('workfield')?.value
+      })[0],
+    } as Company
 
-    // const values = {
-    //   ...this.form.value,
-    //   workfield: this.workfields.filter((workfield) => {
-    //     return workfield.name === this.form.get('workfield')?.value
-    //   })[0],
-    // } as Company
-
-    // this.serviceSubscription = this.companyService
-    //   .update(values)
-    //   .subscribe((res) => {
-    //     this.closeBySystem = true
-    //     this.closeModal()
-    //   })
+    this.serviceSubscription = this.companyService
+      .update(values)
+      .subscribe((res) => {
+        this.closeBySystem = true
+        this.closeModal()
+      })
   }
 
   getCompany() {
@@ -156,7 +162,10 @@ export class CompanyEditComponent implements OnInit {
   addNewPhoneNumber(): void {
     this.phoneNumbers.push(
       this.builder.group({
-        number: this.builder.control('', [Validators.required]),
+        number: this.builder.control('', [
+          Validators.required,
+          phoneNumberValidator(),
+        ]),
         isNotOwner: this.builder.control(false),
       })
     )
@@ -200,7 +209,10 @@ export class CompanyEditComponent implements OnInit {
       phoneNumbers: this.builder.array([
         this.builder.group({
           id: this.builder.control(null),
-          number: this.builder.control('', [Validators.required]),
+          number: this.builder.control('', [
+            Validators.required,
+            phoneNumberValidator(),
+          ]),
           isNotOwner: this.builder.control(false),
         }),
       ]),
@@ -217,12 +229,15 @@ export class CompanyEditComponent implements OnInit {
       legalRepresentative: this.builder.group({
         id: this.builder.control(null),
         name: this.builder.control('', [Validators.required]),
-        cellNumber: this.builder.control('', [Validators.required]),
+        cellNumber: this.builder.control('', [
+          Validators.required,
+          phoneNumberValidator(),
+        ]),
         email: this.builder.control('', [
           Validators.required,
           Validators.email,
         ]),
-        phoneNumber: this.builder.control('', [Validators.required]),
+        phoneNumber: this.builder.control('', [phoneNumberValidator()]),
       }),
     })
   }

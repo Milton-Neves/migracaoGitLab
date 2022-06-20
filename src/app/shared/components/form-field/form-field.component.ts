@@ -23,6 +23,7 @@ export class FormFieldComponent implements OnChanges {
   private readonly ERRORS: { [description: string]: string } = {
     required: 'Campo obrigatório',
     mask: 'Formato Inválido',
+    phoneNumber: 'Formato de telefone inválido',
     minlength: 'Quantidade de caracteres inválida',
     maxlength: 'Quantidade máxima de caracteres atingida',
     email: 'E-mail Inválido',

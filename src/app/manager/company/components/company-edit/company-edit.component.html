@@ -3,67 +3,98 @@
     <div class="edit__company--content-data">
       <h2>Dados da Empresa</h2>
 
-      <div class="edit__company--content-data--line-one">
-        <input type="text" placeholder="Nome Fantasia" formControlName="name" />
-        <input
-          type="text"
-          placeholder="CNPJ"
-          formControlName="cnpj"
-          mask="00.000.000/0000-00"
-        />
+      <div class="flex-container">
+        <div class="input-width-1">
+          <app-form-field [id]="'name'">
+            <input
+              type="text"
+              placeholder="Nome Fantasia"
+              formControlName="name"
+            />
+          </app-form-field>
+        </div>
+        <div class="input-width-2">
+          <app-form-field [id]="'cnpj'">
+            <input
+              type="text"
+              placeholder="CNPJ"
+              formControlName="cnpj"
+              mask="00.000.000/0000-00"
+            />
+          </app-form-field>
+        </div>
       </div>
 
-      <div class="edit__company--content-data--line-two">
-        <input
-          type="text"
-          placeholder="Razão Social"
-          formControlName="companyName"
-        />
+      <div class="flex-container">
+        <div class="input-width-3">
+          <app-form-field [id]="'companyName'">
+            <input
+              type="text"
+              placeholder="Razão Social"
+              formControlName="companyName"
+            />
+          </app-form-field>
+        </div>
 
-        <select formControlName="amountEmployees">
-          <option value="" selected hidden disabled>
-            Número de Funcionário
-          </option>
-          <option
-            *ngFor="let amountEmployee of amountEmployees"
-            [value]="amountEmployee"
-          >
-            {{ amountEmployee }}
-          </option>
-        </select>
-        <ng-container>
-          <select formControlName="workfield">
-            <option selected hidden disabled value="">Ramo da Empresa</option>
-            <option
-              *ngFor="let workfield of workfields"
-              [value]="workfield.name"
-            >
-              {{ workfield.name }}
-            </option>
-          </select>
-        </ng-container>
+        <div class="input-width-4">
+          <app-form-field [id]="'amountEmployees'">
+            <select formControlName="amountEmployees">
+              <option value="" selected hidden disabled>
+                Número de Funcionário
+              </option>
+              <option
+                *ngFor="let amountEmployee of amountEmployees"
+                [value]="amountEmployee"
+              >
+                {{ amountEmployee }}
+              </option>
+            </select>
+          </app-form-field>
+        </div>
+
+        <div class="input-width-5">
+          <app-form-field [id]="'workfield'">
+            <ng-container>
+              <select formControlName="workfield">
+                <option selected hidden disabled value="">
+                  Ramo da Empresa
+                </option>
+                <option
+                  *ngFor="let workfield of workfields"
+                  [value]="workfield.name"
+                >
+                  {{ workfield.name }}
+                </option>
+              </select>
+            </ng-container>
+          </app-form-field>
+        </div>
       </div>
     </div>
 
-    <div class="edit__company--content-contact">
+    <div class="contact-global-contaner">
       <h2>Contato</h2>
 
-      <div class="edit__company--content-contact--line-one">
-        <input type="text" placeholder="E-mail" formControlName="email" />
-        <div class="phone-number-array__array">
-          <ng-container
-            formArrayName="phoneNumbers"
-            *ngFor="
-              let pn of phoneNumbers.controls;
-              let i = index;
-              let first = first
-            "
+      <div class="flex-container contact-container">
+        <div class="input-width-6">
+          <app-form-field [id]="'contact.email'">
+            <input type="text" placeholder="E-mail" formControlName="email" />
+          </app-form-field>
+        </div>
+        <ng-container
+          formArrayName="phoneNumbers"
+          *ngFor="
+            let pn of phoneNumbers.controls;
+            let i = index;
+            let first = first
+          "
+        >
+          <div
+            class="phone-number-array__phone-number"
+            *ngIf="first"
+            [formGroupName]="i"
           >
-            <div
-              class="phone-number-array__phone-number"
-              *ngIf="first"
-              [formGroupName]="i"
-            >
+            <app-form-field [id]="'contact.number'">
               <div class="phone-number-array__input">
                 <input
                   formControlName="number"
@@ -87,13 +118,15 @@
                   id="isNotOwner"
                 />
               </div>
-            </div>
+            </app-form-field>
+          </div>
 
-            <div
-              class="phone-number-array__phone-number"
-              *ngIf="!first"
-              [formGroupName]="i"
-            >
+          <div
+            class="phone-number--not-first"
+            *ngIf="!first"
+            [formGroupName]="i"
+          >
+            <app-form-field [id]="'contact.number' + i">
               <div class="phone-number-array__input">
                 <input
                   formControlName="number"
@@ -118,42 +151,64 @@
                   id="isNotOwner"
                 />
               </div>
-            </div>
-          </ng-container>
-        </div>
+            </app-form-field>
+          </div>
+        </ng-container>
       </div>
     </div>
 
     <div class="edit__company--content-address" formGroupName="address">
       <h2>Endereço</h2>
 
-      <div class="edit__company--content-address--line-one">
-        <input
-          type="text"
-          formControlName="zipCode"
-          placeholder="CEP"
-          (blur)="getZipCode()"
-          mask="00000-000"
-        />
-        <input type="text" placeholder="Rua" formControlName="street" />
-        <input type="text" placeholder="Número" formControlName="number" />
+      <div class="flex-container">
+        <div class="input-width-7">
+          <app-form-field [id]="'address.zipCode'">
+            <input
+              type="text"
+              formControlName="zipCode"
+              placeholder="CEP"
+              (blur)="getZipCode()"
+              mask="00000-000"
+            />
+          </app-form-field>
+        </div>
+        <div class="input-width-8">
+          <app-form-field [id]="'address.street'">
+            <input type="text" placeholder="Rua" formControlName="street" />
+          </app-form-field>
+        </div>
+        <div class="input-width-9">
+          <app-form-field [id]="'address.number'">
+            <input type="text" placeholder="Número" formControlName="number" />
+          </app-form-field>
+        </div>
       </div>
 
-      <div class="edit__company--content-address--line-two">
-        <input type="text" placeholder="Cidade" formControlName="city" />
-
-        <input
-          required
-          formControlName="neighborhood"
-          type="text"
-          placeholder="Bairro"
-        />
-
-        <input
-          type="text"
-          placeholder="Complemento"
-          formControlName="complement"
-        />
+      <div class="flex-container">
+        <div class="input-width-10">
+          <app-form-field [id]="'address.city'">
+            <input type="text" placeholder="Cidade" formControlName="city" />
+          </app-form-field>
+        </div>
+        <div class="input-width-11">
+          <app-form-field [id]="'neighborhood'">
+            <input
+              required
+              formControlName="neighborhood"
+              type="text"
+              placeholder="Bairro"
+            />
+          </app-form-field>
+        </div>
+        <div class="input-width-12">
+          <app-form-field [id]="'address.complement'">
+            <input
+              type="text"
+              placeholder="Complemento"
+              formControlName="complement"
+            />
+          </app-form-field>
+        </div>
       </div>
     </div>
 
@@ -163,24 +218,40 @@
     >
       <h2>Representante Legal</h2>
 
-      <div class="edit__company--content-corporate--line-one">
-        <input type="text" placeholder="Nome" formControlName="name" />
-        <input type="text" placeholder="E-mail" formControlName="email" />
+      <div class="flex-container">
+        <div class="input-width-13">
+          <app-form-field [id]="'legalRepresentative.name'">
+            <input type="text" placeholder="Nome" formControlName="name" />
+          </app-form-field>
+        </div>
+        <div class="input-width-14">
+          <app-form-field [id]="'legalRepresentative.email'">
+            <input type="text" placeholder="E-mail" formControlName="email" />
+          </app-form-field>
+        </div>
       </div>
 
-      <div class="edit__company--content-corporate--line-two">
-        <input
-          type="text"
-          placeholder="Telefone"
-          formControlName="phoneNumber"
-          mask="(00) 0000-0000"
-        />
-        <input
-          type="text"
-          placeholder="Celular"
-          formControlName="cellNumber"
-          mask="(00) 00000-0000"
-        />
+      <div class="flex-container">
+        <div class="input-width-15">
+          <app-form-field [id]="'legalRepresentative.phoneNumber'">
+            <input
+              type="text"
+              placeholder="Telefone"
+              formControlName="phoneNumber"
+              mask="(00) 0000-0000"
+            />
+          </app-form-field>
+        </div>
+        <div class="input-width-16">
+          <app-form-field [id]="'legalRepresentative.cellNumber'">
+            <input
+              type="text"
+              placeholder="Celular"
+              formControlName="cellNumber"
+              mask="(00) 00000-0000"
+            />
+          </app-form-field>
+        </div>
       </div>
     </div>
 
@@ -198,6 +269,7 @@
         class="button.decline"
         [text]="'Editar'"
         [color]="'#1C3152'"
+        [disabled]="form.invalid"
         (click)="handleUpdateCompany()"
       >
       </app-button>
