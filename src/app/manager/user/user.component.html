@@ -5,6 +5,7 @@
 
   <div class="input">
     <app-input-search
+      *ngIf="activeTab !== sectionTitle[0]"
       [placeholder]="placeholderActiveSection"
       [styles]="{ width: '20rem' }"
     ></app-input-search>
@@ -18,7 +19,9 @@
       ></app-tab-nav>
     </div>
 
-    <div class="semas-section" *ngIf="activeTab == sectionTitle[0]"></div>
+    <div class="semas-section" *ngIf="activeTab == sectionTitle[0]">
+      <app-reset-account-password></app-reset-account-password>
+    </div>
 
     <div class="company-section" *ngIf="activeTab == sectionTitle[1]">
       <ng-container *ngIf="this.featureFlag.legalUser; else moduleDisabled">

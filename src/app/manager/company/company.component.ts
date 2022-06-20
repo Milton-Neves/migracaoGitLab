@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
-
 import { Observable, of, Subscription } from 'rxjs'
 import { tap } from 'rxjs/operators'
 
@@ -19,7 +18,12 @@ export class CompanyComponent implements OnInit, OnDestroy {
   totalCompanies: number = 0
   pagination$!: Observable<any>
   visibleItems = 0
-
+  paramsToRequest!: {
+    sort?: string
+    search?: string
+    page: number
+  }
+  searchTerm: string = ''
   subscription$ = new Subscription()
 
   constructor(private companyService: CompanyService, private router: Router) {}
@@ -28,12 +32,26 @@ export class CompanyComponent implements OnInit, OnDestroy {
     this.subscription$ = this.getCompanies()
   }
 
-  getCompanies(page: number = 0, params?: any) {
+  searchCompany(event: any) {
+    event != '' ? (this.searchTerm = event) : (this.searchTerm = '')
+    setTimeout(
+      () =>
+        this.getCompanies(this.paramsToRequest.page, this.paramsToRequest.sort),
+      100
+    )
+  }
+
+  getCompanies(page: number = 0, sort: any = 'desc') {
+    this.paramsToRequest = {
+      sort,
+      page,
+      search: this.searchTerm,
+    }
     return this.companyService
       .findAll('', {
         valid: this.isNavActive,
         size: 8,
-        page,
+        ...this.paramsToRequest,
       })
       .pipe(
         tap(({ data }: any) => {

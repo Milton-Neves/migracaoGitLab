@@ -26,17 +26,16 @@
 
       <div class="company__src">
         <div class="company__src--icon">
-          <input
-            type="text"
-            id="src"
-            placeholder="Pesquise por Nome, Nome do representante, CNPJ, Ramo"
-          />
-          <div class="filter">
-            <img
-              src="../../../assets/images/icons/icon-filter.svg"
-              alt="icon-filter"
-            />
-          </div>
+          <app-input-search
+            [styles]="{ minWidth: '25rem', width: '100%' }"
+            (search)="searchCompany($event)"
+            [placeholder]="
+              'Pesquise por Nome, Nome do representante, CNPJ, Ramo'
+            "
+          ></app-input-search>
+          <app-sort-filter
+            (sort)="getCompanies(paramsToRequest.page, $event)"
+          ></app-sort-filter>
         </div>
       </div>
     </div>
@@ -81,7 +80,7 @@
       </app-pagination-number>
       <app-pagination
         class="pagination"
-        (currentPageEmit)="getCompanies($event)"
+        (currentPageEmit)="getCompanies($event, paramsToRequest.sort)"
         [pagination$]="pagination$"
       >
       </app-pagination>

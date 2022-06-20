@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core'
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core'
 import { Resume } from '@core/interfaces/resume/resume'
 import { PaginationService } from '@shared/services/pagination.service'
 import { WorkfieldService } from '@shared/services/workfield.service'
@@ -16,7 +22,8 @@ import { ResumeViewComponent } from '../resume-view/resume-view.component'
   templateUrl: './active-resume-list.component.html',
   styleUrls: ['./active-resume-list.component.scss'],
 })
-export class ActiveResumeListComponent implements OnInit {
+export class ActiveResumeListComponent implements OnInit, OnChanges {
+  @Input() generalInfo!: string
   tableColumns = ['Nome', 'Telefone(s)', 'Situação', 'Ações']
   resumes: Resume[] = []
   totalCountResumes: number = 0
@@ -36,7 +43,7 @@ export class ActiveResumeListComponent implements OnInit {
 
   getResumesFromServer(page: number = 1, params?: any) {
     this.resumeService
-      .findAll('', { statusResume: true })
+      .findAll('', { statusResume: true, ...params })
       .pipe(
         tap((resume) => {
           this.currentPage = page
@@ -81,5 +88,10 @@ export class ActiveResumeListComponent implements OnInit {
         tap(() => this.getResumesFromServer(this.currentPage))
       )
       .subscribe()
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.generalInfo.currentValue != undefined)
+      this.getResumesFromServer(1, { generalInfo: this.generalInfo })
   }
 }
