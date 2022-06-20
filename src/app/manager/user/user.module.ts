@@ -11,6 +11,7 @@ import { UsersListComponent } from './components/users-list/users-list.component
 import { UserModalComponent } from './components/user-modal/user-modal.component'
 import { ResetEmailComponent } from './components/reset-email/reset-email.component'
 import { CitizenModalComponent } from './components/citizen-modal/citizen-modal.component'
+import { ResetAccountPasswordComponent } from './components/reset-account-password/reset-account-password.component'
 @NgModule({
   declarations: [
     UserComponent,
@@ -20,6 +21,7 @@ import { CitizenModalComponent } from './components/citizen-modal/citizen-modal.
     ResetPasswordUserComponent,
     ResetPasswordComponent,
     CitizenModalComponent,
+    ResetAccountPasswordComponent,
   ],
   imports: [CommonModule, UserRoutingModule, SharedModule, ReactiveFormsModule],
 })

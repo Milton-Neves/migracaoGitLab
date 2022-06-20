@@ -13,7 +13,7 @@ import { CitizenModalComponent } from './../citizen-modal/citizen-modal.componen
 })
 export class UsersListComponent implements OnInit {
   tableColumns = ['Nome', 'CPF', 'Ações']
-  sectionTitle = ['SEMAS', 'EMPRESAS', 'CIDADÃOS']
+  sectionTitle = ['MINHA CONTA', 'EMPRESAS', 'CIDADÃOS']
   activeTab?: string
   placeholderActiveSection!: string
   featureFlag: { legalUser: boolean; physicalUser: boolean } = {
