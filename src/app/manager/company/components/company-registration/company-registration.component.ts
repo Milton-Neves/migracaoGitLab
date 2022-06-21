@@ -6,20 +6,20 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms'
+import { TitleCasePipe } from '@angular/common'
+import { Router } from '@angular/router'
 
 import { Subscription } from 'rxjs'
 import { map, tap } from 'rxjs/operators'
 import { NgxViacepService } from '@brunoc/ngx-viacep'
+import { ToastrService } from 'ngx-toastr'
 
 import { Workfield } from '@core/interfaces/resume/workfield'
+import { LegalUser } from '@core/interfaces/legal-user'
 import { EnumService } from '@shared/services/enum.service'
 import { WorkfieldService } from '@shared/services/workfield.service'
 import { Company } from '../../entities/company.model'
-import { CompanyService } from '../../services/company.service'
-import { ToastrService } from 'ngx-toastr'
 import { LegalUserService } from '../../services/legal-user.service'
-import { LegalUser } from '@core/interfaces/legal-user'
-import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-company-registration',
@@ -43,7 +43,8 @@ export class CompanyRegistrationComponent implements OnInit, OnDestroy {
     private workfieldService: WorkfieldService,
     private toastr: ToastrService,
     private legalUserService: LegalUserService,
-    private router: Router
+    private router: Router,
+    private titleCasePipe: TitleCasePipe
   ) {}
 
   ngOnInit(): void {
@@ -72,8 +73,18 @@ export class CompanyRegistrationComponent implements OnInit, OnDestroy {
   onSubmit() {
     const legalPerson = {
       ...this.form.value,
+      name: this.titleCasePipe.transform(this.form.controls.name.value),
+      companyName: this.titleCasePipe.transform(
+        this.form.controls.companyName.value
+      ),
       workfield: JSON.parse(this.form.get('workfield')?.value),
       valid: true,
+      legalRepresentative: {
+        ...this.form.get('legalRepresentative')?.value,
+        name: this.titleCasePipe.transform(
+          this.form.get('legalRepresentative')?.get('name')?.value
+        ),
+      },
     } as Company
 
     const legalUser = {
@@ -90,7 +101,8 @@ export class CompanyRegistrationComponent implements OnInit, OnDestroy {
           this.toastr.success('Empresas criada com sucesso!', 'Sucesso')
           this.cleanForm()
           return response
-        })
+        }),
+        tap(() => this.router.navigate(['../gerenciador/empresas']))
       )
       .subscribe()
   }
