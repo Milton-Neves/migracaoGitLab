@@ -16,6 +16,10 @@ export class JobsListComponent implements OnInit {
   tableColumns = ['Nome', 'Área de Atuação', 'Situação', 'Ações']
   jobWorkfieldList: JobWorkfield[] = []
   pagination$?: Observable<any>
+  criteriaObject: any = {
+    size: 10,
+  }
+
   totalCountJobs = 0
   visibleItems = 0
 
@@ -29,7 +33,8 @@ export class JobsListComponent implements OnInit {
     this.jobService
       .listAllWithWorkfieldColor({
         page,
-        size: 10,
+        ...this.criteriaObject,
+        ...params,
       })
       .pipe(
         tap(({ data }) => {
@@ -46,6 +51,15 @@ export class JobsListComponent implements OnInit {
         })
       )
       .subscribe()
+  }
+
+  searchJobEvent(search: string) {
+    if (search.length > 0) {
+      this.criteriaObject.search = search
+    } else {
+      delete this.criteriaObject.search
+    }
+    this.getJobs()
   }
 
   navigaToRegistrationPage() {

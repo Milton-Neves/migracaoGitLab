@@ -1,0 +1,39 @@
+<div style="display: flex; justify-content: flex-end; margin-top: 1rem">
+  <div
+    (click)="openFilterDropdown = !openFilterDropdown"
+    style="cursor: pointer"
+  >
+    <img src="../../../../assets/images/icons/icon-filter.svg" />
+    <img
+      src="../../../../assets/icons/arrow-blue.svg"
+      alt=""
+      [class.rotate]="openFilterDropdown"
+    />
+  </div>
+  <div id="dropdown" *ngIf="openFilterDropdown">
+    <h3>Filtros</h3>
+    <div id="options">
+      <p
+        (click)="openSubsectionDropdown = !openSubsectionDropdown"
+        style="cursor: pointer"
+      >
+        <img
+          src="../../../../assets/icons/arrow-blue.svg"
+          alt=""
+          [class.rotate]="openSubsectionDropdown"
+        />
+        Tempo
+      </p>
+      <form [formGroup]="form">
+        <span *ngIf="openSubsectionDropdown">
+          <input type="radio" value="desc" formControlName="checked" /> Mais
+          recentes
+        </span>
+        <span *ngIf="openSubsectionDropdown">
+          <input type="radio" value="asc" formControlName="checked" /> Mais
+          antigos
+        </span>
+      </form>
+    </div>
+  </div>
+</div>
