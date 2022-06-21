@@ -7,6 +7,7 @@
     [align]="{ 'justify-content': 'flex-end' }"
     [styles]="{ width: '30%' }"
     [placeholder]="'Digite CPF, nome ou email'"
+    (search)="setGeneralInfo($event)"
   >
   </app-input-search>
 
@@ -15,10 +16,12 @@
 
     <div class="resume__tabs">
       <app-active-resume-list
+        [generalInfo]="paramGeneralInfo"
         *ngIf="activeTab == tabs[0]"
       ></app-active-resume-list>
 
       <app-archived-resume-list
+        [generalInfo]="paramGeneralInfo"
         *ngIf="activeTab == tabs[1]"
       ></app-archived-resume-list>
     </div>

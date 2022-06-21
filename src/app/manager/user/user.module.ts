@@ -10,6 +10,7 @@ import { UserRoutingModule } from './user-routing.module'
 import { UserModalComponent } from './components/user-modal/user-modal.component'
 import { ResetEmailComponent } from './components/reset-email/reset-email.component'
 import { CitizenModalComponent } from './components/citizen-modal/citizen-modal.component'
+import { ResetAccountPasswordComponent } from './components/reset-account-password/reset-account-password.component'
 import { LegalUserListComponent } from './components/legal-user-list/legal-user-list.component'
 import { PhysicalUserListComponent } from './components/physical-user-list/physical-user-list.component'
 
@@ -21,6 +22,7 @@ import { PhysicalUserListComponent } from './components/physical-user-list/physi
     ResetPasswordUserComponent,
     ResetPasswordComponent,
     CitizenModalComponent,
+    ResetAccountPasswordComponent,
     LegalUserListComponent,
     PhysicalUserListComponent,
   ],
