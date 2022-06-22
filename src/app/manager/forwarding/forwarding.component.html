@@ -5,16 +5,16 @@
   <div class="forwarding__buttons">
     <button
       (click)="getForwardings(false)"
-      [disabled]="!isFinished"
-      [class.button-active]="!isFinished"
+      [disabled]="!paramsToRequst.isFinished"
+      [class.button-active]="!paramsToRequst.isFinished"
     >
       <span>Ativos</span>
       <span>Lista de encaminhamentos ativos</span>
     </button>
     <button
       (click)="getForwardings(true)"
-      [disabled]="isFinished"
-      [class.button-active]="isFinished"
+      [disabled]="paramsToRequst.isFinished"
+      [class.button-active]="paramsToRequst.isFinished"
     >
       <span>Finalizados</span>
       <span>Lista de encaminhamentos finalizados</span>
@@ -23,11 +23,19 @@
   <div class="forwarding__filters">
     <app-input-search
       [styles]="{ width: '100%' }"
-      [placeholder]="
-        'Pesquise por  Empresa, Ramo, Cargo ou ID do Encaminhamento'
-      "
+      [placeholder]="'Pesquise por  Empresa, Cargo ou ID do Encaminhamento'"
+      (search)="checkInputSearch($event)"
     >
     </app-input-search>
+    <app-sort-filter
+      (sort)="
+        getForwardings(
+          paramsToRequst.isFinished,
+          paramsToRequst.actualPage,
+          $event
+        )
+      "
+    ></app-sort-filter>
   </div>
   <div class="forwarding__create-button">
     <app-button
@@ -58,7 +66,9 @@
   <app-pagination
     *ngIf="forwardings.length > 0"
     class="forwarding__pagination"
-    (currentPageEmit)="getForwardings(isFinished, $event)"
+    (currentPageEmit)="
+      getForwardings(paramsToRequst.isFinished, $event, paramsToRequst.sort)
+    "
     [pagination$]="pagination$"
   ></app-pagination>
 </footer>

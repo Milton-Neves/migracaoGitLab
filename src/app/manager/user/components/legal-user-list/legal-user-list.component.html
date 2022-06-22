@@ -1,0 +1,25 @@
+<app-table [setColumns]="tableColumns">
+  <ng-container part="list">
+    <tr class="table__text-description" *ngFor="let legalUser of legalUsers">
+      <td>Lorem ipsum dolor sit amet.</td>
+      <td>000.000.000-00</td>
+      <td class="table__button">
+        <button>Resetar Senha</button>
+      </td>
+    </tr>
+  </ng-container>
+</app-table>
+
+<div class="table__page">
+  <div class="table__pagination">
+    <app-pagination-number
+      [visibleItems]="legalUsers.length"
+      [totalItems]="totalCountLegalUsers"
+    ></app-pagination-number>
+
+    <app-pagination
+      [pagination$]="pagination$"
+      (currentPageEmit)="getLegalUsers($event)"
+    ></app-pagination>
+  </div>
+</div>
