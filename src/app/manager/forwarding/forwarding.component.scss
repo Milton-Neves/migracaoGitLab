@@ -62,12 +62,11 @@
     grid-template-columns: repeat(auto-fill, minMax(300px, 1fr));
   }
   #not-found {
-    color: $gray-600;
-    font-weight: bold;
-    font-size: 18px;
+    display: flex;
+    justify-content: center;
     margin-top: 2rem;
-    text-align: center;
-    grid-area: content;
+    font-size: 1.2rem;
+    color: $gray-700;
   }
 }
 .footer {
