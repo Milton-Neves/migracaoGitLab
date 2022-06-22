@@ -127,7 +127,7 @@
                   </button>
                 </div>
                 <div class="phone-number-array__checkbox">
-                  <label for="isNotOwner">É proprietario?</label>
+                  <label for="isNotOwner">Não é proprietário? </label>
                   <input
                     type="checkbox"
                     formControlName="isNotOwner"
@@ -160,7 +160,7 @@
                   </button>
                 </div>
                 <div class="phone-number-array__checkbox">
-                  <label for="isNotOwner">É proprietario?</label>
+                  <label for="isNotOwner">Não é proprietário?</label>
                   <input
                     type="checkbox"
                     formControlName="isNotOwner"
@@ -320,11 +320,31 @@
         </div>
       </div>
 
+      <div class="company-registration__form-container">
+        <h2>Login</h2>
+        <span>Informe um email para ser usado no login</span>
+        <div class="grid line-12">
+          <div class="company-registration__input-group">
+            <app-form-field [id]="'loginEmail'">
+              <input
+                [ngClass]="{
+                  '--invalid': fieldIsInvalid('loginEmail')
+                }"
+                formControlName="loginEmail"
+                type="text"
+                placeholder="E-mail *"
+              />
+            </app-form-field>
+          </div>
+        </div>
+      </div>
+
       <div class="company-registration__buttons">
         <app-button
           [text]="'Voltar'"
           [color]="'transparent'"
           [textColor]="'#1C3152'"
+          (click)="goToCompanyListPage()"
         >
         </app-button>
 

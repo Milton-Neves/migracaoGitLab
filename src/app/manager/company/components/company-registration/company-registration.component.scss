@@ -14,11 +14,20 @@
   }
 
   &__form-container {
+    position: relative;
     > h2 {
       color: $blue-700;
       font-size: 1.25rem;
       font-weight: 400;
       margin: 3rem 0 1.5rem 0;
+    }
+
+    > span {
+      position: absolute;
+      top: 1.8rem;
+      left: 2px;
+      font-size: 0.8rem;
+      color: $gray-700;
     }
   }
 
@@ -29,7 +38,7 @@
 
     input {
       border-radius: 4px;
-      border: 1px solid #cccccc;
+      border: 1px solid $gray-300;
       padding: 0.6rem;
       display: block;
       width: 100%;
@@ -40,7 +49,7 @@
 
     select {
       border-radius: 4px;
-      border: 1px solid #cccccc;
+      border: 1px solid $gray-300;
       width: 27%;
       padding: 0.6rem;
       background: url(../../../../../assets/icons/arrow-bottom.svg);
