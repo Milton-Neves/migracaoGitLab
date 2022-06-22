@@ -20,13 +20,19 @@
   max-height: 90vh;
   overflow-y: auto;
 
+  h1 {
+    font-size: 1.7rem;
+    color: $blue-700;
+    margin-top: 1rem;
+  }
+
   &--content h2 {
     justify-content: flex-start;
     color: $blue-700;
     font-size: 1.25rem;
     font-weight: 400;
     margin-bottom: 1rem;
-    margin-top: 2rem;
+    margin-top: 1.3rem;
   }
 
   .flex-container {

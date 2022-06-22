@@ -1,14 +1,6 @@
 import { NgxModalService } from 'lib/ngx-modal/src/public-api'
 import { Component, Input, OnInit } from '@angular/core'
-import {
-  AbstractControl,
-  FormArray,
-  FormBuilder,
-  FormGroup,
-  ValidationErrors,
-  ValidatorFn,
-  Validators,
-} from '@angular/forms'
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Workfield } from '@core/interfaces/resume/workfield'
 import { Subscription } from 'rxjs'
 import { CompanyService } from '../../services/company.service'
@@ -16,8 +8,10 @@ import { NgxViacepService } from '@brunoc/ngx-viacep'
 import { EnumService } from '@shared/services/enum.service'
 import { WorkfieldService } from '@shared/services/workfield.service'
 import { map, tap } from 'rxjs/operators'
-import { Company } from '@core/interfaces/company'
 import { phoneNumberValidator } from '@shared/validators/phoneNumber.validator'
+import { TitleCasePipe } from '@angular/common'
+import { ToastrService } from 'ngx-toastr'
+import { Company } from '../../entities/company.model'
 
 @Component({
   selector: 'app-company-edit',
@@ -42,7 +36,9 @@ export class CompanyEditComponent implements OnInit {
     private viacep: NgxViacepService,
     private enumService: EnumService,
     private workfieldService: WorkfieldService,
-    private modalService: NgxModalService
+    private modalService: NgxModalService,
+    private toastr: ToastrService,
+    private titleCasePipe: TitleCasePipe
   ) {}
 
   ngOnInit(): void {
@@ -54,16 +50,12 @@ export class CompanyEditComponent implements OnInit {
   }
 
   handleUpdateCompany() {
-    const values = {
-      ...this.form.value,
-      workfield: this.workfields.filter((workfield) => {
-        return workfield.name === this.form.get('workfield')?.value
-      })[0],
-    } as Company
+    const values = this.formatFormFields(this.form.value) as Company
 
     this.serviceSubscription = this.companyService
       .update(values)
       .subscribe((res) => {
+        this.toastr.success('Empresa editada com sucesso!', 'Sucesso')
         this.closeBySystem = true
         this.closeModal()
       })
@@ -188,6 +180,47 @@ export class CompanyEditComponent implements OnInit {
     this.getAmountEmployeesSubscription.unsubscribe()
     this.zipCodeSubscription.unsubscribe()
     this.getWorkfieldsSubscription.unsubscribe()
+  }
+
+  private formatFormFields(values: any) {
+    return {
+      ...values,
+      name: this.titleCasePipe.transform(this.form.controls.name.value),
+      companyName: this.titleCasePipe.transform(
+        this.form.controls.companyName.value
+      ),
+      workfield: this.workfields.filter((workfield) => {
+        return workfield.name === this.form.get('workfield')?.value
+      })[0],
+      valid: true,
+      email: this.form.controls.email?.value.toLowerCase(),
+      legalRepresentative: {
+        ...this.form.get('legalRepresentative')?.value,
+        name: this.titleCasePipe.transform(
+          this.form.get('legalRepresentative')?.get('name')?.value
+        ),
+        email: this.form
+          .get('legalRepresentative')
+          ?.get('email')
+          ?.value.toLowerCase(),
+      },
+      address: {
+        ...this.form.get('address')?.value,
+        city: this.titleCasePipe.transform(
+          this.form.get('address')?.get('city')?.value
+        ),
+        neighborhood: this.titleCasePipe.transform(
+          this.form.get('address')?.get('neighborhood')?.value
+        ),
+        street: this.titleCasePipe.transform(
+          this.form.get('address')?.get('street')?.value
+        ),
+        state: this.form.get('address')?.get('state')?.value.toUpperCase(),
+        complement: this.titleCasePipe.transform(
+          this.form.get('address')?.get('complement')?.value
+        ),
+      },
+    }
   }
 
   private createForm(): FormGroup {
