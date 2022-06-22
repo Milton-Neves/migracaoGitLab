@@ -71,24 +71,10 @@ export class CompanyRegistrationComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    const legalPerson = {
-      ...this.form.value,
-      name: this.titleCasePipe.transform(this.form.controls.name.value),
-      companyName: this.titleCasePipe.transform(
-        this.form.controls.companyName.value
-      ),
-      workfield: JSON.parse(this.form.get('workfield')?.value),
-      valid: true,
-      legalRepresentative: {
-        ...this.form.get('legalRepresentative')?.value,
-        name: this.titleCasePipe.transform(
-          this.form.get('legalRepresentative')?.get('name')?.value
-        ),
-      },
-    } as Company
+    const legalPerson = this.formatFormFields(this.form.value) as Company
 
     const legalUser = {
-      login: this.form.get('loginEmail')?.value,
+      login: this.form.get('loginEmail')?.value.toLowerCase(),
       password: '',
       roles: ['COMPANY'],
       legalPerson,
@@ -105,6 +91,45 @@ export class CompanyRegistrationComponent implements OnInit, OnDestroy {
         tap(() => this.router.navigate(['../gerenciador/empresas']))
       )
       .subscribe()
+  }
+
+  private formatFormFields(values: any) {
+    return {
+      ...values,
+      name: this.titleCasePipe.transform(this.form.controls.name.value),
+      companyName: this.titleCasePipe.transform(
+        this.form.controls.companyName.value
+      ),
+      workfield: JSON.parse(this.form.controls.workfield?.value),
+      valid: true,
+      email: this.form.controls.email?.value.toLowerCase(),
+      legalRepresentative: {
+        ...this.form.get('legalRepresentative')?.value,
+        name: this.titleCasePipe.transform(
+          this.form.get('legalRepresentative')?.get('name')?.value
+        ),
+        email: this.form
+          .get('legalRepresentative')
+          ?.get('email')
+          ?.value.toLowerCase(),
+      },
+      address: {
+        ...this.form.get('address')?.value,
+        city: this.titleCasePipe.transform(
+          this.form.get('address')?.get('city')?.value
+        ),
+        neighborhood: this.titleCasePipe.transform(
+          this.form.get('address')?.get('neighborhood')?.value
+        ),
+        street: this.titleCasePipe.transform(
+          this.form.get('address')?.get('street')?.value
+        ),
+        state: this.form.get('address')?.get('state')?.value.toUpperCase(),
+        complement: this.titleCasePipe.transform(
+          this.form.get('address')?.get('complement')?.value
+        ),
+      },
+    }
   }
 
   private cleanForm() {
