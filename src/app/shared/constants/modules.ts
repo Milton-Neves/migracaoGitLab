@@ -11,7 +11,7 @@ export const MODULES: SidebarModule[] = [
   {
     link: '/gerenciador',
     iconPath: '../../../../assets/images/icons/sidebar/icone-inicio.svg',
-    title: 'Inicio',
+    title: 'início',
     canActive: permissions.homePermissions,
   },
   {
