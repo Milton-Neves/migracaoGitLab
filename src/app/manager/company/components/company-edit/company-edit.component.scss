@@ -1,11 +1,30 @@
 @import 'variables';
 
+::-webkit-scrollbar-track {
+  background-color: #d5d8dc;
+}
+::-webkit-scrollbar {
+  width: 10px;
+  background: #f4f4f4;
+}
+::-webkit-scrollbar-thumb {
+  background: #abb2b9;
+  border-radius: 20px;
+}
+
 .edit__company {
   background-color: $white;
   border-radius: 14px;
   box-shadow: $box-shadow;
-  margin-top: 1.5rem;
-  padding: 3rem;
+  padding: 1rem 3rem 2rem;
+  max-height: 90vh;
+  overflow-y: auto;
+
+  h1 {
+    font-size: 1.7rem;
+    color: $blue-700;
+    margin-top: 1rem;
+  }
 
   &--content h2 {
     justify-content: flex-start;
@@ -13,161 +32,171 @@
     font-size: 1.25rem;
     font-weight: 400;
     margin-bottom: 1rem;
-    margin-top: 2rem;
+    margin-top: 1.3rem;
   }
 
-  &--content input::placeholder {
-    font-size: 1rem;
-  }
-
-  &--content-data--line-one {
+  .flex-container {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
+    width: 100%;
+
+    &--input-container {
+      width: 90%;
+    }
+
+    input {
+      display: block;
+      border-radius: 4px;
+      border: 1px solid #cccccc;
+      width: 35%;
+      padding: 0.8rem;
+      width: 100%;
+
+      &::placeholder {
+        font-size: 1rem;
+      }
+    }
+
+    select {
+      border-radius: 4px;
+      border: 1px solid #cccccc;
+      width: 100%;
+      padding: 0.8rem;
+      background: url(../../../../../assets/images/icons/arrow-bottom.svg);
+      -webkit-appearance: none;
+      color: $gray-700;
+      font-size: 1rem;
+      background-repeat: no-repeat;
+      background-position: 95% 50%;
+    }
+
+    // Dados gerais
+
+    .input-width-1 {
+      width: 67%;
+    }
+
+    .input-width-2 {
+      width: 30%;
+    }
+
+    .input-width-3,
+    .input-width-4,
+    .input-width-5 {
+      width: 31.5%;
+    }
+
+    // Contato
+
+    .input-width-6 {
+      width: 65%;
+      height: auto;
+      margin: 0 2rem 0 0px;
+    }
+
+    // Endereço
+
+    .input-width-7 {
+      width: 20%;
+    }
+
+    .input-width-8 {
+      width: 62%;
+    }
+
+    .input-width-9 {
+      width: 13%;
+    }
+
+    .input-width-10 {
+      width: 20%;
+    }
+
+    .input-width-11 {
+      width: 20%;
+    }
+
+    .input-width-12 {
+      width: 55%;
+    }
+
+    // Representante Legal
+
+    .input-width-13 {
+      width: 55%;
+    }
+
+    .input-width-14 {
+      width: 42%;
+    }
+
+    .input-width-15 {
+      width: 55%;
+    }
+
+    .input-width-16 {
+      width: 42%;
+    }
   }
 
-  &--content-data--line-one input:first-child {
-    width: 63%;
-  }
+  .contact-global-contaner {
+    max-width: 647px;
 
-  &--content-data--line-one input {
-    border-radius: 4px;
-    border: 1px solid #cccccc;
-    width: 35%;
-    padding: 0.8rem;
-  }
+    .contact-container {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      justify-content: flex-start;
 
-  &--content-data--line-two {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 1rem;
-  }
+      .phone-number--not-first {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        width: 45%;
+        margin: 10px 2rem 0 0;
+      }
 
-  &--content-data--line-two input {
-    border-radius: 4px;
-    border: 1px solid #cccccc;
-    width: 42%;
-    padding: 0.8rem;
-  }
+      .phone-number-array__phone-number {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        width: 12rem;
+      }
 
-  &--content-data--line-two select {
-    border-radius: 4px;
-    border: 1px solid #cccccc;
-    width: 27%;
-    padding: 0.8rem;
-    background: url(../../../../../assets/images/icons/arrow-bottom.svg);
-    -webkit-appearance: none;
-    color: $gray-700;
-    font-size: 1rem;
-    background-repeat: no-repeat;
-    background-position: 95% 50%;
-  }
+      .phone-number-array__input {
+        display: flex;
+        width: 100%;
+        input {
+          width: 100% !important;
+          height: 3rem;
+          margin-right: 0.5rem;
+        }
+        button {
+          background: none;
+          border: none;
+        }
 
-  &--content-contact--line-one {
-    display: flex;
-    width: 98%;
-    justify-content: space-between;
-    margin-bottom: 1rem;
-  }
+        .icon-recursa {
+          width: 2rem;
+        }
+      }
 
-  &--content-contact--line-one input:first-child {
-    width: 55%;
-  }
+      .phone-number-array__checkbox {
+        margin-top: 0.5rem;
+        display: flex;
+        gap: 0.5rem;
+        font-size: 0.8rem;
+        align-items: center;
+        color: $gray-700;
+        margin-left: 0.2rem;
 
-  &--content-contact--line-one input {
-    border-radius: 4px;
-    border: 1px solid #cccccc;
-    width: 39%;
-    padding: 0.8rem;
-  }
-
-  &--content-contact--line-one img {
-    width: 25px;
-    position: relative;
-  }
-
-  &--content-address--line-one {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 1rem;
-  }
-
-  &--content-address--line-one input:first-child {
-    width: 26%;
-  }
-
-  &--content-address--line-one input:nth-child(2n) {
-    border-radius: 4px;
-    border: 1px solid #cccccc;
-    width: 45%;
-    padding: 0.8rem;
-  }
-
-  &--content-address--line-one input {
-    border-radius: 4px;
-    border: 1px solid #cccccc;
-    width: 25%;
-    padding: 0.8rem;
-  }
-
-  &--content-address--line-two {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 1rem;
-  }
-
-  &--content-address--line-two input:first-child {
-    width: 17%;
-  }
-
-  &--content-address--line-two input {
-    border-radius: 4px;
-    border: 1px solid #cccccc;
-    width: 60%;
-    padding: 0.8rem;
-  }
-
-  &--content-address--line-two select {
-    border-radius: 4px;
-    border: 1px solid #cccccc;
-    width: 20%;
-    padding: 0.8rem;
-    background: url(../../../../../assets/images/icons/arrow-bottom.svg);
-    -webkit-appearance: none;
-    color: $gray-700;
-    font-size: 1rem;
-    background-repeat: no-repeat;
-    background-position: 95% 50%;
-  }
-
-  &--content-corporate--line-one {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 1rem;
-  }
-
-  &--content-corporate--line-one input:first-child {
-    width: 60%;
-  }
-
-  &--content-corporate--line-one input {
-    border-radius: 4px;
-    border: 1px solid #cccccc;
-    width: 38%;
-    padding: 0.8rem;
-  }
-
-  &--content-corporate--line-two {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 1rem;
-  }
-
-  &--content-corporate--line-two input {
-    border-radius: 4px;
-    border: 1px solid #cccccc;
-    width: 49%;
-    padding: 0.8rem;
+        input {
+          width: 20px !important;
+        }
+      }
+    }
   }
 }
 
