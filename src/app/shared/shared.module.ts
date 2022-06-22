@@ -7,6 +7,7 @@ import { IConfig, NgxMaskModule } from 'ngx-mask'
 import { AnalyticCardComponent } from './../manager/home/components/analytic-card/analytic-card.component'
 import { ButtonComponent } from './components/button/button.component'
 import { ExpiresTokenWarningComponent } from './components/expires-token-warning/expires-token-warning.component'
+import { FormFieldComponent } from './components/form-field/form-field.component'
 import { InformationCardComponent } from './components/information-card/information-card.component'
 import { InputSearchComponent } from './components/input-search/input-search.component'
 import { NotAllowedComponent } from './components/not-allowed/not-allowed.component'
@@ -40,6 +41,7 @@ const components = [
   ExpiresTokenWarningComponent,
   ReplaceUnderlineToSpacePipe,
   NotAllowedComponent,
+  FormFieldComponent,
 ]
 
 @NgModule({
