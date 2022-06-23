@@ -11,7 +11,6 @@ import { UserSemasService } from '../../services/user-semas.service'
   styleUrls: ['./reset-account-password.component.scss'],
 })
 export class ResetAccountPasswordComponent implements OnInit {
-  @Input() currentUser!: any
   userInformation = this.loginService.authenticatedUser.value
   viewCurrentPassword: boolean = false
   viewNewPassword: boolean = false
@@ -29,7 +28,7 @@ export class ResetAccountPasswordComponent implements OnInit {
     this.changePasswordForm = this.createForm()
   }
 
-  //Metodo apenas para usuarios admins
+  //Metodo apenas para usuarios da gerenciadores
   changePassword() {
     this.userSemasService
       .update(
@@ -81,5 +80,3 @@ export class ResetAccountPasswordComponent implements OnInit {
     })
   }
 }
-
-//Validação do form e lembrar de aplicar permssions de acordo com o usuario...
