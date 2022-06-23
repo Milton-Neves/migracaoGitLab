@@ -51,6 +51,12 @@ export const MODULES: SidebarModule[] = [
     title: 'Usuários',
     canActive: permissions.usersPermissions,
   },
+  {
+    link: '/gerenciador/modulos',
+    iconPath: '../../../../assets/images/icons/sidebar/icone-modulos.svg',
+    title: 'Módulos',
+    canActive: permissions.modulesPermissions,
+  },
 ]
 
 function getModules() {}

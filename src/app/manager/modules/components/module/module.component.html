@@ -1,0 +1,13 @@
+<div class="module" [ngClass]="{ 'module--deactive': !module.status }">
+  <div class="module__tag">
+    <span>{{ module.status ? 'ativado' : 'desativado' }}</span>
+  </div>
+
+  <div class="module__content">
+    <span>{{ module.title }}</span>
+    <label [for]="module.id" class="module__switch">
+      <input type="checkbox" [id]="module.id" (change)="onChange($event)" />
+      <span class="module__slider module__slider--round"></span>
+    </label>
+  </div>
+</div>
