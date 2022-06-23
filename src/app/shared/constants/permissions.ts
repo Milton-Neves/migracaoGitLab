@@ -17,5 +17,5 @@ export const permissions: PermissionsProps = {
   forwardingPermissions: [roles.superAdmin, roles.adminSemas],
   workfieldPermissions: [roles.superAdmin, roles.adminSemas],
   reportPermissions: [roles.superAdmin, roles.adminSemas],
-  usersPermissions: [roles.superAdmin, roles.adminSemas],
+  usersPermissions: [roles.superAdmin, roles.adminSemas, roles.employeeSemas],
 }
