@@ -18,7 +18,7 @@ export class ActiveCompanyListComponent implements OnInit {
 
   openModal(id: number): void {
     this.modal
-      .open(CompanyViewComponent, { id, isAcceptCompany: true })
+      .open(CompanyViewComponent, { id, isAcceptedCompany: true })
       .pipe(switchMap((modal) => modal.onClose))
       .subscribe((res) => {
         this.modalClosed.emit(true)

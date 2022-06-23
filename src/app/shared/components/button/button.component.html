@@ -3,6 +3,7 @@
   (click)="onHandleClick($event)"
   [ngStyle]="{ 'background-color': color, color: textColor }"
   [disabled]="disabled"
+  [attr.type]="type"
 >
   <ng-content></ng-content>
   {{ text }}

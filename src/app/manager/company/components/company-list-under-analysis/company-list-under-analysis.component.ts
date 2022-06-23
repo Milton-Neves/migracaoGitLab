@@ -20,7 +20,7 @@ export class CompanyListUnderAnalysisComponent implements OnInit {
 
   openModal(id: number): void {
     this.modal
-      .open(CompanyViewComponent, { id, isAcceptCompany: true })
+      .open(CompanyViewComponent, { id })
       .pipe(switchMap((modal) => modal.onClose))
       .subscribe((res) => {
         this.modalClosed.emit(true)
