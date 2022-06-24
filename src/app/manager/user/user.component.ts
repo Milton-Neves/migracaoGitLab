@@ -52,9 +52,9 @@ export class UserComponent implements OnInit {
       this.placeholderActiveSection =
         'Buscar por nome, matrícula, e-mail, CPF ou CNPJ'
     } else if (this.activeTab == this.sectionTitle[1]) {
-      this.placeholderActiveSection = 'Buscar por nome ou CNPJ'
+      this.placeholderActiveSection = 'Pesquise por nome ou CNPJ'
     } else {
-      this.placeholderActiveSection = 'Buscar por nome ou CPF'
+      this.placeholderActiveSection = 'Pesquise por nome ou CPF'
     }
   }
 
