@@ -10,6 +10,9 @@ import { take } from 'rxjs/operators'
   providedIn: 'root',
 })
 export class JobService extends BaseResourceService<Job> {
+  readById(id: string | null) {
+    throw new Error('Method not implemented.')
+  }
   constructor(http: HttpClient) {
     super(http, 'job')
   }

@@ -8,13 +8,22 @@
       <h2>Dados do Cargo</h2>
 
       <div class="job__edit--content-data--line">
-        <input type="text" placeholder="Nome Fantasia" />
-
+        <input
+          type="text"
+          placeholder="Nome Fantasia"
+          [value]="infoJob?.job.name"
+        />
         <select>
+          <option *ngFor="let jbw of jobWorkfieldEdit" [value]="">
+            {{ jbw.workfieldName }}
+          </option>
+        </select>
+
+        <!-- <select>
           <option value="">Área de Atuação</option>
           <option value="1">Opção 1</option>
           <option value="2">Opção 2</option>
-        </select>
+        </select> -->
       </div>
 
       <div class="buttons-style">
