@@ -56,18 +56,18 @@
   }
 
   &__content {
-    display: grid;
+    display: flex;
+    align-items: center;
     grid-area: content;
     gap: 1rem;
-    grid-template-columns: repeat(auto-fill, minMax(300px, 1fr));
+    //grid-template-columns: repeat(auto-fill, minMax(300px, 1fr));
   }
-  #not-found {
-    display: flex;
-    justify-content: center;
-    margin-top: 2rem;
-    font-size: 1.2rem;
-    color: $gray-700;
-  }
+}
+#not-found {
+  display: flex;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: $gray-700;
 }
 .footer {
   margin-top: 1.5rem;
