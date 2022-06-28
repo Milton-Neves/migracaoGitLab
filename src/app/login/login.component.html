@@ -17,18 +17,29 @@
     <form [formGroup]="form" class="login__inputs">
       <input
         formControlName="login"
-        type="text"
+        type=" showPasswordd ? 'text' : 'password' "
         placeholder="Login"
         name="login"
         id="login"
       />
-      <input
-        formControlName="password"
-        type="password"
-        placeholder="Senha"
-        name="password"
-        id="password"
-      />
+
+      <div class="password">
+        <input
+          [type]="showPassword ? 'text' : 'password'"
+          placeholder="Senha"
+          formControlName="password"
+        />
+        <button type="button" (click)="showHidePassword()">
+          <img
+            [attr.src]="
+              !showPassword
+                ? '../../../../../assets/images/icons/eye-pass.svg'
+                : '../../../../../assets/images/icons/eye-stop-pass.svg'
+            "
+            alt="Olho"
+          />
+        </button>
+      </div>
 
       <button [disabled]="form.invalid" type="button" (click)="onSubmit()">
         {{ loginRequestIsLoading ? 'Carregando...' : 'Entrar' }}

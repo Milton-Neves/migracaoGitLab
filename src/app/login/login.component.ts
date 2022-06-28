@@ -17,6 +17,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   loginSubscription: Subscription = new Subscription()
   loginRequestIsLoading: boolean = false
   form!: FormGroup
+  showPassword: boolean = false
+  showPasswordd: boolean = false
 
   constructor(
     private loginService: LoginService,
@@ -65,5 +67,13 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.loginSubscription.unsubscribe()
+  }
+
+  showHidePasswordd() {
+    this.showPasswordd = !this.showPasswordd
+  }
+
+  showHidePassword() {
+    this.showPassword = !this.showPassword
   }
 }
