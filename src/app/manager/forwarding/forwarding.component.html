@@ -55,10 +55,14 @@
     >
     </app-forwarding-card>
   </section>
+</main>
+
+<span>
   <p id="not-found" *ngIf="messageNotFound">
     Nenhum encaminhamento foi encontrado.
   </p>
-</main>
+</span>
+
 <footer class="footer">
   <app-pagination-number
     [visibleItems]="visibleItems"
