@@ -12,7 +12,7 @@ export interface Company {
   email: string
   cnpj: string
   companyName: string
-  amountEmployees: number
+  amountEmployees: string
   valid: boolean
   workfield: Workfield
   address: Address

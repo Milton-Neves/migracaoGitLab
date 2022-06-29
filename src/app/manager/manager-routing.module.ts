@@ -90,6 +90,15 @@ const routes: Routes = [
         },
       },
       {
+        path: 'modulos',
+        loadChildren: () =>
+          import('./modules/modules.module').then((m) => m.ModulesModule),
+        canActivate: [PermissionsGuard],
+        data: {
+          rolesPermission: permissions.usersPermissions,
+        },
+      },
+      {
         path: 'funcionalidade-desativada',
         component: NotAllowedComponent,
       },

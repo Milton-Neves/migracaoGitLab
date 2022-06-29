@@ -1,0 +1,14 @@
+<main class="modules">
+  <header class="modules__header">
+    <app-page-title [title]="'Módulos'"></app-page-title>
+  </header>
+
+  <section class="modules__content">
+    <ng-container *ngFor="let module of modules">
+      <app-module
+        [module]="module"
+        (onChangeEvent)="onChange($event)"
+      ></app-module>
+    </ng-container>
+  </section>
+</main>

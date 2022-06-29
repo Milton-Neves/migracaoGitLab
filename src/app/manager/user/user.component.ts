@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core'
 
-import { ToastrService } from 'ngx-toastr'
 import { Observable } from 'rxjs/internal/Observable'
 import { NgxModalService } from 'lib/ngx-modal/src/lib/ngx-modal.service'
 
 import { FeatureFlagService } from '@shared/services/feature-flag.service'
-import { PaginationService } from '@shared/services/pagination.service'
 import { UserModalComponent } from './components/user-modal/user-modal.component'
 import { CitizenModalComponent } from './components/citizen-modal/citizen-modal.component'
+import { LoginService } from 'app/login/services/login.service'
 
 @Component({
   selector: 'app-user',
@@ -16,7 +15,7 @@ import { CitizenModalComponent } from './components/citizen-modal/citizen-modal.
 })
 export class UserComponent implements OnInit {
   sectionTitle = ['SEMAS', 'EMPRESAS', 'CIDADÃOS']
-
+  role: string | null = null
   activeTab?: string
   currentPage!: number
   totalCountLegalUsers: number = 0
@@ -31,13 +30,12 @@ export class UserComponent implements OnInit {
   constructor(
     private modalService: NgxModalService,
     private featureFlagService: FeatureFlagService,
-    private toastr: ToastrService,
-
-    private paginationService: PaginationService
+    private loginService: LoginService
   ) {}
 
   ngOnInit(): void {
     this.activeTab = this.sectionTitle[0]
+    this.role = this.loginService.getRole()
   }
 
   ngAfterContentChecked(): void {
@@ -54,9 +52,9 @@ export class UserComponent implements OnInit {
       this.placeholderActiveSection =
         'Buscar por nome, matrícula, e-mail, CPF ou CNPJ'
     } else if (this.activeTab == this.sectionTitle[1]) {
-      this.placeholderActiveSection = 'Buscar por nome ou CNPJ'
+      this.placeholderActiveSection = 'Pesquise por nome ou CNPJ'
     } else {
-      this.placeholderActiveSection = 'Buscar por nome ou CPF'
+      this.placeholderActiveSection = 'Pesquise por nome ou CPF'
     }
   }
 

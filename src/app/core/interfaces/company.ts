@@ -3,5 +3,5 @@ export interface Company {
   cnpj?: string
   companyName?: string
   amountEmployees?: string
-  valid?: string
+  valid?: boolean
 }

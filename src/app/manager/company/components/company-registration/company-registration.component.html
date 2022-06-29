@@ -1,101 +1,361 @@
-<main class="home">
-  <header class="home__header">
+<main class="company-registration">
+  <header class="company-registration__header">
     <app-page-title [title]="'Cadastrar Empresas'"></app-page-title>
   </header>
-  <section class="register__company">
-    <div class="register__company--content">
-      <div class="register__company--content-data">
+  <section class="company-registration__form">
+    <form [formGroup]="form">
+      <div class="company-registration__form-container">
         <h2>Dados da Empresa</h2>
 
-        <div class="register__company--content-data--line-one">
-          <input type="text" placeholder="Nome Fantasia" />
-          <input type="text" placeholder="CNPJ" />
+        <div class="grid line-1">
+          <div class="company-registration__input-group">
+            <app-form-field [id]="'name'">
+              <input
+                [ngClass]="{ '--invalid': fieldIsInvalid('name') }"
+                formControlName="name"
+                type="text"
+                placeholder="Nome Fantasia *"
+              />
+            </app-form-field>
+          </div>
+
+          <div class="company-registration__input-group">
+            <app-form-field [id]="'cnpj'">
+              <input
+                [ngClass]="{ '--invalid': fieldIsInvalid('cnpj') }"
+                formControlName="cnpj"
+                mask="00.000.000/0000-00"
+                type="text"
+                placeholder="CNPJ *"
+              />
+            </app-form-field>
+          </div>
         </div>
 
-        <div class="register__company--content-data--line-two">
-          <input type="text" placeholder="Razão Social" />
+        <div class="grid line-2">
+          <div class="company-registration__input-group">
+            <app-form-field [id]="'companyName'">
+              <input
+                [ngClass]="{ '--invalid': fieldIsInvalid('companyName') }"
+                formControlName="companyName"
+                type="text"
+                placeholder="Razão Social *"
+              />
+            </app-form-field>
+          </div>
+          <div class="company-registration__input-group">
+            <select
+              [ngClass]="{ '--invalid': fieldIsInvalid('amountEmployees') }"
+              formControlName="amountEmployees"
+            >
+              <option value="" selected hidden disabled>
+                Número de Funcionários *
+              </option>
+              <option
+                *ngFor="let amountEmployee of amountEmployees"
+                [value]="amountEmployee"
+              >
+                {{ amountEmployee }}
+              </option>
+            </select>
+          </div>
 
-          <select>
-            <option value="">Número de Funcionários</option>
-            <option value="1">Opção 1</option>
-            <option value="2">Opção 2</option>
-          </select>
-
-          <select>
-            <option value="">Ramo da Empresa</option>
-            <option value="1">Opção 1</option>
-            <option value="2">Opção 2</option>
-          </select>
+          <div class="company-registration__input-group">
+            <select
+              [ngClass]="{ '--invalid': fieldIsInvalid('workfield') }"
+              formControlName="workfield"
+            >
+              <option selected hidden disabled value="">
+                Ramo da Empresa *
+              </option>
+              <option
+                *ngFor="let workfield of workfields"
+                [value]="workfield | json"
+              >
+                {{ workfield.name }}
+              </option>
+            </select>
+          </div>
         </div>
       </div>
 
-      <div class="register__company--content-contact">
+      <div class="company-registration__form-container">
         <h2>Contato</h2>
 
-        <div class="register__company--content-contact--line-one">
-          <input type="text" placeholder="E-mail" />
-          <input type="text" placeholder="Telefone" />
-          <button>
-            <img
-              src="../../../../../assets/icons/icon-sum.svg"
-              alt="icon-sum"
+        <div
+          class="company-registration__input-group company-registration__input-group--phone-number-array grid line-3"
+        >
+          <app-form-field [id]="'email'">
+            <input
+              [ngClass]="{ '--invalid': fieldIsInvalid('email') }"
+              class="email-input"
+              formControlName="email"
+              type="text"
+              placeholder="E-mail *"
             />
-          </button>
+          </app-form-field>
+          <div class="phone-number-array__array">
+            <ng-container
+              formArrayName="phoneNumbers"
+              *ngFor="
+                let pn of phoneNumbers.controls;
+                let i = index;
+                let first = first
+              "
+            >
+              <div
+                class="phone-number-array__phone-number"
+                *ngIf="first"
+                [formGroupName]="i"
+              >
+                <div
+                  class="phone-number-array__input company-registration__input-group"
+                >
+                  <app-form-field [id]="'number'">
+                    <input
+                      formControlName="number"
+                      type="text"
+                      placeholder="Telefone *"
+                      [mask]="getMaskByPhoneNumberSize(getFormFieldName(i))"
+                    />
+                  </app-form-field>
+                  <button type="button" (click)="addNewPhoneNumber()">
+                    <img
+                      src="../../../../../assets/icons/icon-sum.svg"
+                      alt="icon-sum"
+                    />
+                  </button>
+                </div>
+                <div class="phone-number-array__checkbox">
+                  <label for="isNotOwner">Não é proprietário? </label>
+                  <input
+                    type="checkbox"
+                    formControlName="isNotOwner"
+                    name="isNotOwner"
+                    id="isNotOwner"
+                  />
+                </div>
+              </div>
+
+              <div
+                class="phone-number-array__phone-number"
+                *ngIf="!first"
+                [formGroupName]="i"
+              >
+                <div
+                  class="company-registration__input-group phone-number-array__input"
+                >
+                  <input
+                    formControlName="number"
+                    type="text"
+                    placeholder="Telefone"
+                    [mask]="getMaskByPhoneNumberSize(getFormFieldName(i))"
+                  />
+                  <button type="button" (click)="removePhoneNumber(i)">
+                    <img
+                      src="../../../../../assets/images/icon-recusar-vermelho.svg"
+                      alt="icon-sum"
+                      class="icon-recursa"
+                    />
+                  </button>
+                </div>
+                <div class="phone-number-array__checkbox">
+                  <label for="isNotOwner">Não é proprietário?</label>
+                  <input
+                    type="checkbox"
+                    formControlName="isNotOwner"
+                    name="isNotOwner"
+                  />
+                </div>
+              </div>
+            </ng-container>
+          </div>
         </div>
       </div>
 
-      <div class="register__company--content-address">
+      <div formGroupName="address" class="company-registration__form-container">
         <h2>Endereço</h2>
 
-        <div class="register__company--content-address--line-one">
-          <input type="text" placeholder="CEP" />
-          <input type="text" placeholder="Rua" />
-          <input type="text" placeholder="Número" />
+        <div class="grid line-4">
+          <div class="company-registration__input-group">
+            <app-form-field [id]="'zipCode'">
+              <input
+                [ngClass]="{
+                  '--invalid': fieldIsInvalid('address.zipCode')
+                }"
+                formControlName="zipCode"
+                type="text"
+                placeholder="CEP *"
+                mask="00000-000"
+                (blur)="getZipCode()"
+              />
+            </app-form-field>
+          </div>
+          <div class="company-registration__input-group">
+            <app-form-field [id]="'street'">
+              <input
+                [ngClass]="{
+                  '--invalid': fieldIsInvalid('address.street')
+                }"
+                formControlName="street"
+                type="text"
+                placeholder="Rua *"
+              />
+            </app-form-field>
+          </div>
+          <div class="company-registration__input-group">
+            <app-form-field [id]="'addressNumber'">
+              <input
+                [ngClass]="{
+                  '--invalid': fieldIsInvalid('address.number')
+                }"
+                formControlName="number"
+                type="text"
+                placeholder="Número *"
+              />
+            </app-form-field>
+          </div>
         </div>
 
-        <div class="register__company--content-address--line-two">
-          <input type="text" placeholder="Cidade" />
-
-          <select>
-            <option value="">Bairro</option>
-            <option value="1">Opção 1</option>
-            <option value="2">Opção 2</option>
-          </select>
-
-          <input type="text" placeholder="Complemento" />
+        <div class="grid line-5">
+          <div class="company-registration__input-group">
+            <app-form-field [id]="'city'">
+              <input
+                [ngClass]="{
+                  '--invalid': fieldIsInvalid('address.city')
+                }"
+                formControlName="city"
+                type="text"
+                placeholder="Cidade *"
+              />
+            </app-form-field>
+          </div>
+          <div class="company-registration__input-group">
+            <app-form-field [id]="'neighborhood'">
+              <input
+                [ngClass]="{
+                  '--invalid': fieldIsInvalid('address.neighborhood')
+                }"
+                formControlName="neighborhood"
+                type="text"
+                placeholder="Bairro *"
+              />
+            </app-form-field>
+          </div>
+          <div class="company-registration__input-group">
+            <input
+              formControlName="complement"
+              type="text"
+              placeholder="Complemento"
+            />
+          </div>
         </div>
       </div>
 
-      <div class="register__company--content-corporate">
+      <div
+        formGroupName="legalRepresentative"
+        class="company-registration__form-container"
+      >
         <h2>Representante Legal</h2>
 
-        <div class="register__company--content-corporate--line-one">
-          <input type="text" placeholder="Nome" />
-          <input type="text" placeholder="E-mail" />
+        <div class="grid line-6">
+          <div class="company-registration__input-group">
+            <app-form-field [id]="'legalRepresentative.name'">
+              <input
+                [ngClass]="{
+                  '--invalid': fieldIsInvalid('legalRepresentative.name')
+                }"
+                formControlName="name"
+                type="text"
+                placeholder="Nome *"
+              />
+            </app-form-field>
+          </div>
+          <div class="company-registration__input-group">
+            <app-form-field [id]="'companyEmail'">
+              <input
+                [ngClass]="{
+                  '--invalid': fieldIsInvalid('legalRepresentative.email')
+                }"
+                formControlName="email"
+                type="text"
+                placeholder="E-mail *"
+              />
+            </app-form-field>
+          </div>
         </div>
 
-        <div class="register__company--content-corporate--line-two">
-          <input type="text" placeholder="Telefone" />
-          <input type="text" placeholder="Celular" />
+        <div class="grid line-7">
+          <div class="company-registration__input-group">
+            <app-form-field [id]="'phoneNumber'">
+              <input
+                [ngClass]="{
+                  '--invalid': fieldIsInvalid('legalRepresentative.phoneNumber')
+                }"
+                formControlName="phoneNumber"
+                type="text"
+                placeholder="Telefone *"
+                [mask]="
+                  getMaskByPhoneNumberSize('legalRepresentative.phoneNumber')
+                "
+              />
+            </app-form-field>
+          </div>
+          <div class="company-registration__input-group">
+            <app-form-field [id]="'cellNumber'">
+              <input
+                [ngClass]="{
+                  '--invalid': fieldIsInvalid('legalRepresentative.cellNumber')
+                }"
+                formControlName="cellNumber"
+                type="text"
+                placeholder="Celular *"
+                #cellNumber
+                [mask]="
+                  getMaskByPhoneNumberSize('legalRepresentative.cellNumber')
+                "
+              />
+            </app-form-field>
+          </div>
         </div>
       </div>
 
-      <div class="buttons-style">
+      <div class="company-registration__form-container">
+        <h2>Login</h2>
+        <span>Informe um email para ser usado no login</span>
+        <div class="grid line-12">
+          <div class="company-registration__input-group">
+            <app-form-field [id]="'loginEmail'">
+              <input
+                [ngClass]="{
+                  '--invalid': fieldIsInvalid('loginEmail')
+                }"
+                formControlName="loginEmail"
+                type="text"
+                placeholder="E-mail *"
+              />
+            </app-form-field>
+          </div>
+        </div>
+      </div>
+
+      <div class="company-registration__buttons">
         <app-button
-          class="button.decline"
           [text]="'Voltar'"
           [color]="'transparent'"
           [textColor]="'#1C3152'"
+          (click)="goToCompanyListPage()"
         >
         </app-button>
 
         <app-button
-          class="button.decline"
           [text]="'Salvar'"
           [color]="'#1C3152'"
+          (click)="onSubmit()"
+          [disabled]="form.invalid"
         >
         </app-button>
       </div>
-    </div>
+    </form>
   </section>
 </main>

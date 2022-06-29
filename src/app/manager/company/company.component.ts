@@ -56,7 +56,8 @@ export class CompanyComponent implements OnInit, OnDestroy {
       .pipe(
         tap(({ data }: any) => {
           const { content, pagination } = data
-          this.companies = content
+          this.companies = content.map(this.formatCreatedAtCompanyAttribute)
+
           this.totalCompanies = pagination.totalNumberOfElements
           this.visibleItems = pagination.offset + pagination.numberOfElements
 
@@ -77,6 +78,18 @@ export class CompanyComponent implements OnInit, OnDestroy {
   changeNav(value: boolean) {
     this.isNavActive = value
     this.getCompanies()
+  }
+
+  private formatCreatedAtCompanyAttribute(company: any) {
+    const dateTime = company.createdAt.split(' ')
+    const date = dateTime[0]
+    const createdAt =
+      dateTime.length >= 2 ? date.split('/').reverse().join('-') : date
+
+    return {
+      ...company,
+      createdAt,
+    }
   }
 
   ngOnDestroy(): void {

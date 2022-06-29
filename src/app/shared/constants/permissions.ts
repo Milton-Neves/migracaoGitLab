@@ -8,6 +8,7 @@ interface PermissionsProps {
   workfieldPermissions: string[]
   reportPermissions: string[]
   usersPermissions: string[]
+  modulesPermissions: string[]
 }
 
 export const permissions: PermissionsProps = {
@@ -17,5 +18,6 @@ export const permissions: PermissionsProps = {
   forwardingPermissions: [roles.superAdmin, roles.adminSemas],
   workfieldPermissions: [roles.superAdmin, roles.adminSemas],
   reportPermissions: [roles.superAdmin, roles.adminSemas],
-  usersPermissions: [roles.superAdmin, roles.adminSemas],
+  modulesPermissions: [roles.superAdmin, roles.adminSemas],
+  usersPermissions: [roles.superAdmin, roles.adminSemas, roles.employeeSemas],
 }

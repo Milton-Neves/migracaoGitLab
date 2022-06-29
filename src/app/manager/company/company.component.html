@@ -11,7 +11,7 @@
           [class.button-isActive]="isNavActive"
           (click)="changeNav(true)"
         >
-          <b class="btn-title">Ativos</b> <br />
+          <b class="btn-title">Ativas</b> <br />
           <p class="btn-text">Lista de empresas ativas</p>
         </button>
         <button
@@ -51,6 +51,7 @@
       </app-button>
       <app-active-company-list
         [companies]="companies"
+        (modalClosed)="getCompanies()"
       ></app-active-company-list>
     </div>
 
