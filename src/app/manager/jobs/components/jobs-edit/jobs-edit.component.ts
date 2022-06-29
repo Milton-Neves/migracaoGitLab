@@ -1,18 +1,11 @@
 import { Component, OnInit } from '@angular/core'
 import { FormGroup } from '@angular/forms'
-import {
-  ActivatedRoute,
-  CanActivate,
-  Router,
-  RouterState,
-} from '@angular/router'
-import { Job } from '@core/interfaces/resume/job'
+import { Router } from '@angular/router'
 import { Workfield } from '@core/interfaces/resume/workfield'
 import { WorkfieldService } from '@shared/services/workfield.service'
-import { map } from 'lodash-es'
-import { Subscription } from 'rxjs'
+import { Observable } from 'rxjs'
+import { map } from 'rxjs/operators'
 import { JobWorkfield } from '../../entities/job-workfield'
-import { JobService } from '../../services/job.service'
 
 @Component({
   selector: 'app-jobs-edit',
@@ -22,16 +15,30 @@ import { JobService } from '../../services/job.service'
 export class JobsEditComponent implements OnInit {
   infoJob = this.router.getCurrentNavigation()?.extras.state
   jobWorkfieldEdit: JobWorkfield[] = []
+  jobFields!: Observable<Workfield[]>
+  jobEdit!: Workfield
 
   constructor(
     private router: Router,
     private workfieldsService: WorkfieldService
   ) {
-    // console.log(this.infoJob)
     !this.infoJob ? this.back() : ''
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.jobFields = this.workfieldsService
+      .findAll()
+      .pipe(map((res: any) => res.data))
+    // this.jobEdit = this.workfieldsService.update(this.jobEdit)
+  }
+
+  updateJobsEdit() {
+    this.workfieldsService.update(this.jobEdit).subscribe((res) => {
+      console.log(res)
+      // this.workfieldsService.showMessage('kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk')
+      this.router.navigate(['/gerenciador/cargos'])
+    })
+  }
 
   back() {
     this.router.navigate(['/gerenciador/cargos'])

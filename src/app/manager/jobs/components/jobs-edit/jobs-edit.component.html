@@ -14,16 +14,10 @@
           [value]="infoJob?.job.name"
         />
         <select>
-          <option *ngFor="let jbw of jobWorkfieldEdit" [value]="">
-            {{ jbw.workfieldName }}
+          <option *ngFor="let jbw of jobFields | async">
+            {{ jbw.name }}
           </option>
         </select>
-
-        <!-- <select>
-          <option value="">Área de Atuação</option>
-          <option value="1">Opção 1</option>
-          <option value="2">Opção 2</option>
-        </select> -->
       </div>
 
       <div class="buttons-style">
@@ -40,6 +34,7 @@
           class="button.decline"
           [text]="'Editar'"
           [color]="'#1C3152'"
+          (click)="updateJobsEdit()"
         >
         </app-button>
       </div>
