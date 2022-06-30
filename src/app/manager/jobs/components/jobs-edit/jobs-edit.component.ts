@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core'
-import { FormGroup } from '@angular/forms'
 import { Router } from '@angular/router'
+import { Job } from '@core/interfaces/resume/job'
 import { Workfield } from '@core/interfaces/resume/workfield'
 import { WorkfieldService } from '@shared/services/workfield.service'
 import { Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
 import { JobWorkfield } from '../../entities/job-workfield'
+import { JobService } from '../../services/job.service'
 
 @Component({
   selector: 'app-jobs-edit',
@@ -16,11 +17,11 @@ export class JobsEditComponent implements OnInit {
   infoJob = this.router.getCurrentNavigation()?.extras.state
   jobWorkfieldEdit: JobWorkfield[] = []
   jobFields!: Observable<Workfield[]>
-  jobEdit!: Workfield
 
   constructor(
     private router: Router,
-    private workfieldsService: WorkfieldService
+    private workfieldsService: WorkfieldService,
+    private jobService: JobService
   ) {
     !this.infoJob ? this.back() : ''
   }
@@ -29,13 +30,13 @@ export class JobsEditComponent implements OnInit {
     this.jobFields = this.workfieldsService
       .findAll()
       .pipe(map((res: any) => res.data))
-    // this.jobEdit = this.workfieldsService.update(this.jobEdit)
   }
 
   updateJobsEdit() {
-    this.workfieldsService.update(this.jobEdit).subscribe((res) => {
+    const job = this.infoJob?.job as Job
+    this.jobService.update(job, `${job.id}`).subscribe((res) => {
       console.log(res)
-      // this.workfieldsService.showMessage('kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk')
+      // this.jobService.showMessage('kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk')
       this.router.navigate(['/gerenciador/cargos'])
     })
   }
