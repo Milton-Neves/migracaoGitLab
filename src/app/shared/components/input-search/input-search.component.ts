@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core'
 import { FormBuilder, FormGroup } from '@angular/forms'
 import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators'
 
@@ -32,5 +39,11 @@ export class InputSearchComponent implements OnInit {
 
   ngOnInit(): void {
     this.singleFormChange()
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.placeholder) {
+      this.singleSearchForm.controls.search.setValue('')
+    }
   }
 }

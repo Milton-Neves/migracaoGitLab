@@ -21,6 +21,7 @@ export class UserComponent implements OnInit {
   totalCountLegalUsers: number = 0
   placeholderActiveSection!: string
   pagination$!: Observable<any>
+  search: string = ''
 
   featureFlag = {
     legalUser: this.featureFlagService.featureFlagConfig!['legalUser'],
