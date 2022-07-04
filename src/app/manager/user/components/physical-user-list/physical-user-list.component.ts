@@ -4,7 +4,8 @@ import { PaginationService } from '@shared/services/pagination.service'
 import { User } from 'app/login/interfaces/user'
 import { ToastrService } from 'ngx-toastr'
 import { Observable, of } from 'rxjs'
-import { catchError, map, tap } from 'rxjs/operators'
+import { map } from 'rxjs/operators'
+
 import { PhysicalUserService } from '../../services/physical-user.service'
 
 interface IPhysicalPersonProps extends PhysicalPersonProps {
@@ -59,7 +60,7 @@ export class PhysicalUserListComponent implements OnInit {
     this.physicalUserService
       .resetPassword({ id, email })
       .subscribe((res: any) => {
-        this.toastr.success(res.message)
+        this.toastr.success(res.message, 'Sucesso!')
       })
   }
 
