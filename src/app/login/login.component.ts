@@ -69,10 +69,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.loginSubscription.unsubscribe()
   }
 
-  showHidePasswordd() {
-    this.showPasswordd = !this.showPasswordd
-  }
-
   showHidePassword() {
     this.showPassword = !this.showPassword
   }
