@@ -35,7 +35,7 @@ export class PhysicalUserListComponent implements OnInit {
     this.physicalUserService
       .findAll('', {
         search: this.search,
-        page: page - 1,
+        page: page == 0 ? page : page - 1,
         size: this.paginationService.verifyPageSize(),
       })
       .pipe(map((res: any) => res.data))
