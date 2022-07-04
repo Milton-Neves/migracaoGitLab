@@ -18,14 +18,20 @@
   </ng-container>
 </app-table>
 
-<ng-container *ngIf="search == ''">
+<ng-container *ngIf="search.length <= 3">
   <h2 class="not-search">Faça uma pesquisa para a aparição de dados</h2>
+</ng-container>
+
+<ng-container
+  *ngIf="!loading && physicalUsers.length == 0 && search.length > 3"
+>
+  <h2 class="not-search">Nenhum usuário foi encontrado.</h2>
 </ng-container>
 
 <div class="table__page">
   <div class="table__pagination">
     <app-pagination-number
-      [visibleItems]="physicalUsers.length"
+      [visibleItems]="physicalUsers!.length"
       [totalItems]="totalCountLegalUsers"
     ></app-pagination-number>
 

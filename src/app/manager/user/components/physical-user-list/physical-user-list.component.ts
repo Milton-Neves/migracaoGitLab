@@ -4,12 +4,8 @@ import { PaginationService } from '@shared/services/pagination.service'
 import { User } from 'app/login/interfaces/user'
 import { ToastrService } from 'ngx-toastr'
 import { Observable, of } from 'rxjs'
-import { catchError, map, tap } from 'rxjs/operators'
+import { catchError, finalize, map, tap } from 'rxjs/operators'
 import { PhysicalUserService } from '../../services/physical-user.service'
-
-interface IPhysicalPersonProps extends PhysicalPersonProps {
-  physicalUser: User
-}
 
 @Component({
   selector: 'app-physical-user-list',
@@ -22,6 +18,7 @@ export class PhysicalUserListComponent implements OnInit {
   tableColumns = ['Nome', 'CPF', 'Ações']
   totalCountLegalUsers: number = 0
   pagination$?: Observable<any>
+  loading = false
 
   constructor(
     private physicalUserService: PhysicalUserService,
@@ -32,18 +29,21 @@ export class PhysicalUserListComponent implements OnInit {
   ngOnInit(): void {}
 
   getPhysicalUsers(page: number = 0) {
+    this.loading = true
+    this.physicalUsers = []
     this.physicalUserService
       .findAll('', {
         search: this.search,
         page: page == 0 ? page : page - 1,
         size: this.paginationService.verifyPageSize(),
       })
-      .pipe(map((res: any) => res.data))
+      .pipe(
+        map((res: any) => res.data),
+        finalize(() => (this.loading = false))
+      )
       .subscribe((res) => {
         this.physicalUsers = res.content
         this.totalCountLegalUsers = res.pagination.totalNumberOfElements
-        console.log(res.pagination)
-
         this.pagination$ = of(
           this.paginationService.convertServerPaginationInClientPagination(
             res.pagination
@@ -64,7 +64,7 @@ export class PhysicalUserListComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (this.search != '') {
+    if (this.search != '' && this.search.length > 3) {
       this.getPhysicalUsers()
     } else {
       this.physicalUsers = []
