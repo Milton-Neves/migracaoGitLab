@@ -1,10 +1,8 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core'
-import { PhysicalPersonProps } from '@core/interfaces/physical-person/physical-person.model'
 import { PaginationService } from '@shared/services/pagination.service'
-import { User } from 'app/login/interfaces/user'
 import { ToastrService } from 'ngx-toastr'
 import { Observable, of } from 'rxjs'
-import { catchError, finalize, map, tap } from 'rxjs/operators'
+import { finalize, map } from 'rxjs/operators'
 import { PhysicalUserService } from '../../services/physical-user.service'
 
 @Component({
@@ -59,7 +57,7 @@ export class PhysicalUserListComponent implements OnInit {
     this.physicalUserService
       .resetPassword({ id, email })
       .subscribe((res: any) => {
-        this.toastr.success(res.message)
+        this.toastr.success(res.message, 'Sucesso!')
       })
   }
 
