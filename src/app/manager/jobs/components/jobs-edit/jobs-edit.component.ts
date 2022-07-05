@@ -36,15 +36,12 @@ export class JobsEditComponent implements OnInit {
   updateJobsEdit() {
     const job = this.infoJob?.job as Job
     this.jobService.update(job, `${job.id}`).subscribe((res) => {
-      console.log(res)
-
       this.router.navigate(['/gerenciador/cargos'])
     })
   }
 
   onFocus(): void {
-    if (this.infoJob?.job.name == '') this.show = true
-    else this.show = false
+    this.show = this.infoJob?.job.name === ''
   }
 
   back() {
