@@ -4,6 +4,7 @@ import { LegalUserService } from 'app/manager/company/services/legal-user.servic
 import { NgxModalService } from 'lib/ngx-modal/src/public-api'
 import { Observable, of } from 'rxjs'
 import { map, tap } from 'rxjs/operators'
+import { UserModalComponent } from '../user-modal/user-modal.component'
 
 @Component({
   selector: 'app-legal-user-list',
@@ -15,7 +16,7 @@ export class LegalUserListComponent implements OnInit {
   pagination$!: Observable<any>
   currentPage!: number
   totalCountLegalUsers: number = 0
-  legalUsers = []
+  legalUsers: any[] = []
 
   constructor(
     private modalService: NgxModalService,
@@ -49,6 +50,10 @@ export class LegalUserListComponent implements OnInit {
 
     this.legalUsers = results
     this.pagination$ = of(pagination)
+  }
+
+  openModal() {
+    this.modalService.open(UserModalComponent).subscribe()
   }
 
   getNumberPage() {

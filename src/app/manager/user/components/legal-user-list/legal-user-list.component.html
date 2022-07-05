@@ -1,10 +1,10 @@
 <app-table [setColumns]="tableColumns">
   <ng-container part="list">
     <tr class="table__text-description" *ngFor="let legalUser of legalUsers">
-      <td>Lorem ipsum dolor sit amet.</td>
-      <td>000.000.000-00</td>
+      <td>{{ legalUser.legalPerson.name }}</td>
+      <td>{{ legalUser.legalPerson.cnpj | mask: '00.000.000/0000-00' }}</td>
       <td class="table__button">
-        <button>Resetar Senha</button>
+        <button (click)="openModal()">Resetar Senha</button>
       </td>
     </tr>
   </ng-container>

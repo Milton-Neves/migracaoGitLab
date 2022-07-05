@@ -26,3 +26,17 @@
     margin-bottom: 1rem;
   }
 }
+
+:host ::ng-deep {
+  app-information-card {
+    .card {
+      max-width: none;
+      cursor: default;
+      box-shadow: none;
+
+      &:hover {
+        border: none;
+      }
+    }
+  }
+}
