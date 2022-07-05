@@ -14,7 +14,14 @@
           type="text"
           placeholder="Nome Fantasia"
           [value]="infoJob?.job.name"
+          (focus)="onFocus()"
+          (focusout)="onFocus()"
+          [ngClass]="{ error: show }"
         />
+
+        <div id="showError" *ngIf="show">
+          <span> Campo obrigatório </span>
+        </div>
 
         <select>
           <option *ngFor="let jbw of jobFields | async">

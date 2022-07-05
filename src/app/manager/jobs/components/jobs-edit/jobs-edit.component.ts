@@ -17,6 +17,7 @@ export class JobsEditComponent implements OnInit {
   infoJob = this.router.getCurrentNavigation()?.extras.state
   jobWorkfieldEdit: JobWorkfield[] = []
   jobFields!: Observable<Workfield[]>
+  show: boolean = false
 
   constructor(
     private router: Router,
@@ -36,9 +37,14 @@ export class JobsEditComponent implements OnInit {
     const job = this.infoJob?.job as Job
     this.jobService.update(job, `${job.id}`).subscribe((res) => {
       console.log(res)
-      // this.jobService.showMessage('kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk')
+
       this.router.navigate(['/gerenciador/cargos'])
     })
+  }
+
+  onFocus(): void {
+    if (this.infoJob?.job.name == '') this.show = true
+    else this.show = false
   }
 
   back() {

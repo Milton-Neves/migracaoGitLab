@@ -37,6 +37,19 @@
     background-repeat: no-repeat;
     background-position: 95% 50%;
   }
+
+  #showError {
+    font-size: 12px;
+    margin-top: 2.5rem;
+    margin-left: 0.6rem;
+    text-align: left;
+    color: $red-500;
+    position: absolute;
+  }
+}
+
+.error {
+  border: 1px solid red !important;
 }
 
 .buttons-style {
