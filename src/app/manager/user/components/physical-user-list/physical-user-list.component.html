@@ -1,25 +1,43 @@
 <app-table [setColumns]="tableColumns">
   <ng-container part="list">
-    <tr class="table__text-description">
-      <td>Lorem ipsum dolor sit amet.</td>
-      <td>000.000.000-00</td>
+    <tr
+      class="table__text-description"
+      *ngFor="let physicalUser of physicalUsers"
+    >
+      <td>{{ physicalUser.name || 'Parnamirinense' }}</td>
+      <td>
+        {{
+          physicalUser.login || physicalUser.physicalUser.login
+            | mask: '000.000.000-00'
+        }}
+      </td>
       <td class="table__button">
-        <button>Resetar Senha</button>
+        <button (click)="resetPassword(physicalUser)">Resetar Senha</button>
       </td>
     </tr>
   </ng-container>
 </app-table>
 
+<ng-container *ngIf="search.length <= 3">
+  <h2 class="not-search">Faça uma pesquisa para a aparição de dados</h2>
+</ng-container>
+
+<ng-container
+  *ngIf="!loading && physicalUsers.length == 0 && search.length > 3"
+>
+  <h2 class="not-search">Nenhum usuário foi encontrado.</h2>
+</ng-container>
+
 <div class="table__page">
   <div class="table__pagination">
-    <!-- <app-pagination-number
-      [visibleItems]="legalUsers.length"
+    <app-pagination-number
+      [visibleItems]="physicalUsers!.length"
       [totalItems]="totalCountLegalUsers"
     ></app-pagination-number>
 
     <app-pagination
       [pagination$]="pagination$"
-      (currentPageEmit)="getLegalUsers($event)"
-    ></app-pagination> -->
+      (currentPageEmit)="getPhysicalUsers($event)"
+    ></app-pagination>
   </div>
 </div>
