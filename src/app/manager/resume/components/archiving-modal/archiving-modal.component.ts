@@ -70,14 +70,6 @@ export class ArchivingModalComponent implements OnInit {
           company.toLowerCase().match(this.searchCompanyName.toLowerCase())
         )
       ),
-      tap((_) =>
-        _.length <= 0
-          ? this.toastrService.info(
-              'Não há empresas disponíveis',
-              'Ação indisponível'
-            )
-          : null
-      ),
       mergeMap((listCompanies) =>
         iif(
           () => listCompanies.length <= 0,
@@ -109,6 +101,18 @@ export class ArchivingModalComponent implements OnInit {
     setTimeout(() => {
       this.focus = !this.focus
       this.autoComplete()
+      this.companies$
+        .pipe(
+          tap((_) =>
+            _[0] == 'Nenhuma empresa encontrada'
+              ? this.toastrService.info(
+                  'Não há empresas disponíveis',
+                  'Ação indisponível'
+                )
+              : null
+          )
+        )
+        .subscribe()
     }, 100)
   }
 }

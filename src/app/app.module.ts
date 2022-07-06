@@ -19,7 +19,7 @@ const featureFactory = (featureFlagsService: FeatureFlagService) => () =>
     AppRoutingModule,
     SharedModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({ preventDuplicates: true }),
   ],
   providers: [
     {
