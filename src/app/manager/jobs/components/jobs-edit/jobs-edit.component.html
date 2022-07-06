@@ -9,23 +9,26 @@
 
       <div class="job__edit--content-data--line">
         <input
-          [(ngModel)]="infoJob?.job.name"
+          [(ngModel)]="jobToEdited?.job.name"
           required
           type="text"
           placeholder="Nome Fantasia"
-          [value]="infoJob?.job.name"
+          [value]="jobToEdited?.job.name"
           (focus)="onFocus()"
           (focusout)="onFocus()"
-          [ngClass]="{ error: alert }"
+          [ngClass]="{ error: jobNameInputIsValid }"
         />
 
-        <div id="showError" *ngIf="alert">
+        <div id="showError" *ngIf="jobNameInputIsValid">
           <span> Campo obrigatório </span>
         </div>
 
-        <select [(ngModel)]="selected">
-          <option *ngFor="let jbw of jobFields | async" [value]="jbw.id">
-            {{ jbw.name }}
+        <select [(ngModel)]="selectedWorkField">
+          <option
+            *ngFor="let workfield of workfields | async"
+            [value]="workfield.id"
+          >
+            {{ workfield.name }}
           </option>
         </select>
       </div>
@@ -44,8 +47,8 @@
           class="button.decline"
           [text]="'Editar'"
           [color]="'#1C3152'"
-          [disabled]="!infoJob?.job.name"
-          (click)="updateJobsEdit()"
+          [disabled]="!jobToEdited?.job.name"
+          (click)="updateJob()"
         >
         </app-button>
       </div>

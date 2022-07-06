@@ -13,7 +13,7 @@ import { JobWorkfield } from '../../entities/job-workfield'
 })
 export class JobsListComponent implements OnInit {
   @Input() stylesInformation: any
-  tableColumns = ['Nome', 'Área de Atuação', 'Situação', 'Ações']
+  tableColumns = ['Nome', 'Área de Atuação', 'Ações']
   jobWorkfieldList: JobWorkfield[] = []
   pagination$?: Observable<any>
   criteriaObject: any = {
