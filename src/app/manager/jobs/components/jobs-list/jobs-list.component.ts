@@ -13,7 +13,7 @@ import { JobWorkfield } from '../../entities/job-workfield'
 })
 export class JobsListComponent implements OnInit {
   @Input() stylesInformation: any
-  tableColumns = ['Nome', 'Área de Atuação', 'Situação', 'Ações']
+  tableColumns = ['Nome', 'Área de Atuação', 'Ações']
   jobWorkfieldList: JobWorkfield[] = []
   pagination$?: Observable<any>
   criteriaObject: any = {
@@ -66,7 +66,7 @@ export class JobsListComponent implements OnInit {
     this.router.navigate(['/gerenciador/cargos/cadastrar'])
   }
 
-  navigaToEditPage(jobsId?: number) {
-    this.router.navigate(['/gerenciador/cargos', 'editar', '1'])
+  navigaToEditPage(job: any) {
+    this.router.navigate(['/gerenciador/cargos', 'editar'], { state: job })
   }
 }
