@@ -16,15 +16,15 @@
           [value]="infoJob?.job.name"
           (focus)="onFocus()"
           (focusout)="onFocus()"
-          [ngClass]="{ error: show }"
+          [ngClass]="{ error: alert }"
         />
 
-        <div id="showError" *ngIf="show">
+        <div id="showError" *ngIf="alert">
           <span> Campo obrigatório </span>
         </div>
 
-        <select>
-          <option *ngFor="let jbw of jobFields | async">
+        <select [(ngModel)]="selected">
+          <option *ngFor="let jbw of jobFields | async" [value]="jbw.id">
             {{ jbw.name }}
           </option>
         </select>
