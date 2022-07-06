@@ -4,6 +4,7 @@ import { Resume } from '@core/interfaces/resume/resume'
 import { EnumService } from '@shared/services/enum.service'
 import { LegalUserService } from 'app/manager/company/services/legal-user.service'
 import { NgxModalService } from 'lib/ngx-modal/src/public-api'
+import { ToastrService } from 'ngx-toastr'
 import { iif, Observable, of } from 'rxjs'
 import { map, mergeMap, tap } from 'rxjs/operators'
 
@@ -17,7 +18,7 @@ import { ResumeService } from '../../services/resume.service'
 export class ArchivingModalComponent implements OnInit {
   resume!: Resume
   motivesArchiving$!: Observable<String[]>
-  companies$!: Observable<any[]>
+  companies$: Observable<any[]> = of([])
   archivingResume!: Archiving
   searchCompanyName: string = ''
   focus: boolean = false
@@ -25,7 +26,8 @@ export class ArchivingModalComponent implements OnInit {
     private modalService: NgxModalService,
     private enumService: EnumService,
     private legalUserService: LegalUserService,
-    private resumeService: ResumeService
+    private resumeService: ResumeService,
+    private toastrService: ToastrService
   ) {}
 
   closeModalArchiving() {
@@ -67,6 +69,14 @@ export class ArchivingModalComponent implements OnInit {
         res.filter((company: string) =>
           company.toLowerCase().match(this.searchCompanyName.toLowerCase())
         )
+      ),
+      tap((_) =>
+        _.length <= 0
+          ? this.toastrService.info(
+              'Não há empresas disponíveis',
+              'Ação indisponível'
+            )
+          : null
       ),
       mergeMap((listCompanies) =>
         iif(
