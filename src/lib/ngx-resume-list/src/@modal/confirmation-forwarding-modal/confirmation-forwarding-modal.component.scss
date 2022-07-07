@@ -1,0 +1,228 @@
+@import '../../../../../assets/styles/scss/variables';
+h1,
+span,
+p {
+  font-style: normal;
+  font-weight: 500;
+  line-height: 100%;
+
+  margin: 0;
+}
+
+.confirm-forwarding {
+  display: flex;
+  flex-direction: column;
+  min-width: 21rem;
+  width: 100%;
+  background-color: $white;
+  box-shadow: 1px 2px 8px -2px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+
+  #title {
+    font-size: 20px;
+    font-weight: 700;
+    color: $blue-700;
+    word-wrap: break-word;
+    width: 100%;
+    margin: 1rem 0 0 1rem;
+  }
+
+  &--identification {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1rem 1.3rem 0;
+
+    #identification {
+      font-size: 18px;
+      color: $blue-700;
+      word-wrap: break-word;
+      min-width: 135px;
+      max-width: 200px;
+      margin-right: 1rem;
+    }
+
+    #profission {
+      font-size: 13px;
+      color: $white;
+      padding: 4px 28px;
+      border-radius: 3px;
+      background-color: $blue-700;
+    }
+  }
+
+  &--resume-quantity {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    #resume-icon {
+      margin-right: 5px;
+    }
+
+    #resume-quantity-text {
+      white-space: nowrap;
+      font-size: 14px;
+      color: $blue-700;
+    }
+  }
+
+  &--informations {
+    display: flex;
+    flex-direction: row;
+
+    &-container {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-between;
+      width: 100%;
+      margin: 1rem 1.3rem 0;
+
+      input {
+        width: 100%;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 13px;
+        height: 2rem;
+        color: $blue-700;
+      }
+
+      &-content {
+        display: flex;
+        flex-direction: column;
+        &#legalPerson {
+          width: 100%;
+        }
+        &:first-child {
+          margin-bottom: 17px;
+        }
+      }
+
+      #information-title {
+        font-size: 13px;
+        color: $blue-700;
+        margin-bottom: 5px;
+      }
+
+      #text-information {
+        font-size: 12px;
+        color: $gray-700;
+        word-wrap: break-word;
+        max-width: 135px;
+      }
+
+      #text-information-situation {
+        font-size: 12px;
+        color: $green-500;
+      }
+
+      .mgb {
+        margin-bottom: 4px;
+      }
+    }
+  }
+
+  &--textarea-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 1rem 1.3rem 0;
+
+    #information-title {
+      font-size: 13px;
+      color: $blue-700;
+      margin-bottom: 5px;
+    }
+
+    #information-description {
+      font-family: Arial, Helvetica, sans-serif;
+      width: 98%;
+      height: 50px;
+      outline: none;
+    }
+  }
+
+  &--buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem 0;
+    button {
+      border: 0;
+      padding: 0.5rem 1rem;
+      margin: 0 11px;
+      border-radius: 5px;
+    }
+    #cancel-button {
+      background-color: $gray-300;
+      color: $blue-700;
+    }
+
+    #confirm-button {
+      background-color: $blue-700;
+      color: $white;
+    }
+  }
+
+  .textarea-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    .error {
+      color: $red-400;
+    }
+
+    .textareaError {
+      border: $red-400 1px solid;
+    }
+
+    span {
+      text-align: end;
+      font-size: 12px;
+      color: $blue-700;
+    }
+
+    textarea {
+      resize: none;
+      outline: none;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 13px;
+      color: $blue-700;
+      margin: 0;
+    }
+  }
+
+  @media screen and (max-width: 370px) {
+    &--identification {
+      flex-direction: column-reverse;
+      align-items: flex-start;
+    }
+  }
+}
+
+#autocomplete {
+  overflow-y: auto;
+  max-height: 20rem;
+  width: 18.5rem;
+  box-shadow: 0px 0px 15px 2px rgba(0, 0, 0, 0.3);
+  border-radius: 0px 0px 5px 5px;
+  position: absolute;
+  top: 3.1rem;
+  background: $white;
+  ul {
+    padding: 0.3rem;
+    li {
+      padding: 0.3rem;
+      cursor: pointer;
+      font-size: 12px;
+      opacity: 0.8;
+      &:hover {
+        background-color: $gray-200;
+      }
+    }
+  }
+}

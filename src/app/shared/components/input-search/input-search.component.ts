@@ -18,6 +18,8 @@ export class InputSearchComponent implements OnInit {
   @Input() styles!: any
   @Input() align!: any
   @Input() placeholder!: string
+  @Input() readonly: boolean = false
+  @Input() value: any = ''
   @Output() search = new EventEmitter<string>()
   singleSearchForm: FormGroup = this.fb.group({
     search: [''],
@@ -35,6 +37,10 @@ export class InputSearchComponent implements OnInit {
         })
       )
       .subscribe()
+  }
+
+  changeValue(value: string) {
+    this.search.emit(value)
   }
 
   ngOnInit(): void {
