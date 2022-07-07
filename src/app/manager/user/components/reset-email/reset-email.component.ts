@@ -1,7 +1,8 @@
 import { NgxModalService } from './../../../../../lib/ngx-modal/src/lib/ngx-modal.service'
-import { Component, OnInit } from '@angular/core'
+import { Component, EventEmitter, OnInit, Output } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { debounceTime } from 'rxjs/operators'
+import { LegalUserService } from 'app/manager/company/services/legal-user.service'
 
 @Component({
   selector: 'app-reset-email',
@@ -9,6 +10,7 @@ import { debounceTime } from 'rxjs/operators'
   styleUrls: ['./reset-email.component.scss'],
 })
 export class ResetEmailComponent implements OnInit {
+  @Output() formNewEmail = new EventEmitter<string>()
   isMatch: boolean = true
   changeEmailForm!: FormGroup
 
@@ -32,6 +34,11 @@ export class ResetEmailComponent implements OnInit {
       .subscribe((res) => {
         this.isMatch = res.newEmail == res.confirmEmail
       })
+  }
+
+  changeEmail() {
+    this.formNewEmail.emit(this.newEmail.value)
+    this.changeEmailForm.reset()
   }
 
   private createForm(): FormGroup {

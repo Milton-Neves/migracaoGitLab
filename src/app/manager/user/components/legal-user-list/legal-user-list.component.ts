@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core'
 import { PaginationService } from '@shared/services/pagination.service'
 import { LegalUserService } from 'app/manager/company/services/legal-user.service'
 import { NgxModalService } from 'lib/ngx-modal/src/public-api'
 import { Observable, of } from 'rxjs'
-import { map, tap } from 'rxjs/operators'
+import { finalize, map, tap } from 'rxjs/operators'
 import { UserModalComponent } from '../user-modal/user-modal.component'
 
 @Component({
@@ -12,11 +12,13 @@ import { UserModalComponent } from '../user-modal/user-modal.component'
   styleUrls: ['./legal-user-list.component.scss'],
 })
 export class LegalUserListComponent implements OnInit {
+  @Input() search!: string
   tableColumns: string[] = ['Nome', 'CNPJ', 'Ações']
   pagination$!: Observable<any>
   currentPage!: number
   totalCountLegalUsers: number = 0
   legalUsers: any[] = []
+  loading = false
 
   constructor(
     private modalService: NgxModalService,
@@ -24,21 +26,28 @@ export class LegalUserListComponent implements OnInit {
     private paginationService: PaginationService
   ) {}
 
-  ngOnInit(): void {
-    this.getLegalUsers()
-  }
+  ngOnInit(): void {}
 
-  getLegalUsers(page: number = 1, params?: any) {
+  getLegalUsers(page: number = 0, params?: any) {
     this.legalUserService
-      .findAll()
+      .findAll('', {
+        search: this.search,
+        page: page == 0 ? page : page - 1,
+        size: this.paginationService.verifyPageSize(),
+      })
       .pipe(
-        tap(({ data }) => {
-          this.currentPage = page
-          this.totalCountLegalUsers = data.length
-          this.paginateLegalUsers(page, data)
-        })
+        map((res: any) => res.data),
+        finalize(() => (this.loading = false))
       )
-      .subscribe()
+      .subscribe((res) => {
+        this.legalUsers = res.content
+        this.totalCountLegalUsers = res.pagination.totalNumberOfElements
+        this.pagination$ = of(
+          this.paginationService.convertServerPaginationInClientPagination(
+            res.pagination
+          )
+        )
+      })
   }
 
   paginateLegalUsers(page: number, users: any[]) {
@@ -52,13 +61,21 @@ export class LegalUserListComponent implements OnInit {
     this.pagination$ = of(pagination)
   }
 
-  openModal() {
-    this.modalService.open(UserModalComponent).subscribe()
+  openModal(userId: number) {
+    this.modalService.open(UserModalComponent, { userId }).subscribe()
   }
 
   getNumberPage() {
     return this.currentPage > 0 && this.currentPage < 10
       ? `0${this.currentPage}`
       : this.currentPage
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.search != '' && this.search.length > 3) {
+      this.getLegalUsers()
+    } else {
+      this.legalUsers = []
+    }
   }
 }

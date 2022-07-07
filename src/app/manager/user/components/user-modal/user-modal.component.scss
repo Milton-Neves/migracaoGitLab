@@ -27,15 +27,108 @@
   }
 }
 
+.reset-password--span {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: $blue-700;
+}
+
+.button-reset-container {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 1rem;
+
+  span {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    color: $green-500;
+    margin-left: 2rem;
+  }
+}
+
+.buttons {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 2rem;
+}
+
+.card-details {
+  padding: 0;
+  font-size: 0.9rem;
+
+  &__forwading-datas {
+    display: flex;
+    justify-content: flex-start;
+    color: $green-500;
+    gap: 0.8rem;
+    margin-bottom: 0.5rem;
+
+    &:last-child {
+      color: $blue-700;
+    }
+  }
+}
+
+.card-company {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  gap: 1rem;
+  padding: 0 0 1rem;
+  font-size: 0.9rem;
+
+  span {
+    color: $blue-700;
+    &:nth-child(2) {
+      position: absolute;
+      top: 5px;
+      right: 0;
+      span {
+        color: $green-500;
+      }
+    }
+  }
+
+  &__status {
+    font-weight: 500;
+    color: $green-500;
+  }
+}
+
+section {
+  max-width: 25rem;
+  @media screen and(min-width: 600px) {
+    max-width: 100%;
+  }
+}
+
 :host ::ng-deep {
   app-information-card {
     .card {
       max-width: none;
       cursor: default;
       box-shadow: none;
+      border: none;
+      min-height: 0;
 
       &:hover {
         border: none;
+      }
+
+      .top-card {
+        padding: 0;
+      }
+
+      div {
+        &:nth-child(2) {
+          margin: 10px 0 0 !important;
+        }
       }
     }
   }
