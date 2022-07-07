@@ -1,0 +1,153 @@
+@import '/src/assets/styles/scss/variables';
+
+.global-text {
+  font-style: normal;
+  font-weight: 500;
+  line-height: 100%;
+  color: $blue-700;
+  margin: 0;
+}
+
+.filtering {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 215px;
+  background-color: $white;
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px 2px rgba(0, 0, 0, 0.1);
+  padding: 19px 16px;
+
+  &-title-container {
+    width: 100%;
+    margin-bottom: 5px;
+
+    .filtering-title {
+      font-weight: bold;
+      font-size: 18px;
+    }
+  }
+
+  &-scrolling {
+    max-height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    &::-webkit-scrollbar {
+      width: 7px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: #e4e4e4;
+      border-radius: 20px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 100px;
+      border: 5px solid transparent;
+      background-color: $gray-700;
+    }
+  }
+
+  .filtering-search-container {
+    margin: 0.5rem auto 1rem auto;
+
+    #job {
+      width: 100%;
+      height: 30px;
+      border-radius: 5px;
+      border: 1px solid $gray-300;
+      padding: 0 10px;
+      font-size: 12px;
+      color: $gray-700;
+      background: url(../../../../../../assets/images/icons/icon-src.svg) 95%
+        no-repeat;
+      outline: none;
+      transition: all 0.3s ease;
+
+      &:focus {
+        border: 0.5px solid $blue-700;
+        box-shadow: 0 0 0 2px $blue-700;
+      }
+      &::placeholder {
+        font-size: 12px;
+      }
+    }
+
+    #autocomplete {
+      overflow-y: auto;
+      max-height: 20rem;
+      width: 11.5rem;
+      box-shadow: 0px 0px 15px 2px rgba(0, 0, 0, 0.3);
+      border-radius: 0px 0px 5px 5px;
+      position: absolute;
+      background: $white;
+      ul {
+        padding: 0.3rem;
+        li {
+          padding: 0.3rem;
+          cursor: pointer;
+          font-size: 12px;
+          opacity: 0.8;
+          &:hover {
+            background-color: $gray-200;
+          }
+        }
+      }
+    }
+  }
+
+  &-content-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 5px;
+
+    .filtering-content {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+
+      &-title {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        cursor: pointer;
+
+        font-weight: bold;
+        font-size: 14px;
+        margin-bottom: 5px;
+
+        .filtering-content-title-icon {
+          transform: rotate(180deg);
+        }
+      }
+
+      &-checkbox {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        font-size: 12px;
+        input[type='checkbox'] {
+          padding: 8px;
+          margin-right: 5px;
+        }
+        span + span {
+          margin-top: 0.3rem;
+        }
+        span {
+          display: flex;
+          margin-left: 5px;
+          align-items: center;
+          font-weight: 500;
+          color: $blue-700;
+        }
+      }
+
+      &-checkbox-active {
+        display: none;
+      }
+    }
+  }
+}
