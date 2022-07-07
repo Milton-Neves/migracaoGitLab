@@ -10,25 +10,36 @@
         alt="Prefeitura Municipal de Parnamirim"
       />
       <h1>Gerenciador Banco de Empregos</h1>
-      <h2>Prefeitura Munipal de Parnamirim</h2>
+      <h2>Prefeitura Municipal de Parnamirim</h2>
       <div class="login__line"></div>
     </div>
 
     <form [formGroup]="form" class="login__inputs">
       <input
         formControlName="login"
-        type="text"
+        type=" showPasswordd ? 'text' : 'password' "
         placeholder="Login"
         name="login"
         id="login"
       />
-      <input
-        formControlName="password"
-        type="password"
-        placeholder="Senha"
-        name="password"
-        id="password"
-      />
+
+      <div class="password">
+        <input
+          [type]="showPassword ? 'text' : 'password'"
+          placeholder="Senha"
+          formControlName="password"
+        />
+        <button type="button" (click)="showHidePassword()">
+          <img
+            [attr.src]="
+              !showPassword
+                ? '../../../../../assets/images/icons/eye-pass.svg'
+                : '../../../../../assets/images/icons/eye-stop-pass.svg'
+            "
+            alt="Olho"
+          />
+        </button>
+      </div>
 
       <button [disabled]="form.invalid" type="button" (click)="onSubmit()">
         {{ loginRequestIsLoading ? 'Carregando...' : 'Entrar' }}
@@ -43,7 +54,7 @@
     </span>
 
     <span class="footer__copyright">
-      ©{{ currentDate | date: 'yyyy' }} - Prefeitura Munipal de Parnamirim
+      ©{{ currentDate | date: 'yyyy' }} - Prefeitura Municipal de Parnamirim
     </span>
   </footer>
 </main>

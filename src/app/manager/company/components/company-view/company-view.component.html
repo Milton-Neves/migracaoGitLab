@@ -108,11 +108,11 @@
     <div class="company-view__buttons">
       <app-button
         class="button.decline"
-        [text]="isAcceptCompany ? 'Cancelar' : 'Remover Empresa'"
-        [color]="isAcceptCompany ? 'transparent' : '#FD3737'"
-        [textColor]="isAcceptCompany ? '#1c3152' : '#ffffff'"
+        [text]="!isAcceptedCompany ? 'Cancelar' : 'Remover Empresa'"
+        [color]="!isAcceptedCompany ? 'transparent' : '#FD3737'"
+        [textColor]="!isAcceptedCompany ? '#1c3152' : '#ffffff'"
         (click)="
-          isAcceptCompany
+          !isAcceptedCompany
             ? closeModalCompanyView()
             : openModalRemovalConfirmation()
         "
@@ -121,19 +121,23 @@
 
       <app-button
         class="button.decline"
-        [text]="isAcceptCompany ? 'Recusar' : 'Editar'"
-        [color]="isAcceptCompany ? '#FD3737' : '#1C3152'"
-        (click)="isAcceptCompany ? openModalRemovalConfirmation() : ''"
+        [text]="!isAcceptedCompany ? 'Recusar' : 'Editar'"
+        [color]="!isAcceptedCompany ? '#FD3737' : '#1C3152'"
+        (click)="
+          !isAcceptedCompany
+            ? openModalRemovalConfirmation()
+            : openModalEditCompany()
+        "
       >
       </app-button>
 
       <app-button
         class="button.decline"
-        [text]="isAcceptCompany ? 'Aceitar' : 'Voltar'"
-        [color]="isAcceptCompany ? '#33a93b' : 'transparent'"
-        [textColor]="isAcceptCompany ? '#ffffff' : '#1C3152'"
+        [text]="!isAcceptedCompany ? 'Aceitar' : 'Voltar'"
+        [color]="!isAcceptedCompany ? '#33a93b' : 'transparent'"
+        [textColor]="!isAcceptedCompany ? '#ffffff' : '#1C3152'"
         (click)="
-          isAcceptCompany
+          !isAcceptedCompany
             ? handleAcceptCompany(company)
             : closeModalCompanyView()
         "

@@ -23,6 +23,7 @@
     "@angular/platform-browser": "~12.2.0",
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
+    "@brunoc/ngx-viacep": "^3.3.7",
     "lodash-es": "^4.17.21",
     "ngx-mask": "^13.1.10",
     "ngx-skeleton-loader": "^5.0.0",

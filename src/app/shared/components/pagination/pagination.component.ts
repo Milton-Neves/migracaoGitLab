@@ -19,9 +19,6 @@ export class PaginationComponent implements OnInit {
   }
 
   getNumberPage(currentPage: number) {
-    if (currentPage > 0 && currentPage < 10) {
-      return '0' + currentPage
-    }
-    return currentPage
+    return currentPage > 0 && currentPage < 10 ? `0${currentPage}` : currentPage
   }
 }

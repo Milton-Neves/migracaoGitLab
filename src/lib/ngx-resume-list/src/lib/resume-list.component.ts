@@ -36,12 +36,12 @@ const ITEMS_PER_PAGE = 6
         ></ngx-filtering>
         <div class="search">
           <form [formGroup]="singleFormCriteria">
+            <!-- [readonly]="filters.length < 1"
+            [value]="singleFormCriteria.get('generalInfo')!.value" -->
             <app-input-search
               [placeholder]="'Digite CPF, nome ou e-mail'"
-              [value]="singleFormCriteria.get('generalInfo')!.value"
               (click)="checkDisponibility()"
-              [readonly]="filters.length < 1"
-              (onSearch)="setValueToGeneralInfo($event)"
+              (search)="setValueToGeneralInfo($event)"
               [styles]="{ 'min-width': '21rem' }"
             ></app-input-search>
           </form>

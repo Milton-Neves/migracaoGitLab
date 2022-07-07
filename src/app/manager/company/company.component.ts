@@ -1,11 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
-import { PaginationService } from '@shared/services/pagination.service'
-import { NgxModalService } from 'lib/ngx-modal/src/public-api'
-import { Observable, of } from 'rxjs'
-import { map, tap } from 'rxjs/operators'
+import { Observable, of, Subscription } from 'rxjs'
+import { tap } from 'rxjs/operators'
 
-import { CompanyEditComponent } from './components/company-edit/company-edit.component'
 import { Company } from './entities/company.model'
 import { CompanyService } from './services/company.service'
 
@@ -15,77 +12,87 @@ import { CompanyService } from './services/company.service'
   styleUrls: ['./company.component.scss'],
 })
 export class CompanyComponent implements OnInit, OnDestroy {
+  tableColumns = ['Nome Fantasia', 'CNPJ', 'Data de Solicitação', 'Ações']
   companies: Company[] = []
-  totalCompanys: number = 0
-  pagination$!: Observable<any>
   isNavActive: boolean = true
-  changeNav(value: boolean) {
-    this.isNavActive = value
-    this.getCompaniesFromServer()
+  totalCompanies: number = 0
+  pagination$!: Observable<any>
+  visibleItems = 0
+  paramsToRequest!: {
+    sort?: string
+    search?: string
+    page: number
+  }
+  searchTerm: string = ''
+  subscription$ = new Subscription()
+
+  constructor(private companyService: CompanyService, private router: Router) {}
+
+  ngOnInit(): void {
+    this.subscription$ = this.getCompanies()
   }
 
-  constructor(
-    private modalService: NgxModalService,
-    private companyService: CompanyService,
-    private paginationService: PaginationService,
-    private router: Router
-  ) {}
+  searchCompany(event: any) {
+    event != '' ? (this.searchTerm = event) : (this.searchTerm = '')
+    setTimeout(
+      () =>
+        this.getCompanies(this.paramsToRequest.page, this.paramsToRequest.sort),
+      100
+    )
+  }
 
-  getCompaniesFromServer(page: number = 1, params?: any) {
-    this.companyService
+  getCompanies(page: number = 0, sort: any = 'desc') {
+    this.paramsToRequest = {
+      sort,
+      page,
+      search: this.searchTerm,
+    }
+    return this.companyService
       .findAll('', {
         valid: this.isNavActive,
+        size: 8,
+        ...this.paramsToRequest,
       })
       .pipe(
-        map((res) => res.data),
-        tap((res: any) => {
-          this.paginateCompanies(page, res.content)
-          this.totalCompanys = res.pagination.totalNumberOfElements
-        }),
-        map((res: any) => res.content)
+        tap(({ data }: any) => {
+          const { content, pagination } = data
+          this.companies = content.map(this.formatCreatedAtCompanyAttribute)
+
+          this.totalCompanies = pagination.totalNumberOfElements
+          this.visibleItems = pagination.offset + pagination.numberOfElements
+
+          this.pagination$ = of({
+            current: page + 1,
+            next: pagination.lastPage ? undefined : page + 1,
+            previous: pagination.firstPage ? undefined : page - 1,
+          })
+        })
       )
       .subscribe()
-  }
-
-  paginateCompanies(page: number, companies: Company[]) {
-    let { results, pagination } = this.paginationService.createPagination(
-      page,
-      companies,
-      this.paginationService.verifyPageSize()
-    )
-    this.companies = results
-    this.pagination$ = of(pagination)
-  }
-
-  openModal() {
-    let modal = this.modalService.open(CompanyEditComponent).subscribe()
   }
 
   openCompanyRegistration() {
     this.router.navigate(['/gerenciador/empresas/cadastrar'])
   }
 
-  ngOnInit(): void {
-    this.verifyWidthPage()
-    this.getCompaniesFromServer()
-    document.addEventListener('click', (el: any) => {
-      this.verifyWidthPage()
-    })
+  changeNav(value: boolean) {
+    this.isNavActive = value
+    this.getCompanies()
   }
 
-  findWidthPage() {
-    let element = document.getElementById('content')
-    return element!.getBoundingClientRect().width
-  }
+  private formatCreatedAtCompanyAttribute(company: any) {
+    const dateTime = company.createdAt.split(' ')
+    const date = dateTime[0]
+    const createdAt =
+      dateTime.length >= 2 ? date.split('/').reverse().join('-') : date
 
-  verifyWidthPage() {
-    if (this.findWidthPage() > 900) {
-      let btnElements = document.getElementById('btns')
-      btnElements!.style.flexGrow = '1'
+    return {
+      ...company,
+      createdAt,
     }
   }
 
   ngOnDestroy(): void {
-    document.removeAllListeners!('click')
+    this.subscription$.unsubscribe()
   }
 }

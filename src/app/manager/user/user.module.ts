@@ -7,19 +7,24 @@ import { CommonModule } from '@angular/common'
 import { SharedModule } from '@shared/shared.module'
 import { UserComponent } from './user.component'
 import { UserRoutingModule } from './user-routing.module'
-import { UsersListComponent } from './components/users-list/users-list.component'
 import { UserModalComponent } from './components/user-modal/user-modal.component'
 import { ResetEmailComponent } from './components/reset-email/reset-email.component'
 import { CitizenModalComponent } from './components/citizen-modal/citizen-modal.component'
+import { ResetAccountPasswordComponent } from './components/reset-account-password/reset-account-password.component'
+import { LegalUserListComponent } from './components/legal-user-list/legal-user-list.component'
+import { PhysicalUserListComponent } from './components/physical-user-list/physical-user-list.component'
+
 @NgModule({
   declarations: [
     UserComponent,
-    UsersListComponent,
     UserModalComponent,
     ResetEmailComponent,
     ResetPasswordUserComponent,
     ResetPasswordComponent,
     CitizenModalComponent,
+    ResetAccountPasswordComponent,
+    LegalUserListComponent,
+    PhysicalUserListComponent,
   ],
   imports: [CommonModule, UserRoutingModule, SharedModule, ReactiveFormsModule],
 })

@@ -6,6 +6,7 @@ import { map, switchMap } from 'rxjs/operators'
 
 import { Company } from '../../entities/company.model'
 import { CompanyService } from '../../services/company.service'
+import { CompanyEditComponent } from '../company-edit/company-edit.component'
 import { CompanyRemovalConfirmationComponent } from './../company-removal-confirmation/company-removal-confirmation.component'
 
 @Component({
@@ -15,7 +16,7 @@ import { CompanyRemovalConfirmationComponent } from './../company-removal-confir
 })
 export class CompanyViewComponent implements OnInit {
   @Input() id?: number
-  @Input() isAcceptCompany: boolean = false
+  @Input() isAcceptedCompany: boolean = false
   texto = 'nome fantasia'
   company$!: Observable<Company>
 
@@ -31,7 +32,7 @@ export class CompanyViewComponent implements OnInit {
   openModalRemovalConfirmation() {
     this.modalService
       .open(CompanyRemovalConfirmationComponent, {
-        isAcceptCompany: this.isAcceptCompany,
+        isAcceptedCompany: this.isAcceptedCompany,
         legalPersonId: this.id,
       })
       .pipe(switchMap((modal) => modal.onClose))
@@ -43,6 +44,22 @@ export class CompanyViewComponent implements OnInit {
         }
       })
   }
+
+  openModalEditCompany() {
+    this.modalService
+      .open(CompanyEditComponent, {
+        companyId: this.id,
+      })
+      .pipe(switchMap((modal) => modal.onClose))
+      .subscribe((res) => {
+        if (res.closeBySystem) {
+          setTimeout(() => {
+            this.closeModalCompanyView()
+          }, 100)
+        }
+      })
+  }
+
   removeHourFromDate(completeDate: string) {
     return completeDate.split(' ')[0]
   }

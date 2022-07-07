@@ -21,7 +21,7 @@
           <span class="font-medium">Finalização</span>
           <span>{{
             forwarding.isFinished
-              ? convertDate(forwarding.lastModifiedAt)
+              ? convertDate(forwarding.finishedAt)
               : 'EM ANDAMENTO'
           }}</span>
         </div>
@@ -93,7 +93,9 @@
             type="checkbox"
             (change)="selectAllResumes(forwarding.forwardingResumes, $event)"
             [checked]="verifyIfAllCheck(forwarding) && resumes.length >= 1"
-            [disabled]="resumes.length < 1 || forwarding.isFinished"
+            [disabled]="
+              resumes.length < 1 || calculateFinishedDate(forwarding.finishedAt)
+            "
           />
           <span id="text-select" class="font-medium"> Contratar todos</span>
         </div>
@@ -139,7 +141,8 @@
         </div>
         <app-input-search
           [placeholder]="'Pesquise por CPF, nome ou e-mail'"
-          (onSearch)="onSingleInputChange(forwarding, $event)"
+          (search)="onSingleInputChange(forwarding, $event)"
+          [styles]="{ minWidth: '21rem' }"
           [value]="''"
         ></app-input-search>
       </div>
@@ -167,8 +170,8 @@
               type="checkbox"
               [checked]="forwardingResume.isSelected"
               [disabled]="
-                forwarding.isFinished ||
-                verifyIfIsHired(forwardingResume) === isHiredLabels[1]
+                verifyIfIsHired(forwardingResume) === isHiredLabels[1] ||
+                calculateFinishedDate(forwarding.finishedAt)
               "
               (change)="
                 forwardingResume.isSelected = !forwardingResume.isSelected;
@@ -219,8 +222,8 @@
               type="checkbox"
               [checked]="forwardingResume.isSelected"
               [disabled]="
-                forwarding.isFinished ||
-                verifyIfIsHired(forwardingResume) == isHiredLabels[1]
+                verifyIfIsHired(forwardingResume) == isHiredLabels[1] ||
+                calculateFinishedDate(forwarding.finishedAt)
               "
               (change)="
                 forwardingResume.isSelected = !forwardingResume.isSelected;
@@ -277,7 +280,7 @@
         <h6 id="forwarding-complement--title">
           Observações <span *ngIf="!forwarding.isFinished">- </span>
           <button
-            *ngIf="!forwarding.isFinished"
+            *ngIf="!calculateFinishedDate(forwarding.finishedAt)"
             (click)="
               wantsModifyComplement = !wantsModifyComplement;
               !wantsModifyComplement
@@ -437,21 +440,23 @@
       </div>
       <div class="more-actions">
         <button (click)="validateToCloseModal()">
-          {{
-            forwarding.isFinished || (!hasModified && !hasComplementModified)
-              ? 'Fechar'
-              : 'Cancelar'
-          }}
+          {{ !hasModified && !hasComplementModified ? 'Fechar' : 'Cancelar' }}
         </button>
         <button
-          (click)="wantsFinishForwarding = true"
-          [disabled]="forwarding.isFinished"
+          [ngStyle]="{
+            'background-color': forwarding.isFinished ? '#33a93b' : '#ff0000'
+          }"
+          (click)="
+            forwarding.isFinished
+              ? finishForwarding(forwarding)
+              : (wantsFinishForwarding = true)
+          "
         >
-          Finalizar
+          {{ forwarding.isFinished ? 'Salvar' : 'Finalizar' }}
         </button>
         <button
           (click)="saveForwarding(forwarding)"
-          [disabled]="forwarding.isFinished"
+          *ngIf="!forwarding.isFinished"
         >
           Salvar
         </button>

@@ -243,7 +243,7 @@ export class NgxForwardingModalComponent implements OnInit {
             : null
         }
       )
-      if (!currentForwarding && forwardingResume.isSelected)
+      if (!currentForwarding && !forwardingResume.resume.statusResume)
         otherForwarding = true
     } else {
       if (!forwardingResume.resume.statusResume) {
@@ -329,7 +329,7 @@ export class NgxForwardingModalComponent implements OnInit {
     this.resumes = data.slice(startIndex, endIndex)
   }
 
-  onSingleInputChange(forwarding: any, term: string, page?: number) {
+  onSingleInputChange(forwarding: any, term: any, page?: number) {
     this.searchTerm = term
     if (term.includes('@')) {
       this.getResume(
@@ -388,6 +388,11 @@ export class NgxForwardingModalComponent implements OnInit {
   }
 
   finishForwarding(forwarding: any) {
+    if (forwarding.isFinished) {
+      this.hasModified = false
+      this.hasComplementModified = false
+    }
+
     if (!this.hasModified && !this.hasComplementModified) {
       this.forwardingService
         .finishForwarding(this.takeOnlySelected(forwarding))
@@ -415,25 +420,51 @@ export class NgxForwardingModalComponent implements OnInit {
           closeButton: true,
         }
       )
+      if (forwarding.isFinished) {
+        this.hasModified = false
+      }
+    }
+  }
+
+  calculateFinishedDate(finishedDateString?: string) {
+    if (finishedDateString != null) {
+      let finishedDateSplit = finishedDateString.split('/')
+      //Modelando data para padrão americano
+      let finishedDateFormated = `${finishedDateSplit[1]}/${
+        finishedDateSplit[0]
+      }/${finishedDateSplit[2].split(' ')[0]}`
+
+      let finishedDate = new Date(finishedDateFormated)
+      let currentDate = new Date()
+
+      let difference = currentDate.getTime() - finishedDate.getTime()
+      let totalDays = Math.ceil(difference / (1000 * 3600 * 24)) - 1
+      return totalDays > 15
+    } else {
+      return false
     }
   }
 
   takeOnlySelected(currentForwarding: any): any {
     let forwarding: any = JSON.parse(JSON.stringify(currentForwarding))
-    let forwarResume = forwarding.forwardingResumes.filter(
-      (forwar: any) => forwar.isSelected && forwar.resume.statusResume
-    )
 
-    forwarResume.forEach((forwardingResume: any) => {
-      forwardingResume.resume = {
-        id: forwardingResume.resume.id,
-        statusResume: forwardingResume.resume.statusResume,
-      }
-    })
+    if (!forwarding.isFinished) {
+      let forwarResume = forwarding.forwardingResumes.filter(
+        (forwar: any) => forwar.isSelected && forwar.resume.statusResume
+      )
+
+      forwarResume.forEach((forwardingResume: any) => {
+        forwardingResume.resume = {
+          id: forwardingResume.resume.id,
+          statusResume: forwardingResume.resume.statusResume,
+        }
+      })
+
+      forwarding.forwardingResumes = forwarResume
+    }
 
     delete forwarding.lastModifiedAt
     delete forwarding.createdAt
-    forwarding.forwardingResumes = forwarResume
     forwarding = JSON.parse(JSON.stringify(forwarding))
     return forwarding
   }

@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing'
 
-import { LegalUserService } from './legal-user.service'
+import { ForwardingService } from './forwarding.service'
 
-describe('LegalUserService', () => {
-  let service: LegalUserService
+describe('ForwardingService', () => {
+  let service: ForwardingService
 
   beforeEach(() => {
     TestBed.configureTestingModule({})
-    service = TestBed.inject(LegalUserService)
+    service = TestBed.inject(ForwardingService)
   })
 
   it('should be created', () => {

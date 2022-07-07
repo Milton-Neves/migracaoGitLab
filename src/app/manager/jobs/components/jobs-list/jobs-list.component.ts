@@ -1,11 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
-import { Job } from '@core/interfaces/resume/job'
-import { PaginationService } from '@shared/services/pagination.service'
 import { Observable, of } from 'rxjs'
-import { map, tap } from 'rxjs/operators'
 
+import { tap } from 'rxjs/operators'
 import { JobService } from '../../services/job.service'
+import { JobWorkfield } from '../../entities/job-workfield'
 
 @Component({
   selector: 'app-jobs-list',
@@ -14,43 +13,53 @@ import { JobService } from '../../services/job.service'
 })
 export class JobsListComponent implements OnInit {
   @Input() stylesInformation: any
-  jobs: any[] = []
-  totalCountJobs: number = 0
-  jobs$!: Observable<Job[]>
-
-  constructor(
-    private jobService: JobService,
-    private paginationService: PaginationService,
-    private router: Router
-  ) {}
-
-  ngOnInit(): void {
-    this.getJobsFromServer()
+  tableColumns = ['Nome', 'Área de Atuação', 'Situação', 'Ações']
+  jobWorkfieldList: JobWorkfield[] = []
+  pagination$?: Observable<any>
+  criteriaObject: any = {
+    size: 10,
   }
 
-  getJobsFromServer(page: number = 1, params?: any) {
-    this.jobService
-      .findAll('', {})
-      .pipe(
-        tap((jobs) => {
-          this.totalCountJobs = jobs.data.length
+  totalCountJobs = 0
+  visibleItems = 0
 
-          this.paginateJobs(page, jobs.data)
-        }),
-        map((res) => res.data)
+  constructor(private router: Router, private jobService: JobService) {}
+
+  ngOnInit(): void {
+    this.getJobs()
+  }
+
+  getJobs(page: number = 0, params?: any) {
+    this.jobService
+      .listAllWithWorkfieldColor({
+        page,
+        ...this.criteriaObject,
+        ...params,
+      })
+      .pipe(
+        tap(({ data }) => {
+          const { content, pagination } = data
+          this.jobWorkfieldList = content
+          this.totalCountJobs = pagination.totalNumberOfElements
+          this.visibleItems = pagination.offset + pagination.numberOfElements
+
+          this.pagination$ = of({
+            current: page + 1,
+            next: pagination.lastPage ? undefined : page + 1,
+            previous: pagination.firstPage ? undefined : page - 1,
+          })
+        })
       )
       .subscribe()
   }
 
-  paginateJobs(page: number, jobs: any[]) {
-    let { results, pagination } = this.paginationService.createPagination(
-      page,
-      jobs,
-      this.paginationService.verifyPageSize()
-    )
-
-    this.jobs = results
-    this.jobs$ = of(pagination)
+  searchJobEvent(search: string) {
+    if (search.length > 0) {
+      this.criteriaObject.search = search
+    } else {
+      delete this.criteriaObject.search
+    }
+    this.getJobs()
   }
 
   navigaToRegistrationPage() {

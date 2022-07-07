@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core'
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core'
 import { Resume } from '@core/interfaces/resume/resume'
 import { PaginationService } from '@shared/services/pagination.service'
 import { NgxModalService } from 'lib/ngx-modal/src/public-api'
@@ -16,7 +22,9 @@ const ITEMS_PER_PAGE = 6
   templateUrl: './archived-resume-list.component.html',
   styleUrls: ['./archived-resume-list.component.scss'],
 })
-export class ArchivedResumeListComponent implements OnInit {
+export class ArchivedResumeListComponent implements OnInit, OnChanges {
+  @Input() generalInfo!: string
+  tableColumns = ['Nome', 'Telefone(s)', 'Situação', 'Ações']
   resumes: Resume[] = []
   totalCountResumes: number = 0
   currentPage!: number
@@ -44,7 +52,7 @@ export class ArchivedResumeListComponent implements OnInit {
 
   getResumesFromServer(page: number = 1, params?: any) {
     this.resumeService
-      .findAll('', { statusResume: false })
+      .findAll('', { statusResume: false, ...params })
       .pipe(
         tap(({ data }) => {
           this.currentPage = page
@@ -73,5 +81,10 @@ export class ArchivedResumeListComponent implements OnInit {
         resumeId,
       })
       .subscribe()
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.generalInfo.currentValue != undefined)
+      this.getResumesFromServer(1, { generalInfo: this.generalInfo })
   }
 }

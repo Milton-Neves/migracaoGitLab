@@ -1,4 +1,13 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core'
+import { FormBuilder, FormGroup } from '@angular/forms'
+import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators'
 
 @Component({
   selector: 'app-input-search',
@@ -10,13 +19,37 @@ export class InputSearchComponent implements OnInit {
   @Input() align!: any
   @Input() placeholder!: string
   @Input() readonly: boolean = false
-  @Output() onSearch = new EventEmitter<string>()
   @Input() value: any = ''
-  constructor() {}
+  @Output() search = new EventEmitter<string>()
+  singleSearchForm: FormGroup = this.fb.group({
+    search: [''],
+  })
 
-  ngOnInit(): void {}
+  constructor(private fb: FormBuilder) {}
+
+  singleFormChange() {
+    this.singleSearchForm.valueChanges
+      .pipe(
+        distinctUntilChanged(),
+        debounceTime(600),
+        tap((res) => {
+          this.search.emit(res.search)
+        })
+      )
+      .subscribe()
+  }
 
   changeValue(value: string) {
-    this.onSearch.emit(value)
+    this.search.emit(value)
+  }
+
+  ngOnInit(): void {
+    this.singleFormChange()
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.placeholder) {
+      this.singleSearchForm.controls.search.setValue('')
+    }
   }
 }

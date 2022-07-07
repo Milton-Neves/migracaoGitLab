@@ -1,5 +1,4 @@
 @import 'variables';
-
 .job__list {
   margin-top: 5.5rem;
   margin-bottom: 1rem;
@@ -39,8 +38,8 @@
         display: inline-block;
         background: $red-400;
         color: $white;
-        padding: 0.3rem;
-        border-radius: 2px;
+        padding: 5px 15px;
+        border-radius: 5px;
         text-align: center;
       }
 
@@ -75,5 +74,12 @@
     display: flex;
     justify-content: space-between;
     margin-top: 2rem;
+  }
+  p {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    font-size: 1.2rem;
+    color: $gray-700;
   }
 }

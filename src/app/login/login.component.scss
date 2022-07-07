@@ -64,7 +64,34 @@
       padding: 0 2rem;
       margin-bottom: 4rem;
 
-      > button {
+      .password {
+        width: 100%;
+        position: relative;
+        margin-bottom: 2.5rem;
+
+        > input {
+          border: none;
+          border-bottom: 1px solid $gray-500;
+          width: 100%;
+          margin-top: 1rem;
+          height: 45px;
+        }
+
+        button {
+          background: none;
+          right: 8px;
+          top: 23px;
+          border: none;
+          position: absolute;
+          width: 5%;
+
+          &:hover {
+            filter: brightness(0.7) !important;
+          }
+        }
+      }
+
+      button {
         border: none;
         border-radius: 5px;
         width: 100%;

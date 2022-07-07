@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { NgxForwardingModalComponent } from 'lib/forwarding-modal/src/public-api'
+import { switchMap } from 'rxjs/operators'
 
 import { NgxModalService } from './../../../../../lib/ngx-modal/src/lib/ngx-modal.service'
 
@@ -9,19 +10,27 @@ import { NgxModalService } from './../../../../../lib/ngx-modal/src/lib/ngx-moda
   styleUrls: ['./forwarding-card.component.scss'],
 })
 export class ForwardingCardComponent implements OnInit {
-  career = 'professor'
-  title = 'Nome da Empresa'
-
+  @Input() infos: any
+  @Input() workfield: any
+  @Output() refresh = new EventEmitter<boolean>()
   constructor(private modalService: NgxModalService) {}
 
   editForwarding() {
     let modal = this.modalService
-      .open(NgxForwardingModalComponent, {
-        colorCode: '#65fa5a',
-        id: '20220600009',
-      })
-      .subscribe()
+      .open(
+        NgxForwardingModalComponent,
+        {
+          colorCode: this.workfield.selectedColor,
+          id: this.infos.id,
+        },
+        { ignoreBackClick: true }
+      )
+      .pipe(switchMap((res) => res.onClose))
+      .subscribe((res) => this.refresh.emit(true))
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.infos.createdAt = this.infos.createdAt.split(' ')[0]
+    this.infos.finishedAt = this.infos.lastModifiedAt.split(' ')[0]
+  }
 }

@@ -1,5 +1,24 @@
+@import 'variables';
+
 .user {
   &__header {
-    margin-bottom: 2rem;
+    margin-bottom: 1.2rem;
   }
+}
+
+.input {
+  display: flex;
+  justify-content: flex-end;
+}
+
+::ng-deep {
+  .method-not-allowed {
+    height: 40vh !important;
+  }
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
 }

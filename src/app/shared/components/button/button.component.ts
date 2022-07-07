@@ -12,6 +12,7 @@ export class ButtonComponent implements OnInit {
   @Input() color!: string
   @Input() disabled: boolean = false
   @Output() handleClick = new EventEmitter()
+  @Input() type = 'button'
 
   constructor() {}
 

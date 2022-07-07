@@ -1,11 +1,8 @@
-<div style="display: flex" [ngStyle]="align">
+<div style="display: flex" [ngStyle]="align" [formGroup]="singleSearchForm">
   <input
-    #input
     [ngStyle]="styles"
     type="text"
     placeholder="{{ placeholder }}"
-    (keyup)="changeValue(input.value)"
-    [readonly]="readonly"
-    [value]="value"
+    formControlName="search"
   />
 </div>

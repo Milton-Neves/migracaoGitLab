@@ -148,6 +148,9 @@ export class LoginService {
    * o usuario der reload na pagina.
    */
   refreshInformation() {
+    this.authenticatedUser.next(
+      JSON.parse(sessionStorage.getItem(USER_KEY) || '')
+    )
     let expiresDate: string | null = sessionStorage.getItem(EXPIRES_TOKEN)
     let userRole: string | null = sessionStorage.getItem(USER_ROLE)
     if (expiresDate != null) {
@@ -156,6 +159,7 @@ export class LoginService {
 
     if (userRole !== null) {
       const role = userRole
+      this.setPermissions([role])
 
       this.http
         .get(`${this.API_URL}${this.endpoints.checkRole(role)}`, {
@@ -167,8 +171,6 @@ export class LoginService {
           if (!res.data) {
             this.toastr.warning('Opss, um erro inesperado ocorreu!')
             this.logout()
-          } else {
-            this.setPermissions([role])
           }
         })
     }
@@ -181,6 +183,14 @@ export class LoginService {
     sessionStorage.clear()
     clearInterval(this.interval)
     this.router.navigate(['/login'])
+  }
+
+  getRole() {
+    const role = sessionStorage.getItem(USER_ROLE)
+    if (!role) {
+      return null
+    }
+    return role
   }
 
   getToken(): string | null {

@@ -11,7 +11,7 @@ import { LegalUserService } from '../../services/legal-user.service'
 })
 export class CompanyRemovalConfirmationComponent implements OnInit {
   @Input() legalPersonId!: number
-  @Input() isAcceptCompany?: boolean
+  @Input() isAcceptedCompany?: boolean
   modalClosedBySystem: boolean = false
   constructor(
     private legalUserService: LegalUserService,
@@ -26,7 +26,7 @@ export class CompanyRemovalConfirmationComponent implements OnInit {
       .delete(`delete_by_legal_person/${this.legalPersonId}`)
       .subscribe((res) => {
         this.toastr.success(
-          this.isAcceptCompany
+          !this.isAcceptedCompany
             ? 'Empresa recusada com sucesso!'
             : 'Empresa deletada com sucesso!',
           'Sucesso!',
