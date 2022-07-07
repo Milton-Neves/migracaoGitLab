@@ -16,11 +16,11 @@
           >
             <span *ngIf="!isLast"
               >{{
-                phone.number | mask: '(00) 0000-0000||(00) 0 0000-0000'
+                phone.number | mask: '(00) 0000-0000 || (00) 0 0000-0000'
               }},</span
             >
             <span *ngIf="isLast">{{
-              phone.number | mask: '(00) 0000-0000||(00) 0 0000-0000'
+              phone.number | mask: '(00) 0000-0000 || (00) 0 0000-0000'
             }}</span>
           </span>
         </td>
