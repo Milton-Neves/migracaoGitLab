@@ -2,8 +2,6 @@ import { NgxModalService } from './../../../../../lib/ngx-modal/src/lib/ngx-moda
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { debounceTime } from 'rxjs/operators'
-import { LegalUserService } from 'app/manager/company/services/legal-user.service'
-import { isMatch } from 'lodash-es'
 
 @Component({
   selector: 'app-reset-email',
