@@ -4,24 +4,13 @@
     [tagBackground]="legalUser.legalPerson.workfield.colorCode"
     [title]="legalUser.legalPerson.name"
   >
-    <div class="card-details">
-      <span class="card-details__forwading-datas">
-        <img src="../../../../assets/images/icon-company.svg" />
-        <b> {{ legalUser.legalPerson.forwardings.length }} </b>Encaminhamentos
-        em aberto
-      </span>
-
-      <span class="card-details__forwading-datas">
-        <img src="../../../../assets/images/icon-company-blue.svg" />
-        <b> {{ legalUser.legalPerson.forwardings.length }} </b>Encaminhamentos
-        concluídos
-      </span>
-    </div>
-
     <div class="card-company">
-      <span>Ativa desde: {{ legalUser.createdAt | date: 'dd/MM/yyyy' }}</span>
       <span
-        >Status:
+        ><strong>Ativa desde: </strong>
+        {{ legalUser.createdAt | date: 'dd/MM/yyyy' }}</span
+      >
+      <span>
+        Status:
         <span class="card-company__status">{{
           legalUser.legalPerson.valid ? 'Ativa' : 'Em Análise'
         }}</span></span
@@ -36,7 +25,7 @@
   ></app-tab-nav>
   <ng-container *ngIf="activeTab == sectionTitle[0]">
     <span class="reset-password--span"
-      >Ao apertar o botão a senha irá resetar.</span
+      >Clique no botão para gerar uma nova senha.</span
     >
     <div class="button-reset-container">
       <app-button
@@ -44,7 +33,7 @@
         [text]="'Resetar senha'"
         (click)="resetPassword(legalUser.id)"
       ></app-button>
-      <span *ngIf="passwordWasReseted">Senha resetada com sucesso.</span>
+      <span *ngIf="passwordWasReseted">Nova senha gerada com sucesso.</span>
     </div>
     <div class="buttons">
       <app-button
@@ -58,6 +47,7 @@
   </ng-container>
   <ng-container *ngIf="activeTab == sectionTitle[1]">
     <app-reset-email
+      [currentEmail]="legalUser.login"
       (formNewEmail)="changeEmail(legalUser, $event)"
     ></app-reset-email>
   </ng-container>

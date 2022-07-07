@@ -1,8 +1,9 @@
 import { NgxModalService } from './../../../../../lib/ngx-modal/src/lib/ngx-modal.service'
-import { Component, EventEmitter, OnInit, Output } from '@angular/core'
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { debounceTime } from 'rxjs/operators'
 import { LegalUserService } from 'app/manager/company/services/legal-user.service'
+import { isMatch } from 'lodash-es'
 
 @Component({
   selector: 'app-reset-email',
@@ -10,8 +11,9 @@ import { LegalUserService } from 'app/manager/company/services/legal-user.servic
   styleUrls: ['./reset-email.component.scss'],
 })
 export class ResetEmailComponent implements OnInit {
+  @Input() currentEmail: string = ''
   @Output() formNewEmail = new EventEmitter<string>()
-  isMatch: boolean = true
+  isMatch: boolean = false
   changeEmailForm!: FormGroup
 
   constructor(private modalService: NgxModalService, private fb: FormBuilder) {}

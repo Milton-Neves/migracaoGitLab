@@ -33,10 +33,7 @@ export class UserModalComponent implements OnInit {
     }
     this.legalUser$ = this.legalUserService
       .findOne(this.userId?.toString())
-      .pipe(
-        map((res: any) => res.data),
-        tap((res) => console.log(res))
-      )
+      .pipe(map((res: any) => res.data))
   }
 
   changeEmail(legalUser: any, newEmail: string) {

@@ -32,6 +32,7 @@ export class LegalUserListComponent implements OnInit {
     this.legalUserService
       .findAll('', {
         search: this.search,
+        valid: true,
         page: page == 0 ? page : page - 1,
         size: this.paginationService.verifyPageSize(),
       })

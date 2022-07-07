@@ -58,23 +58,6 @@
   margin-top: 2rem;
 }
 
-.card-details {
-  padding: 0;
-  font-size: 0.9rem;
-
-  &__forwading-datas {
-    display: flex;
-    justify-content: flex-start;
-    color: $green-500;
-    gap: 0.8rem;
-    margin-bottom: 0.5rem;
-
-    &:last-child {
-      color: $blue-700;
-    }
-  }
-}
-
 .card-company {
   display: flex;
   justify-content: space-between;
@@ -85,6 +68,11 @@
 
   span {
     color: $blue-700;
+    font-weight: bold;
+
+    &:first-child {
+      font-weight: 400;
+    }
     &:nth-child(2) {
       position: absolute;
       top: 5px;
