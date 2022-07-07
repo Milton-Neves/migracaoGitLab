@@ -199,9 +199,13 @@
       border-top: 1px solid #cccbcb;
       border-bottom: 1px solid #cccbcb;
 
-      th:first-child,
-      td:first-child {
+      th:first-child {
         text-align: start;
+      }
+      td:first-child {
+        input {
+          margin-right: 2rem;
+        }
       }
       th,
       td {

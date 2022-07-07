@@ -31,6 +31,6 @@ export class ForwardingCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.infos.createdAt = this.infos.createdAt.split(' ')[0]
-    this.infos.finishedAt = this.infos.finishedAt.split(' ')[0]
+    this.infos.finishedAt = this.infos.finishedAt?.split(' ')[0]
   }
 }

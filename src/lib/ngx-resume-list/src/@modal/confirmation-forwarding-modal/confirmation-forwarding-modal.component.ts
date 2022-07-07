@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core'
 import { ForwardingService } from '@shared/services/forwarding.service'
-import { CompanyService } from 'app/manager/company/services/company.service'
+import { LegalUserService } from 'app/manager/company/services/legal-user.service'
 import { NgxModalService } from 'lib/ngx-modal/src/public-api'
 import { ToastrService } from 'ngx-toastr'
 import { Observable, of } from 'rxjs'
@@ -27,7 +27,7 @@ export class ConfirmationForwardingModalComponent implements OnInit {
   constructor(
     private modalService: NgxModalService,
     private forwardingService: ForwardingService,
-    private companyService: CompanyService,
+    private legalUserService: LegalUserService,
     private toastr: ToastrService
   ) {}
 
@@ -35,16 +35,14 @@ export class ConfirmationForwardingModalComponent implements OnInit {
     if (this.selectedResumes.length <= 0) {
       this.closeModal()
     }
-    this.companyService
-      .findAll('', { valid: true })
+    this.legalUserService
+      .findAll('companies')
       .pipe(
-        map((res: any) => res.data.content),
+        map((res: any) => res.data),
         tap((res) => {
           this.companiesList = res
           this.filteredCompanies$ = of(
-            res.length > 0
-              ? res
-              : [{ companyName: 'Nenhuma empresa encontrada', disabled: true }]
+            res.length > 0 ? res : ['Nenhuma empresa encontrada']
           )
         })
       )
@@ -65,7 +63,7 @@ export class ConfirmationForwardingModalComponent implements OnInit {
   }
 
   selectCompany(value: string) {
-    this.companyName = value
+    if (value != 'Nenhuma empresa encontrada') this.companyName = value
   }
 
   filtering() {
@@ -73,9 +71,7 @@ export class ConfirmationForwardingModalComponent implements OnInit {
       company.companyName.toLowerCase().match(this.companyName.toLowerCase())
     )
     this.filteredCompanies$ = of(
-      filtered.length <= 0
-        ? [{ companyName: 'Nenhuma empresa encontrada', disabled: true }]
-        : filtered
+      filtered.length <= 0 ? ['Nenhuma empresa encontrada'] : filtered
     )
   }
 

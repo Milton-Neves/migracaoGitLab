@@ -95,11 +95,11 @@
             >
               <li
                 *ngIf="filteredCompanies.length > 0 && !company.disabled"
-                (click)="selectCompany(company.companyName)"
+                (click)="selectCompany(company)"
               >
-                {{ company.companyName }}
+                {{ company }}
               </li>
-              <li *ngIf="company.disabled">{{ company.companyName }}</li>
+              <li *ngIf="company.disabled">{{ company }}</li>
             </ng-container>
           </ul>
         </div>

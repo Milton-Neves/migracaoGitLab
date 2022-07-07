@@ -278,7 +278,8 @@
     <nav id="second-nav">
       <div class="forwarding-complement">
         <h6 id="forwarding-complement--title">
-          Observações <span *ngIf="!forwarding.isFinished">- </span>
+          Observações
+          <span *ngIf="!calculateFinishedDate(forwarding.finishedAt)">- </span>
           <button
             *ngIf="!calculateFinishedDate(forwarding.finishedAt)"
             (click)="
