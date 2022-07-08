@@ -44,8 +44,8 @@
             "
             class="phone"
           >
-            <span *ngIf="!isLast">{{ phone.number }}, </span>
-            <span *ngIf="isLast">{{ phone.number }} </span>
+            <span *ngIf="!isLast">{{ phone.number | phoneNumber }}, </span>
+            <span *ngIf="isLast">{{ phone.number | phoneNumber }} </span>
           </span>
         </div>
       </div>
@@ -60,7 +60,9 @@
         <div class="about__data">
           <h4>CEP:</h4>
           <span>
-            {{ physicalPerson.address?.zipCode | dashOnNull }}
+            {{
+              physicalPerson.address?.zipCode | dashOnNull | mask: '00000-000'
+            }}
           </span>
         </div>
 

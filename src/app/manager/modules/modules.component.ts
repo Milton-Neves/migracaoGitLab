@@ -23,6 +23,21 @@ export class ModulesComponent implements OnInit {
       title: 'Relatorio',
       status: true,
     },
+    {
+      id: 4,
+      title: 'Cargos',
+      status: true,
+    },
+    {
+      id: 5,
+      title: 'Encaminhamentos',
+      status: true,
+    },
+    {
+      id: 6,
+      title: 'Usuários',
+      status: true,
+    },
   ]
 
   constructor() {}

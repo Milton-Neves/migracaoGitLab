@@ -191,7 +191,7 @@
                   let phoneNumber of forwardingResume.resume.physicalPerson
                     .phoneNumbers
                 "
-                >{{ phoneNumber.number | mask: '(00) 00000-0000' }}</span
+                >{{ phoneNumber.number | phoneNumber }}</span
               >
             </div>
           </td>
@@ -243,7 +243,7 @@
                   let phoneNumber of forwardingResume.resume.physicalPerson
                     .phoneNumbers
                 "
-                >{{ phoneNumber.number | mask: '(00) 00000-0000' }}</span
+                >{{ phoneNumber.number | phoneNumber }}</span
               >
             </div>
           </td>
@@ -731,7 +731,7 @@
               "
               style="margin: 1mm auto"
             >
-              {{ phoneNumber.number | mask: '(00) 00000-0000' }}
+              {{ phoneNumber.number | phoneNumber }}
             </p>
           </td>
           <td
@@ -798,7 +798,7 @@
                 "
                 style="margin: 1mm auto"
               >
-                {{ phoneNumber.number | mask: '(00) 00000-0000' }}
+                {{ phoneNumber.number | phoneNumber }}
               </p>
             </td>
             <td

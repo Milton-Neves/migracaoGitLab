@@ -1,8 +1,22 @@
-<div class="card-password">
-  <div class="title">
-    <h3 class="title">Nome</h3>
-    <h4>Matrícula 0000</h4>
-  </div>
+<div class="card-password" *ngIf="legalUser$ | async as legalUser">
+  <app-information-card
+    [career]="legalUser.legalPerson.workfield.name"
+    [tagBackground]="legalUser.legalPerson.workfield.colorCode"
+    [title]="legalUser.legalPerson.name"
+  >
+    <div class="card-company">
+      <span
+        ><strong>Ativa desde: </strong>
+        {{ legalUser.createdAt | date: 'dd/MM/yyyy' }}</span
+      >
+      <span>
+        Status:
+        <span class="card-company__status">{{
+          legalUser.legalPerson.valid ? 'Ativa' : 'Em Análise'
+        }}</span></span
+      >
+    </div></app-information-card
+  >
 
   <app-tab-nav
     class="tab-content"
@@ -10,9 +24,31 @@
     (activeTab)="changeTab($event)"
   ></app-tab-nav>
   <ng-container *ngIf="activeTab == sectionTitle[0]">
-    <app-reset-password-user></app-reset-password-user>
+    <span class="reset-password--span"
+      >Clique no botão para gerar uma nova senha.</span
+    >
+    <div class="button-reset-container">
+      <app-button
+        [color]="'#33a93b'"
+        [text]="'Resetar senha'"
+        (click)="resetPassword(legalUser.id)"
+      ></app-button>
+      <span *ngIf="passwordWasReseted">Senha resetada com sucesso.</span>
+    </div>
+    <div class="buttons">
+      <app-button
+        [text]="'Fechar'"
+        [color]="'transparent'"
+        [textColor]="'#1C3152'"
+        (click)="closeModal()"
+      >
+      </app-button>
+    </div>
   </ng-container>
   <ng-container *ngIf="activeTab == sectionTitle[1]">
-    <app-reset-email></app-reset-email>
+    <app-reset-email
+      [currentEmail]="legalUser.login"
+      (formNewEmail)="changeEmail(legalUser, $event)"
+    ></app-reset-email>
   </ng-container>
 </div>

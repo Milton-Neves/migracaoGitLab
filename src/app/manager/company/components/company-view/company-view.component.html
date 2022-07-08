@@ -10,7 +10,9 @@
     >
     <span class="header__date"
       ><b>Data de solicitação:</b>
-      {{ removeHourFromDate(company.createdAt.toString()) }}</span
+      {{
+        removeHourFromDate(company.createdAt.toString()) | mask: '00/00/0000'
+      }}</span
     >
   </header>
 
@@ -31,7 +33,7 @@
       <div class="company-view__contact">
         <span class="company-view__informations"
           ><b>Telefone:</b>
-          {{ company.phoneNumbers[0].number | mask: '(00) 00000-0000' }}
+          {{ company.phoneNumbers[0].number | phoneNumber }}
         </span>
         <span class="company-view__informations"
           ><b>E-mail:</b> {{ company.email }}</span
@@ -86,8 +88,8 @@
         <span class="company-view__informations"
           ><b>Telefone:</b>
           {{
-            (company.legalRepresentative.phoneNumber
-              | mask: '(00) 0000-0000') || 'Não informado'
+            (company.legalRepresentative.phoneNumber | phoneNumber) ||
+              'Não informado'
           }}</span
         >
       </div>
@@ -97,7 +99,7 @@
       >
         <span class="company-view__informations"
           ><b>Celular:</b>
-          {{ company.legalRepresentative.cellNumber | mask: '(00) 00000-0000' }}
+          {{ company.legalRepresentative.cellNumber | phoneNumber }}
         </span>
         <span class="company-view__informations"
           ><b>E-mail:</b> {{ company.legalRepresentative.email }}</span

@@ -19,6 +19,7 @@ import { TabNavComponent } from './components/tab-nav/tab-nav.component'
 import { TableComponent } from './components/table/table.component'
 import { HighlightDirective } from './directives/highlight.directive'
 import { DashOnNullPipe } from './pipes/dash-on-null.pipe'
+import { PhoneNumberPipe } from './pipes/phone-number.pipe'
 import { ReplaceUnderlineToSpacePipe } from './pipes/replace-with-regex'
 
 const maskConfig: Partial<IConfig> = {
@@ -42,6 +43,7 @@ const components = [
   ReplaceUnderlineToSpacePipe,
   NotAllowedComponent,
   FormFieldComponent,
+  PhoneNumberPipe,
 ]
 
 @NgModule({

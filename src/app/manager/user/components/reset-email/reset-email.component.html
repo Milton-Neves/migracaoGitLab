@@ -1,29 +1,34 @@
 <div class="rest-email" [formGroup]="changeEmailForm">
   <div class="input-group">
-    <input type="email" placeholder="exemplo@email.com" disabled />
+    <input type="email" [placeholder]="currentEmail" disabled />
   </div>
 
   <div class="input-group">
     <input
       type="email"
-      placeholder="Novo Email"
+      placeholder="Novo e-mail"
       formControlName="newEmail"
       required
     />
     <span class="text-error" *ngIf="newEmail?.errors?.email">
-      Email invalido
+      E-mail inválido
+    </span>
+    <span class="text-error" *ngIf="isEqualCurrentEmail">
+      O e-mail digitado é igual ao e-mail atual.
     </span>
   </div>
 
   <div class="input-group">
     <input
       type="email"
-      placeholder="Confirme o Email"
+      placeholder="Repetir novo e-mail"
       formControlName="confirmEmail"
-      (keyup)="verifyEmail()"
     />
-    <span class="text-error" *ngIf="!isMatch">
-      Digite o mesmo email nos dois campos.</span
+    <span
+      class="text-error"
+      *ngIf="!isMatch && changeEmailForm.controls.confirmEmail.touched"
+    >
+      Digite o mesmo e-mail nos dois campos.</span
     >
   </div>
 
@@ -37,9 +42,9 @@
     </app-button>
     <app-button
       [text]="'Salvar'"
-      [disabled]="changeEmailForm.invalid"
+      [disabled]="!isMatch || isEqualCurrentEmail || changeEmailForm.invalid"
       [color]="'#1C3152'"
-      (click)="verifyEmail()"
+      (click)="changeEmail()"
     >
     </app-button>
   </div>

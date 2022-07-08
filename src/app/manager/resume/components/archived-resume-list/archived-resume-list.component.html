@@ -14,8 +14,8 @@
             "
             class="phone"
           >
-            <span *ngIf="!isLast">{{ phone.number }},</span>
-            <span *ngIf="isLast">{{ phone.number }}</span>
+            <span *ngIf="!isLast">{{ phone.number | phoneNumber }},</span>
+            <span *ngIf="isLast">{{ phone.number | phoneNumber }}</span>
           </span>
         </td>
 
