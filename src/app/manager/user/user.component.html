@@ -32,7 +32,7 @@
 
       <div class="company-section" *ngIf="activeTab == sectionTitle[1]">
         <ng-container *ngIf="this.featureFlag.legalUser; else moduleDisabled">
-          <app-legal-user-list></app-legal-user-list>
+          <app-legal-user-list [search]="search"></app-legal-user-list>
         </ng-container>
       </div>
 
