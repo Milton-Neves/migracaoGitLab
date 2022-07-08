@@ -19,7 +19,11 @@
     "baseUrl": "src",
     "paths": {
       "@shared/*": ["app/shared/*"],
-      "@core/*": ["app/core/*"]
+      "@core/*": ["app/core/*"],
+      "forwarding-modal": [
+        "dist/forwarding-modal/forwarding-modal",
+        "dist/forwarding-modal"
+      ]
     },
     "esModuleInterop": true
   },

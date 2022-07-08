@@ -1,5 +1,5 @@
 import { NgxModalService } from './../../../../../lib/ngx-modal/src/lib/ngx-modal.service'
-import { Component, OnInit } from '@angular/core'
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { debounceTime } from 'rxjs/operators'
 
@@ -9,13 +9,18 @@ import { debounceTime } from 'rxjs/operators'
   styleUrls: ['./reset-email.component.scss'],
 })
 export class ResetEmailComponent implements OnInit {
-  isMatch: boolean = true
+  @Input() currentEmail: string = ''
+  @Output() formNewEmail = new EventEmitter<string>()
+  isMatch: boolean = false
+  isEqualCurrentEmail: boolean = false
   changeEmailForm!: FormGroup
 
   constructor(private modalService: NgxModalService, private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.changeEmailForm = this.createForm()
+    this.verifyEmail()
+    this.verifyIfEmailIsEqualsCurrentEmail()
   }
 
   get newEmail() {
@@ -32,6 +37,19 @@ export class ResetEmailComponent implements OnInit {
       .subscribe((res) => {
         this.isMatch = res.newEmail == res.confirmEmail
       })
+  }
+
+  verifyIfEmailIsEqualsCurrentEmail() {
+    this.changeEmailForm.valueChanges
+      .pipe(debounceTime(400))
+      .subscribe((res) => {
+        this.isEqualCurrentEmail = res.newEmail == this.currentEmail
+      })
+  }
+
+  changeEmail() {
+    this.formNewEmail.emit(this.newEmail.value)
+    this.changeEmailForm.reset()
   }
 
   private createForm(): FormGroup {
