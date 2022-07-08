@@ -12,12 +12,15 @@ export class ResetEmailComponent implements OnInit {
   @Input() currentEmail: string = ''
   @Output() formNewEmail = new EventEmitter<string>()
   isMatch: boolean = false
+  isEqualCurrentEmail: boolean = false
   changeEmailForm!: FormGroup
 
   constructor(private modalService: NgxModalService, private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.changeEmailForm = this.createForm()
+    this.verifyEmail()
+    this.verifyIfEmailIsEqualsCurrentEmail()
   }
 
   get newEmail() {
@@ -33,6 +36,14 @@ export class ResetEmailComponent implements OnInit {
       .pipe(debounceTime(400))
       .subscribe((res) => {
         this.isMatch = res.newEmail == res.confirmEmail
+      })
+  }
+
+  verifyIfEmailIsEqualsCurrentEmail() {
+    this.changeEmailForm.valueChanges
+      .pipe(debounceTime(400))
+      .subscribe((res) => {
+        this.isEqualCurrentEmail = res.newEmail == this.currentEmail
       })
   }
 

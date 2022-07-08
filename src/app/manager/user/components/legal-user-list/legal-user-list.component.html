@@ -18,6 +18,10 @@
   <h2 class="not-search">Nenhum usuário foi encontrado.</h2>
 </ng-container>
 
+<ng-container *ngIf="loading && search.length > 3">
+  <h2 class="not-search">Carregando...</h2>
+</ng-container>
+
 <div class="table__page">
   <div class="table__pagination">
     <app-pagination-number

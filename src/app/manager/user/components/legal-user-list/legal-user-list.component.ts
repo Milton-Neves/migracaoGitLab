@@ -29,6 +29,8 @@ export class LegalUserListComponent implements OnInit {
   ngOnInit(): void {}
 
   getLegalUsers(page: number = 0, params?: any) {
+    this.loading = true
+    this.legalUsers = []
     this.legalUserService
       .findAll('', {
         search: this.search,
@@ -49,17 +51,6 @@ export class LegalUserListComponent implements OnInit {
           )
         )
       })
-  }
-
-  paginateLegalUsers(page: number, users: any[]) {
-    let { results, pagination } = this.paginationService.createPagination(
-      page,
-      users,
-      this.paginationService.verifyPageSize()
-    )
-
-    this.legalUsers = results
-    this.pagination$ = of(pagination)
   }
 
   openModal(userId: number) {

@@ -41,6 +41,7 @@ export class UserModalComponent implements OnInit {
       .update({ ...legalUser, login: newEmail })
       .subscribe((res) => {
         this.toastr.success(res.message, 'Sucesso')
+        this.closeModal()
       })
   }
 
@@ -48,6 +49,9 @@ export class UserModalComponent implements OnInit {
     this.legalUserService.resetPassword(id).subscribe((res: any) => {
       this.toastr.success(res.message, 'Sucesso')
       this.passwordWasReseted = true
+      setTimeout(() => {
+        this.closeModal()
+      }, 1000 /* 1 second */)
     })
   }
 
