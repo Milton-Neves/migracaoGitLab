@@ -1,14 +1,26 @@
 <app-table [setColumns]="tableColumns">
   <ng-container part="list">
     <tr class="table__text-description" *ngFor="let legalUser of legalUsers">
-      <td>Lorem ipsum dolor sit amet.</td>
-      <td>000.000.000-00</td>
+      <td>{{ legalUser.legalPerson.companyName }}</td>
+      <td>{{ legalUser.legalPerson.cnpj | mask: '00.000.000/0000-00' }}</td>
       <td class="table__button">
-        <button>Resetar Senha</button>
+        <button (click)="openModal(legalUser.id)">Alterar</button>
       </td>
     </tr>
   </ng-container>
 </app-table>
+
+<ng-container *ngIf="search.length <= 3">
+  <h2 class="not-search">Faça uma pesquisa para a aparição de dados</h2>
+</ng-container>
+
+<ng-container *ngIf="!loading && legalUsers.length == 0 && search.length > 3">
+  <h2 class="not-search">Nenhum usuário foi encontrado.</h2>
+</ng-container>
+
+<ng-container *ngIf="loading && search.length > 3">
+  <h2 class="not-search">Carregando...</h2>
+</ng-container>
 
 <div class="table__page">
   <div class="table__pagination">
