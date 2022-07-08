@@ -10,7 +10,9 @@
     >
     <span class="header__date"
       ><b>Data de solicitação:</b>
-      {{ removeHourFromDate(company.createdAt.toString()) }}</span
+      {{
+        removeHourFromDate(company.createdAt.toString()) | mask: '00/00/0000'
+      }}</span
     >
   </header>
 
