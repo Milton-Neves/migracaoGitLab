@@ -3,7 +3,8 @@ import { PaginationService } from '@shared/services/pagination.service'
 import { LegalUserService } from 'app/manager/company/services/legal-user.service'
 import { NgxModalService } from 'lib/ngx-modal/src/public-api'
 import { Observable, of } from 'rxjs'
-import { finalize, map, tap } from 'rxjs/operators'
+import { finalize, map } from 'rxjs/operators'
+
 import { UserModalComponent } from '../user-modal/user-modal.component'
 
 @Component({
@@ -64,7 +65,7 @@ export class LegalUserListComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (this.search != '' && this.search.length > 3) {
+    if (this.search != '' && this.search.length > 2) {
       this.getLegalUsers()
     } else {
       this.legalUsers = []
