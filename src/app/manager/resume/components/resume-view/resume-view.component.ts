@@ -7,6 +7,7 @@ import { NgxModalService } from 'lib/ngx-modal/src/public-api'
 import { Subscription } from 'rxjs'
 import { map, switchMap, tap } from 'rxjs/operators'
 
+import { PrintResumeService } from '../../../../../lib/ngx-print-resume/src/public-api'
 import { ResumeService } from '../../services/resume.service'
 import { JobListModalComponent } from '../job-list-modal/job-list-modal.component'
 
@@ -32,7 +33,8 @@ export class ResumeViewComponent implements OnInit, OnDestroy {
   constructor(
     private modalService: NgxModalService,
     private workfieldService: WorkfieldService,
-    private resumeService: ResumeService
+    private resumeService: ResumeService,
+    private printService: PrintResumeService
   ) {}
 
   ngOnInit(): void {
@@ -87,5 +89,9 @@ export class ResumeViewComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.resumeSubscription.unsubscribe()
+  }
+
+  print(resume: any) {
+    this.printService.print(resume)
   }
 }
