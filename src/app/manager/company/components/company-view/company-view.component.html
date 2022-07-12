@@ -33,7 +33,7 @@
       <div class="company-view__contact">
         <span class="company-view__informations"
           ><b>Telefone:</b>
-          {{ company.phoneNumbers[0].number | mask: '(00) 00000-0000' }}
+          {{ company.phoneNumbers[0].number | phoneNumber }}
         </span>
         <span class="company-view__informations"
           ><b>E-mail:</b> {{ company.email }}</span

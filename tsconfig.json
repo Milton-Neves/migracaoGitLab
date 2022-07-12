@@ -23,7 +23,8 @@
       "forwarding-modal": [
         "dist/forwarding-modal/forwarding-modal",
         "dist/forwarding-modal"
-      ]
+      ],
+      "print-resume": ["dist/print-resume/print-resume", "dist/print-resume"]
     },
     "esModuleInterop": true
   },
