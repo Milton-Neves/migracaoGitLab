@@ -88,8 +88,8 @@
         <span class="company-view__informations"
           ><b>Telefone:</b>
           {{
-            (company.legalRepresentative.phoneNumber
-              | mask: '(00) 0000-0000') || 'Não informado'
+            (company.legalRepresentative.phoneNumber | phoneNumber) ||
+              'Não informado'
           }}</span
         >
       </div>
@@ -99,7 +99,7 @@
       >
         <span class="company-view__informations"
           ><b>Celular:</b>
-          {{ company.legalRepresentative.cellNumber | mask: '(00) 00000-0000' }}
+          {{ company.legalRepresentative.cellNumber | phoneNumber }}
         </span>
         <span class="company-view__informations"
           ><b>E-mail:</b> {{ company.legalRepresentative.email }}</span

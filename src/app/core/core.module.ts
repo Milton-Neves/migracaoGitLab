@@ -4,12 +4,14 @@ import { RouterModule } from '@angular/router'
 
 import { LayoutComponent } from './components/layout/layout.component'
 import { FooterComponent } from './components/footer/footer.component'
+import { LoggedInUserComponent } from './components/logged-in-user/logged-in-user.component'
 import { LogoutComponent } from './components/logout/logout.component'
 import { SidebarComponent } from './components/sidebar/sidebar.component'
 
 @NgModule({
   declarations: [
     FooterComponent,
+    LoggedInUserComponent,
     LogoutComponent,
     LayoutComponent,
     SidebarComponent,
