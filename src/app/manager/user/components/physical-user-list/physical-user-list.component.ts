@@ -3,6 +3,7 @@ import { PaginationService } from '@shared/services/pagination.service'
 import { ToastrService } from 'ngx-toastr'
 import { Observable, of } from 'rxjs'
 import { finalize, map } from 'rxjs/operators'
+
 import { PhysicalUserService } from '../../services/physical-user.service'
 
 @Component({
@@ -62,7 +63,7 @@ export class PhysicalUserListComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (this.search != '' && this.search.length > 3) {
+    if (this.search != '' && this.search.length > 2) {
       this.getPhysicalUsers()
     } else {
       this.physicalUsers = []
