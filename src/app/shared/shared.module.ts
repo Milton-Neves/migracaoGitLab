@@ -21,7 +21,6 @@ import { HighlightDirective } from './directives/highlight.directive'
 import { DashOnNullPipe } from './pipes/dash-on-null.pipe'
 import { PhoneNumberPipe } from './pipes/phone-number.pipe'
 import { ReplaceUnderlineToSpacePipe } from './pipes/replace-with-regex'
-import { PhoneNumberPipe } from './pipes/phone-number.pipe'
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
