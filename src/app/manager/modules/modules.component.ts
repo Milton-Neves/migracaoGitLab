@@ -26,7 +26,7 @@ export class ModulesComponent implements OnInit {
     {
       id: 4,
       title: 'Cargos',
-      status: true,
+      status: false,
     },
     {
       id: 5,

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { ModulesService } from '../../services/modules.service'
 
 export interface Module {
   title: string
@@ -15,11 +16,14 @@ export class ModuleComponent implements OnInit {
   @Input() module!: Module
   @Output() onChangeEvent = new EventEmitter()
 
-  constructor() {}
+  constructor(private modulesService: ModulesService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.modulesService.findAll().subscribe(console.log)
+  }
 
   onChange(event: any) {
-    this.onChangeEvent.emit()
+    this.onChangeEvent.emit(console.log)
+    console.log(this.module)
   }
 }
