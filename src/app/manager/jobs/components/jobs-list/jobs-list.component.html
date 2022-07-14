@@ -28,14 +28,16 @@
         <tr class="job__list--table-details__body--text-description">
           <td style="width: 50%">{{ j.job.name }}</td>
           <td>
-            <span class="job__list--table-details__body--area">
-              <span
-                class="job__list--table-details__body--text"
-                [style.background-color]="j.colorCode"
-              >
-                {{ j.workfieldName }}
+            <div class="tags">
+              <span class="job__list--table-details__body--area">
+                <span
+                  class="job__list--table-details__body--text"
+                  [style.background-color]="j.colorCode"
+                >
+                  {{ j.workfieldName }}
+                </span>
               </span>
-            </span>
+            </div>
           </td>
 
           <td class="job__list--table-details__body--border-btn">

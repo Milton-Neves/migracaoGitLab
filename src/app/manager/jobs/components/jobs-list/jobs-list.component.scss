@@ -17,6 +17,10 @@
 
       &--text-description td {
         padding: 0.5rem 2rem;
+        .tags {
+          padding: 5px 15px;
+          border-radius: 5px;
+        }
       }
 
       &--text-description {
